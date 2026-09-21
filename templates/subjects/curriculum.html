@@ -1,0 +1,2891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 437 - Curriculum Development</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #305496;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            border: none;
+            padding: 12px 16px;
+            background: #d9e2f3;
+            color: #305496;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .tab-button:hover {
+            background: #b4c7e7;
+        }
+
+        .tab-button.active {
+            background: #305496;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .topic,
+        .note {
+            border: 1px solid #d6dce5;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .topic-title,
+        .note-title {
+            background: #eaf0f8;
+            padding: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .topic-title:hover,
+        .note-title:hover {
+            background: #dce6f4;
+        }
+
+        .topic-content,
+        .note-content {
+            display: none;
+            padding: 16px;
+            line-height: 1.6;
+        }
+
+        .topic-content.show,
+        .note-content.show {
+            display: block;
+        }
+
+        .question {
+            background: white;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .question h3 {
+            margin-top: 0;
+        }
+
+        .option {
+            display: block;
+            margin: 9px 0;
+            padding: 10px;
+            background: #f7f9fc;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #e9eef7;
+        }
+
+        .button {
+            border: none;
+            background: #305496;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
+        .button:hover {
+            background: #1f3864;
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #eaf4ea;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            background: #f5f8fc;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid #305496;
+            line-height: 1.6;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .flashcard {
+            text-align: center;
+            min-height: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flash-question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .flash-answer {
+            display: none;
+            font-size: 18px;
+            background: #eef3fa;
+            padding: 18px;
+            border-radius: 10px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .flash-answer.show {
+            display: block;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .completed {
+            background: #e2f0d9;
+        }
+
+        .small {
+            color: #666;
+            font-size: 14px;
+        }
+
+        ul,
+        ol {
+            line-height: 1.7;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .progress-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 437 — Curriculum Development</h1>
+    <p>Nursing Education and Curriculum Development Study Assistant</p>
+</header>
+
+<div class="container">
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button class="tab-button active" data-tab="topics">
+            Topics
+        </button>
+
+        <button class="tab-button" data-tab="notes">
+            Notes
+        </button>
+
+        <button class="tab-button" data-tab="mcq">
+            MCQs
+        </button>
+
+        <button class="tab-button" data-tab="short">
+            Short Answers
+        </button>
+
+        <button class="tab-button" data-tab="long">
+            Long Answers
+        </button>
+
+        <button class="tab-button" data-tab="flashcards">
+            Flashcards
+        </button>
+
+        <button class="tab-button" data-tab="progress">
+            Progress
+        </button>
+
+    </div>
+
+
+    <!-- ================= TOPICS ================= -->
+
+    <section id="topics" class="tab active">
+
+        <div class="card">
+            <h2>Curriculum Development Topics</h2>
+            <p class="small">
+                Click each topic to expand the study material.
+            </p>
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                1. Introduction to Curriculum
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    A curriculum is a planned set of learning experiences
+                    designed to achieve specified educational goals and
+                    objectives.
+                </p>
+
+                <p>
+                    In nursing education, the curriculum guides what students
+                    should learn, how they should learn it and how learning
+                    will be evaluated.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                2. Types of Curriculum
+            </div>
+
+            <div class="topic-content">
+
+                <ul>
+                    <li>Formal curriculum</li>
+                    <li>Informal curriculum</li>
+                    <li>Hidden curriculum</li>
+                    <li>Null curriculum</li>
+                    <li>Core curriculum</li>
+                    <li>Integrated curriculum</li>
+                </ul>
+
+                <p>
+                    The different forms describe different aspects of what
+                    learners are intentionally or unintentionally taught.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                3. Principles of Curriculum Development
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Curriculum development should be systematic and responsive
+                    to educational, professional and societal needs.
+                </p>
+
+                <ul>
+                    <li>Relevance</li>
+                    <li>Flexibility</li>
+                    <li>Continuity</li>
+                    <li>Integration</li>
+                    <li>Balance</li>
+                    <li>Sequence</li>
+                    <li>Participation</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                4. Needs Assessment
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Needs assessment identifies gaps between the current
+                    situation and the desired knowledge, skills, attitudes or
+                    competencies of learners or professionals.
+                </p>
+
+                <p>
+                    Information may be obtained from learners, educators,
+                    employers, professional bodies, communities and research.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                5. Curriculum Aims, Goals and Objectives
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    <strong>Aims</strong> are broad statements describing the
+                    overall educational purpose.
+                </p>
+
+                <p>
+                    <strong>Goals</strong> describe broad outcomes expected
+                    from a program or course.
+                </p>
+
+                <p>
+                    <strong>Objectives</strong> are specific statements of
+                    what learners should be able to demonstrate.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                6. Bloom's Taxonomy
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Bloom's taxonomy organizes learning objectives according
+                    to levels of cognitive complexity.
+                </p>
+
+                <p>
+                    Commonly taught cognitive levels include:
+                </p>
+
+                <ol>
+                    <li>Remember</li>
+                    <li>Understand</li>
+                    <li>Apply</li>
+                    <li>Analyze</li>
+                    <li>Evaluate</li>
+                    <li>Create</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                7. Curriculum Content Selection
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Content should be selected according to learner needs,
+                    professional requirements, available evidence and
+                    educational goals.
+                </p>
+
+                <ul>
+                    <li>Relevance</li>
+                    <li>Accuracy</li>
+                    <li>Significance</li>
+                    <li>Appropriateness</li>
+                    <li>Current evidence</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                8. Curriculum Organization
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Curriculum organization determines how content and
+                    learning experiences are arranged.
+                </p>
+
+                <p>
+                    Important principles include sequence, continuity,
+                    integration and balance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                9. Teaching-Learning Strategies
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Teaching strategies are methods used by educators to
+                    facilitate learning.
+                </p>
+
+                <ul>
+                    <li>Lecture</li>
+                    <li>Discussion</li>
+                    <li>Demonstration</li>
+                    <li>Simulation</li>
+                    <li>Case study</li>
+                    <li>Problem-based learning</li>
+                    <li>Clinical teaching</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                10. Clinical Education
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Clinical education provides opportunities for nursing
+                    students to apply theoretical knowledge and develop
+                    clinical skills in real or simulated healthcare
+                    environments.
+                </p>
+
+                <p>
+                    Clinical learning should include appropriate supervision,
+                    feedback, assessment and patient safety measures.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                11. Curriculum Implementation
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Curriculum implementation is the process of putting a
+                    planned curriculum into practice.
+                </p>
+
+                <p>
+                    Important requirements include appropriate teachers,
+                    learning resources, facilities, leadership and student
+                    support.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                12. Curriculum Evaluation
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Curriculum evaluation determines whether a curriculum is
+                    achieving its intended educational outcomes.
+                </p>
+
+                <ul>
+                    <li>Student performance</li>
+                    <li>Graduate competence</li>
+                    <li>Teaching effectiveness</li>
+                    <li>Learning resources</li>
+                    <li>Program outcomes</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                13. Curriculum Models
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Curriculum models provide frameworks for planning and
+                    organizing curriculum development.
+                </p>
+
+                <p>
+                    Examples include the Tyler model, Taba model and
+                    competency-based approaches.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                14. Competency-Based Education
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Competency-based education focuses on learners
+                    demonstrating specified knowledge, skills and attitudes
+                    required for effective professional practice.
+                </p>
+
+                <p>
+                    Assessment is based on demonstrated competence rather than
+                    time alone.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic">
+
+            <div class="topic-title">
+                15. Curriculum Review and Revision
+            </div>
+
+            <div class="topic-content">
+
+                <p>
+                    Curricula should be periodically reviewed to ensure they
+                    remain relevant to changes in healthcare, technology,
+                    professional practice and society.
+                </p>
+
+                <p>
+                    Feedback from students, educators, graduates, employers
+                    and professional bodies can contribute to curriculum
+                    revision.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NOTES ================= -->
+
+    <section id="notes" class="tab">
+
+        <div class="card">
+
+            <h2>Quick Revision Notes</h2>
+
+            <p>
+                Click a heading to reveal the notes.
+            </p>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-title">
+                Curriculum Development Process
+            </div>
+
+            <div class="note-content">
+
+                <ol>
+                    <li>Needs assessment</li>
+                    <li>Define aims and goals</li>
+                    <li>Develop objectives</li>
+                    <li>Select content</li>
+                    <li>Organize content</li>
+                    <li>Select learning experiences</li>
+                    <li>Implement curriculum</li>
+                    <li>Evaluate curriculum</li>
+                    <li>Revise where necessary</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-title">
+                Bloom's Taxonomy
+            </div>
+
+            <div class="note-content">
+
+                <p>
+                    Remember → Understand → Apply → Analyze → Evaluate →
+                    Create.
+                </p>
+
+                <p>
+                    The levels progress from relatively basic recall toward
+                    increasingly complex thinking.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-title">
+                Curriculum Principles
+            </div>
+
+            <div class="note-content">
+
+                <ul>
+                    <li>Relevance</li>
+                    <li>Continuity</li>
+                    <li>Sequence</li>
+                    <li>Integration</li>
+                    <li>Balance</li>
+                    <li>Flexibility</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-title">
+                Tyler Model
+            </div>
+
+            <div class="note-content">
+
+                <p>
+                    The Tyler approach is commonly summarized around four
+                    questions:
+                </p>
+
+                <ol>
+                    <li>What educational purposes should be achieved?</li>
+                    <li>What learning experiences can achieve them?</li>
+                    <li>How can these experiences be effectively organized?</li>
+                    <li>How can we determine whether the purposes are being achieved?</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-title">
+                Competency-Based Education
+            </div>
+
+            <div class="note-content">
+
+                <p>
+                    Competency-based education focuses on what learners can
+                    actually demonstrate in practice.
+                </p>
+
+                <p>
+                    Competencies may include knowledge, practical skills,
+                    communication, professional attitudes and clinical
+                    judgment.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MCQ ================= -->
+
+    <section id="mcq" class="tab">
+
+        <div class="card">
+
+            <h2>Curriculum Development MCQs</h2>
+
+            <p>
+                Ten questions are randomly selected from the question bank
+                each time.
+            </p>
+
+            <div id="quiz"></div>
+
+            <button class="button" onclick="submitQuiz()">
+                Submit Quiz
+            </button>
+
+            <button class="button" onclick="newQuiz()">
+                New Question Set
+            </button>
+
+            <div id="quizResult"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SHORT ANSWERS ================= -->
+
+    <section id="short" class="tab">
+
+        <div class="card">
+
+            <h2>Short-Answer Questions</h2>
+
+
+            <div class="question">
+
+                <h3>
+                    1. Define curriculum.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa1')">
+                    Show Answer
+                </button>
+
+                <div id="sa1" class="answer">
+
+                    A curriculum is a planned set of learning experiences
+                    designed to achieve specified educational goals and
+                    objectives.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    2. State five principles of curriculum development.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa2')">
+                    Show Answer
+                </button>
+
+                <div id="sa2" class="answer">
+
+                    Relevance, flexibility, continuity, integration and
+                    balance.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    3. Differentiate between an aim and an objective.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa3')">
+                    Show Answer
+                </button>
+
+                <div id="sa3" class="answer">
+
+                    An aim is a broad statement describing the overall
+                    educational purpose, while an objective is a more specific
+                    statement describing what the learner should be able to
+                    demonstrate.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    4. State the six levels of the cognitive domain in the
+                    revised Bloom's taxonomy.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa4')">
+                    Show Answer
+                </button>
+
+                <div id="sa4" class="answer">
+
+                    Remember, understand, apply, analyze, evaluate and create.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    5. What is needs assessment?
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa5')">
+                    Show Answer
+                </button>
+
+                <div id="sa5" class="answer">
+
+                    Needs assessment is the process of identifying gaps
+                    between the current situation and the desired knowledge,
+                    skills, attitudes or competencies.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    6. State five teaching-learning strategies.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa6')">
+                    Show Answer
+                </button>
+
+                <div id="sa6" class="answer">
+
+                    Lecture, discussion, demonstration, simulation and
+                    problem-based learning.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    7. What is curriculum evaluation?
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa7')">
+                    Show Answer
+                </button>
+
+                <div id="sa7" class="answer">
+
+                    Curriculum evaluation is the systematic process of
+                    determining whether a curriculum is achieving its
+                    intended educational outcomes.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    8. Define competency-based education.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa8')">
+                    Show Answer
+                </button>
+
+                <div id="sa8" class="answer">
+
+                    Competency-based education focuses on learners
+                    demonstrating specified knowledge, skills and attitudes
+                    required for professional practice.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    9. State four factors that may influence curriculum
+                    development.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa9')">
+                    Show Answer
+                </button>
+
+                <div id="sa9" class="answer">
+
+                    Healthcare needs, societal needs, professional
+                    requirements and technological developments.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    10. State four sources of curriculum feedback.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('sa10')">
+                    Show Answer
+                </button>
+
+                <div id="sa10" class="answer">
+
+                    Students, educators, graduates and employers.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LONG ANSWERS ================= -->
+
+    <section id="long" class="tab">
+
+        <div class="card">
+
+            <h2>Long-Answer Questions</h2>
+
+
+            <div class="question">
+
+                <h3>
+                    1. Discuss the curriculum development process.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('la1')">
+                    Show Model Answer
+                </button>
+
+                <div id="la1" class="answer">
+
+                    <p>
+                        Curriculum development is a systematic process of
+                        designing, implementing and evaluating educational
+                        programs.
+                    </p>
+
+                    <p>
+                        The process begins with a
+                        <strong>needs assessment</strong> to identify gaps
+                        between existing and desired knowledge, skills,
+                        attitudes and competencies.
+                    </p>
+
+                    <p>
+                        The next step is establishing broad
+                        <strong>aims and goals</strong>, followed by the
+                        development of specific and measurable
+                        <strong>learning objectives</strong>.
+                    </p>
+
+                    <p>
+                        Appropriate <strong>content</strong> is then selected
+                        and organized according to principles such as
+                        relevance, sequence, continuity and integration.
+                    </p>
+
+                    <p>
+                        Appropriate learning experiences and teaching
+                        strategies are selected. The curriculum is then
+                        implemented using suitable educators, facilities,
+                        learning resources and student support systems.
+                    </p>
+
+                    <p>
+                        Finally, the curriculum is
+                        <strong>evaluated</strong> to determine whether the
+                        intended outcomes have been achieved. Findings from
+                        evaluation can be used to revise and improve the
+                        curriculum.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    2. Explain the importance of curriculum evaluation.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('la2')">
+                    Show Model Answer
+                </button>
+
+                <div id="la2" class="answer">
+
+                    <p>
+                        Curriculum evaluation determines whether the planned
+                        curriculum is achieving its intended educational
+                        outcomes.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            It identifies strengths and weaknesses of the
+                            curriculum.
+                        </li>
+
+                        <li>
+                            It helps determine whether learning objectives
+                            are being achieved.
+                        </li>
+
+                        <li>
+                            It provides information for improving teaching and
+                            learning.
+                        </li>
+
+                        <li>
+                            It helps identify gaps in content or learning
+                            experiences.
+                        </li>
+
+                        <li>
+                            It supports curriculum revision.
+                        </li>
+
+                        <li>
+                            It helps determine whether graduates have the
+                            competencies required for professional practice.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    3. Discuss Bloom's revised taxonomy and its application
+                    in nursing education.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('la3')">
+                    Show Model Answer
+                </button>
+
+                <div id="la3" class="answer">
+
+                    <p>
+                        Bloom's revised taxonomy is a framework for classifying
+                        cognitive learning objectives according to increasing
+                        levels of complexity.
+                    </p>
+
+                    <p>
+                        The levels are:
+                    </p>
+
+                    <ol>
+                        <li>
+                            <strong>Remember:</strong> recalling information.
+                        </li>
+
+                        <li>
+                            <strong>Understand:</strong> explaining or
+                            interpreting information.
+                        </li>
+
+                        <li>
+                            <strong>Apply:</strong> using knowledge in a
+                            situation.
+                        </li>
+
+                        <li>
+                            <strong>Analyze:</strong> breaking information
+                            into parts and examining relationships.
+                        </li>
+
+                        <li>
+                            <strong>Evaluate:</strong> making judgments using
+                            criteria.
+                        </li>
+
+                        <li>
+                            <strong>Create:</strong> producing something new
+                            from existing knowledge.
+                        </li>
+                    </ol>
+
+                    <p>
+                        In nursing education, the taxonomy helps educators
+                        develop objectives, teaching activities and assessment
+                        methods that move learners from basic recall toward
+                        clinical reasoning and higher-order thinking.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    4. Discuss factors that should be considered when
+                    developing a nursing curriculum.
+                </h3>
+
+                <button class="button"
+                        onclick="toggleAnswer('la4')">
+                    Show Model Answer
+                </button>
+
+                <div id="la4" class="answer">
+
+                    <p>
+                        Curriculum development should consider the needs of
+                        learners, the nursing profession, healthcare systems
+                        and society.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            <strong>Learner needs:</strong> existing
+                            knowledge, abilities and learning needs.
+                        </li>
+
+                        <li>
+                            <strong>Healthcare needs:</strong> current and
+                            emerging health problems.
+                        </li>
+
+                        <li>
+                            <strong>Professional requirements:</strong>
+                            standards and competencies required for nursing
+                            practice.
+                        </li>
+
+                        <li>
+                            <strong>Technological changes:</strong> new
+                            healthcare technologies and learning technologies.
+                        </li>
+
+                        <li>
+                            <strong>Available resources:</strong> educators,
+                            facilities, equipment and finances.
+                        </li>
+
+                        <li>
+                            <strong>Societal needs:</strong> cultural,
+                            community and social expectations.
+                        </li>
+
+                        <li>
+                            <strong>Regulatory requirements:</strong>
+                            applicable educational and professional standards.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FLASHCARDS ================= -->
+
+    <section id="flashcards" class="tab">
+
+        <div class="card flashcard">
+
+            <div id="flashQuestion"
+                 class="flash-question">
+            </div>
+
+            <div id="flashAnswer"
+                 class="flash-answer">
+            </div>
+
+            <button class="button"
+                    onclick="showFlashAnswer()">
+                Show Answer
+            </button>
+
+            <button class="button"
+                    onclick="nextFlashcard()">
+                Next Flashcard
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROGRESS ================= -->
+
+    <section id="progress" class="tab">
+
+        <div class="card">
+
+            <h2>Topic Progress</h2>
+
+            <p>
+                Mark each topic as completed after studying it.
+            </p>
+
+            <div id="progressList"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* ================= TABS ================= */
+
+    const tabButtons =
+        document.querySelectorAll(".tab-button");
+
+    const tabs =
+        document.querySelectorAll(".tab");
+
+
+    tabButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const target =
+                button.getAttribute("data-tab");
+
+
+            tabs.forEach(function (tab) {
+
+                tab.classList.remove("active");
+
+            });
+
+
+            tabButtons.forEach(function (btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            const selectedTab =
+                document.getElementById(target);
+
+
+            if (selectedTab) {
+
+                selectedTab.classList.add("active");
+
+            }
+
+
+            button.classList.add("active");
+
+
+            if (target === "mcq") {
+
+                createQuiz();
+
+            }
+
+        });
+
+    });
+
+
+    /* ================= TOPICS ================= */
+
+    document.querySelectorAll(".topic-title")
+        .forEach(function (title) {
+
+            title.addEventListener("click", function () {
+
+                const content =
+                    title.nextElementSibling;
+
+                content.classList.toggle("show");
+
+            });
+
+        });
+
+
+    /* ================= NOTES ================= */
+
+    document.querySelectorAll(".note-title")
+        .forEach(function (title) {
+
+            title.addEventListener("click", function () {
+
+                const content =
+                    title.nextElementSibling;
+
+                content.classList.toggle("show");
+
+            });
+
+        });
+
+
+    /* ================= PROGRESS ================= */
+
+    const topicNames = [
+
+        "Introduction to Curriculum",
+
+        "Types of Curriculum",
+
+        "Principles of Curriculum Development",
+
+        "Needs Assessment",
+
+        "Curriculum Aims, Goals and Objectives",
+
+        "Bloom's Taxonomy",
+
+        "Curriculum Content Selection",
+
+        "Curriculum Organization",
+
+        "Teaching-Learning Strategies",
+
+        "Clinical Education",
+
+        "Curriculum Implementation",
+
+        "Curriculum Evaluation",
+
+        "Curriculum Models",
+
+        "Competency-Based Education",
+
+        "Curriculum Review and Revision"
+
+    ];
+
+
+    const completedTopics =
+        new Set();
+
+
+    function renderProgress() {
+
+        const list =
+            document.getElementById("progressList");
+
+        list.innerHTML = "";
+
+
+        topicNames.forEach(function (topic, index) {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "progress-item";
+
+
+            if (completedTopics.has(index)) {
+
+                row.classList.add("completed");
+
+            }
+
+
+            const name =
+                document.createElement("span");
+
+            name.textContent =
+                (index + 1) + ". " + topic;
+
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "button";
+
+
+            button.textContent =
+                completedTopics.has(index)
+                ? "Completed"
+                : "Mark Complete";
+
+
+            button.addEventListener("click", function () {
+
+                if (completedTopics.has(index)) {
+
+                    completedTopics.delete(index);
+
+                } else {
+
+                    completedTopics.add(index);
+
+                }
+
+                renderProgress();
+
+            });
+
+
+            row.appendChild(name);
+
+            row.appendChild(button);
+
+            list.appendChild(row);
+
+        });
+
+    }
+
+
+    renderProgress();
+
+
+    /* ================= MCQ BANK ================= */
+
+    const questions = [
+
+        {
+            question:
+                "What is a curriculum?",
+
+            options: [
+                "A planned set of learning experiences designed to achieve educational goals",
+                "A list of hospital employees",
+                "A patient treatment plan",
+                "A financial report"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is an example of a type of curriculum?",
+
+            options: [
+                "Hidden curriculum",
+                "Financial curriculum",
+                "Medication curriculum",
+                "Emergency curriculum"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "The hidden curriculum refers to:",
+
+            options: [
+                "Unintended learning arising from the educational environment and experiences",
+                "Only officially written course content",
+                "A hospital budget",
+                "A student's examination timetable"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is a principle of curriculum development?",
+
+            options: [
+                "Relevance",
+                "Randomness",
+                "Isolation",
+                "Inconsistency"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Needs assessment is used to:",
+
+            options: [
+                "Identify gaps between current and desired outcomes",
+                "Eliminate learning objectives",
+                "Replace curriculum evaluation",
+                "Determine staff salaries"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "An aim is best described as:",
+
+            options: [
+                "A broad statement of educational purpose",
+                "A specific examination question",
+                "A daily timetable",
+                "A student's grade"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "An objective should describe:",
+
+            options: [
+                "What the learner should be able to demonstrate",
+                "Only what the teacher intends to discuss",
+                "The cost of education",
+                "The number of classrooms"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is the lowest level in the revised cognitive taxonomy?",
+
+            options: [
+                "Remember",
+                "Create",
+                "Evaluate",
+                "Analyze"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which level follows understand in the revised Bloom's taxonomy?",
+
+            options: [
+                "Apply",
+                "Create",
+                "Evaluate",
+                "Remember"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is the highest level in the revised cognitive taxonomy?",
+
+            options: [
+                "Create",
+                "Remember",
+                "Understand",
+                "Apply"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which level involves breaking information into parts and examining relationships?",
+
+            options: [
+                "Analyze",
+                "Remember",
+                "Understand",
+                "Create"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which level involves making judgments using criteria?",
+
+            options: [
+                "Evaluate",
+                "Remember",
+                "Understand",
+                "Apply"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum content should primarily be:",
+
+            options: [
+                "Relevant to educational and professional needs",
+                "Randomly selected",
+                "Unrelated to objectives",
+                "Based only on tradition"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum organization concerns:",
+
+            options: [
+                "How content and learning experiences are arranged",
+                "Only examination fees",
+                "Staff salaries",
+                "Hospital admission"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is a teaching-learning strategy?",
+
+            options: [
+                "Simulation",
+                "Budgeting",
+                "Staff recruitment",
+                "Inventory control"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Clinical education allows nursing students to:",
+
+            options: [
+                "Apply theoretical knowledge and develop clinical skills",
+                "Avoid patient contact completely",
+                "Avoid supervision",
+                "Replace all classroom learning"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "An important feature of effective clinical education is:",
+
+            options: [
+                "Appropriate supervision and feedback",
+                "No assessment",
+                "No patient safety measures",
+                "No guidance"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum implementation means:",
+
+            options: [
+                "Putting the planned curriculum into practice",
+                "Writing objectives only",
+                "Evaluating students only",
+                "Ignoring the curriculum"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is important for curriculum implementation?",
+
+            options: [
+                "Qualified educators and appropriate resources",
+                "Lack of facilities",
+                "No leadership",
+                "No student support"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum evaluation determines:",
+
+            options: [
+                "Whether intended educational outcomes are being achieved",
+                "Only student attendance",
+                "Only teacher salaries",
+                "Only the cost of textbooks"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "The Tyler model is associated with:",
+
+            options: [
+                "Objectives and alignment of purposes, learning experiences, organization and evaluation",
+                "Hospital infection control only",
+                "Financial accounting",
+                "Staff recruitment"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Competency-based education focuses on:",
+
+            options: [
+                "Demonstrated knowledge, skills and attitudes",
+                "Time spent in class only",
+                "Memorization only",
+                "Attendance only"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A competency is best understood as:",
+
+            options: [
+                "The ability to perform according to an expected standard",
+                "A classroom timetable",
+                "A teaching salary",
+                "A textbook"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum revision may be necessary because of:",
+
+            options: [
+                "Changes in healthcare, technology and professional practice",
+                "A desire to avoid evaluation",
+                "A need to remove all learning objectives",
+                "A wish to ignore societal needs"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is a source of information for curriculum review?",
+
+            options: [
+                "Feedback from students and graduates",
+                "Rumors only",
+                "Personal preference only",
+                "Unverified information only"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Integration in curriculum means:",
+
+            options: [
+                "Connecting related knowledge, skills and learning experiences",
+                "Separating every subject completely",
+                "Removing clinical education",
+                "Avoiding interdisciplinary learning"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Continuity in curriculum means:",
+
+            options: [
+                "Learning experiences build progressively over time",
+                "Repeating unrelated content randomly",
+                "Removing progression",
+                "Avoiding review"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Sequence refers to:",
+
+            options: [
+                "Logical ordering of learning experiences",
+                "Random ordering of content",
+                "Removing prerequisites",
+                "Avoiding progression"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Balance in curriculum means:",
+
+            options: [
+                "Appropriate attention to different areas of learning",
+                "Teaching only theory",
+                "Teaching only practical skills",
+                "Removing general education"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Flexibility in curriculum allows:",
+
+            options: [
+                "Adaptation to changing needs and circumstances",
+                "Removal of all standards",
+                "Random teaching",
+                "Avoidance of objectives"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A formal curriculum is:",
+
+            options: [
+                "The officially planned and documented curriculum",
+                "Unintended learning",
+                "Informal social learning only",
+                "Unplanned behavior"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which method is especially useful for demonstrating a clinical procedure?",
+
+            options: [
+                "Demonstration",
+                "Silent reading only",
+                "Essay writing only",
+                "Debate only"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Simulation is useful because it:",
+
+            options: [
+                "Allows learners to practice skills in a controlled environment",
+                "Eliminates the need for learning",
+                "Prevents feedback",
+                "Removes assessment"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Problem-based learning emphasizes:",
+
+            options: [
+                "Learning through investigation of problems",
+                "Passive memorization only",
+                "Avoiding discussion",
+                "Teacher monologue only"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Case studies can help learners:",
+
+            options: [
+                "Apply knowledge to realistic situations",
+                "Avoid critical thinking",
+                "Avoid decision-making",
+                "Ignore clinical reasoning"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A good learning objective should be:",
+
+            options: [
+                "Clear and measurable",
+                "Vague",
+                "Impossible to assess",
+                "Unrelated to content"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is an example of an observable learning outcome?",
+
+            options: [
+                "Demonstrate correct hand hygiene technique",
+                "Know everything about nursing",
+                "Understand nursing completely",
+                "Be good"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum development should involve:",
+
+            options: [
+                "Relevant stakeholders",
+                "Only one person in all circumstances",
+                "No educators",
+                "No learners"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which stakeholder can provide useful information about graduate preparedness?",
+
+            options: [
+                "Employers",
+                "Only textbook publishers",
+                "Only students in primary school",
+                "Only administrative clerks"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which factor can influence nursing curriculum content?",
+
+            options: [
+                "Current healthcare needs",
+                "Weather alone",
+                "Building color",
+                "Staff birthdays"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Curriculum evaluation should be:",
+
+            options: [
+                "Systematic and linked to intended outcomes",
+                "Random",
+                "Based only on rumors",
+                "Performed without objectives"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Formative evaluation is generally conducted:",
+
+            options: [
+                "During development or implementation to support improvement",
+                "Only after a program has ended",
+                "Only before needs assessment",
+                "Never"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Summative evaluation generally focuses on:",
+
+            options: [
+                "Overall outcomes or effectiveness",
+                "Only planning",
+                "Only teacher attendance",
+                "Only classroom decoration"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A curriculum should be revised when:",
+
+            options: [
+                "Evidence shows that changes are needed",
+                "Evaluation is always avoided",
+                "Students ask no questions",
+                "Nothing changes in healthcare"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is a major purpose of curriculum development?",
+
+            options: [
+                "To prepare learners for expected roles and competencies",
+                "To increase confusion",
+                "To avoid assessment",
+                "To eliminate learning objectives"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A competency-based nursing curriculum emphasizes:",
+
+            options: [
+                "Ability to demonstrate professional competencies",
+                "Time spent sitting in class only",
+                "Memorization without application",
+                "Attendance alone"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is an important consideration when selecting content?",
+
+            options: [
+                "Accuracy and relevance",
+                "Randomness",
+                "Obsolescence",
+                "Irrelevance"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which principle helps ensure that learning experiences are logically ordered?",
+
+            options: [
+                "Sequence",
+                "Isolation",
+                "Randomness",
+                "Exclusion"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which principle ensures related subjects or concepts are connected?",
+
+            options: [
+                "Integration",
+                "Isolation",
+                "Fragmentation",
+                "Separation"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "The curriculum should reflect changes in:",
+
+            options: [
+                "Healthcare practice and societal needs",
+                "Only classroom furniture",
+                "Only examination rooms",
+                "Only staff uniforms"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "One purpose of curriculum evaluation is to:",
+
+            options: [
+                "Provide evidence for curriculum improvement",
+                "Prevent revision",
+                "Avoid feedback",
+                "Eliminate objectives"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which approach gives learners opportunities to practice clinical situations safely?",
+
+            options: [
+                "Simulation",
+                "Lecture only",
+                "Reading only",
+                "Dictation"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A curriculum is considered relevant when it:",
+
+            options: [
+                "Addresses important learner, professional and societal needs",
+                "Ignores current practice",
+                "Uses outdated information only",
+                "Avoids community needs"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is a possible disadvantage of relying only on lectures?",
+
+            options: [
+                "Limited opportunities for active participation and practice",
+                "Too much clinical experience",
+                "Excessive simulation",
+                "Too much hands-on learning"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Clinical learning should prioritize:",
+
+            options: [
+                "Patient safety and appropriate supervision",
+                "Independent practice without competence",
+                "Avoiding feedback",
+                "Skipping assessment"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which component connects teaching activities with intended outcomes?",
+
+            options: [
+                "Learning objectives",
+                "Building design",
+                "Uniform policy",
+                "Financial report"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A curriculum stakeholder is:",
+
+            options: [
+                "A person or group affected by or involved in the curriculum",
+                "Only a textbook",
+                "Only a classroom",
+                "Only an examination paper"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which is an example of a curriculum stakeholder?",
+
+            options: [
+                "Nursing students",
+                "Only hospital furniture",
+                "Only computers",
+                "Only textbooks"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "A major purpose of curriculum review is to:",
+
+            options: [
+                "Ensure continued relevance and effectiveness",
+                "Prevent improvement",
+                "Avoid stakeholder feedback",
+                "Remove evaluation"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which learning domain focuses on attitudes and values?",
+
+            options: [
+                "Affective domain",
+                "Cognitive domain",
+                "Psychomotor domain",
+                "Financial domain"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which learning domain focuses on physical and practical skills?",
+
+            options: [
+                "Psychomotor domain",
+                "Affective domain",
+                "Cognitive domain",
+                "Administrative domain"
+            ],
+
+            answer: 0
+        },
+
+
+        {
+            question:
+                "Which learning domain focuses mainly on thinking and knowledge?",
+
+            options: [
+                "Cognitive domain",
+                "Affective domain",
+                "Psychomotor domain",
+                "Social domain"
+            ],
+
+            answer: 0
+        }
+
+
+    ];
+
+
+    let currentQuestions = [];
+
+
+    function shuffle(array) {
+
+        const copied = [...array];
+
+
+        for (let i = copied.length - 1; i > 0; i--) {
+
+            const j =
+                Math.floor(Math.random() * (i + 1));
+
+
+            [copied[i], copied[j]] =
+                [copied[j], copied[i]];
+
+        }
+
+
+        return copied;
+
+    }
+
+
+    function createQuiz() {
+
+        currentQuestions =
+            shuffle(questions).slice(0, 10);
+
+
+        const quiz =
+            document.getElementById("quiz");
+
+
+        quiz.innerHTML = "";
+
+
+        document.getElementById("quizResult")
+            .innerHTML = "";
+
+
+        currentQuestions.forEach(function (q, index) {
+
+            const questionDiv =
+                document.createElement("div");
+
+
+            questionDiv.className =
+                "question";
+
+
+            const title =
+                document.createElement("h3");
+
+
+            title.textContent =
+                (index + 1) + ". " + q.question;
+
+
+            questionDiv.appendChild(title);
+
+
+            q.options.forEach(function (option, optionIndex) {
+
+                const label =
+                    document.createElement("label");
+
+
+                label.className =
+                    "option";
+
+
+                label.innerHTML =
+                    '<input type="radio" name="question' +
+                    index +
+                    '" value="' +
+                    optionIndex +
+                    '"> ' +
+                    option;
+
+
+                questionDiv.appendChild(label);
+
+            });
+
+
+            quiz.appendChild(questionDiv);
+
+        });
+
+    }
+
+
+    window.submitQuiz = function () {
+
+        let score = 0;
+
+
+        currentQuestions.forEach(function (q, index) {
+
+            const selected =
+                document.querySelector(
+                    'input[name="question' +
+                    index +
+                    '"]:checked'
+                );
+
+
+            if (
+                selected &&
+                Number(selected.value) === q.answer
+            ) {
+
+                score++;
+
+            }
+
+        });
+
+
+        const percentage =
+            Math.round(
+                (score / currentQuestions.length) * 100
+            );
+
+
+        document.getElementById("quizResult")
+            .innerHTML =
+
+            '<div class="result">' +
+
+            'You scored ' +
+
+            score +
+
+            ' / ' +
+
+            currentQuestions.length +
+
+            ' (' +
+
+            percentage +
+
+            '%).' +
+
+            '<br><br>' +
+
+            'Click "New Question Set" for another set.' +
+
+            '</div>';
+
+    };
+
+
+    window.newQuiz = function () {
+
+        createQuiz();
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    };
+
+
+    /* ================= ANSWERS ================= */
+
+    window.toggleAnswer = function (id) {
+
+        const answer =
+            document.getElementById(id);
+
+
+        if (answer) {
+
+            answer.classList.toggle("show");
+
+        }
+
+    };
+
+
+    /* ================= FLASHCARDS ================= */
+
+    const flashcards = [
+
+        {
+            question:
+                "What is a curriculum?",
+
+            answer:
+                "A planned set of learning experiences designed to achieve specified educational goals and objectives."
+        },
+
+        {
+            question:
+                "What is needs assessment?",
+
+            answer:
+                "The process of identifying gaps between the current situation and desired knowledge, skills, attitudes or competencies."
+        },
+
+        {
+            question:
+                "What is a learning objective?",
+
+            answer:
+                "A specific statement describing what a learner should be able to demonstrate after learning."
+        },
+
+        {
+            question:
+                "What are the six levels of revised Bloom's taxonomy?",
+
+            answer:
+                "Remember, understand, apply, analyze, evaluate and create."
+        },
+
+        {
+            question:
+                "What is curriculum evaluation?",
+
+            answer:
+                "The systematic process of determining whether a curriculum is achieving its intended educational outcomes."
+        },
+
+        {
+            question:
+                "What is curriculum implementation?",
+
+            answer:
+                "The process of putting a planned curriculum into practice."
+        },
+
+        {
+            question:
+                "What is competency-based education?",
+
+            answer:
+                "An approach that focuses on learners demonstrating specified knowledge, skills and attitudes required for professional practice."
+        },
+
+        {
+            question:
+                "What is the hidden curriculum?",
+
+            answer:
+                "Unintended learning that occurs through the educational environment, culture and experiences."
+        },
+
+        {
+            question:
+                "What is curriculum integration?",
+
+            answer:
+                "Connecting related knowledge, skills and learning experiences across areas of the curriculum."
+        },
+
+        {
+            question:
+                "What is curriculum sequence?",
+
+            answer:
+                "The logical ordering of learning experiences so that learning can progress appropriately."
+        },
+
+        {
+            question:
+                "What is formative evaluation?",
+
+            answer:
+                "Evaluation conducted during development or implementation to identify areas for improvement."
+        },
+
+        {
+            question:
+                "What is summative evaluation?",
+
+            answer:
+                "Evaluation focused on determining overall outcomes or effectiveness after implementation."
+        }
+
+    ];
+
+
+    let flashIndex = 0;
+
+
+    function displayFlashcard() {
+
+        document.getElementById("flashQuestion")
+            .textContent =
+            flashcards[flashIndex].question;
+
+
+        document.getElementById("flashAnswer")
+            .textContent =
+            flashcards[flashIndex].answer;
+
+
+        document.getElementById("flashAnswer")
+            .classList.remove("show");
+
+    }
+
+
+    window.showFlashAnswer = function () {
+
+        document.getElementById("flashAnswer")
+            .classList.add("show");
+
+    };
+
+
+    window.nextFlashcard = function () {
+
+        flashIndex++;
+
+
+        if (flashIndex >= flashcards.length) {
+
+            flashIndex = 0;
+
+        }
+
+
+        displayFlashcard();
+
+    };
+
+
+    displayFlashcard();
+
+    createQuiz();
+
+});
+
+</script>
+
+</body>
+</html>

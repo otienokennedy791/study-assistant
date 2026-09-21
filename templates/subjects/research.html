@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 497 - Research Proposal and Case Study Development</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #174a5c;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 18px;
+            text-decoration: none;
+            background: #333;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            border: none;
+            background: #ddd;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-button:hover {
+            background: #ccc;
+        }
+
+        .tab-button.active {
+            background: #174a5c;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .topic,
+        .note,
+        .question-box,
+        .flashcard {
+            background: white;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+        }
+
+        .topic-title,
+        .note-title {
+            padding: 16px;
+            background: #dcecf1;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .topic-content,
+        .note-content {
+            display: none;
+            padding: 18px;
+            line-height: 1.6;
+        }
+
+        .topic-content.show,
+        .note-content.show {
+            display: block;
+        }
+
+        .topic-content ul,
+        .note-content ul {
+            line-height: 1.7;
+        }
+
+        .mcq {
+            padding: 20px;
+        }
+
+        .mcq h3 {
+            margin-top: 0;
+        }
+
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f7f7f7;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #eeeeee;
+        }
+
+        .correct {
+            background: #d8f3dc !important;
+        }
+
+        .wrong {
+            background: #ffd6d6 !important;
+        }
+
+        button.action {
+            border: none;
+            background: #174a5c;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 8px 5px 8px 0;
+        }
+
+        button.action:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #dcecf1;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            padding: 15px;
+            background: #f7f7f7;
+            line-height: 1.6;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .flashcard {
+            padding: 25px;
+            text-align: center;
+            min-height: 180px;
+        }
+
+        .flash-question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .flash-answer {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #dcecf1;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .flash-answer.show {
+            display: block;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #174a5c;
+            transition: width 0.3s;
+        }
+
+        .small {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .formula {
+            background: #f0f5f7;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 497 — Research Proposal & Case Study Development</h1>
+    <p>Research Methods • Proposal Writing • Case Study Development • Revision</p>
+</header>
+
+<div class="container">
+
+    <a href="/" class="back">← Back to Dashboard</a>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="topics">Topics</button>
+        <button class="tab-button" data-tab="notes">Notes</button>
+        <button class="tab-button" data-tab="mcq">MCQs</button>
+        <button class="tab-button" data-tab="short">Short Answers</button>
+        <button class="tab-button" data-tab="long">Long Answers</button>
+        <button class="tab-button" data-tab="flashcards">Flashcards</button>
+        <button class="tab-button" data-tab="progress">Progress</button>
+    </div>
+
+
+    <!-- =========================
+         TOPICS
+    ========================== -->
+
+    <section id="topics" class="tab active">
+
+        <div class="card">
+            <h2>Research Proposal & Case Study Topics</h2>
+            <p>Click any topic to expand the revision material.</p>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">1. Introduction to Nursing Research</div>
+            <div class="topic-content">
+                <p>
+                    Nursing research is the systematic investigation of questions relevant to nursing
+                    practice, education, administration and health outcomes.
+                </p>
+
+                <ul>
+                    <li>Improves evidence-based nursing practice.</li>
+                    <li>Identifies problems requiring investigation.</li>
+                    <li>Evaluates nursing interventions.</li>
+                    <li>Improves quality and safety of patient care.</li>
+                    <li>Contributes to development of nursing knowledge.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">2. Research Problem and Problem Statement</div>
+            <div class="topic-content">
+                <p>
+                    A research problem is an issue, gap or concern that requires systematic investigation.
+                </p>
+
+                <p>A good problem statement should:</p>
+
+                <ul>
+                    <li>Clearly identify the problem.</li>
+                    <li>Provide relevant context.</li>
+                    <li>Indicate the population or setting where appropriate.</li>
+                    <li>Explain why the problem is important.</li>
+                    <li>Be supported by available evidence.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">3. Research Objectives and Questions</div>
+            <div class="topic-content">
+                <p>
+                    Research objectives describe what the researcher intends to accomplish.
+                </p>
+
+                <p>Objectives should generally be:</p>
+
+                <ul>
+                    <li>Specific</li>
+                    <li>Measurable</li>
+                    <li>Achievable</li>
+                    <li>Relevant</li>
+                    <li>Time-bound where appropriate</li>
+                </ul>
+
+                <p>
+                    Research questions translate the research problem into questions that the study
+                    will investigate.
+                </p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">4. Literature Review</div>
+            <div class="topic-content">
+                <p>
+                    A literature review is a critical examination and synthesis of existing knowledge
+                    related to the research problem.
+                </p>
+
+                <ul>
+                    <li>Identifies what is already known.</li>
+                    <li>Identifies gaps in knowledge.</li>
+                    <li>Provides background for the study.</li>
+                    <li>Helps refine research questions.</li>
+                    <li>Supports selection of appropriate methodology.</li>
+                    <li>Helps avoid unnecessary duplication of research.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">5. Theoretical and Conceptual Frameworks</div>
+            <div class="topic-content">
+                <p>
+                    A theoretical framework uses an established theory to guide the study.
+                </p>
+
+                <p>
+                    A conceptual framework illustrates how important concepts or variables are
+                    expected to relate to one another within the study.
+                </p>
+
+                <ul>
+                    <li>Provides structure for the study.</li>
+                    <li>Guides variable selection.</li>
+                    <li>Helps explain relationships among concepts.</li>
+                    <li>Supports interpretation of findings.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">6. Research Designs</div>
+            <div class="topic-content">
+                <p>Common research designs include:</p>
+
+                <ul>
+                    <li>Descriptive designs</li>
+                    <li>Cross-sectional studies</li>
+                    <li>Correlational studies</li>
+                    <li>Experimental studies</li>
+                    <li>Quasi-experimental studies</li>
+                    <li>Case study designs</li>
+                    <li>Qualitative designs</li>
+                    <li>Mixed-methods designs</li>
+                </ul>
+
+                <p>
+                    The choice of design depends on the research question, objectives, available
+                    resources and ethical considerations.
+                </p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">7. Population, Sample and Sampling</div>
+            <div class="topic-content">
+                <p>
+                    The target population is the broader group to which the researcher intends the
+                    study to apply.
+                </p>
+
+                <p>
+                    A sample is a subset of the population selected for participation.
+                </p>
+
+                <h4>Sampling methods</h4>
+
+                <ul>
+                    <li>Simple random sampling</li>
+                    <li>Systematic sampling</li>
+                    <li>Stratified sampling</li>
+                    <li>Cluster sampling</li>
+                    <li>Convenience sampling</li>
+                    <li>Purposive sampling</li>
+                    <li>Snowball sampling</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">8. Variables and Operational Definitions</div>
+            <div class="topic-content">
+                <p>
+                    A variable is a characteristic or attribute that can take different values.
+                </p>
+
+                <ul>
+                    <li><strong>Independent variable:</strong> The variable considered as a potential cause or influence.</li>
+                    <li><strong>Dependent variable:</strong> The outcome being measured.</li>
+                    <li><strong>Confounding variable:</strong> A variable that may distort the relationship between variables.</li>
+                </ul>
+
+                <p>
+                    An operational definition explains exactly how a concept or variable will be
+                    measured in a particular study.
+                </p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">9. Data Collection Methods and Tools</div>
+            <div class="topic-content">
+                <p>Common methods include:</p>
+
+                <ul>
+                    <li>Questionnaires</li>
+                    <li>Interviews</li>
+                    <li>Observation</li>
+                    <li>Record review</li>
+                    <li>Focus group discussions</li>
+                    <li>Measurements and clinical assessments</li>
+                </ul>
+
+                <p>
+                    A data collection tool should be appropriate for the research objectives and
+                    population.
+                </p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">10. Validity and Reliability</div>
+            <div class="topic-content">
+                <p>
+                    <strong>Validity</strong> refers to how well a tool measures what it is intended
+                    to measure.
+                </p>
+
+                <p>
+                    <strong>Reliability</strong> refers to the consistency or stability of measurement.
+                </p>
+
+                <p>
+                    A tool may be reliable without being valid, so both concepts must be considered
+                    during research planning.
+                </p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">11. Research Ethics</div>
+            <div class="topic-content">
+                <p>Important ethical principles include:</p>
+
+                <ul>
+                    <li>Respect for persons</li>
+                    <li>Informed consent</li>
+                    <li>Confidentiality</li>
+                    <li>Privacy</li>
+                    <li>Beneficence</li>
+                    <li>Non-maleficence</li>
+                    <li>Justice</li>
+                    <li>Voluntary participation</li>
+                    <li>Right to withdraw</li>
+                </ul>
+
+                <p>
+                    Research involving human participants requires appropriate ethical review and
+                    approval according to applicable institutional and regulatory requirements.
+                </p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">12. Data Analysis</div>
+            <div class="topic-content">
+                <p>
+                    Data analysis involves organizing, examining and interpreting collected information.
+                </p>
+
+                <h4>Quantitative analysis may include:</h4>
+
+                <ul>
+                    <li>Frequencies</li>
+                    <li>Percentages</li>
+                    <li>Means</li>
+                    <li>Standard deviations</li>
+                    <li>Measures of association</li>
+                    <li>Appropriate statistical tests</li>
+                </ul>
+
+                <h4>Qualitative analysis may involve:</h4>
+
+                <ul>
+                    <li>Coding</li>
+                    <li>Categorization</li>
+                    <li>Theme development</li>
+                    <li>Interpretation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">13. Research Proposal Structure</div>
+            <div class="topic-content">
+                <p>A research proposal commonly contains:</p>
+
+                <ul>
+                    <li>Title</li>
+                    <li>Introduction/background</li>
+                    <li>Problem statement</li>
+                    <li>Justification/significance</li>
+                    <li>Objectives</li>
+                    <li>Research questions or hypotheses where appropriate</li>
+                    <li>Literature review</li>
+                    <li>Theoretical/conceptual framework</li>
+                    <li>Methodology</li>
+                    <li>Ethical considerations</li>
+                    <li>Work plan</li>
+                    <li>Budget</li>
+                    <li>References</li>
+                    <li>Appendices</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">14. Case Study Development</div>
+            <div class="topic-content">
+                <p>
+                    A case study is an in-depth investigation of an individual, family, group,
+                    organization or situation within its real-life context.
+                </p>
+
+                <p>A nursing case study may include:</p>
+
+                <ul>
+                    <li>Patient identification information</li>
+                    <li>Presenting complaint</li>
+                    <li>History of present illness</li>
+                    <li>Past medical and surgical history</li>
+                    <li>Family and social history</li>
+                    <li>Physical assessment</li>
+                    <li>Investigations</li>
+                    <li>Medical diagnosis</li>
+                    <li>Nursing diagnoses</li>
+                    <li>Nursing interventions</li>
+                    <li>Evaluation</li>
+                    <li>Discharge and follow-up planning</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">15. Research Report Writing and Presentation</div>
+            <div class="topic-content">
+                <p>
+                    A research report communicates the research process, findings and interpretation
+                    in a structured manner.
+                </p>
+
+                <ul>
+                    <li>Present findings clearly.</li>
+                    <li>Use appropriate tables and figures where necessary.</li>
+                    <li>Interpret findings in relation to the research questions.</li>
+                    <li>Discuss limitations.</li>
+                    <li>Draw conclusions supported by the findings.</li>
+                    <li>Make recommendations based on the evidence.</li>
+                    <li>Use appropriate referencing.</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NOTES
+    ========================== -->
+
+    <section id="notes" class="tab">
+
+        <div class="card">
+            <h2>Research Revision Notes</h2>
+            <p>Click each section to open it.</p>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Quantitative vs Qualitative Research</div>
+
+            <div class="note-content">
+
+                <p>
+                    <strong>Quantitative research</strong> generally focuses on numerical data,
+                    measurement and statistical analysis.
+                </p>
+
+                <p>
+                    <strong>Qualitative research</strong> generally explores meanings, experiences,
+                    perceptions and processes using non-numerical data.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Validity vs Reliability</div>
+
+            <div class="note-content">
+
+                <p>
+                    <strong>Validity:</strong> Whether the research tool measures what it is intended
+                    to measure.
+                </p>
+
+                <p>
+                    <strong>Reliability:</strong> Whether the measurement is consistent or stable.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Research Ethics Quick Review</div>
+
+            <div class="note-content">
+
+                <ul>
+                    <li>Obtain informed consent.</li>
+                    <li>Protect confidentiality.</li>
+                    <li>Respect privacy.</li>
+                    <li>Minimize harm.</li>
+                    <li>Promote potential benefits.</li>
+                    <li>Ensure fair participant selection.</li>
+                    <li>Respect the participant's right to withdraw.</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Basic Research Proposal Formula</div>
+
+            <div class="note-content">
+
+                <p class="formula">
+                    Problem → Objectives → Literature → Framework → Methodology → Ethics → Analysis → Reporting
+                </p>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MCQs
+    ========================== -->
+
+    <section id="mcq" class="tab">
+
+        <div class="card">
+            <h2>Research MCQs</h2>
+
+            <p>
+                Ten questions are randomly selected from the question bank.
+            </p>
+
+            <p class="small">
+                Submit your answers to see your score. Then click
+                <strong>New Question Set</strong> for another set.
+            </p>
+        </div>
+
+        <div id="quiz"></div>
+
+        <button class="action" id="submitQuiz">
+            Submit Quiz
+        </button>
+
+        <button class="action" id="newQuiz">
+            New Question Set
+        </button>
+
+        <div id="quizResult"></div>
+
+    </section>
+
+
+    <!-- =========================
+         SHORT ANSWERS
+    ========================== -->
+
+    <section id="short" class="tab">
+
+        <div class="card">
+            <h2>Short-Answer Questions</h2>
+            <p>Practice answering before revealing the model answer.</p>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>1. Define nursing research.</strong>
+                <button class="action answer-button" data-answer="short1">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short1">
+                Nursing research is the systematic investigation of questions and problems relevant
+                to nursing practice, education, administration and patient outcomes.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>2. Define a research problem.</strong>
+                <button class="action answer-button" data-answer="short2">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short2">
+                A research problem is an issue, gap or concern that requires systematic investigation.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>3. State four characteristics of good research objectives.</strong>
+                <button class="action answer-button" data-answer="short3">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short3">
+                Objectives should be specific, measurable, achievable, relevant and appropriately
+                time-bound.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>4. Differentiate between a population and a sample.</strong>
+                <button class="action answer-button" data-answer="short4">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short4">
+                A population is the broader group of people or units relevant to the research,
+                while a sample is a subset selected from that population to participate in the study.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>5. Define validity.</strong>
+                <button class="action answer-button" data-answer="short5">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short5">
+                Validity refers to the extent to which a research instrument measures what it is
+                intended to measure.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>6. Define reliability.</strong>
+                <button class="action answer-button" data-answer="short6">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short6">
+                Reliability refers to the consistency or stability of measurements obtained using
+                a research instrument.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>7. State five ethical principles in research.</strong>
+                <button class="action answer-button" data-answer="short7">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short7">
+                Examples include respect for persons, informed consent, confidentiality,
+                beneficence, non-maleficence and justice.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>8. State four methods of data collection.</strong>
+                <button class="action answer-button" data-answer="short8">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short8">
+                Questionnaires, interviews, observation and record review are examples of
+                data collection methods.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>9. Differentiate between an independent and dependent variable.</strong>
+                <button class="action answer-button" data-answer="short9">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short9">
+                The independent variable is considered a potential influencing or explanatory
+                variable, while the dependent variable is the outcome being measured.
+            </div>
+        </div>
+
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>10. What is a literature review?</strong>
+                <button class="action answer-button" data-answer="short10">
+                    Show Answer
+                </button>
+            </div>
+
+            <div class="answer" id="short10">
+                A literature review is a critical examination and synthesis of existing literature
+                relevant to a research problem.
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LONG ANSWERS
+    ========================== -->
+
+    <section id="long" class="tab">
+
+        <div class="card">
+            <h2>Long-Answer Questions</h2>
+            <p>Use these questions for examination practice.</p>
+        </div>
+
+
+        <div class="question-box">
+
+            <div class="mcq">
+
+                <strong>
+                    1. Discuss the steps involved in developing a research proposal.
+                </strong>
+
+                <button class="action answer-button" data-answer="long1">
+                    Show Model Answer
+                </button>
+
+            </div>
+
+            <div class="answer" id="long1">
+
+                <p>
+                    Development of a research proposal begins with identification of a research
+                    problem. The researcher investigates the problem and determines why it requires
+                    study.
+                </p>
+
+                <p>
+                    The researcher then develops objectives and research questions or hypotheses
+                    where appropriate.
+                </p>
+
+                <p>
+                    A literature review is conducted to identify existing knowledge, gaps and
+                    relevant theoretical or conceptual perspectives.
+                </p>
+
+                <p>
+                    The methodology is then developed. It includes the research design, study
+                    population, sample, sampling procedure, data collection methods, instruments
+                    and data analysis plan.
+                </p>
+
+                <p>
+                    Ethical considerations, work plans, budgets, references and appendices are
+                    also incorporated according to institutional requirements.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <div class="mcq">
+
+                <strong>
+                    2. Discuss the importance of research ethics in nursing research.
+                </strong>
+
+                <button class="action answer-button" data-answer="long2">
+                    Show Model Answer
+                </button>
+
+            </div>
+
+            <div class="answer" id="long2">
+
+                <p>
+                    Research ethics protect the rights, dignity, safety and welfare of research
+                    participants.
+                </p>
+
+                <p>
+                    Participants should receive adequate information and provide voluntary
+                    informed consent before participating.
+                </p>
+
+                <p>
+                    Researchers should protect privacy and confidentiality and minimize potential
+                    harm.
+                </p>
+
+                <p>
+                    Ethical principles such as beneficence, non-maleficence, justice and respect
+                    for persons guide responsible research.
+                </p>
+
+                <p>
+                    Appropriate ethical review and approval are required according to relevant
+                    institutional and regulatory requirements.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <div class="mcq">
+
+                <strong>
+                    3. Discuss the importance of literature review in research.
+                </strong>
+
+                <button class="action answer-button" data-answer="long3">
+                    Show Model Answer
+                </button>
+
+            </div>
+
+            <div class="answer" id="long3">
+
+                <p>
+                    Literature review helps the researcher understand existing knowledge about
+                    the research problem.
+                </p>
+
+                <p>
+                    It identifies knowledge gaps, provides background information and helps
+                    establish the significance of the proposed study.
+                </p>
+
+                <p>
+                    It can also assist in refining research questions, selecting an appropriate
+                    methodology and identifying relevant theories or concepts.
+                </p>
+
+                <p>
+                    A good literature review critically compares and synthesizes relevant sources
+                    rather than simply listing them.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <div class="mcq">
+
+                <strong>
+                    4. Discuss the components of a nursing case study.
+                </strong>
+
+                <button class="action answer-button" data-answer="long4">
+                    Show Model Answer
+                </button>
+
+            </div>
+
+            <div class="answer" id="long4">
+
+                <p>
+                    A nursing case study generally begins with relevant patient identification
+                    information while maintaining confidentiality.
+                </p>
+
+                <p>
+                    It includes the presenting complaint, history of the present illness, past
+                    medical and surgical history, family history and relevant social history.
+                </p>
+
+                <p>
+                    A comprehensive physical assessment and relevant investigations are documented.
+                </p>
+
+                <p>
+                    The case study then discusses the medical diagnosis and nursing diagnoses,
+                    followed by nursing interventions and evaluation.
+                </p>
+
+                <p>
+                    Patient education, discharge planning and follow-up may also be included.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FLASHCARDS
+    ========================== -->
+
+    <section id="flashcards" class="tab">
+
+        <div class="card">
+            <h2>Research Flashcards</h2>
+            <p>Try answering before revealing the answer.</p>
+        </div>
+
+        <div class="flashcard">
+
+            <div class="flash-question" id="flashQuestion">
+                What is research?
+            </div>
+
+            <button class="action" id="showFlashAnswer">
+                Show Answer
+            </button>
+
+            <button class="action" id="nextFlashcard">
+                Next Card
+            </button>
+
+            <div class="flash-answer" id="flashAnswer"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROGRESS
+    ========================== -->
+
+    <section id="progress" class="tab">
+
+        <div class="card">
+
+            <h2>Research Topic Progress</h2>
+
+            <p>
+                Click "Mark Complete" after revising each topic.
+            </p>
+
+        </div>
+
+        <div id="progressList"></div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =========================
+       TABS
+    ========================== */
+
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const target = button.getAttribute("data-tab");
+
+            tabs.forEach(function (tab) {
+                tab.classList.remove("active");
+            });
+
+            tabButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            const selectedTab = document.getElementById(target);
+
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            button.classList.add("active");
+
+            if (target === "mcq") {
+                createQuiz();
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       TOPICS
+    ========================== */
+
+    document.querySelectorAll(".topic-title").forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       NOTES
+    ========================== */
+
+    document.querySelectorAll(".note-title").forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       MCQ QUESTION BANK
+    ========================== */
+
+    const questions = [
+
+        {
+            q: "What is the main purpose of nursing research?",
+            options: [
+                "To generate evidence that can improve nursing knowledge and practice",
+                "To replace all clinical experience",
+                "To eliminate patient assessment",
+                "To avoid documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A research problem is best described as:",
+            options: [
+                "An issue or gap requiring systematic investigation",
+                "A list of references",
+                "A research budget",
+                "A completed result"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A good research objective should be:",
+            options: [
+                "Specific and measurable",
+                "Unclear",
+                "Impossible to measure",
+                "Unrelated to the problem"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A literature review primarily helps the researcher to:",
+            options: [
+                "Understand existing knowledge and identify gaps",
+                "Avoid reading previous studies",
+                "Replace data collection",
+                "Guarantee the study results"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A theoretical framework is primarily used to:",
+            options: [
+                "Guide the study using an established theory",
+                "Calculate the research budget",
+                "Replace ethical approval",
+                "Recruit participants automatically"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A conceptual framework illustrates:",
+            options: [
+                "Relationships among important concepts or variables",
+                "Only the research budget",
+                "Only the references",
+                "The researcher's timetable only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The target population refers to:",
+            options: [
+                "The broader group relevant to the research",
+                "Only the researcher",
+                "The research instrument",
+                "The final report"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A sample is:",
+            options: [
+                "A subset of the population selected for the study",
+                "The entire universe",
+                "The research budget",
+                "The literature review"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a probability sampling method?",
+            options: [
+                "Simple random sampling",
+                "Convenience sampling",
+                "Purposive sampling",
+                "Snowball sampling"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a non-probability sampling method?",
+            options: [
+                "Convenience sampling",
+                "Simple random sampling",
+                "Systematic random sampling",
+                "Stratified random sampling"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The independent variable is generally:",
+            options: [
+                "A variable considered as a potential influence or cause",
+                "Always the final outcome",
+                "The reference list",
+                "The sample size"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The dependent variable is:",
+            options: [
+                "The outcome being measured",
+                "Always the researcher",
+                "The literature review",
+                "The research budget"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "An operational definition explains:",
+            options: [
+                "How a variable or concept will be measured",
+                "How to write a reference list only",
+                "How to recruit researchers",
+                "How to calculate salaries"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a common quantitative data collection method?",
+            options: [
+                "Structured questionnaire",
+                "Poetry",
+                "Informal conversation without a study plan",
+                "Personal diary only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which method can be used for qualitative research?",
+            options: [
+                "In-depth interview",
+                "Only laboratory testing",
+                "Only blood pressure measurement",
+                "Only numerical scoring"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Validity refers to:",
+            options: [
+                "Whether a tool measures what it is intended to measure",
+                "Whether a researcher arrives early",
+                "The number of participants only",
+                "The cost of the study"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Reliability refers to:",
+            options: [
+                "Consistency or stability of measurement",
+                "The researcher's opinion",
+                "The number of pages in a proposal",
+                "The study budget"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A research instrument can be reliable but:",
+            options: [
+                "Not necessarily valid",
+                "Always valid",
+                "Never useful",
+                "Always unethical"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Informed consent means that participants:",
+            options: [
+                "Receive relevant information and voluntarily agree to participate",
+                "Must participate",
+                "Cannot withdraw",
+                "Are not told about the study"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Confidentiality in research means:",
+            options: [
+                "Protecting participants' private information",
+                "Publishing all personal identifiers",
+                "Sharing records publicly",
+                "Ignoring participant privacy"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The principle of justice in research relates to:",
+            options: [
+                "Fairness in the treatment and selection of participants",
+                "Avoiding all research",
+                "Increasing study costs",
+                "Removing consent"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Beneficence means:",
+            options: [
+                "Promoting potential benefits",
+                "Increasing harm",
+                "Ignoring risks",
+                "Removing participant rights"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Non-maleficence means:",
+            options: [
+                "Avoiding or minimizing harm",
+                "Maximizing risk",
+                "Ignoring safety",
+                "Forcing participation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Participants generally have the right to:",
+            options: [
+                "Withdraw from a study according to the consent arrangements",
+                "Be forced to continue",
+                "Have their identity publicly disclosed",
+                "Avoid all information about the study"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A descriptive study primarily aims to:",
+            options: [
+                "Describe characteristics or patterns",
+                "Always establish causation",
+                "Replace ethical approval",
+                "Guarantee an intervention effect"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A cross-sectional study generally collects information:",
+            options: [
+                "At a particular point or period in time",
+                "Only after ten years",
+                "Only from researchers",
+                "Without defining a population"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A correlational study examines:",
+            options: [
+                "Relationships between variables",
+                "Only patient names",
+                "Only research budgets",
+                "Only literature references"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "An experimental study commonly involves:",
+            options: [
+                "An intervention or manipulation and comparison",
+                "No variables",
+                "No research question",
+                "No participants"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A case study involves:",
+            options: [
+                "In-depth investigation of a case in its context",
+                "Only statistical calculations",
+                "Only laboratory experiments",
+                "Only a literature review"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Qualitative research commonly explores:",
+            options: [
+                "Experiences, meanings and perceptions",
+                "Only percentages",
+                "Only blood pressure",
+                "Only sample size"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Quantitative research commonly uses:",
+            options: [
+                "Numerical data and statistical analysis",
+                "Only stories",
+                "Only interviews",
+                "No measurement"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A research hypothesis is:",
+            options: [
+                "A testable statement about an expected relationship or difference",
+                "A reference list",
+                "A budget",
+                "A patient history"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which section explains why the research should be conducted?",
+            options: [
+                "Justification or significance",
+                "References only",
+                "Appendices only",
+                "Title page only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The methodology section explains:",
+            options: [
+                "How the study will be conducted",
+                "Only why the topic is interesting",
+                "Only the author's biography",
+                "Only the reference list"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A work plan shows:",
+            options: [
+                "Activities and their expected timing",
+                "Only participant names",
+                "Only study findings",
+                "Only references"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A research budget describes:",
+            options: [
+                "Expected costs and financial requirements",
+                "Only research questions",
+                "Only the literature",
+                "Only participant characteristics"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Data analysis involves:",
+            options: [
+                "Organizing, examining and interpreting collected information",
+                "Only recruiting participants",
+                "Only writing the title",
+                "Only obtaining consent"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A frequency describes:",
+            options: [
+                "How often a particular value or category occurs",
+                "A theoretical framework",
+                "A sampling method",
+                "An ethical principle"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A percentage expresses:",
+            options: [
+                "A proportion out of one hundred",
+                "A research theory",
+                "A sampling frame",
+                "A literature gap"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Qualitative data analysis may involve:",
+            options: [
+                "Coding and theme development",
+                "Only calculating a mean",
+                "Only calculating blood pressure",
+                "Only counting participants"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A research report should:",
+            options: [
+                "Present and interpret findings clearly",
+                "Hide all limitations",
+                "Invent findings",
+                "Ignore the research questions"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Research limitations refer to:",
+            options: [
+                "Factors that may restrict or affect the study",
+                "Only the research objectives",
+                "Only the title",
+                "Only the references"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A conclusion should be:",
+            options: [
+                "Supported by the study findings",
+                "Based on invented data",
+                "Unrelated to the objectives",
+                "Written before data collection"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Recommendations should generally be based on:",
+            options: [
+                "Study findings and relevant evidence",
+                "Personal guesses only",
+                "Unrelated information",
+                "The title alone"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A reference list contains:",
+            options: [
+                "Sources cited in the research work",
+                "Only participant names",
+                "Only study expenses",
+                "Only research questions"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Appendices may contain:",
+            options: [
+                "Supporting materials such as questionnaires or consent forms",
+                "Only conclusions",
+                "Only research objectives",
+                "Only the title"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Pilot testing can help a researcher:",
+            options: [
+                "Identify problems with a research instrument or procedure",
+                "Guarantee the final findings",
+                "Eliminate the need for ethics",
+                "Replace the main study"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A sampling frame is:",
+            options: [
+                "A list or source from which a sample may be selected",
+                "A research theory",
+                "A data analysis test",
+                "A consent form"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Purposive sampling involves:",
+            options: [
+                "Selecting participants based on relevant characteristics or criteria",
+                "Selecting names entirely by chance",
+                "Selecting every person automatically",
+                "Selecting only researchers"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A research question should be:",
+            options: [
+                "Clear and answerable through the proposed study",
+                "Unrelated to the problem",
+                "Impossible to investigate",
+                "Always extremely broad"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The significance of a study explains:",
+            options: [
+                "Why the research may be important or useful",
+                "Only the researcher's name",
+                "Only the budget",
+                "Only the references"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A case study should protect:",
+            options: [
+                "Patient privacy and confidentiality",
+                "Only the researcher's privacy",
+                "Only the hospital budget",
+                "No information"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A nursing case study may include:",
+            options: [
+                "Assessment, diagnosis, interventions and evaluation",
+                "Only the patient's name",
+                "Only laboratory results",
+                "Only medication names"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The main purpose of a conceptual framework is to:",
+            options: [
+                "Show how key concepts or variables may relate",
+                "Replace data collection",
+                "Calculate the budget",
+                "Provide patient treatment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an example of secondary data?",
+            options: [
+                "Information obtained from existing records or previously collected sources",
+                "A newly conducted interview",
+                "A newly administered questionnaire",
+                "A newly performed observation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Primary data are:",
+            options: [
+                "Data collected directly for the study",
+                "Always obtained from textbooks",
+                "Always obtained from old reports",
+                "Never collected by researchers"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Plagiarism involves:",
+            options: [
+                "Presenting another person's work or ideas without appropriate acknowledgment",
+                "Correct referencing",
+                "Obtaining informed consent",
+                "Analyzing data"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Proper referencing helps:",
+            options: [
+                "Acknowledge sources and support academic integrity",
+                "Hide sources",
+                "Remove the need for evidence",
+                "Guarantee research findings"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A good research title should be:",
+            options: [
+                "Clear, concise and reflective of the study",
+                "Extremely vague",
+                "Unrelated to the study",
+                "Impossible to understand"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Ethical approval is intended to:",
+            options: [
+                "Protect research participants and ensure ethical conduct",
+                "Guarantee positive results",
+                "Increase sample size",
+                "Replace informed consent"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A confounding variable may:",
+            options: [
+                "Distort the apparent relationship between variables",
+                "Always improve validity",
+                "Replace the dependent variable",
+                "Eliminate bias automatically"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Research bias refers to:",
+            options: [
+                "Systematic influence that can affect the accuracy of study findings",
+                "Perfect objectivity",
+                "A research budget",
+                "A type of reference"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A systematic approach to research means:",
+            options: [
+                "Following an organized and planned process",
+                "Changing methods randomly",
+                "Ignoring the research question",
+                "Avoiding documentation"
+            ],
+            answer: 0
+        }
+
+    ];
+
+
+    let currentQuestions = [];
+
+
+    function shuffle(array) {
+
+        const copy = [...array];
+
+        for (let i = copy.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+
+        }
+
+        return copy;
+
+    }
+
+
+    function createQuiz() {
+
+        currentQuestions = shuffle(questions).slice(0, 10);
+
+        const quiz = document.getElementById("quiz");
+
+        quiz.innerHTML = "";
+
+        currentQuestions.forEach(function (item, index) {
+
+            const box = document.createElement("div");
+
+            box.className = "question-box";
+
+            let html = `
+                <div class="mcq">
+                    <h3>${index + 1}. ${item.q}</h3>
+            `;
+
+            item.options.forEach(function (option, optionIndex) {
+
+                html += `
+                    <label class="option" id="q${index}o${optionIndex}">
+                        <input
+                            type="radio"
+                            name="question${index}"
+                            value="${optionIndex}"
+                        >
+                        ${option}
+                    </label>
+                `;
+
+            });
+
+            html += `
+                </div>
+            `;
+
+            box.innerHTML = html;
+
+            quiz.appendChild(box);
+
+        });
+
+        document.getElementById("quizResult").innerHTML = "";
+
+    }
+
+
+    document.getElementById("submitQuiz").addEventListener("click", function () {
+
+        if (currentQuestions.length === 0) {
+            createQuiz();
+            return;
+        }
+
+        let score = 0;
+
+        currentQuestions.forEach(function (item, index) {
+
+            const selected = document.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            item.options.forEach(function (_, optionIndex) {
+
+                const label = document.getElementById(
+                    `q${index}o${optionIndex}`
+                );
+
+                if (label) {
+                    label.classList.remove("correct");
+                    label.classList.remove("wrong");
+                }
+
+            });
+
+            const correctLabel = document.getElementById(
+                `q${index}o${item.answer}`
+            );
+
+            if (selected) {
+
+                const selectedValue = Number(selected.value);
+
+                const selectedLabel = document.getElementById(
+                    `q${index}o${selectedValue}`
+                );
+
+                if (selectedValue === item.answer) {
+
+                    score++;
+
+                    if (selectedLabel) {
+                        selectedLabel.classList.add("correct");
+                    }
+
+                } else {
+
+                    if (selectedLabel) {
+                        selectedLabel.classList.add("wrong");
+                    }
+
+                    if (correctLabel) {
+                        correctLabel.classList.add("correct");
+                    }
+
+                }
+
+            } else {
+
+                if (correctLabel) {
+                    correctLabel.classList.add("correct");
+                }
+
+            }
+
+        });
+
+
+        const percentage = Math.round(
+            (score / currentQuestions.length) * 100
+        );
+
+
+        document.getElementById("quizResult").innerHTML = `
+            <div class="result">
+                Score: ${score}/${currentQuestions.length}
+                (${percentage}%)
+            </div>
+        `;
+
+    });
+
+
+    document.getElementById("newQuiz").addEventListener("click", function () {
+
+        createQuiz();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* =========================
+       SHORT + LONG ANSWERS
+    ========================== */
+
+    document.querySelectorAll(".answer-button").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const answerId = button.getAttribute("data-answer");
+
+            const answer = document.getElementById(answerId);
+
+            if (!answer) {
+                return;
+            }
+
+            answer.classList.toggle("show");
+
+            if (answer.classList.contains("show")) {
+
+                if (button.textContent.includes("Model")) {
+                    button.textContent = "Hide Model Answer";
+                } else {
+                    button.textContent = "Hide Answer";
+                }
+
+            } else {
+
+                if (button.textContent.includes("Model")) {
+                    button.textContent = "Show Model Answer";
+                } else {
+                    button.textContent = "Show Answer";
+                }
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       FLASHCARDS
+    ========================== */
+
+    const flashcards = [
+
+        {
+            q: "What is nursing research?",
+            a: "Systematic investigation of questions relevant to nursing practice, education, administration and outcomes."
+        },
+
+        {
+            q: "What is a research problem?",
+            a: "An issue, gap or concern that requires systematic investigation."
+        },
+
+        {
+            q: "What is a sample?",
+            a: "A subset of the population selected to participate in a study."
+        },
+
+        {
+            q: "What is validity?",
+            a: "The extent to which a tool measures what it is intended to measure."
+        },
+
+        {
+            q: "What is reliability?",
+            a: "The consistency or stability of measurement."
+        },
+
+        {
+            q: "What is informed consent?",
+            a: "Voluntary agreement to participate after receiving relevant information about the study."
+        },
+
+        {
+            q: "What is an independent variable?",
+            a: "A variable considered as a potential influence or explanatory factor."
+        },
+
+        {
+            q: "What is a dependent variable?",
+            a: "The outcome variable being measured."
+        },
+
+        {
+            q: "What is qualitative research?",
+            a: "Research that commonly explores experiences, meanings, perceptions and processes."
+        },
+
+        {
+            q: "What is quantitative research?",
+            a: "Research that commonly uses numerical data, measurement and statistical analysis."
+        },
+
+        {
+            q: "What is a literature review?",
+            a: "A critical examination and synthesis of existing knowledge relevant to a research problem."
+        },
+
+        {
+            q: "What is a conceptual framework?",
+            a: "A framework showing important concepts or variables and their expected relationships."
+        }
+
+    ];
+
+
+    let flashIndex = 0;
+
+
+    function showFlashcard() {
+
+        const card = flashcards[flashIndex];
+
+        document.getElementById("flashQuestion").textContent = card.q;
+
+        document.getElementById("flashAnswer").textContent = card.a;
+
+        document.getElementById("flashAnswer").classList.remove("show");
+
+    }
+
+
+    document.getElementById("showFlashAnswer").addEventListener("click", function () {
+
+        document.getElementById("flashAnswer").classList.toggle("show");
+
+    });
+
+
+    document.getElementById("nextFlashcard").addEventListener("click", function () {
+
+        flashIndex++;
+
+        if (flashIndex >= flashcards.length) {
+            flashIndex = 0;
+        }
+
+        showFlashcard();
+
+    });
+
+
+    /* =========================
+       PROGRESS
+    ========================== */
+
+    const topicNames = [
+
+        "Introduction to Nursing Research",
+        "Research Problem and Problem Statement",
+        "Research Objectives and Questions",
+        "Literature Review",
+        "Theoretical and Conceptual Frameworks",
+        "Research Designs",
+        "Population, Sample and Sampling",
+        "Variables and Operational Definitions",
+        "Data Collection Methods and Tools",
+        "Validity and Reliability",
+        "Research Ethics",
+        "Data Analysis",
+        "Research Proposal Structure",
+        "Case Study Development",
+        "Research Report Writing and Presentation"
+
+    ];
+
+
+    let completedTopics = [];
+
+
+    function renderProgress() {
+
+        const list = document.getElementById("progressList");
+
+        list.innerHTML = "";
+
+
+        topicNames.forEach(function (topic, index) {
+
+            const completed = completedTopics.includes(index);
+
+            const item = document.createElement("div");
+
+            item.className = "progress-item";
+
+
+            item.innerHTML = `
+
+                <strong>
+                    ${index + 1}. ${topic}
+                </strong>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${completed ? 100 : 0}%"
+                    ></div>
+
+                </div>
+
+                <button
+                    class="action"
+                    data-progress="${index}"
+                >
+                    ${completed ? "Completed ✓" : "Mark Complete"}
+                </button>
+
+            `;
+
+
+            list.appendChild(item);
+
+        });
+
+
+        document.querySelectorAll("[data-progress]").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const index = Number(
+                    button.getAttribute("data-progress")
+                );
+
+
+                if (completedTopics.includes(index)) {
+
+                    completedTopics = completedTopics.filter(function (item) {
+                        return item !== index;
+                    });
+
+                } else {
+
+                    completedTopics.push(index);
+
+                }
+
+
+                renderProgress();
+
+            });
+
+        });
+
+    }
+
+
+    /* =========================
+       START
+    ========================== */
+
+    createQuiz();
+
+    showFlashcard();
+
+    renderProgress();
+
+});
+
+</script>
+
+</body>
+</html>

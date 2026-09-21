@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 444 - Oncology Nursing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #7b1e1e;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 18px;
+            text-decoration: none;
+            background: #333;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            border: none;
+            background: #ddd;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-button:hover {
+            background: #ccc;
+        }
+
+        .tab-button.active {
+            background: #7b1e1e;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .topic,
+        .note,
+        .question-box,
+        .flashcard {
+            background: white;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+        }
+
+        .topic-title,
+        .note-title {
+            padding: 16px;
+            background: #f0e0e0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .topic-content,
+        .note-content {
+            display: none;
+            padding: 18px;
+            line-height: 1.6;
+        }
+
+        .topic-content.show,
+        .note-content.show {
+            display: block;
+        }
+
+        .topic-content ul,
+        .note-content ul {
+            line-height: 1.7;
+        }
+
+        .mcq {
+            padding: 20px;
+        }
+
+        .mcq h3 {
+            margin-top: 0;
+        }
+
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f7f7f7;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #eeeeee;
+        }
+
+        .correct {
+            background: #d8f3dc !important;
+        }
+
+        .wrong {
+            background: #ffd6d6 !important;
+        }
+
+        button.action {
+            border: none;
+            background: #7b1e1e;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 8px 5px 8px 0;
+        }
+
+        button.action:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0e0e0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            padding: 15px;
+            background: #f7f7f7;
+            line-height: 1.6;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .flashcard {
+            padding: 25px;
+            text-align: center;
+            min-height: 180px;
+        }
+
+        .flash-question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .flash-answer {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0e0e0;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .flash-answer.show {
+            display: block;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #7b1e1e;
+            transition: width 0.3s;
+        }
+
+        .score-box {
+            text-align: center;
+            background: #f0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .small {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 444 — Oncology Nursing</h1>
+    <p>Study Assistant • Revision • Practice • Self-Assessment</p>
+</header>
+
+<div class="container">
+
+    <a href="/" class="back">← Back to Dashboard</a>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="topics">Topics</button>
+        <button class="tab-button" data-tab="notes">Notes</button>
+        <button class="tab-button" data-tab="mcq">MCQs</button>
+        <button class="tab-button" data-tab="short">Short Answers</button>
+        <button class="tab-button" data-tab="long">Long Answers</button>
+        <button class="tab-button" data-tab="flashcards">Flashcards</button>
+        <button class="tab-button" data-tab="progress">Progress</button>
+    </div>
+
+
+    <!-- TOPICS -->
+    <section id="topics" class="tab active">
+
+        <div class="card">
+            <h2>Oncology Nursing Topics</h2>
+            <p>
+                Click any topic to expand the revision material.
+            </p>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">1. Introduction to Oncology</div>
+            <div class="topic-content">
+                <p><strong>Oncology</strong> is the branch of medicine and nursing concerned with the prevention, diagnosis, treatment and supportive care of people with cancer.</p>
+                <ul>
+                    <li>Cancer is characterized by uncontrolled abnormal cell growth.</li>
+                    <li>Malignant cells may invade surrounding tissues.</li>
+                    <li>Cancer cells can spread to distant organs through metastasis.</li>
+                    <li>Oncology nurses provide physical, psychological, educational and supportive care.</li>
+                    <li>Important nursing goals include symptom control, treatment support, patient education and quality of life.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">2. Cancer Biology and Cell Growth</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Normal cells grow, divide and die in a controlled manner.</li>
+                    <li>Cancer develops when mechanisms controlling cell growth become abnormal.</li>
+                    <li>Mutations may affect genes responsible for cell growth and repair.</li>
+                    <li>Malignant cells may demonstrate uncontrolled proliferation.</li>
+                    <li>Angiogenesis allows tumors to develop their own blood supply.</li>
+                    <li>Metastasis occurs when malignant cells spread from the primary site to other parts of the body.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">3. Causes and Risk Factors of Cancer</div>
+            <div class="topic-content">
+                <p>Risk factors may be modifiable or non-modifiable.</p>
+                <ul>
+                    <li>Tobacco exposure</li>
+                    <li>Alcohol consumption</li>
+                    <li>Some infections</li>
+                    <li>Radiation exposure</li>
+                    <li>Occupational and environmental exposures</li>
+                    <li>Obesity and physical inactivity</li>
+                    <li>Family history and genetic susceptibility</li>
+                    <li>Increasing age</li>
+                </ul>
+                <p>Nurses play an important role in health education and prevention.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">4. Cancer Prevention and Early Detection</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Primary prevention aims to reduce cancer risk before disease develops.</li>
+                    <li>Secondary prevention focuses on early detection.</li>
+                    <li>Healthy lifestyle practices can reduce the risk of some cancers.</li>
+                    <li>Vaccination can prevent certain infection-associated cancers.</li>
+                    <li>Patients should be encouraged to participate in appropriate screening programmes.</li>
+                    <li>Early recognition of warning signs can support timely assessment.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">5. Cancer Screening</div>
+            <div class="topic-content">
+                <p>Screening aims to identify disease or precancerous changes before symptoms become apparent.</p>
+                <ul>
+                    <li>Breast cancer screening may involve mammography according to applicable guidelines.</li>
+                    <li>Cervical cancer screening may involve HPV testing, cytology or other approved methods.</li>
+                    <li>Colorectal cancer screening may involve stool tests or endoscopic examination depending on guidelines.</li>
+                    <li>Screening recommendations depend on age, risk factors and national guidelines.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">6. Cancer Diagnosis and Staging</div>
+            <div class="topic-content">
+                <ul>
+                    <li>History and physical examination are important initial steps.</li>
+                    <li>Laboratory investigations may support diagnosis and treatment planning.</li>
+                    <li>Imaging may help identify tumors and possible spread.</li>
+                    <li>Biopsy provides tissue for pathological examination.</li>
+                    <li>Staging describes the extent of cancer in the body.</li>
+                    <li>The TNM system commonly describes tumor, regional lymph nodes and metastasis.</li>
+                    <li>Accurate staging helps guide treatment planning and prognosis.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">7. Principles of Cancer Treatment</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Surgery</li>
+                    <li>Chemotherapy</li>
+                    <li>Radiotherapy</li>
+                    <li>Hormonal therapy</li>
+                    <li>Targeted therapy</li>
+                    <li>Immunotherapy</li>
+                    <li>Supportive and palliative care</li>
+                </ul>
+                <p>Treatment may be used with curative, disease-control or palliative intent depending on the cancer and clinical situation.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">8. Chemotherapy</div>
+            <div class="topic-content">
+                <p>Chemotherapy uses medicines that affect cancer cells. Some medicines also affect rapidly dividing normal cells.</p>
+                <h4>Common adverse effects</h4>
+                <ul>
+                    <li>Nausea and vomiting</li>
+                    <li>Fatigue</li>
+                    <li>Alopecia</li>
+                    <li>Myelosuppression</li>
+                    <li>Mucositis</li>
+                    <li>Changes in appetite</li>
+                </ul>
+                <p><strong>Nursing care:</strong> monitor blood counts, infection signs, bleeding, hydration, nutritional status and treatment-related symptoms.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">9. Radiotherapy</div>
+            <div class="topic-content">
+                <p>Radiotherapy uses ionizing radiation to damage cancer cells.</p>
+                <ul>
+                    <li>It may be external beam or internal radiation therapy.</li>
+                    <li>Fatigue is a common effect.</li>
+                    <li>Skin reactions may occur in the treated area.</li>
+                    <li>Mucositis may occur when certain areas are irradiated.</li>
+                    <li>Patients should follow instructions from the radiation oncology team regarding skin and treatment-site care.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">10. Surgery in Cancer Management</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Diagnostic surgery may obtain tissue for diagnosis.</li>
+                    <li>Curative surgery aims to remove the cancer.</li>
+                    <li>Debulking may reduce tumor size when complete removal is not possible.</li>
+                    <li>Palliative surgery may relieve symptoms.</li>
+                    <li>Nursing care includes preoperative preparation and postoperative monitoring.</li>
+                    <li>Important postoperative concerns include pain, infection, bleeding, nutrition and wound care.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">11. Breast Cancer</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Breast cancer is a common malignancy affecting breast tissue.</li>
+                    <li>Possible warning signs include a breast lump, changes in breast shape or skin, nipple changes or abnormal discharge.</li>
+                    <li>Diagnosis may involve clinical assessment, imaging and biopsy.</li>
+                    <li>Treatment depends on cancer type and stage.</li>
+                    <li>Possible treatments include surgery, systemic therapy and radiotherapy.</li>
+                    <li>Nurses provide education, emotional support and postoperative care.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">12. Cervical Cancer</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Persistent infection with high-risk HPV types is a major cause of cervical cancer.</li>
+                    <li>Prevention includes HPV vaccination and appropriate screening.</li>
+                    <li>Possible symptoms include abnormal vaginal bleeding or discharge, particularly in more advanced disease.</li>
+                    <li>Treatment depends on stage and may include surgery, radiotherapy and systemic treatment.</li>
+                    <li>Nurses have an important role in screening education and treatment support.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">13. Prostate Cancer</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Prostate cancer develops in prostate tissue.</li>
+                    <li>Risk increases with age.</li>
+                    <li>Assessment may include history, examination, PSA testing and other investigations.</li>
+                    <li>Some patients may have urinary symptoms while others may have no symptoms early in the disease.</li>
+                    <li>Treatment depends on risk category, stage and patient factors.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">14. Lung and Colorectal Cancer</div>
+            <div class="topic-content">
+                <h4>Lung cancer</h4>
+                <ul>
+                    <li>Tobacco exposure is a major risk factor.</li>
+                    <li>Possible symptoms include persistent cough, chest discomfort, breathlessness and unexplained weight loss.</li>
+                </ul>
+
+                <h4>Colorectal cancer</h4>
+                <ul>
+                    <li>Possible symptoms include changes in bowel habits, blood in stool, abdominal discomfort and unexplained weight loss.</li>
+                    <li>Screening can help identify colorectal cancer or precancerous lesions.</li>
+                    <li>Treatment may involve surgery and systemic therapy, with radiotherapy used in selected situations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">15. Palliative and End-of-Life Care</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Palliative care focuses on quality of life and relief of suffering.</li>
+                    <li>It can be provided alongside disease-directed treatment.</li>
+                    <li>Important symptoms include pain, nausea, breathlessness, fatigue and psychological distress.</li>
+                    <li>Nurses provide symptom assessment, communication, emotional support and family education.</li>
+                    <li>End-of-life care should respect patient dignity, preferences and applicable ethical and legal requirements.</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- NOTES -->
+    <section id="notes" class="tab">
+
+        <div class="card">
+            <h2>Oncology Revision Notes</h2>
+            <p>Click a section to open the notes.</p>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Cancer Warning Signs</div>
+            <div class="note-content">
+                <ul>
+                    <li>Unexplained weight loss</li>
+                    <li>Persistent or unexplained pain</li>
+                    <li>Unusual bleeding or discharge</li>
+                    <li>Persistent cough or hoarseness</li>
+                    <li>Changes in bowel or bladder habits</li>
+                    <li>Changes in a mole or skin lesion</li>
+                    <li>A persistent lump or thickening</li>
+                    <li>Difficulty swallowing</li>
+                </ul>
+                <p>These signs do not automatically mean cancer, but persistent or unexplained changes require appropriate medical assessment.</p>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Chemotherapy Nursing Care</div>
+            <div class="note-content">
+                <ul>
+                    <li>Check treatment orders and patient identification.</li>
+                    <li>Monitor vital signs and relevant laboratory results.</li>
+                    <li>Assess for nausea, vomiting and dehydration.</li>
+                    <li>Monitor for infection and bleeding when myelosuppression is possible.</li>
+                    <li>Assess the oral cavity for mucositis.</li>
+                    <li>Provide nutritional support and patient education.</li>
+                    <li>Observe for treatment-specific adverse reactions.</li>
+                    <li>Follow institutional hazardous-drug handling procedures.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Palliative Care</div>
+            <div class="note-content">
+                <ul>
+                    <li>Focus on comfort and quality of life.</li>
+                    <li>Assess symptoms regularly.</li>
+                    <li>Manage pain according to the prescribed plan.</li>
+                    <li>Address psychological, social and spiritual needs according to patient preferences.</li>
+                    <li>Communicate clearly with patients and families.</li>
+                    <li>Support advance care planning where appropriate.</li>
+                    <li>Respect dignity and patient autonomy.</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- MCQs -->
+    <section id="mcq" class="tab">
+
+        <div class="card">
+            <h2>Oncology Nursing MCQs</h2>
+            <p>
+                A new set of 10 questions is selected randomly from the question bank.
+            </p>
+            <p class="small">
+                Submit your answers to see your score, then generate another set.
+            </p>
+        </div>
+
+        <div id="quiz"></div>
+
+        <button class="action" id="submitQuiz">Submit Quiz</button>
+        <button class="action" id="newQuiz">New Question Set</button>
+
+        <div id="quizResult"></div>
+
+    </section>
+
+
+    <!-- SHORT ANSWERS -->
+    <section id="short" class="tab">
+
+        <div class="card">
+            <h2>Short-Answer Questions</h2>
+            <p>Click "Show Answer" to reveal a model answer.</p>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>1. Define cancer.</strong>
+                <button class="action answer-button" data-answer="short1">Show Answer</button>
+            </div>
+            <div class="answer" id="short1">
+                Cancer is a group of diseases characterized by abnormal cells that grow and divide uncontrollably and may invade surrounding tissues or spread to distant sites.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>2. State five risk factors for cancer.</strong>
+                <button class="action answer-button" data-answer="short2">Show Answer</button>
+            </div>
+            <div class="answer" id="short2">
+                Examples include tobacco exposure, alcohol consumption, certain infections, radiation exposure, obesity, physical inactivity, increasing age and genetic susceptibility.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>3. What is metastasis?</strong>
+                <button class="action answer-button" data-answer="short3">Show Answer</button>
+            </div>
+            <div class="answer" id="short3">
+                Metastasis is the spread of malignant cancer cells from the primary tumor to distant tissues or organs.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>4. State four common adverse effects of chemotherapy.</strong>
+                <button class="action answer-button" data-answer="short4">Show Answer</button>
+            </div>
+            <div class="answer" id="short4">
+                Common effects include nausea and vomiting, fatigue, alopecia, myelosuppression and mucositis.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>5. What is palliative care?</strong>
+                <button class="action answer-button" data-answer="short5">Show Answer</button>
+            </div>
+            <div class="answer" id="short5">
+                Palliative care is an approach that focuses on improving quality of life and relieving suffering associated with serious illness through management of physical, psychological, social and other needs.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>6. State four roles of an oncology nurse.</strong>
+                <button class="action answer-button" data-answer="short6">Show Answer</button>
+            </div>
+            <div class="answer" id="short6">
+                Roles include patient assessment, treatment and medication support, symptom management, patient education, psychological support, coordination of care and monitoring for complications.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>7. Differentiate between benign and malignant tumors.</strong>
+                <button class="action answer-button" data-answer="short7">Show Answer</button>
+            </div>
+            <div class="answer" id="short7">
+                Benign tumors generally do not invade surrounding tissues or metastasize, whereas malignant tumors can invade surrounding tissues and may spread to distant sites.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>8. State four methods of cancer treatment.</strong>
+                <button class="action answer-button" data-answer="short8">Show Answer</button>
+            </div>
+            <div class="answer" id="short8">
+                Examples include surgery, chemotherapy, radiotherapy, hormonal therapy, targeted therapy and immunotherapy.
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- LONG ANSWERS -->
+    <section id="long" class="tab">
+
+        <div class="card">
+            <h2>Long-Answer Questions</h2>
+            <p>These are useful for examination practice. Click to reveal a model answer.</p>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>1. Discuss the nursing management of a patient receiving chemotherapy.</strong>
+                <button class="action answer-button" data-answer="long1">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long1">
+                <p>
+                    Nursing management begins with assessment of the patient's diagnosis, treatment plan,
+                    allergies, baseline observations and relevant laboratory results.
+                </p>
+
+                <p>
+                    The nurse should monitor for common adverse effects such as nausea and vomiting,
+                    fatigue, mucositis, alopecia and myelosuppression. When myelosuppression occurs,
+                    the patient may be at increased risk of infection or bleeding.
+                </p>
+
+                <p>
+                    The nurse provides prescribed antiemetics and other supportive medicines, encourages
+                    appropriate nutrition and hydration, assesses the oral cavity, monitors elimination
+                    and provides psychological support.
+                </p>
+
+                <p>
+                    Patient education is essential. The patient should understand the treatment schedule,
+                    possible adverse effects, warning signs requiring urgent review and the importance of
+                    attending follow-up appointments.
+                </p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>2. Discuss the role of the nurse in cancer prevention and early detection.</strong>
+                <button class="action answer-button" data-answer="long2">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long2">
+                <p>
+                    The nurse contributes to primary prevention through health education about tobacco
+                    avoidance, healthy nutrition, physical activity, appropriate alcohol use and other
+                    modifiable risk factors.
+                </p>
+
+                <p>
+                    Nurses also educate communities about vaccination and prevention of infection-associated
+                    cancers where applicable.
+                </p>
+
+                <p>
+                    In secondary prevention, nurses encourage eligible individuals to participate in
+                    appropriate cancer screening programmes and help patients understand the purpose of
+                    screening.
+                </p>
+
+                <p>
+                    Nurses should also teach people about warning signs and encourage timely medical
+                    assessment of persistent or unexplained symptoms.
+                </p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>3. Discuss the nursing management of a patient receiving radiotherapy.</strong>
+                <button class="action answer-button" data-answer="long3">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long3">
+                <p>
+                    The nurse assesses the patient's baseline condition and explains the treatment process
+                    and expected effects.
+                </p>
+
+                <p>
+                    During treatment, the nurse monitors for fatigue, skin reactions and other
+                    site-specific effects such as mucositis when relevant.
+                </p>
+
+                <p>
+                    The nurse provides education about prescribed skin care and advises the patient to
+                    follow the radiation oncology team's instructions regarding the treatment area.
+                </p>
+
+                <p>
+                    Emotional support, nutritional assessment, symptom management and communication with
+                    the multidisciplinary team are important components of care.
+                </p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>4. Discuss the principles of palliative and end-of-life nursing care.</strong>
+                <button class="action answer-button" data-answer="long4">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long4">
+                <p>
+                    Palliative nursing focuses on comfort, quality of life and relief of suffering.
+                </p>
+
+                <p>
+                    The nurse regularly assesses symptoms such as pain, nausea, vomiting, breathlessness,
+                    fatigue and psychological distress.
+                </p>
+
+                <p>
+                    Care should address physical, psychological, social and other needs according to the
+                    patient's preferences and circumstances.
+                </p>
+
+                <p>
+                    Effective communication with the patient and family is essential. The nurse supports
+                    dignity, autonomy, appropriate decision-making and culturally respectful care.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- FLASHCARDS -->
+    <section id="flashcards" class="tab">
+
+        <div class="card">
+            <h2>Oncology Flashcards</h2>
+            <p>Try answering the question before revealing the answer.</p>
+        </div>
+
+        <div class="flashcard">
+
+            <div class="flash-question" id="flashQuestion">
+                What is metastasis?
+            </div>
+
+            <button class="action" id="showFlashAnswer">Show Answer</button>
+            <button class="action" id="nextFlashcard">Next Card</button>
+
+            <div class="flash-answer" id="flashAnswer"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+    <section id="progress" class="tab">
+
+        <div class="card">
+            <h2>Topic Progress</h2>
+            <p>Click "Mark Complete" after revising a topic.</p>
+        </div>
+
+        <div id="progressList"></div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================
+       TABS
+    ========================= */
+
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const target = button.getAttribute("data-tab");
+
+            tabs.forEach(function (tab) {
+                tab.classList.remove("active");
+            });
+
+            tabButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            const selectedTab = document.getElementById(target);
+
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            button.classList.add("active");
+
+            if (target === "mcq") {
+                createQuiz();
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       TOPICS
+    ========================= */
+
+    const topicTitles = document.querySelectorAll(".topic-title");
+
+    topicTitles.forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       NOTES
+    ========================= */
+
+    const noteTitles = document.querySelectorAll(".note-title");
+
+    noteTitles.forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       MCQ QUESTION BANK
+    ========================= */
+
+    const questions = [
+
+        {
+            q: "What is oncology?",
+            options: [
+                "The study and management of cancer",
+                "The study of bones",
+                "The study of pregnancy",
+                "The study of the kidney"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Cancer is primarily characterized by:",
+            options: [
+                "Controlled cell division",
+                "Uncontrolled abnormal cell growth",
+                "Normal tissue repair",
+                "Reduced cell activity"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "The spread of malignant cells to distant organs is called:",
+            options: [
+                "Metastasis",
+                "Inflammation",
+                "Hypertrophy",
+                "Atrophy"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a major modifiable risk factor for cancer?",
+            options: [
+                "Age",
+                "Genetic inheritance",
+                "Tobacco exposure",
+                "Sex"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "A biopsy is primarily used to:",
+            options: [
+                "Measure blood pressure",
+                "Obtain tissue for examination",
+                "Treat dehydration",
+                "Measure temperature"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "The TNM system is commonly used for:",
+            options: [
+                "Cancer staging",
+                "Pain assessment",
+                "Nutritional assessment",
+                "Fluid balance"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "In TNM staging, T refers to:",
+            options: [
+                "Temperature",
+                "Tumor",
+                "Treatment",
+                "Tissue fluid"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "In TNM staging, N refers to:",
+            options: [
+                "Nutrition",
+                "Neutrophils",
+                "Regional lymph nodes",
+                "Nerves"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "In TNM staging, M refers to:",
+            options: [
+                "Metastasis",
+                "Medication",
+                "Mucosa",
+                "Muscle"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which treatment uses medicines to treat cancer?",
+            options: [
+                "Chemotherapy",
+                "Physiotherapy",
+                "Hydrotherapy",
+                "Occupational therapy"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common adverse effect of chemotherapy is:",
+            options: [
+                "Mucositis",
+                "Improved immunity",
+                "Increased hair growth",
+                "Permanent increased appetite"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Myelosuppression may increase the risk of:",
+            options: [
+                "Infection and bleeding",
+                "Improved immunity",
+                "Bone growth",
+                "Improved vision"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Alopecia refers to:",
+            options: [
+                "Hair loss",
+                "Weight gain",
+                "Skin infection",
+                "Bone pain"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Mucositis refers to inflammation of:",
+            options: [
+                "Mucous membranes",
+                "Bones",
+                "Kidneys",
+                "Heart valves"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Radiotherapy uses:",
+            options: [
+                "Ionizing radiation",
+                "Only antibiotics",
+                "Only vitamins",
+                "Exercise"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common effect of radiotherapy is:",
+            options: [
+                "Fatigue",
+                "Permanent increased energy",
+                "Improved appetite in every patient",
+                "Increased height"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A nurse caring for a patient receiving chemotherapy should monitor:",
+            options: [
+                "Blood counts and signs of infection",
+                "Only body height",
+                "Only hair growth",
+                "Only visual acuity"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Palliative care primarily focuses on:",
+            options: [
+                "Quality of life and symptom relief",
+                "Increasing tumor size",
+                "Avoiding communication",
+                "Stopping all nursing care"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a possible warning sign of cancer?",
+            options: [
+                "Persistent unexplained weight loss",
+                "Normal appetite",
+                "Temporary thirst",
+                "Normal sleep"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Primary prevention of cancer aims to:",
+            options: [
+                "Reduce risk before cancer develops",
+                "Treat metastatic disease",
+                "Perform surgery",
+                "Provide end-of-life care only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Secondary prevention mainly involves:",
+            options: [
+                "Early detection",
+                "Pain medication only",
+                "Surgical recovery only",
+                "Rehabilitation only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Persistent high-risk HPV infection is strongly associated with:",
+            options: [
+                "Cervical cancer",
+                "Bone cancer only",
+                "Kidney stones",
+                "Appendicitis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "An important method of cervical cancer prevention is:",
+            options: [
+                "Appropriate screening and HPV vaccination",
+                "Avoiding all physical activity",
+                "Smoking",
+                "Ignoring abnormal bleeding"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common major risk factor for lung cancer is:",
+            options: [
+                "Tobacco exposure",
+                "Drinking water",
+                "Regular exercise",
+                "Adequate sleep"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which may be a symptom of colorectal cancer?",
+            options: [
+                "Change in bowel habits",
+                "Improved vision",
+                "Increased height",
+                "Ear pain"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which cancer commonly affects the prostate gland?",
+            options: [
+                "Prostate cancer",
+                "Cervical cancer",
+                "Ovarian cancer",
+                "Lung cancer"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which investigation can provide tissue for pathological diagnosis?",
+            options: [
+                "Biopsy",
+                "Blood pressure measurement",
+                "Pulse oximetry",
+                "Temperature measurement"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Angiogenesis refers to:",
+            options: [
+                "Formation of new blood vessels",
+                "Destruction of all blood vessels",
+                "Bone formation",
+                "Muscle contraction"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Malignant tumors can:",
+            options: [
+                "Invade surrounding tissues",
+                "Never spread",
+                "Always disappear without treatment",
+                "Only affect the skin"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Benign tumors generally:",
+            options: [
+                "Do not metastasize",
+                "Always metastasize",
+                "Always invade distant organs",
+                "Always cause death"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "One important nursing responsibility during cancer treatment is:",
+            options: [
+                "Patient education",
+                "Ignoring adverse effects",
+                "Withholding information",
+                "Avoiding assessment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient receiving chemotherapy who develops fever should be assessed promptly because of possible:",
+            options: [
+                "Infection",
+                "Improved immunity",
+                "Normal chemotherapy response only",
+                "Increased bone growth"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which symptom may occur with chemotherapy?",
+            options: [
+                "Nausea and vomiting",
+                "Guaranteed weight gain",
+                "Improved hearing",
+                "Permanent increased strength"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which intervention can help a patient experiencing cancer-related fatigue?",
+            options: [
+                "Balancing activity with rest",
+                "Avoiding all sleep",
+                "Increasing unnecessary activity",
+                "Ignoring fatigue"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A major goal of cancer pain management is:",
+            options: [
+                "Improve comfort and function",
+                "Increase suffering",
+                "Avoid assessment",
+                "Prevent communication"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an example of supportive cancer care?",
+            options: [
+                "Managing nausea and pain",
+                "Ignoring symptoms",
+                "Withholding nutrition",
+                "Avoiding psychological support"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The nurse should assess nutritional status in cancer patients because:",
+            options: [
+                "Cancer and treatment may affect nutritional intake",
+                "Nutrition is never affected",
+                "Food has no effect on patients",
+                "Only healthy people need nutrition"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient undergoing cancer treatment may experience psychological distress because of:",
+            options: [
+                "Diagnosis, treatment and uncertainty",
+                "Normal hydration",
+                "Routine vital signs",
+                "Adequate nutrition"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which nursing action supports patient autonomy?",
+            options: [
+                "Providing appropriate information for informed decisions",
+                "Making every decision without the patient",
+                "Withholding relevant information",
+                "Ignoring patient preferences"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an important component of end-of-life care?",
+            options: [
+                "Maintaining dignity and comfort",
+                "Ignoring symptoms",
+                "Avoiding family communication",
+                "Ignoring patient preferences"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Breast cancer may present with:",
+            options: [
+                "A breast lump or breast changes",
+                "Only fever",
+                "Only headache",
+                "Only ear discharge"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which examination may contribute to assessment of prostate disease?",
+            options: [
+                "Digital rectal examination",
+                "Eye examination only",
+                "Hearing test only",
+                "Skin prick test only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A major purpose of cancer staging is to:",
+            options: [
+                "Describe the extent of disease",
+                "Measure height",
+                "Diagnose hypertension",
+                "Measure blood glucose only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Targeted cancer therapy is designed to:",
+            options: [
+                "Act on specific molecular or cellular targets",
+                "Replace all nursing care",
+                "Treat every disease equally",
+                "Only provide nutrition"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Immunotherapy works by:",
+            options: [
+                "Using or modifying immune responses against cancer",
+                "Replacing all blood cells",
+                "Only treating fractures",
+                "Increasing tumor growth"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Hormonal therapy may be useful for cancers that:",
+            options: [
+                "Depend on hormones for growth",
+                "Are always caused by trauma",
+                "Only affect bones",
+                "Never respond to hormones"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an example of a non-modifiable cancer risk factor?",
+            options: [
+                "Increasing age",
+                "Smoking",
+                "Physical inactivity",
+                "Alcohol exposure"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an example of a modifiable cancer risk factor?",
+            options: [
+                "Tobacco exposure",
+                "Age",
+                "Family history",
+                "Inherited genetic mutation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The nurse's role in cancer care is best described as:",
+            options: [
+                "Multidimensional, including physical and psychosocial care",
+                "Limited to taking temperature",
+                "Limited to giving food",
+                "Limited to documentation"
+            ],
+            answer: 0
+        }
+
+    ];
+
+
+    let currentQuestions = [];
+
+
+    function shuffle(array) {
+
+        const copy = [...array];
+
+        for (let i = copy.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+
+        }
+
+        return copy;
+    }
+
+
+    function createQuiz() {
+
+        currentQuestions = shuffle(questions).slice(0, 10);
+
+        const quiz = document.getElementById("quiz");
+
+        quiz.innerHTML = "";
+
+        currentQuestions.forEach(function (item, index) {
+
+            const box = document.createElement("div");
+
+            box.className = "question-box";
+
+            let html = `
+                <div class="mcq">
+                    <h3>${index + 1}. ${item.q}</h3>
+            `;
+
+            item.options.forEach(function (option, optionIndex) {
+
+                html += `
+                    <label class="option" id="q${index}o${optionIndex}">
+                        <input
+                            type="radio"
+                            name="question${index}"
+                            value="${optionIndex}"
+                        >
+                        ${option}
+                    </label>
+                `;
+
+            });
+
+            html += `</div>`;
+
+            box.innerHTML = html;
+
+            quiz.appendChild(box);
+
+        });
+
+        document.getElementById("quizResult").innerHTML = "";
+
+    }
+
+
+    document.getElementById("submitQuiz").addEventListener("click", function () {
+
+        if (currentQuestions.length === 0) {
+            createQuiz();
+            return;
+        }
+
+        let score = 0;
+
+        currentQuestions.forEach(function (item, index) {
+
+            const selected = document.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            item.options.forEach(function (_, optionIndex) {
+
+                const label = document.getElementById(
+                    `q${index}o${optionIndex}`
+                );
+
+                if (label) {
+                    label.classList.remove("correct");
+                    label.classList.remove("wrong");
+                }
+
+            });
+
+            if (selected) {
+
+                const selectedValue = Number(selected.value);
+
+                const selectedLabel = document.getElementById(
+                    `q${index}o${selectedValue}`
+                );
+
+                const correctLabel = document.getElementById(
+                    `q${index}o${item.answer}`
+                );
+
+                if (selectedValue === item.answer) {
+
+                    score++;
+
+                    if (selectedLabel) {
+                        selectedLabel.classList.add("correct");
+                    }
+
+                } else {
+
+                    if (selectedLabel) {
+                        selectedLabel.classList.add("wrong");
+                    }
+
+                    if (correctLabel) {
+                        correctLabel.classList.add("correct");
+                    }
+
+                }
+
+            } else {
+
+                const correctLabel = document.getElementById(
+                    `q${index}o${item.answer}`
+                );
+
+                if (correctLabel) {
+                    correctLabel.classList.add("correct");
+                }
+
+            }
+
+        });
+
+
+        const percentage = Math.round((score / currentQuestions.length) * 100);
+
+        document.getElementById("quizResult").innerHTML = `
+            <div class="result">
+                Score: ${score}/${currentQuestions.length}
+                (${percentage}%)
+            </div>
+        `;
+
+    });
+
+
+    document.getElementById("newQuiz").addEventListener("click", function () {
+        createQuiz();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+
+    /* =========================
+       SHORT + LONG ANSWERS
+    ========================= */
+
+    const answerButtons = document.querySelectorAll(".answer-button");
+
+    answerButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const answerId = button.getAttribute("data-answer");
+
+            const answer = document.getElementById(answerId);
+
+            if (answer) {
+
+                answer.classList.toggle("show");
+
+                if (answer.classList.contains("show")) {
+                    button.textContent = "Hide Answer";
+                } else {
+                    button.textContent =
+                        button.textContent.includes("Model")
+                        ? "Show Model Answer"
+                        : "Show Answer";
+                }
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       FLASHCARDS
+    ========================= */
+
+    const flashcards = [
+
+        {
+            q: "What is cancer?",
+            a: "Cancer is a group of diseases characterized by abnormal cells that grow and divide uncontrollably and may invade or spread to other tissues."
+        },
+
+        {
+            q: "What is metastasis?",
+            a: "Metastasis is the spread of malignant cells from a primary tumor to distant sites."
+        },
+
+        {
+            q: "What is chemotherapy?",
+            a: "Chemotherapy uses anticancer medicines to destroy or control cancer cells."
+        },
+
+        {
+            q: "What is radiotherapy?",
+            a: "Radiotherapy uses ionizing radiation to damage cancer cells."
+        },
+
+        {
+            q: "What is palliative care?",
+            a: "Palliative care focuses on relieving suffering and improving quality of life for people with serious illness."
+        },
+
+        {
+            q: "What does TNM stand for?",
+            a: "T describes the primary tumor, N describes regional lymph nodes and M describes distant metastasis."
+        },
+
+        {
+            q: "Name three common chemotherapy adverse effects.",
+            a: "Examples include nausea and vomiting, fatigue, alopecia, mucositis and myelosuppression."
+        },
+
+        {
+            q: "What is a biopsy?",
+            a: "A biopsy involves obtaining tissue or cells for pathological examination."
+        },
+
+        {
+            q: "Name two cancer prevention strategies.",
+            a: "Examples include avoiding tobacco, maintaining healthy lifestyle practices, vaccination against relevant infections and participating in appropriate screening."
+        },
+
+        {
+            q: "What is the role of the oncology nurse?",
+            a: "The oncology nurse assesses patients, supports treatment, manages symptoms, provides education and offers physical and psychosocial support."
+        },
+
+        {
+            q: "What is myelosuppression?",
+            a: "Myelosuppression is reduced bone marrow activity resulting in decreased production of blood cells."
+        },
+
+        {
+            q: "Why is early cancer detection important?",
+            a: "Early detection may allow cancer to be diagnosed at an earlier stage when more treatment options may be available."
+        }
+
+    ];
+
+
+    let flashIndex = 0;
+
+
+    function showFlashcard() {
+
+        const card = flashcards[flashIndex];
+
+        document.getElementById("flashQuestion").textContent = card.q;
+
+        document.getElementById("flashAnswer").textContent = card.a;
+
+        document.getElementById("flashAnswer").classList.remove("show");
+
+    }
+
+
+    document.getElementById("showFlashAnswer").addEventListener("click", function () {
+
+        document.getElementById("flashAnswer").classList.toggle("show");
+
+    });
+
+
+    document.getElementById("nextFlashcard").addEventListener("click", function () {
+
+        flashIndex++;
+
+        if (flashIndex >= flashcards.length) {
+            flashIndex = 0;
+        }
+
+        showFlashcard();
+
+    });
+
+
+    /* =========================
+       PROGRESS
+    ========================= */
+
+    const topicNames = [
+        "Introduction to Oncology",
+        "Cancer Biology and Cell Growth",
+        "Causes and Risk Factors of Cancer",
+        "Cancer Prevention and Early Detection",
+        "Cancer Screening",
+        "Cancer Diagnosis and Staging",
+        "Principles of Cancer Treatment",
+        "Chemotherapy",
+        "Radiotherapy",
+        "Surgery in Cancer Management",
+        "Breast Cancer",
+        "Cervical Cancer",
+        "Prostate Cancer",
+        "Lung and Colorectal Cancer",
+        "Palliative and End-of-Life Care"
+    ];
+
+
+    let completedTopics = [];
+
+
+    function renderProgress() {
+
+        const list = document.getElementById("progressList");
+
+        list.innerHTML = "";
+
+        topicNames.forEach(function (topic, index) {
+
+            const completed = completedTopics.includes(index);
+
+            const item = document.createElement("div");
+
+            item.className = "progress-item";
+
+            item.innerHTML = `
+                <strong>${index + 1}. ${topic}</strong>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill"
+                        style="width:${completed ? 100 : 0}%"
+                    ></div>
+                </div>
+
+                <button
+                    class="action"
+                    data-progress="${index}"
+                >
+                    ${completed ? "Completed ✓" : "Mark Complete"}
+                </button>
+            `;
+
+            list.appendChild(item);
+
+        });
+
+
+        document.querySelectorAll("[data-progress]").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const index = Number(button.getAttribute("data-progress"));
+
+                if (completedTopics.includes(index)) {
+
+                    completedTopics = completedTopics.filter(function (item) {
+                        return item !== index;
+                    });
+
+                } else {
+
+                    completedTopics.push(index);
+
+                }
+
+                renderProgress();
+
+            });
+
+        });
+
+    }
+
+
+    /* =========================
+       START APP
+    ========================= */
+
+    createQuiz();
+
+    showFlashcard();
+
+    renderProgress();
+
+});
+
+</script>
+
+</body>
+</html>

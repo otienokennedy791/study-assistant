@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 442 - ENT Nursing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #263238;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            border: none;
+            background: #dfe6e9;
+            color: #222;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-button:hover {
+            background: #b0bec5;
+        }
+
+        .tab-button.active {
+            background: #263238;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .topic,
+        .question,
+        .progress-box,
+        .flashcard {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 18px;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+        }
+
+        .topic-title {
+            font-weight: bold;
+            cursor: pointer;
+            background: #eceff1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .topic-title:hover {
+            background: #cfd8dc;
+        }
+
+        .topic-content {
+            display: none;
+            padding: 15px 5px;
+            line-height: 1.7;
+        }
+
+        .topic-content.show {
+            display: block;
+        }
+
+        .question label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .action {
+            border: none;
+            background: #263238;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .action:hover {
+            background: #455a64;
+        }
+
+        .answer {
+            display: none;
+            background: #f1f8e9;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid #689f38;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .result {
+            background: #eceff1;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .flashcard {
+            text-align: center;
+            min-height: 180px;
+        }
+
+        .flashcard h2 {
+            color: #37474f;
+        }
+
+        .progress-bar {
+            height: 25px;
+            background: #dfe6e9;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #546e7a;
+            transition: width 0.3s;
+        }
+
+        .small-note {
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 442 — ENT Nursing</h1>
+    <p>Ear, Nose and Throat Nursing Study Assistant</p>
+</header>
+
+<div class="container">
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button class="tab-button active" data-tab="topics">
+            📚 Topics
+        </button>
+
+        <button class="tab-button" data-tab="notes">
+            📝 Notes
+        </button>
+
+        <button class="tab-button" data-tab="mcq">
+            ❓ MCQs
+        </button>
+
+        <button class="tab-button" data-tab="short">
+            ✍️ Short Answers
+        </button>
+
+        <button class="tab-button" data-tab="long">
+            📖 Long Answers
+        </button>
+
+        <button class="tab-button" data-tab="flashcards">
+            🃏 Flashcards
+        </button>
+
+        <button class="tab-button" data-tab="progress">
+            📊 Progress
+        </button>
+
+    </div>
+
+
+    <!-- TOPICS -->
+
+    <section id="topics" class="tab active">
+
+        <h2>📚 ENT Topics</h2>
+
+        <div class="topic">
+            <div class="topic-title" data-topic="1">
+                1. Anatomy and Physiology of the Ear
+            </div>
+
+            <div id="topic1" class="topic-content">
+                <h3>Main Parts</h3>
+                <ul>
+                    <li>External ear</li>
+                    <li>Middle ear</li>
+                    <li>Inner ear</li>
+                </ul>
+
+                <h3>External Ear</h3>
+                <p>
+                    Includes the pinna and external auditory canal.
+                    It collects sound waves and directs them toward
+                    the tympanic membrane.
+                </p>
+
+                <h3>Middle Ear</h3>
+                <p>
+                    Contains the tympanic membrane and the three
+                    ossicles: malleus, incus and stapes.
+                </p>
+
+                <h3>Inner Ear</h3>
+                <p>
+                    Contains the cochlea, vestibule and semicircular canals.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="2">
+                2. Hearing Assessment
+            </div>
+
+            <div id="topic2" class="topic-content">
+                <h3>Assessment History</h3>
+
+                <ul>
+                    <li>Hearing difficulty</li>
+                    <li>Ear pain</li>
+                    <li>Ear discharge</li>
+                    <li>Tinnitus</li>
+                    <li>Vertigo</li>
+                    <li>Noise exposure</li>
+                </ul>
+
+                <h3>Investigations</h3>
+
+                <ul>
+                    <li>Whisper test</li>
+                    <li>Rinne test</li>
+                    <li>Weber test</li>
+                    <li>Pure tone audiometry</li>
+                    <li>Tympanometry</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="3">
+                3. Otitis Externa
+            </div>
+
+            <div id="topic3" class="topic-content">
+                <p>
+                    Otitis externa is inflammation or infection of
+                    the external auditory canal.
+                </p>
+
+                <h3>Risk Factors</h3>
+
+                <ul>
+                    <li>Swimming</li>
+                    <li>Excess moisture</li>
+                    <li>Trauma from cotton buds</li>
+                    <li>Skin disorders</li>
+                </ul>
+
+                <h3>Symptoms</h3>
+
+                <ul>
+                    <li>Ear pain</li>
+                    <li>Itching</li>
+                    <li>Ear discharge</li>
+                    <li>Swelling</li>
+                    <li>Reduced hearing</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="4">
+                4. Otitis Media
+            </div>
+
+            <div id="topic4" class="topic-content">
+                <p>
+                    Otitis media is inflammation or infection of
+                    the middle ear.
+                </p>
+
+                <h3>Symptoms</h3>
+
+                <ul>
+                    <li>Ear pain</li>
+                    <li>Fever</li>
+                    <li>Hearing loss</li>
+                    <li>Irritability in children</li>
+                    <li>Possible ear discharge</li>
+                </ul>
+
+                <h3>Complications</h3>
+
+                <ul>
+                    <li>Mastoiditis</li>
+                    <li>Tympanic membrane perforation</li>
+                    <li>Hearing impairment</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="5">
+                5. Hearing Loss
+            </div>
+
+            <div id="topic5" class="topic-content">
+
+                <h3>Types</h3>
+
+                <ul>
+                    <li>Conductive hearing loss</li>
+                    <li>Sensorineural hearing loss</li>
+                    <li>Mixed hearing loss</li>
+                </ul>
+
+                <h3>Nursing Care</h3>
+
+                <ul>
+                    <li>Face the patient while speaking.</li>
+                    <li>Reduce background noise.</li>
+                    <li>Speak clearly.</li>
+                    <li>Provide appropriate communication assistance.</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="6">
+                6. Tinnitus
+            </div>
+
+            <div id="topic6" class="topic-content">
+
+                <p>
+                    Tinnitus is the perception of sound such as
+                    ringing or buzzing without an external sound source.
+                </p>
+
+                <h3>Possible Causes</h3>
+
+                <ul>
+                    <li>Hearing loss</li>
+                    <li>Noise exposure</li>
+                    <li>Ear disease</li>
+                    <li>Some medications</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="7">
+                7. Ménière's Disease
+            </div>
+
+            <div id="topic7" class="topic-content">
+
+                <h3>Common Features</h3>
+
+                <ul>
+                    <li>Vertigo</li>
+                    <li>Fluctuating hearing loss</li>
+                    <li>Tinnitus</li>
+                    <li>Feeling of fullness in the ear</li>
+                </ul>
+
+                <h3>Nursing Care</h3>
+
+                <ul>
+                    <li>Prevent falls.</li>
+                    <li>Assist with mobility.</li>
+                    <li>Maintain a safe environment.</li>
+                    <li>Administer prescribed treatment.</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="8">
+                8. Vertigo and Balance Disorders
+            </div>
+
+            <div id="topic8" class="topic-content">
+
+                <p>
+                    Vertigo is the false sensation of movement,
+                    often described as spinning.
+                </p>
+
+                <h3>Nursing Priorities</h3>
+
+                <ul>
+                    <li>Prevent falls.</li>
+                    <li>Assist with ambulation.</li>
+                    <li>Monitor nausea and vomiting.</li>
+                    <li>Maintain a safe environment.</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="9">
+                9. Anatomy and Physiology of the Nose and Sinuses
+            </div>
+
+            <div id="topic9" class="topic-content">
+
+                <h3>Functions of the Nose</h3>
+
+                <ul>
+                    <li>Smell</li>
+                    <li>Air filtration</li>
+                    <li>Humidification</li>
+                    <li>Warming inspired air</li>
+                </ul>
+
+                <h3>Paranasal Sinuses</h3>
+
+                <ul>
+                    <li>Frontal</li>
+                    <li>Maxillary</li>
+                    <li>Ethmoid</li>
+                    <li>Sphenoid</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="10">
+                10. Epistaxis
+            </div>
+
+            <div id="topic10" class="topic-content">
+
+                <p>
+                    Epistaxis means bleeding from the nose.
+                </p>
+
+                <h3>Basic First Aid</h3>
+
+                <ul>
+                    <li>Keep the patient calm.</li>
+                    <li>Sit upright.</li>
+                    <li>Lean slightly forward.</li>
+                    <li>Apply pressure to the soft part of the nose.</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="11">
+                11. Sinusitis
+            </div>
+
+            <div id="topic11" class="topic-content">
+
+                <p>
+                    Sinusitis is inflammation of the paranasal sinuses.
+                </p>
+
+                <h3>Symptoms</h3>
+
+                <ul>
+                    <li>Nasal congestion</li>
+                    <li>Facial pressure</li>
+                    <li>Nasal discharge</li>
+                    <li>Headache</li>
+                    <li>Reduced sense of smell</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="12">
+                12. Deviated Nasal Septum
+            </div>
+
+            <div id="topic12" class="topic-content">
+
+                <p>
+                    A deviated nasal septum occurs when the nasal
+                    septum is displaced from the midline.
+                </p>
+
+                <ul>
+                    <li>Nasal obstruction</li>
+                    <li>Difficulty breathing through one side</li>
+                    <li>Recurrent sinus problems</li>
+                    <li>Snoring</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="13">
+                13. Tonsillitis and Adenoid Disorders
+            </div>
+
+            <div id="topic13" class="topic-content">
+
+                <h3>Symptoms</h3>
+
+                <ul>
+                    <li>Sore throat</li>
+                    <li>Difficulty swallowing</li>
+                    <li>Fever</li>
+                    <li>Enlarged tonsils</li>
+                    <li>Bad breath</li>
+                    <li>Cervical lymphadenopathy</li>
+                </ul>
+
+                <p>
+                    Airway compromise should be recognized promptly.
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="14">
+                14. Laryngitis and Voice Disorders
+            </div>
+
+            <div id="topic14" class="topic-content">
+
+                <p>
+                    Laryngitis is inflammation of the larynx
+                    and commonly causes hoarseness.
+                </p>
+
+                <ul>
+                    <li>Hoarseness</li>
+                    <li>Weak voice</li>
+                    <li>Sore throat</li>
+                    <li>Cough</li>
+                </ul>
+
+                <h3>Nursing Advice</h3>
+
+                <ul>
+                    <li>Voice rest</li>
+                    <li>Avoid smoking and irritants</li>
+                    <li>Maintain appropriate hydration</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-topic="15">
+                15. Airway Emergencies and Tracheostomy Care
+            </div>
+
+            <div id="topic15" class="topic-content">
+
+                <h3>Airway Emergencies</h3>
+
+                <p>
+                    Upper airway obstruction can become life-threatening
+                    and requires urgent assessment.
+                </p>
+
+                <h3>Tracheostomy Care</h3>
+
+                <ul>
+                    <li>Assess airway patency.</li>
+                    <li>Monitor respiratory status.</li>
+                    <li>Maintain appropriate humidification.</li>
+                    <li>Provide prescribed suctioning when indicated.</li>
+                    <li>Assess the tracheostomy site.</li>
+                    <li>Keep emergency equipment available according to local policy.</li>
+                </ul>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- NOTES -->
+
+    <section id="notes" class="tab">
+
+        <h2>📝 ENT Revision Notes</h2>
+
+        <div class="topic">
+            <div class="topic-title" data-note="1">
+                Important ENT Nursing Principles
+            </div>
+
+            <div id="note1" class="topic-content">
+
+                <ul>
+                    <li>Assess airway and breathing first during emergencies.</li>
+                    <li>Assess hearing and communication needs.</li>
+                    <li>Prevent falls in patients with vertigo.</li>
+                    <li>Maintain appropriate ear and nasal hygiene.</li>
+                    <li>Recognize airway obstruction early.</li>
+                    <li>Provide clear patient education.</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-note="2">
+                Conductive vs Sensorineural Hearing Loss
+            </div>
+
+            <div id="note2" class="topic-content">
+
+                <h3>Conductive Hearing Loss</h3>
+
+                <p>
+                    Results from impaired transmission of sound
+                    through the external or middle ear.
+                </p>
+
+                <h3>Sensorineural Hearing Loss</h3>
+
+                <p>
+                    Results from problems involving the cochlea,
+                    auditory nerve or related pathways.
+                </p>
+
+                <h3>Mixed Hearing Loss</h3>
+
+                <p>
+                    Contains both conductive and sensorineural components.
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="topic">
+            <div class="topic-title" data-note="3">
+                Important ENT Emergency Signs
+            </div>
+
+            <div id="note3" class="topic-content">
+
+                <ul>
+                    <li>Severe airway obstruction</li>
+                    <li>Stridor</li>
+                    <li>Respiratory distress</li>
+                    <li>Severe swelling</li>
+                    <li>Uncontrolled bleeding</li>
+                    <li>Altered consciousness</li>
+                </ul>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- MCQ -->
+
+    <section id="mcq" class="tab">
+
+        <h2>❓ ENT Nursing MCQ Practice</h2>
+
+        <p class="small-note">
+            You will receive 10 randomly selected questions.
+        </p>
+
+        <div id="quiz"></div>
+
+        <button class="action" id="submitQuiz">
+            Submit Quiz
+        </button>
+
+        <button class="action" id="newQuiz">
+            🆕 New Question Set
+        </button>
+
+        <div id="quizResult"></div>
+
+    </section>
+
+
+    <!-- SHORT ANSWERS -->
+
+    <section id="short" class="tab">
+
+        <h2>✍️ Short-Answer Questions</h2>
+
+
+        <div class="question">
+            <strong>1. Define otitis media.</strong>
+
+            <button class="action answer-button" data-answer="s1">
+                Show Answer
+            </button>
+
+            <div id="s1" class="answer">
+                Otitis media is inflammation or infection involving the middle ear.
+            </div>
+        </div>
+
+
+        <div class="question">
+            <strong>2. State three parts of the ear.</strong>
+
+            <button class="action answer-button" data-answer="s2">
+                Show Answer
+            </button>
+
+            <div id="s2" class="answer">
+                External ear, middle ear and inner ear.
+            </div>
+        </div>
+
+
+        <div class="question">
+            <strong>3. State four symptoms of Ménière's disease.</strong>
+
+            <button class="action answer-button" data-answer="s3">
+                Show Answer
+            </button>
+
+            <div id="s3" class="answer">
+                Vertigo, fluctuating hearing loss, tinnitus and a feeling of fullness in the ear.
+            </div>
+        </div>
+
+
+        <div class="question">
+            <strong>4. What is epistaxis?</strong>
+
+            <button class="action answer-button" data-answer="s4">
+                Show Answer
+            </button>
+
+            <div id="s4" class="answer">
+                Epistaxis is bleeding from the nose.
+            </div>
+        </div>
+
+
+        <div class="question">
+            <strong>5. State four nursing interventions for a patient with vertigo.</strong>
+
+            <button class="action answer-button" data-answer="s5">
+                Show Answer
+            </button>
+
+            <div id="s5" class="answer">
+                Prevent falls, assist with mobility, maintain a safe environment and administer prescribed treatment.
+            </div>
+        </div>
+
+
+        <div class="question">
+            <strong>6. State four symptoms of sinusitis.</strong>
+
+            <button class="action answer-button" data-answer="s6">
+                Show Answer
+            </button>
+
+            <div id="s6" class="answer">
+                Nasal congestion, facial pressure, nasal discharge and reduced sense of smell.
+            </div>
+        </div>
+
+
+        <div class="question">
+            <strong>7. State four nursing responsibilities in tracheostomy care.</strong>
+
+            <button class="action answer-button" data-answer="s7">
+                Show Answer
+            </button>
+
+            <div id="s7" class="answer">
+                Assess airway patency, monitor respiratory status, maintain humidification and provide prescribed suctioning when indicated.
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- LONG ANSWERS -->
+
+    <section id="long" class="tab">
+
+        <h2>📖 Long-Answer Questions</h2>
+
+
+        <div class="question">
+
+            <strong>
+                1. Discuss the nursing management of a patient with otitis media.
+            </strong>
+
+            <button class="action answer-button" data-answer="l1">
+                Show Model Answer
+            </button>
+
+            <div id="l1" class="answer">
+
+                <p>
+                    Nursing management begins with assessment of ear pain,
+                    fever, hearing changes and discharge.
+                </p>
+
+                <p>
+                    Assess vital signs and monitor for complications such
+                    as tympanic membrane perforation and mastoiditis.
+                </p>
+
+                <p>
+                    Administer prescribed medications and analgesics,
+                    monitor response and provide appropriate patient education.
+                </p>
+
+                <p>
+                    The patient should be advised to attend follow-up
+                    when symptoms persist or worsen.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <strong>
+                2. Discuss the nursing management of a patient experiencing vertigo.
+            </strong>
+
+            <button class="action answer-button" data-answer="l2">
+                Show Model Answer
+            </button>
+
+            <div id="l2" class="answer">
+
+                <p>
+                    The priority is patient safety because vertigo increases
+                    the risk of falls.
+                </p>
+
+                <p>
+                    Assist the patient with movement and maintain a safe environment.
+                </p>
+
+                <p>
+                    Assess dizziness, nausea, vomiting, hearing changes and
+                    other associated symptoms.
+                </p>
+
+                <p>
+                    Administer prescribed treatment and educate the patient
+                    about safety measures.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <strong>
+                3. Discuss the nursing care of a patient with a tracheostomy.
+            </strong>
+
+            <button class="action answer-button" data-answer="l3">
+                Show Model Answer
+            </button>
+
+            <div id="l3" class="answer">
+
+                <p>
+                    The primary priority is maintaining airway patency
+                    and adequate ventilation.
+                </p>
+
+                <p>
+                    Monitor respiratory rate, oxygenation, breath sounds
+                    and respiratory effort.
+                </p>
+
+                <p>
+                    Assess the tracheostomy site and provide prescribed
+                    suctioning when indicated.
+                </p>
+
+                <p>
+                    Maintain appropriate humidification and ensure emergency
+                    airway equipment is available according to local policy.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <strong>
+                4. Discuss the causes, assessment and nursing management of epistaxis.
+            </strong>
+
+            <button class="action answer-button" data-answer="l4">
+                Show Model Answer
+            </button>
+
+            <div id="l4" class="answer">
+
+                <p>
+                    Causes include trauma, dry nasal mucosa, infection,
+                    bleeding disorders and medications affecting coagulation.
+                </p>
+
+                <p>
+                    Assess the severity and duration of bleeding,
+                    vital signs and possible causes.
+                </p>
+
+                <p>
+                    Basic first aid includes keeping the patient calm,
+                    sitting upright, leaning slightly forward and applying
+                    firm pressure to the soft part of the nose.
+                </p>
+
+                <p>
+                    Severe, persistent or recurrent bleeding requires
+                    appropriate clinical assessment.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FLASHCARDS -->
+
+    <section id="flashcards" class="tab">
+
+        <h2>🃏 ENT Flashcards</h2>
+
+        <div class="flashcard">
+
+            <h2 id="flashQuestion">
+                What are the three main parts of the ear?
+            </h2>
+
+            <div id="flashAnswer" class="answer">
+                External ear, middle ear and inner ear.
+            </div>
+
+        </div>
+
+        <button class="action" id="showFlashAnswer">
+            Show Answer
+        </button>
+
+        <button class="action" id="nextFlashcard">
+            Next Card
+        </button>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section id="progress" class="tab">
+
+        <h2>📊 ENT Study Progress</h2>
+
+        <div class="progress-box">
+
+            <p>
+                Topics reviewed:
+                <strong>
+                    <span id="completedCount">0</span>/15
+                </strong>
+            </p>
+
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+
+            <p id="progressText">
+                Start studying your ENT topics.
+            </p>
+
+        </div>
+
+        <div id="progressTopics"></div>
+
+    </section>
+
+</div>
+
+
+<footer>
+    NURS 442 — ENT Nursing Study Assistant
+</footer>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==============================
+       TABS
+    ============================== */
+
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const target = button.getAttribute("data-tab");
+
+            tabs.forEach(function (tab) {
+                tab.classList.remove("active");
+            });
+
+            tabButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            const selectedTab = document.getElementById(target);
+
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            button.classList.add("active");
+
+            if (target === "mcq") {
+                createQuiz();
+            }
+
+        });
+
+    });
+
+
+    /* ==============================
+       TOPICS
+    ============================== */
+
+    const topicTitles = document.querySelectorAll(".topic-title[data-topic]");
+
+    const completedTopics = new Set();
+
+    topicTitles.forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const number = title.getAttribute("data-topic");
+
+            const content = document.getElementById("topic" + number);
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+            completedTopics.add(number);
+
+            updateProgress();
+
+        });
+
+    });
+
+
+    /* ==============================
+       NOTES
+    ============================== */
+
+    const noteTitles = document.querySelectorAll(".topic-title[data-note]");
+
+    noteTitles.forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const number = title.getAttribute("data-note");
+
+            const content = document.getElementById("note" + number);
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* ==============================
+       SHORT AND LONG ANSWERS
+    ============================== */
+
+    const answerButtons = document.querySelectorAll(".answer-button");
+
+    answerButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const answerId = button.getAttribute("data-answer");
+
+            const answer = document.getElementById(answerId);
+
+            if (answer) {
+                answer.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* ==============================
+       MCQ QUESTION BANK
+    ============================== */
+
+    const questions = [
+
+        {
+            q: "Which part of the ear is primarily responsible for hearing?",
+            options: [
+                "Cochlea",
+                "Pinna",
+                "Semicircular canals",
+                "Eustachian tube"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which ossicle is attached to the tympanic membrane?",
+            options: [
+                "Malleus",
+                "Incus",
+                "Stapes",
+                "Cochlea"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is the smallest ossicle?",
+            options: [
+                "Malleus",
+                "Incus",
+                "Stapes",
+                "Tympanic membrane"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "The three main parts of the ear are:",
+            options: [
+                "External, middle and inner",
+                "Anterior, middle and posterior",
+                "Upper, middle and lower",
+                "Medial, lateral and superior"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The cochlea is mainly associated with:",
+            options: [
+                "Hearing",
+                "Balance only",
+                "Smell",
+                "Taste"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The semicircular canals are mainly involved in:",
+            options: [
+                "Hearing",
+                "Balance",
+                "Smell",
+                "Speech"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Otitis externa affects the:",
+            options: [
+                "External auditory canal",
+                "Inner ear",
+                "Cochlea",
+                "Auditory nerve"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common risk factor for otitis externa is:",
+            options: [
+                "Swimming",
+                "Reading",
+                "Walking",
+                "Sleeping"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common symptom of otitis externa is:",
+            options: [
+                "Ear pain",
+                "Abdominal pain",
+                "Chest pain",
+                "Back pain"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Otitis media involves the:",
+            options: [
+                "Middle ear",
+                "External ear only",
+                "Nose",
+                "Larynx"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A possible complication of otitis media is:",
+            options: [
+                "Mastoiditis",
+                "Appendicitis",
+                "Arthritis",
+                "Gastritis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Conductive hearing loss results from a problem with:",
+            options: [
+                "Sound transmission through the external or middle ear",
+                "The kidneys",
+                "The lungs",
+                "The retina"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Sensorineural hearing loss may involve the:",
+            options: [
+                "Cochlea or auditory nerve",
+                "External nose only",
+                "Tonsils only",
+                "Tympanic membrane only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Tinnitus is best described as:",
+            options: [
+                "Perception of sound without an external sound source",
+                "Complete loss of smell",
+                "Nasal bleeding",
+                "Difficulty swallowing"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common symptom of Ménière's disease is:",
+            options: [
+                "Vertigo",
+                "Diarrhea",
+                "Jaundice",
+                "Cough"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Epistaxis means:",
+            options: [
+                "Nosebleed",
+                "Ear infection",
+                "Hearing loss",
+                "Voice loss"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "During basic first aid for epistaxis, the patient should generally:",
+            options: [
+                "Sit upright and lean slightly forward",
+                "Lie flat with the head backward",
+                "Run around",
+                "Drink very hot fluids"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Sinusitis involves inflammation of the:",
+            options: [
+                "Paranasal sinuses",
+                "Kidneys",
+                "Liver",
+                "Heart"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A common symptom of sinusitis is:",
+            options: [
+                "Facial pressure",
+                "Leg fracture",
+                "Jaundice",
+                "Hematuria"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A deviated nasal septum may cause:",
+            options: [
+                "Nasal obstruction",
+                "Diabetes",
+                "Kidney failure",
+                "Heart failure"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Tonsillitis commonly causes:",
+            options: [
+                "Sore throat",
+                "Chest fracture",
+                "Leg swelling",
+                "Visual loss"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Laryngitis commonly causes:",
+            options: [
+                "Hoarseness",
+                "Blindness",
+                "Hematuria",
+                "Paralysis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A useful intervention for uncomplicated voice strain is:",
+            options: [
+                "Voice rest",
+                "Continuous shouting",
+                "Smoking",
+                "Avoiding all fluids"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A major priority in tracheostomy care is:",
+            options: [
+                "Maintaining airway patency",
+                "Restricting communication",
+                "Keeping secretions in the airway",
+                "Preventing all movement"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Pure tone audiometry is used to assess:",
+            options: [
+                "Hearing sensitivity",
+                "Blood pressure",
+                "Blood glucose",
+                "Lung capacity"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Tympanometry evaluates:",
+            options: [
+                "Middle-ear function",
+                "Kidney function",
+                "Liver function",
+                "Vision"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The Eustachian tube helps:",
+            options: [
+                "Equalize middle-ear pressure",
+                "Produce tears",
+                "Control blood glucose",
+                "Digest food"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with severe vertigo is at increased risk of:",
+            options: [
+                "Falls",
+                "Burns only",
+                "Diabetes",
+                "Constipation only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A nursing priority during a severe vertigo attack is:",
+            options: [
+                "Ensure patient safety",
+                "Encourage rapid walking",
+                "Remove all support",
+                "Leave the patient alone"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which condition may cause ringing in the ears?",
+            options: [
+                "Tinnitus",
+                "Sinusitis only",
+                "Tonsillitis only",
+                "Epistaxis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "When communicating with a hearing-impaired patient, the nurse should:",
+            options: [
+                "Use clear speech and face the patient",
+                "Cover the mouth",
+                "Speak while leaving the room",
+                "Use unnecessary shouting"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The Rinne test compares:",
+            options: [
+                "Air conduction and bone conduction",
+                "Pulse and respiration",
+                "Vision and hearing",
+                "Taste and smell"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The Weber test uses:",
+            options: [
+                "A tuning fork",
+                "A thermometer",
+                "A stethoscope only",
+                "A blood pressure cuff"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The vocal cords are located in the:",
+            options: [
+                "Larynx",
+                "Cochlea",
+                "Nose",
+                "Middle ear"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Stridor may indicate:",
+            options: [
+                "Upper airway obstruction",
+                "Improved breathing",
+                "Normal hearing",
+                "Healthy digestion"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The vestibular system is primarily associated with:",
+            options: [
+                "Balance",
+                "Digestion",
+                "Blood clotting",
+                "Vision"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which condition is associated with recurrent episodes of vertigo?",
+            options: [
+                "Ménière's disease",
+                "Epistaxis",
+                "Laryngitis",
+                "Tonsillitis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which condition commonly produces facial pressure?",
+            options: [
+                "Sinusitis",
+                "Otitis externa",
+                "Tinnitus",
+                "Laryngitis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which condition commonly produces hoarseness?",
+            options: [
+                "Laryngitis",
+                "Otitis externa",
+                "Epistaxis",
+                "Tinnitus"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which condition commonly produces nasal bleeding?",
+            options: [
+                "Epistaxis",
+                "Ménière's disease",
+                "Otitis media",
+                "Tinnitus"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which condition commonly produces ear pain and discharge?",
+            options: [
+                "Otitis media",
+                "Sinusitis",
+                "Laryngitis",
+                "Epistaxis"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with sudden significant hearing loss requires:",
+            options: [
+                "Prompt clinical assessment",
+                "Indefinite observation",
+                "Ear probing",
+                "Ignoring the symptom"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with recurrent nosebleeds should be:",
+            options: [
+                "Appropriately assessed for possible causes",
+                "Told to ignore them",
+                "Encouraged to pick the nose",
+                "Told to lie flat with the head backward"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with an enlarged tonsil and difficulty breathing needs:",
+            options: [
+                "Urgent airway assessment",
+                "Routine hair care",
+                "No assessment",
+                "Encouragement to exercise"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A tracheostomy patient with increasing respiratory distress requires:",
+            options: [
+                "Immediate clinical assessment",
+                "Delayed assessment",
+                "Removal of emergency equipment",
+                "Encouragement to walk alone"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which communication method may assist some patients with severe hearing loss?",
+            options: [
+                "Written communication",
+                "Speaking while facing away",
+                "Shouting from a distance",
+                "Avoiding communication"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an important principle of ENT nursing?",
+            options: [
+                "Early recognition of airway problems",
+                "Ignoring respiratory distress",
+                "Avoiding patient assessment",
+                "Preventing communication"
+            ],
+            answer: 0
+        }
+
+    ];
+
+
+    let currentQuestions = [];
+
+
+    function shuffle(array) {
+
+        const copy = array.slice();
+
+        for (let i = copy.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            const temp = copy[i];
+
+            copy[i] = copy[j];
+
+            copy[j] = temp;
+        }
+
+        return copy;
+    }
+
+
+    function createQuiz() {
+
+        currentQuestions = shuffle(questions).slice(0, 10);
+
+        const quiz = document.getElementById("quiz");
+
+        quiz.innerHTML = "";
+
+        currentQuestions.forEach(function (item, index) {
+
+            const questionBox = document.createElement("div");
+
+            questionBox.className = "question";
+
+            let html =
+                "<p><strong>" +
+                (index + 1) +
+                ". " +
+                item.q +
+                "</strong></p>";
+
+            item.options.forEach(function (option, optionIndex) {
+
+                html +=
+                    '<label>' +
+                    '<input type="radio" name="q' +
+                    index +
+                    '" value="' +
+                    optionIndex +
+                    '">' +
+                    " " +
+                    option +
+                    "</label>";
+
+            });
+
+            questionBox.innerHTML = html;
+
+            quiz.appendChild(questionBox);
+
+        });
+
+        document.getElementById("quizResult").innerHTML = "";
+
+    }
+
+
+    document.getElementById("submitQuiz").addEventListener("click", function () {
+
+        let score = 0;
+
+        currentQuestions.forEach(function (item, index) {
+
+            const selected = document.querySelector(
+                'input[name="q' + index + '"]:checked'
+            );
+
+            if (
+                selected &&
+                Number(selected.value) === item.answer
+            ) {
+                score++;
+            }
+
+        });
+
+        const percentage = Math.round(
+            (score / currentQuestions.length) * 100
+        );
+
+        document.getElementById("quizResult").innerHTML =
+            '<div class="result">' +
+            "You scored " +
+            score +
+            "/10 (" +
+            percentage +
+            "%)." +
+            "<br><br>" +
+            "Click <strong>New Question Set</strong> to try another set." +
+            "</div>";
+
+    });
+
+
+    document.getElementById("newQuiz").addEventListener("click", function () {
+
+        createQuiz();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* ==============================
+       FLASHCARDS
+    ============================== */
+
+    const flashcards = [
+
+        {
+            question: "What are the three main parts of the ear?",
+            answer: "External ear, middle ear and inner ear."
+        },
+
+        {
+            question: "What is otitis externa?",
+            answer: "Inflammation or infection of the external auditory canal."
+        },
+
+        {
+            question: "What is otitis media?",
+            answer: "Inflammation or infection of the middle ear."
+        },
+
+        {
+            question: "What is tinnitus?",
+            answer: "Perception of sound without an external sound source."
+        },
+
+        {
+            question: "What is epistaxis?",
+            answer: "Bleeding from the nose."
+        },
+
+        {
+            question: "What is vertigo?",
+            answer: "A false sensation of movement, often described as spinning."
+        },
+
+        {
+            question: "What is sinusitis?",
+            answer: "Inflammation of the paranasal sinuses."
+        },
+
+        {
+            question: "What is a tracheostomy?",
+            answer: "A surgically created opening into the trachea to establish an airway."
+        }
+
+    ];
+
+
+    let flashIndex = 0;
+
+
+    document.getElementById("showFlashAnswer").addEventListener("click", function () {
+
+        const answer = document.getElementById("flashAnswer");
+
+        answer.textContent = flashcards[flashIndex].answer;
+
+        answer.classList.add("show");
+
+    });
+
+
+    document.getElementById("nextFlashcard").addEventListener("click", function () {
+
+        flashIndex++;
+
+        if (flashIndex >= flashcards.length) {
+            flashIndex = 0;
+        }
+
+        document.getElementById("flashQuestion").textContent =
+            flashcards[flashIndex].question;
+
+        document.getElementById("flashAnswer").textContent =
+            flashcards[flashIndex].answer;
+
+        document.getElementById("flashAnswer").classList.remove("show");
+
+    });
+
+
+    /* ==============================
+       PROGRESS
+    ============================== */
+
+    function updateProgress() {
+
+        const count = completedTopics.size;
+
+        const percentage = Math.round(
+            (count / 15) * 100
+        );
+
+        document.getElementById("completedCount").textContent =
+            count;
+
+        document.getElementById("progressFill").style.width =
+            percentage + "%";
+
+        if (count === 0) {
+
+            document.getElementById("progressText").textContent =
+                "Start studying your ENT topics.";
+
+        } else if (count < 15) {
+
+            document.getElementById("progressText").textContent =
+                "Keep going! You have reviewed " +
+                count +
+                " of 15 topics.";
+
+        } else {
+
+            document.getElementById("progressText").textContent =
+                "🎉 Excellent! You have reviewed all 15 topics.";
+
+        }
+
+        const progressTopics =
+            document.getElementById("progressTopics");
+
+        progressTopics.innerHTML = "";
+
+        for (let i = 1; i <= 15; i++) {
+
+            const status =
+                completedTopics.has(String(i))
+                ? "✅ Reviewed"
+                : "⬜ Not reviewed";
+
+            progressTopics.innerHTML +=
+                '<div class="question">' +
+                "Topic " +
+                i +
+                ": " +
+                status +
+                "</div>";
+
+        }
+
+    }
+
+
+    /* ==============================
+       START
+    ============================== */
+
+    createQuiz();
+
+    updateProgress();
+
+});
+
+</script>
+
+</body>
+</html>

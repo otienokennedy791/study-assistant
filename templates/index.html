@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Study Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .subject {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .subject:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .subject h3 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+        .code {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .description {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 My Study Assistant</h1>
+    <p>Your personal nursing study companion</p>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Welcome! 👋</h2>
+        <p>
+            Select a subject below to start studying.
+        </p>
+    </div>
+
+    <h2>📖 My Subjects</h2>
+
+    <div class="subjects">
+
+        <!-- NURS 441 -->
+        <a href="/ophthalmic" class="subject">
+            <p class="code">NURS 441</p>
+            <h3>👁️ Ophthalmic Nursing</h3>
+            <p class="description">
+                Eye conditions, assessment, treatment and nursing care.
+            </p>
+        </a>
+
+        <!-- NURS 442 -->
+        <a href="/ent" class="subject">
+            <p class="code">NURS 442</p>
+            <h3>👂 ENT Nursing</h3>
+            <p class="description">
+                Ear, nose and throat conditions and nursing management.
+            </p>
+        </a>
+
+        <!-- NURS 444 -->
+        <a href="/oncology" class="subject">
+            <p class="code">NURS 444</p>
+            <h3>🎗️ Oncology Nursing</h3>
+            <p class="description">
+                Cancer care, treatment and nursing management.
+            </p>
+        </a>
+
+        <!-- NURS 443 -->
+        <a href="/emergency" class="subject">
+            <p class="code">NURS 443</p>
+            <h3>🚑 First Aid, Trauma & Emergency Nursing</h3>
+            <p class="description">
+                Emergency assessment, first aid, trauma and emergency nursing.
+            </p>
+        </a>
+
+        <!-- NURS 497 -->
+        <a href="/research" class="subject">
+            <p class="code">NURS 497</p>
+            <h3>📑 Research Proposal & Case Study Development</h3>
+            <p class="description">
+                Research methods, proposal development and case studies.
+            </p>
+        </a>
+
+        <!-- NURS 374 -->
+        <a href="/leadership1" class="subject">
+            <p class="code">NURS 374</p>
+            <h3>👥 Leadership & Management 1</h3>
+            <p class="description">
+                Principles of leadership and management in nursing.
+            </p>
+        </a>
+
+        <!-- NURS 378 -->
+        <a href="/leadership2" class="subject">
+            <p class="code">NURS 378</p>
+            <h3>👥 Leadership & Management 2</h3>
+            <p class="description">
+                Advanced leadership and management concepts.
+            </p>
+        </a>
+
+        <!-- NURS 437 -->
+        <a href="/curriculum" class="subject">
+            <p class="code">NURS 437</p>
+            <h3>📚 Curriculum Development</h3>
+            <p class="description">
+                Curriculum planning, development and evaluation.
+            </p>
+        </a>
+
+        <!-- NURS 446 -->
+        <a href="/theatre" class="subject">
+            <p class="code">NURS 446</p>
+            <h3>🏥 Theatre Nursing</h3>
+            <p class="description">
+                Perioperative nursing and surgical patient care.
+            </p>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

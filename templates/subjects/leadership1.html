@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 374 - Leadership and Management 1</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #17365d;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            border: none;
+            padding: 12px 16px;
+            background: #d9e2f3;
+            color: #17365d;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .tab-button:hover {
+            background: #b4c7e7;
+        }
+
+        .tab-button.active {
+            background: #17365d;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .topic,
+        .note {
+            border: 1px solid #d6dce5;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .topic-title,
+        .note-title {
+            background: #eaf0f8;
+            padding: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .topic-content,
+        .note-content {
+            display: none;
+            padding: 16px;
+            line-height: 1.6;
+        }
+
+        .topic-content.show,
+        .note-content.show {
+            display: block;
+        }
+
+        .question {
+            background: white;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .question h3 {
+            margin-top: 0;
+        }
+
+        .option {
+            display: block;
+            margin: 9px 0;
+            padding: 10px;
+            background: #f7f9fc;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #e9eef7;
+        }
+
+        .button {
+            border: none;
+            background: #17365d;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
+        .button:hover {
+            background: #0f2744;
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #eaf4ea;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            background: #f5f8fc;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid #17365d;
+            line-height: 1.6;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .flashcard {
+            text-align: center;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flash-question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .flash-answer {
+            display: none;
+            font-size: 18px;
+            background: #eef3fa;
+            padding: 18px;
+            border-radius: 10px;
+            line-height: 1.6;
+        }
+
+        .flash-answer.show {
+            display: block;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        ul {
+            line-height: 1.7;
+        }
+
+        .small {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .progress-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 374 — Leadership and Management 1</h1>
+    <p>Nursing Leadership, Management and Administration Study Assistant</p>
+</header>
+
+<div class="container">
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="topics">Topics</button>
+        <button class="tab-button" data-tab="notes">Notes</button>
+        <button class="tab-button" data-tab="mcq">MCQs</button>
+        <button class="tab-button" data-tab="short">Short Answers</button>
+        <button class="tab-button" data-tab="long">Long Answers</button>
+        <button class="tab-button" data-tab="flashcards">Flashcards</button>
+        <button class="tab-button" data-tab="progress">Progress</button>
+    </div>
+
+    <!-- TOPICS -->
+    <section id="topics" class="tab active">
+
+        <div class="card">
+            <h2>Leadership and Management 1 Topics</h2>
+            <p class="small">Click each topic to expand it.</p>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">1. Introduction to Leadership and Management</div>
+            <div class="topic-content">
+                <p><strong>Leadership</strong> is the process of influencing and motivating people to work toward a common goal.</p>
+                <p><strong>Management</strong> involves planning, organizing, staffing, directing and controlling resources to achieve organizational objectives.</p>
+                <ul>
+                    <li>Leadership focuses strongly on people and direction.</li>
+                    <li>Management focuses strongly on coordination and achievement of objectives.</li>
+                    <li>A nurse can perform both leadership and management functions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">2. Leadership Theories</div>
+            <div class="topic-content">
+                <p>Major leadership theories include:</p>
+                <ul>
+                    <li>Trait theory</li>
+                    <li>Behavioral theory</li>
+                    <li>Situational theory</li>
+                    <li>Contingency theory</li>
+                    <li>Transformational leadership</li>
+                    <li>Transactional leadership</li>
+                </ul>
+                <p>Modern nursing leadership often requires adapting leadership behavior to the situation and the needs of staff.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">3. Leadership Styles</div>
+            <div class="topic-content">
+                <ul>
+                    <li><strong>Autocratic:</strong> leader makes most decisions.</li>
+                    <li><strong>Democratic:</strong> staff participate in decision-making.</li>
+                    <li><strong>Laissez-faire:</strong> staff receive considerable freedom.</li>
+                    <li><strong>Transformational:</strong> leader inspires people toward change and improvement.</li>
+                    <li><strong>Transactional:</strong> leadership emphasizes rewards, expectations and performance.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">4. Functions of Management</div>
+            <div class="topic-content">
+                <p>The classical functions of management include:</p>
+                <ul>
+                    <li>Planning</li>
+                    <li>Organizing</li>
+                    <li>Staffing</li>
+                    <li>Directing</li>
+                    <li>Controlling</li>
+                </ul>
+                <p>These functions help nurse managers coordinate people, equipment, time and finances.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">5. Planning in Nursing Management</div>
+            <div class="topic-content">
+                <p>Planning involves determining what needs to be achieved and deciding how it will be accomplished.</p>
+                <ul>
+                    <li>Identify the problem or need.</li>
+                    <li>Set objectives.</li>
+                    <li>Identify available resources.</li>
+                    <li>Develop activities.</li>
+                    <li>Determine timelines.</li>
+                    <li>Evaluate the plan.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">6. Organizing</div>
+            <div class="topic-content">
+                <p>Organizing involves arranging resources and activities so that organizational goals can be achieved.</p>
+                <ul>
+                    <li>Division of work</li>
+                    <li>Assignment of responsibilities</li>
+                    <li>Establishment of authority</li>
+                    <li>Coordination of activities</li>
+                    <li>Development of organizational structures</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">7. Staffing and Human Resource Management</div>
+            <div class="topic-content">
+                <p>Staffing involves ensuring that the right number and type of workers are available to provide safe and effective care.</p>
+                <ul>
+                    <li>Recruitment</li>
+                    <li>Selection</li>
+                    <li>Orientation</li>
+                    <li>Scheduling</li>
+                    <li>Staff development</li>
+                    <li>Performance appraisal</li>
+                    <li>Retention</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">8. Delegation</div>
+            <div class="topic-content">
+                <p>Delegation is the process of assigning responsibility for performing a task to another competent person while the delegating nurse retains appropriate accountability.</p>
+                <p>Important principles include:</p>
+                <ul>
+                    <li>Right task</li>
+                    <li>Right circumstance</li>
+                    <li>Right person</li>
+                    <li>Right direction and communication</li>
+                    <li>Right supervision and evaluation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">9. Communication in Leadership</div>
+            <div class="topic-content">
+                <p>Effective communication allows nurses to exchange information accurately and coordinate patient care.</p>
+                <ul>
+                    <li>Verbal communication</li>
+                    <li>Written communication</li>
+                    <li>Non-verbal communication</li>
+                    <li>Active listening</li>
+                    <li>Feedback</li>
+                </ul>
+                <p>Communication should be clear, respectful, timely and appropriate to the situation.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">10. Decision-Making and Problem-Solving</div>
+            <div class="topic-content">
+                <p>Decision-making involves choosing among alternatives, while problem-solving involves identifying and addressing a problem.</p>
+                <ol>
+                    <li>Identify the problem.</li>
+                    <li>Collect information.</li>
+                    <li>Identify alternatives.</li>
+                    <li>Evaluate alternatives.</li>
+                    <li>Select the best appropriate option.</li>
+                    <li>Implement the decision.</li>
+                    <li>Evaluate the outcome.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">11. Motivation</div>
+            <div class="topic-content">
+                <p>Motivation refers to factors that stimulate people to act toward achieving goals.</p>
+                <p>Motivation can be:</p>
+                <ul>
+                    <li>Intrinsic — comes from within the individual.</li>
+                    <li>Extrinsic — comes from external rewards or consequences.</li>
+                </ul>
+                <p>Nurse managers can improve motivation through recognition, fair treatment, professional development and supportive working environments.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">12. Conflict Management</div>
+            <div class="topic-content">
+                <p>Conflict occurs when individuals or groups have differences in needs, goals, values or perceptions.</p>
+                <p>Common approaches include:</p>
+                <ul>
+                    <li>Avoiding</li>
+                    <li>Accommodating</li>
+                    <li>Competing</li>
+                    <li>Compromising</li>
+                    <li>Collaborating</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">13. Power and Authority</div>
+            <div class="topic-content">
+                <p><strong>Power</strong> is the ability to influence the behavior of others.</p>
+                <p><strong>Authority</strong> is the legitimate right to make decisions and direct others within a defined role.</p>
+                <p>Sources of power may include legitimate, reward, coercive, expert and referent power.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">14. Supervision and Performance Appraisal</div>
+            <div class="topic-content">
+                <p>Supervision involves guiding and monitoring staff to ensure safe and effective performance.</p>
+                <p>Performance appraisal is the systematic assessment of an employee's work performance against established expectations.</p>
+                <ul>
+                    <li>Set clear standards.</li>
+                    <li>Observe performance.</li>
+                    <li>Provide feedback.</li>
+                    <li>Identify strengths and weaknesses.</li>
+                    <li>Develop improvement plans where necessary.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">15. Time Management</div>
+            <div class="topic-content">
+                <p>Time management involves planning and controlling how available time is used.</p>
+                <p>Useful strategies include:</p>
+                <ul>
+                    <li>Prioritizing activities</li>
+                    <li>Making schedules</li>
+                    <li>Delegating appropriate tasks</li>
+                    <li>Avoiding unnecessary interruptions</li>
+                    <li>Setting realistic deadlines</li>
+                    <li>Reviewing completed work</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- NOTES -->
+    <section id="notes" class="tab">
+
+        <div class="card">
+            <h2>Revision Notes</h2>
+            <p>Click each heading to open the notes.</p>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Leadership vs Management</div>
+            <div class="note-content">
+                <p><strong>Leadership:</strong> focuses on influencing, inspiring and guiding people.</p>
+                <p><strong>Management:</strong> focuses on coordinating resources and activities to achieve organizational objectives.</p>
+                <p>A nurse manager needs both leadership and management skills.</p>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Leadership Styles Quick Review</div>
+            <div class="note-content">
+                <ul>
+                    <li>Autocratic — leader makes decisions.</li>
+                    <li>Democratic — team participates.</li>
+                    <li>Laissez-faire — considerable staff freedom.</li>
+                    <li>Transformational — inspires change and development.</li>
+                    <li>Transactional — emphasizes performance, rewards and expectations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Five Major Management Functions</div>
+            <div class="note-content">
+                <ol>
+                    <li>Planning</li>
+                    <li>Organizing</li>
+                    <li>Staffing</li>
+                    <li>Directing</li>
+                    <li>Controlling</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Delegation Quick Review</div>
+            <div class="note-content">
+                <p>Remember the five rights:</p>
+                <ol>
+                    <li>Right task</li>
+                    <li>Right circumstance</li>
+                    <li>Right person</li>
+                    <li>Right direction and communication</li>
+                    <li>Right supervision and evaluation</li>
+                </ol>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- MCQs -->
+    <section id="mcq" class="tab">
+
+        <div class="card">
+            <h2>Leadership and Management MCQs</h2>
+            <p>10 questions will be selected randomly from the question bank each time.</p>
+            <div id="quiz"></div>
+
+            <button class="button" onclick="submitQuiz()">Submit Quiz</button>
+            <button class="button" onclick="newQuiz()">New Question Set</button>
+
+            <div id="quizResult"></div>
+        </div>
+
+    </section>
+
+    <!-- SHORT ANSWERS -->
+    <section id="short" class="tab">
+
+        <div class="card">
+            <h2>Short-Answer Questions</h2>
+
+            <div class="question">
+                <h3>1. Define leadership.</h3>
+                <button class="button" onclick="toggleAnswer('sa1')">Show Answer</button>
+                <div id="sa1" class="answer">
+                    Leadership is the process of influencing, guiding and motivating individuals or groups toward achieving common goals.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. Define management.</h3>
+                <button class="button" onclick="toggleAnswer('sa2')">Show Answer</button>
+                <div id="sa2" class="answer">
+                    Management is the process of planning, organizing, staffing, directing and controlling resources to achieve organizational objectives.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. State five functions of management.</h3>
+                <button class="button" onclick="toggleAnswer('sa3')">Show Answer</button>
+                <div id="sa3" class="answer">
+                    Planning, organizing, staffing, directing and controlling.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. State four leadership styles.</h3>
+                <button class="button" onclick="toggleAnswer('sa4')">Show Answer</button>
+                <div id="sa4" class="answer">
+                    Autocratic, democratic, laissez-faire and transformational leadership.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. What is delegation?</h3>
+                <button class="button" onclick="toggleAnswer('sa5')">Show Answer</button>
+                <div id="sa5" class="answer">
+                    Delegation is the process of assigning responsibility for performing a task to another competent person while maintaining appropriate accountability and supervision.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. State five rights of delegation.</h3>
+                <button class="button" onclick="toggleAnswer('sa6')">Show Answer</button>
+                <div id="sa6" class="answer">
+                    Right task, right circumstance, right person, right direction and communication, and right supervision and evaluation.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. State five sources of power.</h3>
+                <button class="button" onclick="toggleAnswer('sa7')">Show Answer</button>
+                <div id="sa7" class="answer">
+                    Legitimate power, reward power, coercive power, expert power and referent power.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. State five strategies for effective time management.</h3>
+                <button class="button" onclick="toggleAnswer('sa8')">Show Answer</button>
+                <div id="sa8" class="answer">
+                    Prioritizing tasks, making schedules, delegating appropriate duties, avoiding unnecessary interruptions and setting realistic deadlines.
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- LONG ANSWERS -->
+    <section id="long" class="tab">
+
+        <div class="card">
+            <h2>Long-Answer Questions</h2>
+
+            <div class="question">
+                <h3>1. Discuss the functions of management in nursing.</h3>
+                <button class="button" onclick="toggleAnswer('la1')">Show Model Answer</button>
+                <div id="la1" class="answer">
+                    <p>
+                        The major functions of management are planning, organizing, staffing, directing and controlling.
+                    </p>
+
+                    <p>
+                        <strong>Planning</strong> involves identifying objectives and determining activities and resources required to achieve them.
+                    </p>
+
+                    <p>
+                        <strong>Organizing</strong> involves arranging people, resources and activities so that work can be performed effectively.
+                    </p>
+
+                    <p>
+                        <strong>Staffing</strong> involves recruiting, selecting, scheduling, developing and retaining appropriate personnel.
+                    </p>
+
+                    <p>
+                        <strong>Directing</strong> involves guiding, communicating, motivating and supervising staff.
+                    </p>
+
+                    <p>
+                        <strong>Controlling</strong> involves monitoring performance, comparing it with standards and taking corrective action when necessary.
+                    </p>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. Discuss the different leadership styles used in nursing.</h3>
+                <button class="button" onclick="toggleAnswer('la2')">Show Model Answer</button>
+                <div id="la2" class="answer">
+                    <p>
+                        Leadership style refers to the manner in which a leader guides, influences and interacts with followers.
+                    </p>
+
+                    <p>
+                        <strong>Autocratic leadership</strong> involves centralized decision-making by the leader. It may be useful when rapid decisions are required.
+                    </p>
+
+                    <p>
+                        <strong>Democratic leadership</strong> encourages staff participation in decision-making and can promote teamwork and commitment.
+                    </p>
+
+                    <p>
+                        <strong>Laissez-faire leadership</strong> gives staff considerable independence. It can work when team members are experienced and competent, but inadequate guidance may create problems.
+                    </p>
+
+                    <p>
+                        <strong>Transformational leadership</strong> focuses on inspiring staff, developing people and promoting positive change.
+                    </p>
+
+                    <p>
+                        <strong>Transactional leadership</strong> emphasizes performance expectations, rewards and consequences.
+                    </p>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. Explain the principles of effective delegation in nursing.</h3>
+                <button class="button" onclick="toggleAnswer('la3')">Show Model Answer</button>
+                <div id="la3" class="answer">
+                    <p>
+                        Effective delegation requires the nurse to consider the task, circumstances, competence of the person receiving the task, communication and supervision.
+                    </p>
+
+                    <ul>
+                        <li><strong>Right task:</strong> the task should be appropriate for delegation.</li>
+                        <li><strong>Right circumstance:</strong> the patient's condition and environment should be suitable.</li>
+                        <li><strong>Right person:</strong> the person must have the required knowledge and competence.</li>
+                        <li><strong>Right direction and communication:</strong> instructions should be clear and specific.</li>
+                        <li><strong>Right supervision and evaluation:</strong> the nurse should monitor performance and evaluate the outcome.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. Discuss the importance of communication in nursing leadership.</h3>
+                <button class="button" onclick="toggleAnswer('la4')">Show Model Answer</button>
+                <div id="la4" class="answer">
+                    <p>
+                        Communication is essential in nursing leadership because patient care depends on accurate exchange of information among nurses, patients, families and other healthcare professionals.
+                    </p>
+
+                    <p>
+                        Effective communication promotes teamwork, improves coordination, reduces misunderstandings and supports patient safety.
+                    </p>
+
+                    <p>
+                        A nurse leader should use clear verbal and written communication, listen actively, provide appropriate feedback, encourage staff to express concerns and maintain professional respect.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FLASHCARDS -->
+    <section id="flashcards" class="tab">
+
+        <div class="card flashcard">
+
+            <div id="flashQuestion" class="flash-question"></div>
+
+            <div id="flashAnswer" class="flash-answer"></div>
+
+            <button class="button" onclick="showFlashAnswer()">Show Answer</button>
+            <button class="button" onclick="nextFlashcard()">Next Flashcard</button>
+
+        </div>
+
+    </section>
+
+    <!-- PROGRESS -->
+    <section id="progress" class="tab">
+
+        <div class="card">
+            <h2>Topic Progress</h2>
+            <p>Mark topics as completed as you study them.</p>
+            <div id="progressList"></div>
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ---------------- TABS ---------------- */
+
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const target = button.getAttribute("data-tab");
+
+            tabs.forEach(function (tab) {
+                tab.classList.remove("active");
+            });
+
+            tabButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            const selectedTab = document.getElementById(target);
+
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            button.classList.add("active");
+
+            if (target === "mcq") {
+                createQuiz();
+            }
+
+        });
+
+    });
+
+
+    /* ---------------- TOPICS ---------------- */
+
+    document.querySelectorAll(".topic-title").forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            content.classList.toggle("show");
+
+        });
+
+    });
+
+
+    /* ---------------- NOTES ---------------- */
+
+    document.querySelectorAll(".note-title").forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            content.classList.toggle("show");
+
+        });
+
+    });
+
+
+    /* ---------------- PROGRESS ---------------- */
+
+    const topicNames = [
+        "Introduction to Leadership and Management",
+        "Leadership Theories",
+        "Leadership Styles",
+        "Functions of Management",
+        "Planning in Nursing Management",
+        "Organizing",
+        "Staffing and Human Resource Management",
+        "Delegation",
+        "Communication in Leadership",
+        "Decision-Making and Problem-Solving",
+        "Motivation",
+        "Conflict Management",
+        "Power and Authority",
+        "Supervision and Performance Appraisal",
+        "Time Management"
+    ];
+
+    const completedTopics = new Set();
+
+    function renderProgress() {
+
+        const list = document.getElementById("progressList");
+
+        list.innerHTML = "";
+
+        topicNames.forEach(function (topic, index) {
+
+            const row = document.createElement("div");
+
+            row.className = "progress-item";
+
+            const name = document.createElement("span");
+
+            name.textContent = (index + 1) + ". " + topic;
+
+            const button = document.createElement("button");
+
+            button.className = "button";
+
+            button.textContent =
+                completedTopics.has(index)
+                ? "Completed"
+                : "Mark Complete";
+
+            if (completedTopics.has(index)) {
+                button.classList.add("completed");
+            }
+
+            button.addEventListener("click", function () {
+
+                if (completedTopics.has(index)) {
+                    completedTopics.delete(index);
+                } else {
+                    completedTopics.add(index);
+                }
+
+                renderProgress();
+
+            });
+
+            row.appendChild(name);
+            row.appendChild(button);
+
+            list.appendChild(row);
+
+        });
+
+    }
+
+    renderProgress();
+
+
+    /* ---------------- MCQ BANK ---------------- */
+
+    const questions = [
+
+        {
+            question: "Which statement best defines leadership?",
+            options: [
+                "The process of influencing people toward a common goal",
+                "The process of keeping financial records",
+                "The process of purchasing equipment",
+                "The process of writing reports"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which of the following is a major function of management?",
+            options: [
+                "Planning",
+                "Guessing",
+                "Ignoring",
+                "Avoiding"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which leadership style involves staff participation in decision-making?",
+            options: [
+                "Democratic",
+                "Autocratic",
+                "Laissez-faire",
+                "Coercive"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which leadership style involves centralized decision-making?",
+            options: [
+                "Autocratic",
+                "Democratic",
+                "Participative",
+                "Transformational"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which leadership style gives followers considerable independence?",
+            options: [
+                "Laissez-faire",
+                "Autocratic",
+                "Transactional",
+                "Directive"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Transformational leadership emphasizes:",
+            options: [
+                "Inspiring people and promoting positive change",
+                "Punishing staff",
+                "Avoiding communication",
+                "Centralizing every decision"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which management function involves determining what should be achieved?",
+            options: [
+                "Planning",
+                "Controlling",
+                "Staffing",
+                "Directing"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which management function involves arranging resources and activities?",
+            options: [
+                "Organizing",
+                "Planning",
+                "Controlling",
+                "Evaluating"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Staffing primarily involves:",
+            options: [
+                "Obtaining and developing appropriate personnel",
+                "Buying medications",
+                "Cleaning wards",
+                "Writing prescriptions"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which management function involves guiding and motivating workers?",
+            options: [
+                "Directing",
+                "Planning",
+                "Organizing",
+                "Controlling"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Controlling involves:",
+            options: [
+                "Monitoring performance and taking corrective action",
+                "Recruiting only",
+                "Writing patient histories",
+                "Giving medication"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Delegation means:",
+            options: [
+                "Assigning an appropriate task to another competent person",
+                "Giving away all accountability",
+                "Avoiding responsibility",
+                "Transferring a patient"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which is NOT one of the five rights of delegation?",
+            options: [
+                "Right salary",
+                "Right task",
+                "Right person",
+                "Right circumstance"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "The right person in delegation means:",
+            options: [
+                "The person has the required competence for the task",
+                "The oldest employee",
+                "The newest employee",
+                "The person with the highest salary"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Effective delegation requires:",
+            options: [
+                "Clear communication and appropriate supervision",
+                "No instructions",
+                "No follow-up",
+                "Avoiding evaluation"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Communication is important in nursing because it:",
+            options: [
+                "Supports coordination and patient safety",
+                "Eliminates all workload",
+                "Removes the need for teamwork",
+                "Prevents documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Active listening involves:",
+            options: [
+                "Paying attention and responding appropriately to the speaker",
+                "Interrupting continuously",
+                "Ignoring non-verbal cues",
+                "Changing the subject"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which is an example of non-verbal communication?",
+            options: [
+                "Facial expression",
+                "Written report",
+                "Telephone conversation",
+                "Nursing note"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Decision-making involves:",
+            options: [
+                "Choosing among alternatives",
+                "Avoiding all choices",
+                "Ignoring information",
+                "Refusing responsibility"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "The first step in problem-solving is usually to:",
+            options: [
+                "Identify the problem",
+                "Implement a solution",
+                "Evaluate the solution",
+                "Ignore the problem"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Intrinsic motivation comes primarily from:",
+            options: [
+                "Within the individual",
+                "External punishment",
+                "Salary only",
+                "Organizational rules"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Extrinsic motivation is associated with:",
+            options: [
+                "External rewards or consequences",
+                "Personal satisfaction only",
+                "Internal beliefs only",
+                "Self-reflection only"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Conflict occurs when:",
+            options: [
+                "Individuals or groups have differences in needs, goals or perceptions",
+                "Everyone agrees",
+                "Communication is perfect",
+                "All objectives are identical"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which conflict-management approach seeks a solution satisfying the parties involved?",
+            options: [
+                "Collaborating",
+                "Avoiding",
+                "Ignoring",
+                "Withdrawing"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Power is best described as:",
+            options: [
+                "The ability to influence others",
+                "A job title only",
+                "A salary level",
+                "A written policy"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Authority refers to:",
+            options: [
+                "The legitimate right to make decisions within a role",
+                "Personal popularity",
+                "Friendship",
+                "Physical strength"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which is a source of power?",
+            options: [
+                "Expert power",
+                "Sleep power",
+                "Age power",
+                "Location power"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Expert power is based on:",
+            options: [
+                "Knowledge and specialized competence",
+                "Punishment",
+                "Job location",
+                "Personal wealth"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Referent power is associated with:",
+            options: [
+                "Respect and identification with the leader",
+                "Punishment",
+                "Formal job description only",
+                "Financial accounting"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Supervision involves:",
+            options: [
+                "Guiding and monitoring staff performance",
+                "Ignoring staff",
+                "Avoiding feedback",
+                "Removing standards"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Performance appraisal is:",
+            options: [
+                "Systematic assessment of employee performance",
+                "A disciplinary punishment only",
+                "A recruitment interview",
+                "A patient diagnosis"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "An effective performance appraisal should include:",
+            options: [
+                "Clear standards and constructive feedback",
+                "Personal insults",
+                "Unclear expectations",
+                "No documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Time management involves:",
+            options: [
+                "Planning and controlling the use of available time",
+                "Working without priorities",
+                "Avoiding schedules",
+                "Doing every task simultaneously"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which strategy improves time management?",
+            options: [
+                "Prioritizing activities",
+                "Ignoring deadlines",
+                "Avoiding planning",
+                "Accepting every interruption"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A nurse manager should delegate a task based primarily on:",
+            options: [
+                "The competence of the person receiving the task",
+                "The person's friendship with the manager",
+                "The person's age",
+                "The person's popularity"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A democratic leader is most likely to:",
+            options: [
+                "Encourage staff participation",
+                "Make every decision alone",
+                "Avoid all decisions",
+                "Punish staff for suggestions"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A transformational leader is particularly concerned with:",
+            options: [
+                "Developing people and facilitating change",
+                "Maintaining the status quo at all costs",
+                "Avoiding innovation",
+                "Reducing communication"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A transactional leader commonly emphasizes:",
+            options: [
+                "Performance expectations and rewards",
+                "No standards",
+                "Complete independence",
+                "Avoiding accountability"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which activity belongs to planning?",
+            options: [
+                "Setting objectives",
+                "Comparing actual results with standards",
+                "Conducting performance appraisal",
+                "Disciplining staff"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which activity belongs to controlling?",
+            options: [
+                "Comparing performance with established standards",
+                "Recruiting staff",
+                "Setting initial objectives only",
+                "Writing a job advertisement"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which action demonstrates effective leadership?",
+            options: [
+                "Communicating a clear vision and supporting staff",
+                "Refusing feedback",
+                "Ignoring staff concerns",
+                "Avoiding responsibility"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Good nurse leaders should:",
+            options: [
+                "Model professional behavior",
+                "Ignore ethical principles",
+                "Avoid communication",
+                "Discourage teamwork"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which is an important characteristic of effective communication?",
+            options: [
+                "Clarity",
+                "Ambiguity",
+                "Secrecy",
+                "Confusion"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Feedback is useful because it:",
+            options: [
+                "Helps people understand their performance",
+                "Always creates conflict",
+                "Eliminates supervision",
+                "Prevents learning"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which conflict-management style involves temporarily withdrawing from the conflict?",
+            options: [
+                "Avoiding",
+                "Collaborating",
+                "Competing",
+                "Negotiating"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Compromise involves:",
+            options: [
+                "Each party giving up something to reach an acceptable solution",
+                "One person receiving everything",
+                "Avoiding communication",
+                "Ignoring the problem"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which factor can improve staff motivation?",
+            options: [
+                "Recognition of good performance",
+                "Unfair treatment",
+                "Poor communication",
+                "Lack of feedback"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Effective staffing aims to ensure:",
+            options: [
+                "Appropriate personnel are available for patient care",
+                "Every nurse works without rest",
+                "Only senior nurses work",
+                "Staffing decisions are made randomly"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Orientation of newly employed nurses helps them:",
+            options: [
+                "Understand the organization, role and expectations",
+                "Avoid all supervision",
+                "Skip training",
+                "Ignore policies"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A major purpose of organizational structure is to:",
+            options: [
+                "Clarify relationships, responsibilities and authority",
+                "Eliminate communication",
+                "Prevent teamwork",
+                "Remove accountability"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "The chain of command refers to:",
+            options: [
+                "The formal line of authority within an organization",
+                "A patient's medication list",
+                "A staff social group",
+                "A financial statement"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Span of control refers to:",
+            options: [
+                "The number of people directly supervised by a manager",
+                "The length of a hospital corridor",
+                "The number of patients admitted",
+                "The amount of money available"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A nurse manager who asks staff for ideas before making a decision is demonstrating:",
+            options: [
+                "Participative leadership",
+                "Autocratic leadership",
+                "Coercive leadership",
+                "Laissez-faire leadership"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "A good leader should handle criticism by:",
+            options: [
+                "Listening and considering constructive feedback",
+                "Automatically punishing the person",
+                "Ignoring all feedback",
+                "Ending communication"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which is essential when giving instructions to delegated staff?",
+            options: [
+                "Clear and specific directions",
+                "Unclear expectations",
+                "No opportunity for questions",
+                "No supervision"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Accountability means:",
+            options: [
+                "Being answerable for one's actions and responsibilities",
+                "Avoiding responsibility",
+                "Transferring all duties",
+                "Ignoring outcomes"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which action demonstrates professional leadership?",
+            options: [
+                "Supporting staff development",
+                "Discouraging learning",
+                "Hiding important information",
+                "Promoting favoritism"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which management activity ensures resources are used according to established plans?",
+            options: [
+                "Controlling",
+                "Recruitment",
+                "Orientation",
+                "Socialization"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Effective nurse managers should base decisions on:",
+            options: [
+                "Relevant information, professional judgment and organizational goals",
+                "Rumors only",
+                "Personal favoritism",
+                "Guesswork"
+            ],
+            answer: 0
+        }
+
+    ];
+
+
+    let currentQuestions = [];
+
+
+    function shuffle(array) {
+
+        const copied = [...array];
+
+        for (let i = copied.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [copied[i], copied[j]] = [copied[j], copied[i]];
+
+        }
+
+        return copied;
+    }
+
+
+    function createQuiz() {
+
+        currentQuestions = shuffle(questions).slice(0, 10);
+
+        const quiz = document.getElementById("quiz");
+
+        quiz.innerHTML = "";
+
+        document.getElementById("quizResult").innerHTML = "";
+
+        currentQuestions.forEach(function (q, index) {
+
+            const questionDiv = document.createElement("div");
+
+            questionDiv.className = "question";
+
+            const title = document.createElement("h3");
+
+            title.textContent =
+                (index + 1) + ". " + q.question;
+
+            questionDiv.appendChild(title);
+
+            q.options.forEach(function (option, optionIndex) {
+
+                const label = document.createElement("label");
+
+                label.className = "option";
+
+                label.innerHTML =
+                    '<input type="radio" name="question' +
+                    index +
+                    '" value="' +
+                    optionIndex +
+                    '"> ' +
+                    option;
+
+                questionDiv.appendChild(label);
+
+            });
+
+            quiz.appendChild(questionDiv);
+
+        });
+
+    }
+
+
+    window.submitQuiz = function () {
+
+        let score = 0;
+
+        currentQuestions.forEach(function (q, index) {
+
+            const selected =
+                document.querySelector(
+                    'input[name="question' + index + '"]:checked'
+                );
+
+            if (selected &&
+                Number(selected.value) === q.answer) {
+
+                score++;
+
+            }
+
+        });
+
+        const percentage =
+            Math.round((score / currentQuestions.length) * 100);
+
+        document.getElementById("quizResult").innerHTML =
+            '<div class="result">' +
+            'You scored ' +
+            score +
+            ' / ' +
+            currentQuestions.length +
+            ' (' +
+            percentage +
+            '%).' +
+            '<br><br>' +
+            'Click "New Question Set" to attempt another set.' +
+            '</div>';
+
+    };
+
+
+    window.newQuiz = function () {
+        createQuiz();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+
+
+    /* ---------------- ANSWERS ---------------- */
+
+    window.toggleAnswer = function (id) {
+
+        const answer = document.getElementById(id);
+
+        if (answer) {
+            answer.classList.toggle("show");
+        }
+
+    };
+
+
+    /* ---------------- FLASHCARDS ---------------- */
+
+    const flashcards = [
+
+        {
+            question: "What is leadership?",
+            answer: "The process of influencing and guiding people toward achieving common goals."
+        },
+
+        {
+            question: "What is management?",
+            answer: "The process of planning, organizing, staffing, directing and controlling resources to achieve objectives."
+        },
+
+        {
+            question: "What are the five major functions of management?",
+            answer: "Planning, organizing, staffing, directing and controlling."
+        },
+
+        {
+            question: "What is democratic leadership?",
+            answer: "A leadership style that encourages participation of team members in decision-making."
+        },
+
+        {
+            question: "What is autocratic leadership?",
+            answer: "A leadership style in which decision-making is mainly centralized in the leader."
+        },
+
+        {
+            question: "What is delegation?",
+            answer: "Assigning an appropriate task to another competent person while maintaining appropriate accountability and supervision."
+        },
+
+        {
+            question: "What is motivation?",
+            answer: "The factors that stimulate an individual to act toward achieving a goal."
+        },
+
+        {
+            question: "What is conflict?",
+            answer: "A disagreement arising from differences in needs, goals, values or perceptions."
+        },
+
+        {
+            question: "What is authority?",
+            answer: "The legitimate right to make decisions and direct others within a defined role."
+        },
+
+        {
+            question: "What is expert power?",
+            answer: "Power based on knowledge, skills and specialized competence."
+        },
+
+        {
+            question: "What is performance appraisal?",
+            answer: "The systematic assessment of an employee's performance against established expectations or standards."
+        },
+
+        {
+            question: "What is time management?",
+            answer: "The process of planning and controlling how available time is used to achieve objectives."
+        }
+
+    ];
+
+
+    let flashIndex = 0;
+
+
+    function displayFlashcard() {
+
+        document.getElementById("flashQuestion").textContent =
+            flashcards[flashIndex].question;
+
+        document.getElementById("flashAnswer").textContent =
+            flashcards[flashIndex].answer;
+
+        document.getElementById("flashAnswer").classList.remove("show");
+
+    }
+
+
+    window.showFlashAnswer = function () {
+
+        document.getElementById("flashAnswer")
+            .classList.add("show");
+
+    };
+
+
+    window.nextFlashcard = function () {
+
+        flashIndex++;
+
+        if (flashIndex >= flashcards.length) {
+            flashIndex = 0;
+        }
+
+        displayFlashcard();
+
+    };
+
+
+    displayFlashcard();
+
+    createQuiz();
+
+});
+
+</script>
+
+</body>
+</html>

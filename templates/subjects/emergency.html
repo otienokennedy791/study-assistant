@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 443 - First Aid, Trauma & Emergency Nursing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #8b0000;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 18px;
+            text-decoration: none;
+            background: #333;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            border: none;
+            background: #ddd;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-button:hover {
+            background: #ccc;
+        }
+
+        .tab-button.active {
+            background: #8b0000;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .topic,
+        .note,
+        .question-box,
+        .flashcard {
+            background: white;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+        }
+
+        .topic-title,
+        .note-title {
+            padding: 16px;
+            background: #f3dddd;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .topic-content,
+        .note-content {
+            display: none;
+            padding: 18px;
+            line-height: 1.6;
+        }
+
+        .topic-content.show,
+        .note-content.show {
+            display: block;
+        }
+
+        .topic-content ul,
+        .note-content ul {
+            line-height: 1.7;
+        }
+
+        .mcq {
+            padding: 20px;
+        }
+
+        .mcq h3 {
+            margin-top: 0;
+        }
+
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f7f7f7;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #eeeeee;
+        }
+
+        .correct {
+            background: #d8f3dc !important;
+        }
+
+        .wrong {
+            background: #ffd6d6 !important;
+        }
+
+        button.action {
+            border: none;
+            background: #8b0000;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 8px 5px 8px 0;
+        }
+
+        button.action:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f3dddd;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .answer {
+            display: none;
+            padding: 15px;
+            background: #f7f7f7;
+            line-height: 1.6;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .flashcard {
+            padding: 25px;
+            text-align: center;
+            min-height: 180px;
+        }
+
+        .flash-question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .flash-answer {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3dddd;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .flash-answer.show {
+            display: block;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #8b0000;
+            transition: width 0.3s;
+        }
+
+        .small {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 443 — First Aid, Trauma & Emergency Nursing</h1>
+    <p>Study Assistant • Emergency Revision • Practice • Self-Assessment</p>
+</header>
+
+<div class="container">
+
+    <a href="/" class="back">← Back to Dashboard</a>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="topics">Topics</button>
+        <button class="tab-button" data-tab="notes">Notes</button>
+        <button class="tab-button" data-tab="mcq">MCQs</button>
+        <button class="tab-button" data-tab="short">Short Answers</button>
+        <button class="tab-button" data-tab="long">Long Answers</button>
+        <button class="tab-button" data-tab="flashcards">Flashcards</button>
+        <button class="tab-button" data-tab="progress">Progress</button>
+    </div>
+
+
+    <!-- TOPICS -->
+    <section id="topics" class="tab active">
+
+        <div class="card">
+            <h2>First Aid, Trauma & Emergency Nursing Topics</h2>
+            <p>Click any topic to expand the revision material.</p>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">1. Principles of First Aid and Emergency Nursing</div>
+            <div class="topic-content">
+                <p>First aid is the immediate care provided to an injured or suddenly ill person before definitive medical treatment is available.</p>
+                <ul>
+                    <li>Ensure scene safety before approaching the patient.</li>
+                    <li>Assess the patient systematically.</li>
+                    <li>Call for appropriate emergency assistance.</li>
+                    <li>Prioritize life-threatening problems.</li>
+                    <li>Prevent further injury.</li>
+                    <li>Provide reassurance and appropriate psychological support.</li>
+                    <li>Document and communicate important findings.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">2. Triage and Emergency Assessment</div>
+            <div class="topic-content">
+                <p>Triage is the process of rapidly assessing patients and prioritizing care according to urgency.</p>
+                <ul>
+                    <li>Airway and breathing problems receive immediate attention.</li>
+                    <li>Severe circulation problems and major bleeding are priorities.</li>
+                    <li>Level of consciousness is assessed.</li>
+                    <li>Vital signs and relevant history are obtained.</li>
+                    <li>Patients are reassessed because their condition can change.</li>
+                </ul>
+                <p>A systematic primary survey commonly follows <strong>ABCDE</strong>: Airway, Breathing, Circulation, Disability and Exposure.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">3. Basic Life Support and CPR</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Recognize cardiac arrest and activate the emergency response system.</li>
+                    <li>Begin high-quality CPR according to current guidelines.</li>
+                    <li>Provide chest compressions with appropriate rate and depth according to current resuscitation guidance.</li>
+                    <li>Use an automated external defibrillator (AED) as soon as available when indicated.</li>
+                    <li>Minimize unnecessary interruptions in chest compressions.</li>
+                    <li>Continue reassessment and follow current resuscitation protocols.</li>
+                </ul>
+                <p><strong>Note:</strong> In actual emergencies, follow current local CPR and resuscitation guidelines and trained responder protocols.</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">4. Shock</div>
+            <div class="topic-content">
+                <p>Shock is a state of inadequate tissue perfusion resulting in insufficient oxygen delivery to tissues.</p>
+
+                <h4>Major types</h4>
+                <ul>
+                    <li>Hypovolemic shock</li>
+                    <li>Cardiogenic shock</li>
+                    <li>Distributive shock</li>
+                    <li>Obstructive shock</li>
+                </ul>
+
+                <h4>Possible signs</h4>
+                <ul>
+                    <li>Hypotension</li>
+                    <li>Tachycardia</li>
+                    <li>Altered mental status</li>
+                    <li>Cool or clammy skin in many forms of shock</li>
+                    <li>Reduced urine output</li>
+                    <li>Weak peripheral pulses</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">5. Hemorrhage and Bleeding Control</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Major external bleeding is a life-threatening emergency.</li>
+                    <li>Apply appropriate direct pressure to external bleeding when possible.</li>
+                    <li>Use appropriate wound dressings and bleeding-control measures.</li>
+                    <li>Monitor for signs of shock.</li>
+                    <li>Internal bleeding may present with pallor, weakness, abdominal or chest symptoms, altered consciousness or shock.</li>
+                    <li>Rapid transport and definitive medical management may be required.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">6. Wounds and Soft Tissue Injuries</div>
+            <div class="topic-content">
+                <p>Common wounds include abrasions, lacerations, punctures and avulsions.</p>
+                <ul>
+                    <li>Assess the wound and mechanism of injury.</li>
+                    <li>Control bleeding.</li>
+                    <li>Protect the wound from contamination.</li>
+                    <li>Assess for foreign bodies and deeper injury.</li>
+                    <li>Consider tetanus prevention according to clinical assessment and guidelines.</li>
+                    <li>Monitor for infection.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">7. Burns</div>
+            <div class="topic-content">
+                <p>Burns may be caused by thermal, chemical, electrical or other mechanisms.</p>
+                <ul>
+                    <li>Ensure the source of injury is made safe.</li>
+                    <li>Assess airway and breathing in significant burns.</li>
+                    <li>Assess burn depth and extent.</li>
+                    <li>Consider the location of the burn, especially face, hands, feet, genitalia and major joints.</li>
+                    <li>Prevent hypothermia.</li>
+                    <li>Provide appropriate pain management.</li>
+                    <li>Patients with significant burns may require specialized burn-center care.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">8. Fractures, Dislocations and Splinting</div>
+            <div class="topic-content">
+                <ul>
+                    <li>A fracture is a break in the continuity of a bone.</li>
+                    <li>A dislocation occurs when a joint surface is displaced from its normal position.</li>
+                    <li>Assess circulation, sensation and movement distal to an injury.</li>
+                    <li>Immobilize suspected fractures appropriately.</li>
+                    <li>Avoid unnecessary movement.</li>
+                    <li>Monitor for neurovascular compromise.</li>
+                    <li>Provide pain management according to the treatment plan.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">9. Head Injury and Traumatic Brain Injury</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Head injuries may range from mild concussion to severe traumatic brain injury.</li>
+                    <li>Assess level of consciousness and neurological status.</li>
+                    <li>Monitor pupils and neurological changes.</li>
+                    <li>Repeated vomiting, worsening headache, seizures or deteriorating consciousness are concerning findings.</li>
+                    <li>Protect the cervical spine when significant trauma is suspected according to current trauma protocols.</li>
+                    <li>Rapid medical assessment is required for significant head injury.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">10. Spinal and Spinal Cord Injuries</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Spinal injury may result in neurological impairment.</li>
+                    <li>Suspect spinal injury based on mechanism and clinical findings.</li>
+                    <li>Maintain appropriate spinal precautions according to current trauma protocols.</li>
+                    <li>Assess motor and sensory function.</li>
+                    <li>Monitor respiratory function in high spinal injuries.</li>
+                    <li>Prevent secondary injury during movement and transfer.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">11. Chest and Abdominal Trauma</div>
+            <div class="topic-content">
+                <h4>Chest trauma</h4>
+                <ul>
+                    <li>Assess airway and breathing immediately.</li>
+                    <li>Monitor respiratory rate, oxygenation and chest movement.</li>
+                    <li>Serious injuries may include pneumothorax, hemothorax and cardiac injury.</li>
+                </ul>
+
+                <h4>Abdominal trauma</h4>
+                <ul>
+                    <li>Internal bleeding may occur without obvious external bleeding.</li>
+                    <li>Assess pain, abdominal findings and signs of shock.</li>
+                    <li>Urgent medical evaluation may be required.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">12. Poisoning and Overdose</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Identify the substance when possible without delaying emergency care.</li>
+                    <li>Assess airway, breathing, circulation and level of consciousness.</li>
+                    <li>Do not induce vomiting unless specifically directed by an appropriate poison-control or medical professional.</li>
+                    <li>Bring the container or relevant information when safe and available.</li>
+                    <li>Monitor vital signs and neurological status.</li>
+                    <li>Follow local poison-control and emergency protocols.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">13. Environmental and Temperature Emergencies</div>
+            <div class="topic-content">
+                <h4>Heat-related illness</h4>
+                <ul>
+                    <li>May include heat exhaustion and heat stroke.</li>
+                    <li>Heat stroke is a medical emergency.</li>
+                    <li>Rapid cooling and emergency medical care are required.</li>
+                </ul>
+
+                <h4>Hypothermia</h4>
+                <ul>
+                    <li>Occurs when body temperature falls abnormally low.</li>
+                    <li>Remove the patient from the cold environment.</li>
+                    <li>Handle severely hypothermic patients carefully.</li>
+                    <li>Provide appropriate rewarming and medical care.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">14. Disaster and Mass Casualty Management</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Disaster nursing requires organization and rapid prioritization.</li>
+                    <li>Scene safety is essential.</li>
+                    <li>Triage helps allocate limited resources.</li>
+                    <li>Communication and coordination are important.</li>
+                    <li>Documentation supports continuity of care.</li>
+                    <li>Healthcare workers should work within established disaster plans.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-title">15. Emergency Nursing and Patient Stabilization</div>
+            <div class="topic-content">
+                <ul>
+                    <li>Rapid assessment and reassessment are essential.</li>
+                    <li>Identify and treat immediate life threats.</li>
+                    <li>Monitor vital signs and response to interventions.</li>
+                    <li>Provide appropriate oxygen therapy when indicated.</li>
+                    <li>Establish access and prepare prescribed emergency medications and fluids.</li>
+                    <li>Maintain accurate documentation.</li>
+                    <li>Communicate changes promptly to the emergency team.</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- NOTES -->
+    <section id="notes" class="tab">
+
+        <div class="card">
+            <h2>Emergency Nursing Revision Notes</h2>
+            <p>Click a section to open the notes.</p>
+        </div>
+
+        <div class="note">
+            <div class="note-title">ABCDE Primary Survey</div>
+            <div class="note-content">
+                <ul>
+                    <li><strong>A — Airway:</strong> Check whether the airway is open and protected.</li>
+                    <li><strong>B — Breathing:</strong> Assess breathing, respiratory effort and oxygenation.</li>
+                    <li><strong>C — Circulation:</strong> Assess circulation and control life-threatening bleeding.</li>
+                    <li><strong>D — Disability:</strong> Assess neurological status and level of consciousness.</li>
+                    <li><strong>E — Exposure:</strong> Examine appropriately while preventing unnecessary heat loss.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Signs of Shock</div>
+            <div class="note-content">
+                <ul>
+                    <li>Rapid pulse</li>
+                    <li>Low blood pressure in many cases</li>
+                    <li>Altered mental status</li>
+                    <li>Reduced urine output</li>
+                    <li>Weak peripheral pulses</li>
+                    <li>Cool or clammy skin in many forms</li>
+                    <li>Rapid breathing</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <div class="note-title">Emergency Nurse Responsibilities</div>
+            <div class="note-content">
+                <ul>
+                    <li>Rapid assessment</li>
+                    <li>Triage</li>
+                    <li>Monitoring</li>
+                    <li>First aid and emergency interventions within scope</li>
+                    <li>Medication administration as prescribed</li>
+                    <li>Patient and family communication</li>
+                    <li>Documentation</li>
+                    <li>Reassessment and escalation of deterioration</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- MCQ -->
+    <section id="mcq" class="tab">
+
+        <div class="card">
+            <h2>First Aid, Trauma & Emergency MCQs</h2>
+            <p>
+                Ten questions are randomly selected from the question bank.
+            </p>
+            <p class="small">
+                Submit your answers to see your score, then generate another set.
+            </p>
+        </div>
+
+        <div id="quiz"></div>
+
+        <button class="action" id="submitQuiz">Submit Quiz</button>
+        <button class="action" id="newQuiz">New Question Set</button>
+
+        <div id="quizResult"></div>
+
+    </section>
+
+
+    <!-- SHORT ANSWERS -->
+    <section id="short" class="tab">
+
+        <div class="card">
+            <h2>Short-Answer Questions</h2>
+            <p>Click "Show Answer" to reveal a model answer.</p>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>1. Define first aid.</strong>
+                <button class="action answer-button" data-answer="short1">Show Answer</button>
+            </div>
+            <div class="answer" id="short1">
+                First aid is the immediate care given to an injured or suddenly ill person before definitive medical treatment is available.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>2. What is triage?</strong>
+                <button class="action answer-button" data-answer="short2">Show Answer</button>
+            </div>
+            <div class="answer" id="short2">
+                Triage is the rapid assessment and prioritization of patients according to the urgency and severity of their condition.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>3. State the five components of the ABCDE primary survey.</strong>
+                <button class="action answer-button" data-answer="short3">Show Answer</button>
+            </div>
+            <div class="answer" id="short3">
+                Airway, Breathing, Circulation, Disability and Exposure.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>4. State four signs of shock.</strong>
+                <button class="action answer-button" data-answer="short4">Show Answer</button>
+            </div>
+            <div class="answer" id="short4">
+                Possible signs include tachycardia, hypotension, altered mental status, rapid breathing, weak pulses, reduced urine output and cool or clammy skin.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>5. State four causes of burns.</strong>
+                <button class="action answer-button" data-answer="short5">Show Answer</button>
+            </div>
+            <div class="answer" id="short5">
+                Burns may result from thermal heat, chemicals, electricity, radiation or other sources of tissue injury.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>6. State four principles of fracture management.</strong>
+                <button class="action answer-button" data-answer="short6">Show Answer</button>
+            </div>
+            <div class="answer" id="short6">
+                Principles include immobilization, assessment of circulation and sensation, pain management, prevention of further injury and appropriate medical evaluation.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>7. State four roles of an emergency nurse.</strong>
+                <button class="action answer-button" data-answer="short7">Show Answer</button>
+            </div>
+            <div class="answer" id="short7">
+                Roles include rapid assessment, triage, monitoring, emergency interventions, medication administration as prescribed, patient education, communication and documentation.
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>8. State four possible signs of head injury requiring urgent assessment.</strong>
+                <button class="action answer-button" data-answer="short8">Show Answer</button>
+            </div>
+            <div class="answer" id="short8">
+                Examples include deteriorating consciousness, repeated vomiting, seizures, worsening headache, neurological deficits and abnormal pupil findings.
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- LONG ANSWERS -->
+    <section id="long" class="tab">
+
+        <div class="card">
+            <h2>Long-Answer Questions</h2>
+            <p>Use these for examination practice.</p>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>1. Discuss the ABCDE approach to emergency assessment.</strong>
+                <button class="action answer-button" data-answer="long1">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long1">
+                <p>
+                    The ABCDE approach provides a systematic method of identifying and managing
+                    life-threatening problems.
+                </p>
+
+                <p>
+                    <strong>Airway:</strong> The nurse assesses whether the airway is open and protected
+                    and identifies obstruction or other threats.
+                </p>
+
+                <p>
+                    <strong>Breathing:</strong> Assess respiratory rate, effort, chest movement and
+                    oxygenation. Immediate treatment is provided for life-threatening breathing problems.
+                </p>
+
+                <p>
+                    <strong>Circulation:</strong> Assess pulse and perfusion and identify and control
+                    major bleeding. Circulatory support is provided according to the patient's condition.
+                </p>
+
+                <p>
+                    <strong>Disability:</strong> Assess level of consciousness and neurological status,
+                    including pupils and blood glucose when appropriate.
+                </p>
+
+                <p>
+                    <strong>Exposure:</strong> Examine the patient sufficiently to identify injuries while
+                    maintaining privacy and preventing hypothermia.
+                </p>
+
+                <p>
+                    The patient should be reassessed repeatedly because the clinical condition can change.
+                </p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>2. Discuss the nursing management of a patient in shock.</strong>
+                <button class="action answer-button" data-answer="long2">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long2">
+                <p>
+                    Nursing management begins with rapid assessment of airway, breathing and circulation.
+                    The nurse identifies the likely cause of shock and looks for life-threatening bleeding.
+                </p>
+
+                <p>
+                    Vital signs, level of consciousness, peripheral perfusion and urine output are
+                    monitored closely.
+                </p>
+
+                <p>
+                    The nurse provides oxygen when indicated, establishes or assists with appropriate
+                    vascular access, administers prescribed fluids and medications, and prepares for
+                    further emergency treatment.
+                </p>
+
+                <p>
+                    The underlying cause must be addressed. The patient is continuously reassessed and
+                    deterioration is reported immediately.
+                </p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>3. Discuss the first aid and nursing management of a patient with a burn.</strong>
+                <button class="action answer-button" data-answer="long3">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long3">
+                <p>
+                    First ensure that the source of the burn is no longer causing injury and that the
+                    environment is safe.
+                </p>
+
+                <p>
+                    Assess airway and breathing, particularly in patients with facial burns, inhalation
+                    concerns or extensive burns.
+                </p>
+
+                <p>
+                    Assess the extent and depth of the burn and identify the mechanism. Significant burns
+                    require appropriate emergency assessment and may require referral to a specialized
+                    burn service.
+                </p>
+
+                <p>
+                    Nursing care includes pain management, appropriate wound care, fluid management when
+                    indicated, infection prevention, nutritional support and psychological care.
+                </p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="mcq">
+                <strong>4. Discuss the principles of disaster and mass-casualty nursing.</strong>
+                <button class="action answer-button" data-answer="long4">Show Model Answer</button>
+            </div>
+
+            <div class="answer" id="long4">
+                <p>
+                    Disaster nursing begins with scene safety and activation of the appropriate emergency
+                    response system.
+                </p>
+
+                <p>
+                    Triage is used to prioritize patients according to urgency while considering available
+                    resources.
+                </p>
+
+                <p>
+                    Nurses work within established disaster plans, maintain communication with the
+                    multidisciplinary team and provide care within their scope of practice.
+                </p>
+
+                <p>
+                    Accurate documentation, infection prevention, patient identification, psychological
+                    support and appropriate transfer are important components of disaster management.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- FLASHCARDS -->
+    <section id="flashcards" class="tab">
+
+        <div class="card">
+            <h2>Emergency Nursing Flashcards</h2>
+            <p>Try to answer before revealing the answer.</p>
+        </div>
+
+        <div class="flashcard">
+
+            <div class="flash-question" id="flashQuestion">
+                What does ABCDE stand for?
+            </div>
+
+            <button class="action" id="showFlashAnswer">Show Answer</button>
+            <button class="action" id="nextFlashcard">Next Card</button>
+
+            <div class="flash-answer" id="flashAnswer"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+    <section id="progress" class="tab">
+
+        <div class="card">
+            <h2>Topic Progress</h2>
+            <p>Click "Mark Complete" after revising a topic.</p>
+        </div>
+
+        <div id="progressList"></div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================
+       TABS
+    ========================= */
+
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const target = button.getAttribute("data-tab");
+
+            tabs.forEach(function (tab) {
+                tab.classList.remove("active");
+            });
+
+            tabButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            const selectedTab = document.getElementById(target);
+
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            button.classList.add("active");
+
+            if (target === "mcq") {
+                createQuiz();
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       TOPICS
+    ========================= */
+
+    document.querySelectorAll(".topic-title").forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       NOTES
+    ========================= */
+
+    document.querySelectorAll(".note-title").forEach(function (title) {
+
+        title.addEventListener("click", function () {
+
+            const content = title.nextElementSibling;
+
+            if (content) {
+                content.classList.toggle("show");
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       MCQ QUESTION BANK
+    ========================= */
+
+    const questions = [
+
+        {
+            q: "What is the first priority when arriving at an emergency scene?",
+            options: [
+                "Ensure scene safety",
+                "Give medication",
+                "Take a full medical history",
+                "Start documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "What does the A in ABCDE represent?",
+            options: [
+                "Airway",
+                "Assessment",
+                "Alertness",
+                "Analgesia"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "What does the B in ABCDE represent?",
+            options: [
+                "Blood pressure",
+                "Breathing",
+                "Brain",
+                "Bleeding"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "What does the C in ABCDE represent?",
+            options: [
+                "Consciousness",
+                "Circulation",
+                "Cognition",
+                "Cervical spine"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "What does the D in ABCDE represent?",
+            options: [
+                "Disability",
+                "Drugs",
+                "Diagnosis",
+                "Drainage"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "What does the E in ABCDE represent?",
+            options: [
+                "Exposure",
+                "Emergency",
+                "Evaluation",
+                "Elimination"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Triage is primarily used to:",
+            options: [
+                "Prioritize patients according to urgency",
+                "Provide discharge instructions",
+                "Replace medical assessment",
+                "Prevent documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which problem is an immediate priority during emergency assessment?",
+            options: [
+                "Airway obstruction",
+                "Mild headache",
+                "Old scar",
+                "Chronic mild back pain"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "CPR is performed when a patient is:",
+            options: [
+                "In cardiac arrest",
+                "Hungry",
+                "Sleeping normally",
+                "Walking normally"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "An AED is used primarily to:",
+            options: [
+                "Analyze and treat certain shockable cardiac rhythms",
+                "Measure temperature",
+                "Treat fractures",
+                "Measure blood glucose"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Shock is best described as:",
+            options: [
+                "Inadequate tissue perfusion",
+                "High body temperature only",
+                "A skin infection",
+                "Normal circulation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a possible sign of shock?",
+            options: [
+                "Tachycardia",
+                "Improved urine output",
+                "Normal mental status in all cases",
+                "Increased peripheral perfusion"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Hypovolemic shock may result from:",
+            options: [
+                "Significant blood or fluid loss",
+                "Only hypertension",
+                "Normal hydration",
+                "Improved cardiac output"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A major priority in external hemorrhage is:",
+            options: [
+                "Control of bleeding",
+                "Giving food",
+                "Allowing the wound to remain exposed",
+                "Delaying assessment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A laceration is:",
+            options: [
+                "A cut or tear in tissue",
+                "A bone tumor",
+                "A joint infection",
+                "A type of fever"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A fracture is:",
+            options: [
+                "A break in the continuity of a bone",
+                "A skin infection",
+                "A blood disorder",
+                "A muscle spasm"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A dislocation occurs when:",
+            options: [
+                "A joint surface is displaced from its normal position",
+                "A bone becomes longer",
+                "A muscle grows",
+                "Skin becomes dry"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "In a limb injury, distal circulation should be assessed because of the risk of:",
+            options: [
+                "Neurovascular compromise",
+                "Improved circulation",
+                "Better mobility",
+                "Increased appetite"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A burn may be caused by:",
+            options: [
+                "Heat, chemicals or electricity",
+                "Only cold water",
+                "Only exercise",
+                "Only infection"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A significant facial burn raises concern about:",
+            options: [
+                "Airway injury",
+                "Improved breathing",
+                "Hearing improvement",
+                "Increased appetite"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with a significant burn is at risk of:",
+            options: [
+                "Fluid loss and hypothermia",
+                "Improved hydration",
+                "Increased body temperature in every case",
+                "No complications"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is concerning after a head injury?",
+            options: [
+                "Deteriorating consciousness",
+                "Normal orientation",
+                "Normal behavior",
+                "No symptoms"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Repeated vomiting after head injury may indicate:",
+            options: [
+                "A need for urgent reassessment",
+                "Normal recovery in every patient",
+                "Improved neurological function",
+                "No need for monitoring"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A seizure following significant head trauma requires:",
+            options: [
+                "Urgent medical assessment",
+                "No observation",
+                "Immediate discharge",
+                "Routine exercise"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Spinal injury may cause:",
+            options: [
+                "Motor and sensory impairment",
+                "Improved sensation",
+                "Increased muscle strength",
+                "Better balance"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "In suspected spinal injury, an important principle is:",
+            options: [
+                "Prevent unnecessary movement",
+                "Move the patient repeatedly",
+                "Ask the patient to run",
+                "Ignore neurological findings"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Chest trauma may cause:",
+            options: [
+                "Pneumothorax",
+                "Improved oxygenation",
+                "Better lung expansion",
+                "Improved circulation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Abdominal trauma can cause:",
+            options: [
+                "Internal bleeding",
+                "Improved blood volume",
+                "Improved digestion",
+                "Increased bone growth"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "When poisoning is suspected, the nurse should first:",
+            options: [
+                "Assess airway, breathing and circulation",
+                "Induce vomiting routinely",
+                "Give food immediately",
+                "Ignore the substance involved"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "In suspected poisoning, inducing vomiting should:",
+            options: [
+                "Not be done routinely unless specifically directed",
+                "Always be done",
+                "Be done after every ingestion",
+                "Replace medical assessment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Heat stroke is:",
+            options: [
+                "A medical emergency",
+                "A normal response to exercise",
+                "Always mild",
+                "Never dangerous"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with hypothermia should:",
+            options: [
+                "Be removed from the cold environment and appropriately rewarmed",
+                "Be placed in more cold",
+                "Be left wet",
+                "Be forced to exercise"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Disaster triage helps:",
+            options: [
+                "Prioritize patients when resources are limited",
+                "Eliminate the need for assessment",
+                "Delay all treatment",
+                "Treat every patient identically regardless of urgency"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A mass-casualty incident requires:",
+            options: [
+                "Coordination and structured triage",
+                "Unplanned individual care only",
+                "No communication",
+                "No documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A key responsibility of an emergency nurse is:",
+            options: [
+                "Rapid assessment and reassessment",
+                "Ignoring changes",
+                "Avoiding communication",
+                "Delaying life-saving care"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Why is reassessment important in emergency care?",
+            options: [
+                "The patient's condition may change rapidly",
+                "Patients never change",
+                "It replaces treatment",
+                "It is only for documentation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which finding may indicate poor tissue perfusion?",
+            options: [
+                "Reduced urine output",
+                "Improved urine output",
+                "Warm normal extremities in every case",
+                "Normal mental status in all patients"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an appropriate goal of first aid?",
+            options: [
+                "Prevent further injury",
+                "Delay emergency care",
+                "Cause additional injury",
+                "Replace definitive treatment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The emergency nurse should document:",
+            options: [
+                "Assessment findings and care provided",
+                "Nothing until discharge",
+                "Only the patient's name",
+                "Only medication names"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The primary survey is designed to identify:",
+            options: [
+                "Immediate life-threatening problems",
+                "Long-term dietary preferences",
+                "Family history only",
+                "Social activities only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which patient should receive urgent attention?",
+            options: [
+                "A patient with severe airway compromise",
+                "A patient with a minor old scar",
+                "A patient requesting water with no emergency symptoms",
+                "A stable patient awaiting routine review"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with severe external bleeding may develop:",
+            options: [
+                "Hypovolemic shock",
+                "Improved circulation",
+                "Increased blood volume",
+                "Improved consciousness"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an important neurovascular assessment after a limb injury?",
+            options: [
+                "Circulation, sensation and movement",
+                "Hair length",
+                "Appetite",
+                "Hearing only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A suspected spinal cord injury requires assessment of:",
+            options: [
+                "Motor and sensory function",
+                "Only appetite",
+                "Only skin color",
+                "Only temperature"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "The purpose of splinting a suspected fracture is to:",
+            options: [
+                "Limit movement and reduce further injury",
+                "Increase movement",
+                "Straighten every fracture forcefully",
+                "Replace definitive treatment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is a possible symptom of internal bleeding?",
+            options: [
+                "Weakness and signs of shock",
+                "Improved energy",
+                "Increased blood pressure in every case",
+                "Improved circulation"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A major goal of emergency nursing is to:",
+            options: [
+                "Stabilize the patient and prevent deterioration",
+                "Delay treatment",
+                "Avoid monitoring",
+                "Replace all specialist care"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "What is the purpose of triage?",
+            options: [
+                "To determine treatment priority",
+                "To determine a patient's income",
+                "To provide discharge medication only",
+                "To replace clinical assessment"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which is an important component of disaster preparedness?",
+            options: [
+                "Emergency plans and communication systems",
+                "Avoiding drills",
+                "Ignoring resource limitations",
+                "Avoiding teamwork"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with altered consciousness should have priority assessment of:",
+            options: [
+                "Airway and breathing",
+                "Diet preference",
+                "Employment",
+                "Family history only"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Which action is appropriate for an emergency nurse?",
+            options: [
+                "Escalate deterioration promptly",
+                "Ignore abnormal observations",
+                "Wait until the next shift",
+                "Avoid documenting changes"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "A patient with severe trauma should be:",
+            options: [
+                "Repeatedly reassessed",
+                "Assessed only once",
+                "Left unmonitored",
+                "Discharged immediately"
+            ],
+            answer: 0
+        }
+
+    ];
+
+
+    let currentQuestions = [];
+
+
+    function shuffle(array) {
+
+        const copy = [...array];
+
+        for (let i = copy.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+
+        }
+
+        return copy;
+    }
+
+
+    function createQuiz() {
+
+        currentQuestions = shuffle(questions).slice(0, 10);
+
+        const quiz = document.getElementById("quiz");
+
+        quiz.innerHTML = "";
+
+        currentQuestions.forEach(function (item, index) {
+
+            const box = document.createElement("div");
+
+            box.className = "question-box";
+
+            let html = `
+                <div class="mcq">
+                    <h3>${index + 1}. ${item.q}</h3>
+            `;
+
+            item.options.forEach(function (option, optionIndex) {
+
+                html += `
+                    <label class="option" id="q${index}o${optionIndex}">
+                        <input
+                            type="radio"
+                            name="question${index}"
+                            value="${optionIndex}"
+                        >
+                        ${option}
+                    </label>
+                `;
+
+            });
+
+            html += `</div>`;
+
+            box.innerHTML = html;
+
+            quiz.appendChild(box);
+
+        });
+
+        document.getElementById("quizResult").innerHTML = "";
+
+    }
+
+
+    document.getElementById("submitQuiz").addEventListener("click", function () {
+
+        if (currentQuestions.length === 0) {
+            createQuiz();
+            return;
+        }
+
+        let score = 0;
+
+        currentQuestions.forEach(function (item, index) {
+
+            const selected = document.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            item.options.forEach(function (_, optionIndex) {
+
+                const label = document.getElementById(
+                    `q${index}o${optionIndex}`
+                );
+
+                if (label) {
+                    label.classList.remove("correct");
+                    label.classList.remove("wrong");
+                }
+
+            });
+
+            if (selected) {
+
+                const selectedValue = Number(selected.value);
+
+                const selectedLabel = document.getElementById(
+                    `q${index}o${selectedValue}`
+                );
+
+                const correctLabel = document.getElementById(
+                    `q${index}o${item.answer}`
+                );
+
+                if (selectedValue === item.answer) {
+
+                    score++;
+
+                    if (selectedLabel) {
+                        selectedLabel.classList.add("correct");
+                    }
+
+                } else {
+
+                    if (selectedLabel) {
+                        selectedLabel.classList.add("wrong");
+                    }
+
+                    if (correctLabel) {
+                        correctLabel.classList.add("correct");
+                    }
+
+                }
+
+            } else {
+
+                const correctLabel = document.getElementById(
+                    `q${index}o${item.answer}`
+                );
+
+                if (correctLabel) {
+                    correctLabel.classList.add("correct");
+                }
+
+            }
+
+        });
+
+
+        const percentage = Math.round(
+            (score / currentQuestions.length) * 100
+        );
+
+        document.getElementById("quizResult").innerHTML = `
+            <div class="result">
+                Score: ${score}/${currentQuestions.length}
+                (${percentage}%)
+            </div>
+        `;
+
+    });
+
+
+    document.getElementById("newQuiz").addEventListener("click", function () {
+
+        createQuiz();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* =========================
+       SHORT + LONG ANSWERS
+    ========================= */
+
+    document.querySelectorAll(".answer-button").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const answerId = button.getAttribute("data-answer");
+
+            const answer = document.getElementById(answerId);
+
+            if (!answer) {
+                return;
+            }
+
+            answer.classList.toggle("show");
+
+            if (answer.classList.contains("show")) {
+
+                if (button.textContent.includes("Model")) {
+                    button.textContent = "Hide Model Answer";
+                } else {
+                    button.textContent = "Hide Answer";
+                }
+
+            } else {
+
+                if (button.textContent.includes("Model")) {
+                    button.textContent = "Show Model Answer";
+                } else {
+                    button.textContent = "Show Answer";
+                }
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       FLASHCARDS
+    ========================= */
+
+    const flashcards = [
+
+        {
+            q: "What does ABCDE stand for?",
+            a: "Airway, Breathing, Circulation, Disability and Exposure."
+        },
+
+        {
+            q: "What is triage?",
+            a: "Triage is the rapid assessment and prioritization of patients according to urgency."
+        },
+
+        {
+            q: "What is shock?",
+            a: "Shock is a state of inadequate tissue perfusion resulting in insufficient oxygen delivery to tissues."
+        },
+
+        {
+            q: "What is a fracture?",
+            a: "A fracture is a break in the continuity of a bone."
+        },
+
+        {
+            q: "What is a dislocation?",
+            a: "A dislocation occurs when a joint surface is displaced from its normal position."
+        },
+
+        {
+            q: "Name four signs of shock.",
+            a: "Possible signs include tachycardia, hypotension, altered mental status, rapid breathing and reduced urine output."
+        },
+
+        {
+            q: "What is the purpose of an AED?",
+            a: "An AED analyzes cardiac rhythm and delivers a shock when indicated for certain shockable rhythms."
+        },
+
+        {
+            q: "What is first aid?",
+            a: "First aid is immediate care provided before definitive medical treatment is available."
+        },
+
+        {
+            q: "What is a mass-casualty incident?",
+            a: "It is an event in which the number or needs of patients overwhelm or significantly challenge available resources."
+        },
+
+        {
+            q: "Why is reassessment important?",
+            a: "Emergency patients can deteriorate or improve rapidly, so repeated assessment helps identify changes early."
+        }
+
+    ];
+
+
+    let flashIndex = 0;
+
+
+    function showFlashcard() {
+
+        const card = flashcards[flashIndex];
+
+        document.getElementById("flashQuestion").textContent = card.q;
+
+        document.getElementById("flashAnswer").textContent = card.a;
+
+        document.getElementById("flashAnswer").classList.remove("show");
+
+    }
+
+
+    document.getElementById("showFlashAnswer").addEventListener("click", function () {
+
+        document.getElementById("flashAnswer").classList.toggle("show");
+
+    });
+
+
+    document.getElementById("nextFlashcard").addEventListener("click", function () {
+
+        flashIndex++;
+
+        if (flashIndex >= flashcards.length) {
+            flashIndex = 0;
+        }
+
+        showFlashcard();
+
+    });
+
+
+    /* =========================
+       PROGRESS
+    ========================= */
+
+    const topicNames = [
+        "Principles of First Aid and Emergency Nursing",
+        "Triage and Emergency Assessment",
+        "Basic Life Support and CPR",
+        "Shock",
+        "Hemorrhage and Bleeding Control",
+        "Wounds and Soft Tissue Injuries",
+        "Burns",
+        "Fractures, Dislocations and Splinting",
+        "Head Injury and Traumatic Brain Injury",
+        "Spinal and Spinal Cord Injuries",
+        "Chest and Abdominal Trauma",
+        "Poisoning and Overdose",
+        "Environmental and Temperature Emergencies",
+        "Disaster and Mass Casualty Management",
+        "Emergency Nursing and Patient Stabilization"
+    ];
+
+
+    let completedTopics = [];
+
+
+    function renderProgress() {
+
+        const list = document.getElementById("progressList");
+
+        list.innerHTML = "";
+
+        topicNames.forEach(function (topic, index) {
+
+            const completed = completedTopics.includes(index);
+
+            const item = document.createElement("div");
+
+            item.className = "progress-item";
+
+            item.innerHTML = `
+                <strong>${index + 1}. ${topic}</strong>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill"
+                        style="width:${completed ? 100 : 0}%"
+                    ></div>
+                </div>
+
+                <button
+                    class="action"
+                    data-progress="${index}"
+                >
+                    ${completed ? "Completed ✓" : "Mark Complete"}
+                </button>
+            `;
+
+            list.appendChild(item);
+
+        });
+
+
+        document.querySelectorAll("[data-progress]").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const index = Number(
+                    button.getAttribute("data-progress")
+                );
+
+                if (completedTopics.includes(index)) {
+
+                    completedTopics = completedTopics.filter(function (item) {
+                        return item !== index;
+                    });
+
+                } else {
+
+                    completedTopics.push(index);
+
+                }
+
+                renderProgress();
+
+            });
+
+        });
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    createQuiz();
+
+    showFlashcard();
+
+    renderProgress();
+
+});
+
+</script>
+
+</body>
+</html>
