@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NURS 378 - Leadership and Management 2</title>
+    <title>NURS 378 - Leadership & Management II</title>
 
     <style>
         * {
@@ -12,235 +12,362 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            color: #222;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
         header {
-            background: #244062;
+            background: linear-gradient(135deg, #243b55, #141e30);
             color: white;
-            padding: 25px;
+            padding: 35px 20px;
             text-align: center;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 28px;
+            margin: 0 0 8px;
+            font-size: 2.2rem;
         }
 
         header p {
-            margin: 8px 0 0;
+            margin: 5px 0;
+            opacity: 0.92;
         }
 
         .container {
-            width: 94%;
-            max-width: 1100px;
-            margin: 25px auto;
+            width: 92%;
+            max-width: 1200px;
+            margin: 25px auto 50px;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 17px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            background: #243b55;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .mcq-btn {
+            background: #0f766e;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            color: #243b55;
         }
 
         .tabs {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .tab-button {
-            border: none;
-            padding: 12px 16px;
-            background: #d9e2f3;
-            color: #244062;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .tab-button:hover {
-            background: #b4c7e7;
-        }
-
-        .tab-button.active {
-            background: #244062;
-            color: white;
-        }
-
-        .tab {
-            display: none;
-        }
-
-        .tab.active {
-            display: block;
-        }
-
-        .card {
             background: white;
+            padding: 12px;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
         }
 
-        .topic,
-        .note {
-            border: 1px solid #d6dce5;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            overflow: hidden;
-        }
-
-        .topic-title,
-        .note-title {
-            background: #eaf0f8;
-            padding: 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .topic-title:hover,
-        .note-title:hover {
-            background: #dce6f4;
-        }
-
-        .topic-content,
-        .note-content {
-            display: none;
-            padding: 16px;
-            line-height: 1.6;
-        }
-
-        .topic-content.show,
-        .note-content.show {
-            display: block;
-        }
-
-        .question {
-            background: white;
-            padding: 18px;
-            margin-bottom: 18px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
-
-        .question h3 {
-            margin-top: 0;
-        }
-
-        .option {
-            display: block;
-            margin: 9px 0;
-            padding: 10px;
-            background: #f7f9fc;
+        .tab-btn {
+            border: none;
+            background: #e8edf3;
+            padding: 11px 15px;
             border-radius: 7px;
             cursor: pointer;
+            font-weight: bold;
+            color: #243b55;
         }
 
-        .option:hover {
-            background: #e9eef7;
-        }
-
-        .button {
-            border: none;
-            background: #244062;
+        .tab-btn.active {
+            background: #243b55;
             color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .topic {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .topic-header {
+            padding: 18px 20px;
+            background: #eaf0f6;
             cursor: pointer;
-            font-weight: bold;
-            margin-right: 8px;
-            margin-top: 8px;
-        }
-
-        .button:hover {
-            background: #152b45;
-        }
-
-        .result {
-            margin-top: 18px;
-            padding: 15px;
-            border-radius: 8px;
-            background: #eaf4ea;
-            font-weight: bold;
-        }
-
-        .answer {
-            display: none;
-            background: #f5f8fc;
-            padding: 15px;
-            margin-top: 10px;
-            border-left: 4px solid #244062;
-            line-height: 1.6;
-        }
-
-        .answer.show {
-            display: block;
-        }
-
-        .flashcard {
-            text-align: center;
-            min-height: 230px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .flash-question {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .flash-answer {
-            display: none;
-            font-size: 18px;
-            background: #eef3fa;
-            padding: 18px;
-            border-radius: 10px;
-            line-height: 1.6;
-            max-width: 800px;
-        }
-
-        .flash-answer.show {
-            display: block;
-        }
-
-        .progress-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+            gap: 15px;
         }
 
-        .completed {
-            background: #e2f0d9;
+        .topic-header:hover {
+            background: #dde7f0;
         }
 
-        .small {
-            color: #666;
-            font-size: 14px;
+        .topic-header h3 {
+            margin: 0;
+            color: #243b55;
+            font-size: 1.1rem;
         }
 
-        ul,
-        ol {
-            line-height: 1.7;
+        .arrow {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .topic-body {
+            display: none;
+            padding: 22px;
+        }
+
+        .topic.open .topic-body {
+            display: block;
+        }
+
+        .topic.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .subtopic {
+            margin: 18px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .subtopic:last-child {
+            border-bottom: none;
+        }
+
+        .subtopic h4 {
+            margin: 0 0 8px;
+            color: #0f766e;
+        }
+
+        .subtopic ul {
+            padding-left: 22px;
+        }
+
+        .important {
+            background: #fff8e6;
+            border-left: 5px solid #d97706;
+            padding: 13px 16px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        .clinical {
+            background: #edf7f5;
+            border-left: 5px solid #0f766e;
+            padding: 13px 16px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        .diagram {
+            margin: 20px 0;
+            padding: 18px;
+            background: #fafafa;
+            border: 1px solid #dbe2e8;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .diagram-title {
+            font-weight: bold;
+            color: #243b55;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .flow-box {
+            background: #eaf0f6;
+            border: 2px solid #243b55;
+            border-radius: 8px;
+            padding: 12px 15px;
+            min-width: 130px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .arrow-box {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .cycle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .cycle-box {
+            padding: 15px;
+            border: 2px solid #0f766e;
+            border-radius: 50%;
+            min-width: 120px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            background: #edf7f5;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+
+        .question-card h4 {
+            margin-top: 0;
+            color: #243b55;
+        }
+
+        .answer-box {
+            background: #f4f7fb;
+            padding: 12px 15px;
+            margin-top: 10px;
+            border-radius: 7px;
+        }
+
+        .progress-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 22px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #0f766e;
+            transition: width 0.3s ease;
+        }
+
+        .progress-item {
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .progress-item input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .mcq-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .mcq-link {
+            display: inline-block;
+            background: #0f766e;
+            color: white;
+            text-decoration: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .mcq-link:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            color: #6b7280;
+            padding: 30px 10px;
         }
 
         @media (max-width: 700px) {
-
             header h1 {
-                font-size: 22px;
+                font-size: 1.7rem;
             }
 
-            .tab-button {
-                width: 100%;
+            .container {
+                width: 95%;
             }
 
-            .progress-item {
+            .topic-header {
+                padding: 15px;
+            }
+
+            .topic-body {
+                padding: 16px;
+            }
+
+            .flow-box {
+                min-width: 110px;
+            }
+
+            .tabs {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+            }
+
+            .tab-btn {
+                width: 100%;
             }
         }
     </style>
@@ -249,2529 +376,1437 @@
 <body>
 
 <header>
-    <h1>NURS 378 — Leadership and Management 2</h1>
-    <p>Advanced Nursing Leadership, Management and Administration Study Assistant</p>
+    <h1>NURS 378</h1>
+    <p>Leadership & Management II</p>
+    <p>Advanced nursing leadership, administration, staffing, resources, quality and professional practice</p>
 </header>
 
 <div class="container">
 
-    <!-- TABS -->
+    <div class="top-actions">
+        <a href="{{ url_for('home') }}" class="btn">← Dashboard</a>
+        <a href="{{ url_for('mcqs', subject='NURS 378') }}" class="btn mcq-btn">
+            Practice NURS 378 MCQs →
+        </a>
+    </div>
+
+    <section class="intro">
+        <h2>About This Course</h2>
+        <p>
+            NURS 378 develops advanced knowledge and practical skills in nursing
+            leadership and management. The course focuses on managing people,
+            resources and services while maintaining safe, effective and
+            patient-centred nursing care.
+        </p>
+
+        <p>
+            Each topic below is divided into detailed subtopics so that you can
+            study one area at a time. Relevant clinical examples, diagrams,
+            short-answer questions and long-answer questions are included.
+        </p>
+
+        <div class="important">
+            <strong>Study approach:</strong>
+            Start with the topic overview, work through each subtopic,
+            study the diagrams, then attempt the short and long questions
+            before practising the NURS 378 MCQs.
+        </div>
+    </section>
 
     <div class="tabs">
 
-        <button class="tab-button active" data-tab="topics">
-            Topics
+        <button class="tab-btn active" onclick="showTab('topics', this)">
+            Topics & Subtopics
         </button>
 
-        <button class="tab-button" data-tab="notes">
-            Notes
-        </button>
-
-        <button class="tab-button" data-tab="mcq">
+        <button class="tab-btn" onclick="showTab('mcq', this)">
             MCQs
         </button>
 
-        <button class="tab-button" data-tab="short">
-            Short Answers
+        <button class="tab-btn" onclick="showTab('short', this)">
+            Short Answer
         </button>
 
-        <button class="tab-button" data-tab="long">
-            Long Answers
+        <button class="tab-btn" onclick="showTab('long', this)">
+            Long Answer
         </button>
 
-        <button class="tab-button" data-tab="flashcards">
-            Flashcards
-        </button>
-
-        <button class="tab-button" data-tab="progress">
+        <button class="tab-btn" onclick="showTab('progress', this)">
             Progress
         </button>
 
     </div>
 
+    <!-- TOPICS -->
 
-    <!-- ================= TOPICS ================= -->
+    <div id="topics" class="tab-content active">
 
-    <section id="topics" class="tab active">
-
-        <div class="card">
-            <h2>Leadership and Management 2 Topics</h2>
-            <p class="small">
-                Click each topic to expand the revision material.
-            </p>
-        </div>
-
+        <!-- TOPIC 1 -->
 
         <div class="topic">
-
-            <div class="topic-title">
-                1. Strategic Management in Nursing
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>1. Human Resource Management in Nursing</h3>
+                <span class="arrow">▼</span>
             </div>
 
-            <div class="topic-content">
+            <div class="topic-body">
 
-                <p>
-                    Strategic management is the process of developing,
-                    implementing and evaluating strategies that help an
-                    organization achieve long-term goals.
-                </p>
-
-                <ul>
-                    <li>Environmental assessment</li>
-                    <li>Goal setting</li>
-                    <li>Strategy formulation</li>
-                    <li>Strategy implementation</li>
-                    <li>Evaluation and control</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                2. Vision, Mission and Organizational Goals
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    A <strong>vision</strong> describes what an organization
-                    hopes to become in the future.
-                </p>
-
-                <p>
-                    A <strong>mission</strong> explains the organization's
-                    fundamental purpose and what it does.
-                </p>
-
-                <p>
-                    Goals describe desired results that the organization
-                    intends to achieve.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                3. Organizational Structure
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Organizational structure describes how authority,
-                    responsibilities, communication and work are arranged.
-                </p>
-
-                <ul>
-                    <li>Line structure</li>
-                    <li>Functional structure</li>
-                    <li>Line-and-staff structure</li>
-                    <li>Matrix structure</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                4. Change Management
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Change management involves helping individuals and
-                    organizations move from an existing state to a desired
-                    future state.
-                </p>
-
-                <p>
-                    Lewin's commonly taught model includes:
-                </p>
-
-                <ol>
-                    <li>Unfreezing</li>
-                    <li>Changing</li>
-                    <li>Refreezing</li>
-                </ol>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                5. Resistance to Change
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Resistance occurs when individuals or groups oppose or
-                    are reluctant to accept a proposed change.
-                </p>
-
-                <p>Common causes include:</p>
-
-                <ul>
-                    <li>Fear of the unknown</li>
-                    <li>Lack of information</li>
-                    <li>Previous negative experiences</li>
-                    <li>Fear of losing control</li>
-                    <li>Inadequate participation</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                6. Quality Improvement in Nursing
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Quality improvement involves systematic efforts to improve
-                    healthcare processes and outcomes.
-                </p>
-
-                <ul>
-                    <li>Identify a problem</li>
-                    <li>Measure current performance</li>
-                    <li>Develop interventions</li>
-                    <li>Implement changes</li>
-                    <li>Measure outcomes</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                7. Patient Safety
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Patient safety focuses on preventing avoidable harm during
-                    healthcare delivery.
-                </p>
-
-                <ul>
-                    <li>Medication safety</li>
-                    <li>Infection prevention</li>
-                    <li>Correct patient identification</li>
-                    <li>Effective communication</li>
-                    <li>Fall prevention</li>
-                    <li>Incident reporting</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                8. Risk Management
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Risk management involves identifying, assessing and
-                    controlling potential threats to patients, staff and
-                    organizations.
-                </p>
-
-                <ol>
-                    <li>Identify risks.</li>
-                    <li>Assess risks.</li>
-                    <li>Develop controls.</li>
-                    <li>Implement interventions.</li>
-                    <li>Monitor outcomes.</li>
-                </ol>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                9. Budgeting and Financial Management
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Budgeting involves planning the expected income and
-                    expenditure of an organization or department.
-                </p>
-
-                <p>
-                    Nurse managers may participate in budgeting for staffing,
-                    equipment, supplies and other resources.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                10. Resource Management
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Resource management involves using available human,
-                    financial, material and technological resources efficiently.
-                </p>
-
-                <ul>
-                    <li>Human resources</li>
-                    <li>Equipment</li>
-                    <li>Supplies</li>
-                    <li>Time</li>
-                    <li>Money</li>
-                    <li>Information</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                11. Quality Assurance
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Quality assurance refers to planned and systematic
-                    activities designed to provide confidence that standards
-                    of quality will be met.
-                </p>
-
-                <p>
-                    It involves standards, monitoring, evaluation and
-                    corrective action.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                12. Evidence-Based Nursing Management
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Evidence-based practice integrates the best available
-                    evidence with professional expertise and patient needs and
-                    preferences.
-                </p>
-
-                <p>
-                    Nurse leaders can use evidence to improve policies,
-                    procedures, staffing approaches and patient outcomes.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                13. Leadership Ethics and Professionalism
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Ethical leadership involves making decisions consistent
-                    with professional values, ethical principles and applicable
-                    standards.
-                </p>
-
-                <ul>
-                    <li>Respect</li>
-                    <li>Justice</li>
-                    <li>Beneficence</li>
-                    <li>Non-maleficence</li>
-                    <li>Accountability</li>
-                    <li>Confidentiality</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                14. Team Building
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Team building involves developing cooperation,
-                    communication, trust and shared responsibility among team
-                    members.
-                </p>
-
-                <p>
-                    Effective teams have clear goals, appropriate roles,
-                    communication and mechanisms for resolving conflict.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="topic">
-
-            <div class="topic-title">
-                15. Evaluation and Organizational Performance
-            </div>
-
-            <div class="topic-content">
-
-                <p>
-                    Evaluation determines whether planned objectives have been
-                    achieved and whether interventions have produced desired
-                    results.
-                </p>
-
-                <p>
-                    Indicators may include patient outcomes, staff performance,
-                    patient satisfaction, resource use and quality measures.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= NOTES ================= -->
-
-    <section id="notes" class="tab">
-
-        <div class="card">
-            <h2>Quick Revision Notes</h2>
-            <p>Click a heading to reveal the notes.</p>
-        </div>
-
-
-        <div class="note">
-
-            <div class="note-title">
-                Strategic Management
-            </div>
-
-            <div class="note-content">
-
-                <p>
-                    Strategic management provides a long-term direction for an
-                    organization.
-                </p>
-
-                <ol>
-                    <li>Analyze the environment.</li>
-                    <li>Develop goals.</li>
-                    <li>Formulate strategies.</li>
-                    <li>Implement strategies.</li>
-                    <li>Evaluate results.</li>
-                </ol>
-
-            </div>
-
-        </div>
-
-
-        <div class="note">
-
-            <div class="note-title">
-                Lewin's Change Model
-            </div>
-
-            <div class="note-content">
-
-                <p>
-                    <strong>Unfreezing:</strong> preparing people to accept
-                    that change is necessary.
-                </p>
-
-                <p>
-                    <strong>Changing:</strong> introducing new behaviors,
-                    processes or practices.
-                </p>
-
-                <p>
-                    <strong>Refreezing:</strong> stabilizing the new practice
-                    so it becomes part of normal work.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="note">
-
-            <div class="note-title">
-                Quality Improvement
-            </div>
-
-            <div class="note-content">
-
-                <p>
-                    Quality improvement is a continuous process of identifying
-                    opportunities for better performance and implementing
-                    changes to improve outcomes.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="note">
-
-            <div class="note-title">
-                Patient Safety
-            </div>
-
-            <div class="note-content">
-
-                <ul>
-                    <li>Correct patient identification</li>
-                    <li>Safe medication administration</li>
-                    <li>Effective handover</li>
-                    <li>Infection prevention</li>
-                    <li>Fall prevention</li>
-                    <li>Incident reporting</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="note">
-
-            <div class="note-title">
-                Risk Management
-            </div>
-
-            <div class="note-content">
-
-                <p>
-                    Risk management involves identifying hazards, determining
-                    the likelihood and impact of harm, implementing controls
-                    and monitoring effectiveness.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= MCQ ================= -->
-
-    <section id="mcq" class="tab">
-
-        <div class="card">
-
-            <h2>Leadership and Management 2 MCQs</h2>
-
-            <p>
-                Ten questions are randomly selected from the question bank.
-            </p>
-
-            <div id="quiz"></div>
-
-            <button class="button" onclick="submitQuiz()">
-                Submit Quiz
-            </button>
-
-            <button class="button" onclick="newQuiz()">
-                New Question Set
-            </button>
-
-            <div id="quizResult"></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= SHORT ANSWERS ================= -->
-
-    <section id="short" class="tab">
-
-        <div class="card">
-
-            <h2>Short-Answer Questions</h2>
-
-
-            <div class="question">
-
-                <h3>1. Define strategic management.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa1')">
-                    Show Answer
-                </button>
-
-                <div id="sa1" class="answer">
-
-                    Strategic management is the process of developing,
-                    implementing and evaluating strategies to achieve
-                    long-term organizational goals.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>2. Define organizational vision.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa2')">
-                    Show Answer
-                </button>
-
-                <div id="sa2" class="answer">
-
-                    A vision describes what an organization hopes to become or
-                    achieve in the future.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>3. State the three stages of Lewin's change model.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa3')">
-                    Show Answer
-                </button>
-
-                <div id="sa3" class="answer">
-
-                    Unfreezing, changing and refreezing.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>4. State five causes of resistance to change.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa4')">
-                    Show Answer
-                </button>
-
-                <div id="sa4" class="answer">
-
-                    Fear of the unknown, lack of information, previous negative
-                    experiences, fear of losing control and inadequate
-                    participation.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>5. What is quality improvement?</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa5')">
-                    Show Answer
-                </button>
-
-                <div id="sa5" class="answer">
-
-                    Quality improvement is a systematic and continuous process
-                    of improving healthcare processes and outcomes.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>6. State five areas of patient safety.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa6')">
-                    Show Answer
-                </button>
-
-                <div id="sa6" class="answer">
-
-                    Medication safety, infection prevention, correct patient
-                    identification, effective communication and fall
-                    prevention.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>7. Define risk management.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa7')">
-                    Show Answer
-                </button>
-
-                <div id="sa7" class="answer">
-
-                    Risk management is the process of identifying, assessing
-                    and controlling potential risks that may cause harm.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>8. State five resources managed in healthcare.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa8')">
-                    Show Answer
-                </button>
-
-                <div id="sa8" class="answer">
-
-                    Human resources, financial resources, equipment,
-                    supplies and time.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>9. What is quality assurance?</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa9')">
-                    Show Answer
-                </button>
-
-                <div id="sa9" class="answer">
-
-                    Quality assurance consists of planned and systematic
-                    activities designed to ensure that established standards
-                    of quality are met.
-
-                </div>
-
-            </div>
-
-
-            <div class="question">
-
-                <h3>10. State five principles of ethical leadership.</h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('sa10')">
-                    Show Answer
-                </button>
-
-                <div id="sa10" class="answer">
-
-                    Respect, justice, beneficence, non-maleficence and
-                    accountability.
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= LONG ANSWERS ================= -->
-
-    <section id="long" class="tab">
-
-        <div class="card">
-
-            <h2>Long-Answer Questions</h2>
-
-
-            <div class="question">
-
-                <h3>
-                    1. Discuss the process of change management in nursing.
-                </h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('la1')">
-                    Show Model Answer
-                </button>
-
-                <div id="la1" class="answer">
-
+                <div class="subtopic">
+                    <h4>1.1 Meaning of Human Resource Management</h4>
                     <p>
-                        Change management is the systematic process of helping
-                        individuals and organizations move from an existing
-                        state to a desired future state.
+                        Human resource management is the systematic process of
+                        planning, recruiting, selecting, developing, motivating,
+                        retaining and evaluating employees so that an organization
+                        can achieve its goals.
                     </p>
 
                     <p>
-                        The nurse leader should first identify the need for
-                        change and communicate why the change is necessary.
+                        In nursing, human resource management ensures that the
+                        right number of appropriately qualified nurses are
+                        available in the right areas at the right time.
                     </p>
-
-                    <p>
-                        According to Lewin's commonly taught model, the first
-                        stage is <strong>unfreezing</strong>. This involves
-                        preparing individuals to accept that the existing way
-                        of doing things needs to change.
-                    </p>
-
-                    <p>
-                        The second stage is <strong>changing</strong>, where
-                        new behaviors, procedures or practices are introduced.
-                        Staff should receive appropriate information, training
-                        and support.
-                    </p>
-
-                    <p>
-                        The final stage is <strong>refreezing</strong>, where
-                        the new practice is reinforced and integrated into
-                        routine work.
-                    </p>
-
-                    <p>
-                        Effective communication, staff participation,
-                        leadership support and evaluation are important
-                        throughout the change process.
-                    </p>
-
                 </div>
 
-            </div>
-
-
-            <div class="question">
-
-                <h3>
-                    2. Discuss the importance of quality improvement in
-                    nursing services.
-                </h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('la2')">
-                    Show Model Answer
-                </button>
-
-                <div id="la2" class="answer">
-
-                    <p>
-                        Quality improvement aims to improve healthcare
-                        processes and outcomes through systematic and
-                        continuous efforts.
-                    </p>
-
-                    <p>
-                        It helps improve patient safety, reduce preventable
-                        errors, improve efficiency and promote better use of
-                        healthcare resources.
-                    </p>
-
-                    <p>
-                        The process may involve identifying a problem,
-                        collecting baseline information, developing an
-                        intervention, implementing the intervention and
-                        measuring the results.
-                    </p>
-
-                    <p>
-                        Nurse leaders play an important role by encouraging
-                        staff participation, monitoring standards, supporting
-                        evidence-based practice and evaluating outcomes.
-                    </p>
-
+                <div class="subtopic">
+                    <h4>1.2 Importance in Nursing Services</h4>
+                    <ul>
+                        <li>Ensures adequate staffing.</li>
+                        <li>Improves quality and continuity of patient care.</li>
+                        <li>Promotes staff development.</li>
+                        <li>Supports employee motivation and retention.</li>
+                        <li>Reduces unnecessary workload.</li>
+                        <li>Promotes safe working conditions.</li>
+                    </ul>
                 </div>
 
-            </div>
-
-
-            <div class="question">
-
-                <h3>
-                    3. Explain the role of a nurse manager in patient safety.
-                </h3>
-
-                <button class="button"
-                        onclick="toggleAnswer('la3')">
-                    Show Model Answer
-                </button>
-
-                <div id="la3" class="answer">
+                <div class="subtopic">
+                    <h4>1.3 Recruitment and Selection</h4>
+                    <p>
+                        Recruitment involves attracting qualified candidates,
+                        while selection involves choosing the candidate who best
+                        meets the requirements of the position.
+                    </p>
 
                     <p>
-                        A nurse manager contributes to patient safety by
-                        creating systems and working conditions that reduce
-                        avoidable harm.
+                        Nursing managers should consider qualifications,
+                        registration status, experience, communication skills,
+                        professional behaviour and the needs of the institution.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>1.4 Staff Retention</h4>
+                    <p>
+                        Retention refers to efforts aimed at keeping competent
+                        employees within an organization.
                     </p>
 
                     <ul>
-                        <li>
-                            Ensuring appropriate staffing and supervision.
-                        </li>
-
-                        <li>
-                            Promoting effective communication and handover.
-                        </li>
-
-                        <li>
-                            Supporting medication safety.
-                        </li>
-
-                        <li>
-                            Promoting infection prevention measures.
-                        </li>
-
-                        <li>
-                            Encouraging reporting and learning from incidents.
-                        </li>
-
-                        <li>
-                            Ensuring staff receive appropriate education and
-                            training.
-                        </li>
-
-                        <li>
-                            Monitoring quality indicators and patient
-                            outcomes.
-                        </li>
+                        <li>Fair workload.</li>
+                        <li>Supportive leadership.</li>
+                        <li>Professional development.</li>
+                        <li>Recognition of good performance.</li>
+                        <li>Safe working environment.</li>
+                        <li>Opportunities for career progression.</li>
                     </ul>
+                </div>
 
+                <div class="diagram">
+                    <div class="diagram-title">Human Resource Management Cycle</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Workforce Planning</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Recruitment</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Selection</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Orientation</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Development</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Evaluation & Retention</div>
+                    </div>
+                </div>
+
+                <div class="clinical">
+                    <strong>Clinical example:</strong>
+                    A nurse manager notices that the medical ward is consistently
+                    understaffed during night shifts. The manager reviews staffing
+                    needs, identifies available personnel, adjusts the roster and
+                    monitors whether patient care improves.
                 </div>
 
             </div>
+        </div>
 
 
-            <div class="question">
+        <!-- TOPIC 2 -->
 
-                <h3>
-                    4. Discuss the principles of effective resource
-                    management in nursing.
-                </h3>
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>2. Staffing and Scheduling</h3>
+                <span class="arrow">▼</span>
+            </div>
 
-                <button class="button"
-                        onclick="toggleAnswer('la4')">
-                    Show Model Answer
-                </button>
+            <div class="topic-body">
 
-                <div id="la4" class="answer">
-
+                <div class="subtopic">
+                    <h4>2.1 Meaning of Staffing</h4>
                     <p>
-                        Resource management involves planning, obtaining,
-                        allocating and monitoring resources so that healthcare
-                        objectives can be achieved efficiently.
+                        Staffing is the process of determining the number and
+                        categories of personnel required and assigning them to
+                        appropriate positions and shifts.
                     </p>
+                </div>
 
+                <div class="subtopic">
+                    <h4>2.2 Factors Affecting Staffing</h4>
+                    <ul>
+                        <li>Number of patients.</li>
+                        <li>Patient acuity and dependency.</li>
+                        <li>Available nursing staff.</li>
+                        <li>Skill mix.</li>
+                        <li>Ward layout and workload.</li>
+                        <li>Working hours.</li>
+                        <li>Staff leave and absenteeism.</li>
+                        <li>Hospital policies and regulations.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>2.3 Staff Scheduling</h4>
                     <p>
-                        Human resources should be allocated according to
-                        patient needs, staff competence and workload.
+                        Scheduling involves preparing duty rosters that allocate
+                        staff to shifts while considering patient needs,
+                        staff availability, fairness and service requirements.
                     </p>
+                </div>
 
-                    <p>
-                        Material resources such as medicines, equipment and
-                        supplies should be used responsibly and monitored to
-                        reduce wastage.
-                    </p>
+                <div class="subtopic">
+                    <h4>2.4 Principles of Effective Scheduling</h4>
+                    <ul>
+                        <li>Ensure adequate coverage.</li>
+                        <li>Maintain appropriate skill mix.</li>
+                        <li>Distribute shifts fairly.</li>
+                        <li>Consider staff leave.</li>
+                        <li>Avoid excessive consecutive shifts.</li>
+                        <li>Consider continuity of care.</li>
+                        <li>Follow institutional policies.</li>
+                    </ul>
+                </div>
 
-                    <p>
-                        Financial resources should be used according to
-                        approved priorities and budgets.
-                    </p>
+                <div class="diagram">
+                    <div class="diagram-title">Basic Staffing Decision Process</div>
 
-                    <p>
-                        Effective resource management helps maintain quality
-                        care while promoting efficiency and accountability.
-                    </p>
-
+                    <div class="flow">
+                        <div class="flow-box">Assess Patient Needs</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Determine Workload</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Determine Skill Mix</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Allocate Staff</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Evaluate</div>
+                    </div>
                 </div>
 
             </div>
-
         </div>
 
-    </section>
 
+        <!-- TOPIC 3 -->
 
-    <!-- ================= FLASHCARDS ================= -->
-
-    <section id="flashcards" class="tab">
-
-        <div class="card flashcard">
-
-            <div id="flashQuestion"
-                 class="flash-question">
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>3. Performance Appraisal and Staff Development</h3>
+                <span class="arrow">▼</span>
             </div>
 
-            <div id="flashAnswer"
-                 class="flash-answer">
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>3.1 Meaning of Performance Appraisal</h4>
+                    <p>
+                        Performance appraisal is a systematic assessment of an
+                        employee's performance against predetermined standards
+                        and objectives.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>3.2 Purposes of Performance Appraisal</h4>
+                    <ul>
+                        <li>Identify strengths and weaknesses.</li>
+                        <li>Provide constructive feedback.</li>
+                        <li>Identify training needs.</li>
+                        <li>Support career development.</li>
+                        <li>Improve quality of work.</li>
+                        <li>Assist management decisions.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>3.3 Methods of Appraisal</h4>
+                    <ul>
+                        <li>Rating scales.</li>
+                        <li>Checklist method.</li>
+                        <li>Critical incident method.</li>
+                        <li>Management by objectives.</li>
+                        <li>Peer assessment.</li>
+                        <li>Self-appraisal.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>3.4 Staff Development</h4>
+                    <p>
+                        Staff development involves planned educational and
+                        professional activities designed to improve employees'
+                        knowledge, skills, attitudes and competence.
+                    </p>
+
+                    <ul>
+                        <li>Orientation programmes.</li>
+                        <li>In-service education.</li>
+                        <li>Workshops and seminars.</li>
+                        <li>Mentorship.</li>
+                        <li>Continuing professional development.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Performance Improvement Cycle</div>
+
+                    <div class="cycle">
+                        <div class="cycle-box">Set Standards</div>
+                        <div class="cycle-box">Observe Performance</div>
+                        <div class="cycle-box">Give Feedback</div>
+                        <div class="cycle-box">Identify Gaps</div>
+                        <div class="cycle-box">Provide Development</div>
+                        <div class="cycle-box">Reassess</div>
+                    </div>
+                </div>
+
             </div>
-
-            <button class="button"
-                    onclick="showFlashAnswer()">
-                Show Answer
-            </button>
-
-            <button class="button"
-                    onclick="nextFlashcard()">
-                Next Flashcard
-            </button>
-
         </div>
 
-    </section>
+
+        <!-- TOPIC 4 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>4. Supervision, Coaching and Mentorship</h3>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>4.1 Supervision</h4>
+                    <p>
+                        Supervision is the process of guiding, observing and
+                        supporting staff to ensure that duties are performed
+                        safely and according to required standards.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>4.2 Functions of Supervision</h4>
+                    <ul>
+                        <li>Guide staff performance.</li>
+                        <li>Identify errors and correct them.</li>
+                        <li>Ensure adherence to standards.</li>
+                        <li>Support staff development.</li>
+                        <li>Promote accountability.</li>
+                        <li>Improve patient safety.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>4.3 Coaching</h4>
+                    <p>
+                        Coaching is a developmental process in which a leader
+                        helps an employee improve a particular skill or aspect
+                        of performance.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>4.4 Mentorship</h4>
+                    <p>
+                        Mentorship is a supportive professional relationship
+                        in which an experienced person guides a less experienced
+                        colleague in professional growth.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Supervision and Development Process</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Observe</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Identify Gap</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Coach / Teach</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Practice</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Evaluate</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
-    <!-- ================= PROGRESS ================= -->
+        <!-- TOPIC 5 -->
 
-    <section id="progress" class="tab">
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>5. Financial and Budget Management in Nursing</h3>
+                <span class="arrow">▼</span>
+            </div>
 
-        <div class="card">
+            <div class="topic-body">
 
-            <h2>Topic Progress</h2>
+                <div class="subtopic">
+                    <h4>5.1 Meaning of a Budget</h4>
+                    <p>
+                        A budget is a financial plan that estimates expected
+                        income and expenditure over a specified period.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>5.2 Importance of Budgeting</h4>
+                    <ul>
+                        <li>Controls expenditure.</li>
+                        <li>Supports planning.</li>
+                        <li>Helps allocate resources.</li>
+                        <li>Prevents unnecessary spending.</li>
+                        <li>Supports accountability.</li>
+                        <li>Helps managers prioritize needs.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>5.3 Types of Nursing-Related Budgets</h4>
+                    <ul>
+                        <li>Operating budget.</li>
+                        <li>Personnel budget.</li>
+                        <li>Capital budget.</li>
+                        <li>Equipment budget.</li>
+                        <li>Supply budget.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>5.4 Nurse Manager's Role in Financial Management</h4>
+                    <ul>
+                        <li>Identify resource requirements.</li>
+                        <li>Participate in budget preparation.</li>
+                        <li>Monitor expenditure.</li>
+                        <li>Prevent wastage.</li>
+                        <li>Maintain accurate records.</li>
+                        <li>Justify additional resource requirements.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Basic Budget Cycle</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Assess Needs</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Plan Budget</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Allocate Funds</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Spend & Monitor</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Evaluate</div>
+                    </div>
+                </div>
+
+                <div class="clinical">
+                    <strong>Clinical example:</strong>
+                    A ward manager monitors the use of dressing materials and
+                    identifies unnecessary wastage. The manager introduces
+                    appropriate stock control while ensuring patients continue
+                    receiving the supplies they require.
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 6 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>6. Resource and Material Management</h3>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>6.1 Meaning of Resource Management</h4>
+                    <p>
+                        Resource management involves planning, acquiring,
+                        allocating, using and evaluating available resources
+                        efficiently.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>6.2 Types of Resources</h4>
+                    <ul>
+                        <li>Human resources.</li>
+                        <li>Financial resources.</li>
+                        <li>Equipment.</li>
+                        <li>Medicines and supplies.</li>
+                        <li>Information.</li>
+                        <li>Time.</li>
+                        <li>Physical facilities.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>6.3 Inventory Management</h4>
+                    <p>
+                        Inventory management ensures that supplies are available
+                        when needed while minimizing shortages, expiry and
+                        unnecessary accumulation.
+                    </p>
+
+                    <ul>
+                        <li>Stock monitoring.</li>
+                        <li>Ordering.</li>
+                        <li>Receiving.</li>
+                        <li>Proper storage.</li>
+                        <li>Stock rotation.</li>
+                        <li>Record keeping.</li>
+                        <li>Expiry monitoring.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Material Management Flow</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Identify Need</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Order</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Receive</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Store</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Use</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Monitor</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 7 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>7. Change Management in Nursing</h3>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>7.1 Meaning of Change Management</h4>
+                    <p>
+                        Change management is the systematic process of preparing,
+                        supporting and guiding individuals and organizations
+                        through changes in policies, practices, technology or
+                        organizational systems.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>7.2 Causes of Change</h4>
+                    <ul>
+                        <li>New technology.</li>
+                        <li>Changes in healthcare policies.</li>
+                        <li>Evidence-based practice.</li>
+                        <li>Patient safety requirements.</li>
+                        <li>Changes in staffing.</li>
+                        <li>Financial pressures.</li>
+                        <li>Changing patient needs.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>7.3 Resistance to Change</h4>
+                    <p>
+                        Resistance occurs when individuals or groups oppose or
+                        hesitate to accept a proposed change.
+                    </p>
+
+                    <p>
+                        Common causes include fear of the unknown, inadequate
+                        communication, previous negative experiences, lack of
+                        involvement and concern about increased workload.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>7.4 Strategies for Managing Change</h4>
+                    <ul>
+                        <li>Explain the reason for change.</li>
+                        <li>Involve staff in planning.</li>
+                        <li>Provide adequate training.</li>
+                        <li>Listen to concerns.</li>
+                        <li>Provide resources.</li>
+                        <li>Introduce change in manageable stages.</li>
+                        <li>Monitor and evaluate results.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Change Management Process</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Identify Need</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Plan Change</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Communicate</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Implement</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Evaluate</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 8 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>8. Team Building and Interprofessional Collaboration</h3>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>8.1 Meaning of a Team</h4>
+                    <p>
+                        A team is a group of individuals who work together toward
+                        shared goals while contributing different skills,
+                        knowledge and responsibilities.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>8.2 Characteristics of Effective Teams</h4>
+                    <ul>
+                        <li>Clear goals.</li>
+                        <li>Effective communication.</li>
+                        <li>Mutual respect.</li>
+                        <li>Defined roles.</li>
+                        <li>Trust.</li>
+                        <li>Accountability.</li>
+                        <li>Constructive conflict management.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>8.3 Interprofessional Collaboration</h4>
+                    <p>
+                        Interprofessional collaboration occurs when healthcare
+                        professionals from different disciplines work together
+                        to provide coordinated patient care.
+                    </p>
+
+                    <p>
+                        Examples include collaboration among nurses, doctors,
+                        pharmacists, physiotherapists, nutritionists,
+                        occupational therapists and social workers.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>8.4 Benefits of Teamwork</h4>
+                    <ul>
+                        <li>Improves communication.</li>
+                        <li>Reduces duplication of work.</li>
+                        <li>Promotes patient safety.</li>
+                        <li>Improves decision making.</li>
+                        <li>Encourages knowledge sharing.</li>
+                        <li>Improves continuity of care.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Effective Healthcare Team</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Shared Goal</div>
+                        <div class="arrow-box">+</div>
+                        <div class="flow-box">Clear Roles</div>
+                        <div class="arrow-box">+</div>
+                        <div class="flow-box">Communication</div>
+                        <div class="arrow-box">+</div>
+                        <div class="flow-box">Trust</div>
+                        <div class="arrow-box">=</div>
+                        <div class="flow-box">Safe Patient Care</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 9 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>9. Risk Management and Patient Safety</h3>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>9.1 Meaning of Risk Management</h4>
+                    <p>
+                        Risk management is the systematic identification,
+                        assessment, control and monitoring of risks that may
+                        harm patients, staff or the organization.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>9.2 Common Risks in Nursing Practice</h4>
+                    <ul>
+                        <li>Medication errors.</li>
+                        <li>Patient falls.</li>
+                        <li>Healthcare-associated infections.</li>
+                        <li>Pressure injuries.</li>
+                        <li>Communication failures.</li>
+                        <li>Incorrect patient identification.</li>
+                        <li>Equipment-related incidents.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>9.3 Risk Assessment</h4>
+                    <p>
+                        Risk assessment involves identifying hazards, determining
+                        the likelihood and consequences of harm, and deciding
+                        appropriate control measures.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>9.4 Incident Reporting</h4>
+                    <p>
+                        Incident reporting provides a structured way of documenting
+                        adverse events, near misses and other safety concerns.
+                        Reporting should support learning and improvement rather
+                        than simply assigning blame.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Risk Management Cycle</div>
+
+                    <div class="cycle">
+                        <div class="cycle-box">Identify Risk</div>
+                        <div class="cycle-box">Assess Risk</div>
+                        <div class="cycle-box">Control Risk</div>
+                        <div class="cycle-box">Monitor</div>
+                        <div class="cycle-box">Review</div>
+                    </div>
+                </div>
+
+                <div class="clinical">
+                    <strong>Clinical example:</strong>
+                    If several patients fall on a ward, the nurse manager should
+                    investigate contributing factors such as inadequate lighting,
+                    wet floors, medication effects, poor observation or unsafe
+                    equipment and introduce appropriate corrective measures.
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 10 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h3>10. Strategic Nursing Leadership and Professional Practice</h3>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>10.1 Strategic Leadership</h4>
+                    <p>
+                        Strategic leadership involves guiding an organization
+                        toward long-term goals while considering internal
+                        capabilities, external changes, available resources
+                        and patient needs.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>10.2 Vision and Mission</h4>
+                    <p>
+                        A mission describes the fundamental purpose of an
+                        organization, while a vision describes the desired
+                        future state.
+                    </p>
+
+                    <p>
+                        Nursing leaders use these concepts to guide planning,
+                        decision making and service improvement.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>10.3 Professional Accountability</h4>
+                    <p>
+                        Professional accountability means accepting responsibility
+                        for one's actions, decisions and professional standards.
+                    </p>
+
+                    <ul>
+                        <li>Practising within scope of practice.</li>
+                        <li>Maintaining competence.</li>
+                        <li>Protecting patient confidentiality.</li>
+                        <li>Documenting accurately.</li>
+                        <li>Delegating appropriately.</li>
+                        <li>Reporting unsafe practice.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>10.4 Ethical Leadership</h4>
+                    <p>
+                        Ethical leadership requires leaders to make decisions
+                        that respect patients, staff, professional standards,
+                        fairness, confidentiality and human dignity.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>10.5 Advocacy</h4>
+                    <p>
+                        Nurse leaders advocate for patients, staff and improved
+                        healthcare services. Advocacy may involve communicating
+                        patient needs, supporting safe staffing, improving
+                        resources and promoting patient rights.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Strategic Nursing Leadership</div>
+
+                    <div class="flow">
+                        <div class="flow-box">Vision & Mission</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Assess Situation</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Set Goals</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Implement Strategy</div>
+                        <div class="arrow-box">→</div>
+                        <div class="flow-box">Evaluate & Improve</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- MCQ TAB -->
+
+    <div id="mcq" class="tab-content">
+
+        <div class="mcq-section">
+            <h2>NURS 378 Practice MCQs</h2>
 
             <p>
-                Mark each topic as completed after studying it.
+                Test your knowledge using the dedicated NURS 378 question bank.
+                The quiz system allows you to select the number of questions,
+                time limit and review your answers after submission.
             </p>
 
-            <div id="progressList"></div>
+            <a class="mcq-link" href="{{ url_for('mcqs', subject='NURS 378') }}">
+                Start NURS 378 MCQs →
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- SHORT ANSWER TAB -->
+
+    <div id="short" class="tab-content">
+
+        <div class="question-card">
+            <h4>1. Define human resource management in nursing.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                It is the systematic process of planning, recruiting, selecting,
+                developing, motivating, evaluating and retaining nursing personnel
+                to meet organizational and patient-care needs.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>2. State five factors that influence nurse staffing.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Patient numbers, patient acuity, workload, skill mix and
+                availability of nursing personnel. Other factors include
+                staff leave, absenteeism and institutional policies.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>3. State five purposes of performance appraisal.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Identifying strengths and weaknesses, providing feedback,
+                identifying training needs, supporting career development
+                and improving work performance.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>4. Differentiate between coaching and mentorship.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Coaching usually focuses on improving a specific skill or
+                performance issue, whereas mentorship is a broader professional
+                relationship aimed at long-term development and guidance.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>5. State five principles of effective staff scheduling.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Adequate staffing, appropriate skill mix, fair distribution
+                of shifts, consideration of staff leave and compliance with
+                organizational policies.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>6. What is a nursing budget?</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                It is a financial plan that estimates the resources and
+                expenditure required to provide nursing services over a
+                specified period.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>7. State five causes of resistance to change.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Fear of the unknown, poor communication, lack of involvement,
+                concern about increased workload and previous negative
+                experiences with change.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>8. State five characteristics of an effective healthcare team.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Clear goals, effective communication, mutual respect,
+                defined roles and accountability.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>9. Define risk management.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Risk management is the systematic identification, assessment,
+                control and monitoring of risks that may cause harm.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h4>10. State five roles of a nurse leader in patient safety.</h4>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Identifying risks, promoting safe practices, ensuring staff
+                competence, monitoring incidents and implementing quality
+                improvement measures.
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- LONG ANSWER TAB -->
+
+    <div id="long" class="tab-content">
+
+        <div class="question-card">
+            <h4>
+                1. Discuss the role of the nurse manager in human resource
+                management.
+            </h4>
+
+            <div class="answer-box">
+                <strong>Answer:</strong>
+
+                <p>
+                    The nurse manager plays an important role in ensuring that
+                    adequate and competent nursing personnel are available to
+                    provide safe patient care. This begins with assessing the
+                    staffing requirements of the unit according to patient
+                    numbers, patient acuity, workload and skill mix.
+                </p>
+
+                <p>
+                    The nurse manager participates in recruitment and selection,
+                    orientation of new staff and allocation of personnel to
+                    appropriate duties. The manager must ensure that staff members
+                    understand their responsibilities and work within their
+                    professional scope.
+                </p>
+
+                <p>
+                    Another important responsibility is staff development.
+                    Managers identify knowledge and skill gaps through supervision
+                    and performance appraisal and then arrange appropriate
+                    education, mentorship, coaching or continuing professional
+                    development.
+                </p>
+
+                <p>
+                    The nurse manager also promotes staff motivation and retention
+                    by maintaining effective communication, recognizing good
+                    performance, addressing workplace concerns and promoting a
+                    supportive working environment.
+                </p>
+
+                <p>
+                    Finally, the manager monitors staff performance, manages
+                    absenteeism, participates in workforce planning and evaluates
+                    whether staffing decisions are improving patient outcomes
+                    and quality of care.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="question-card">
+            <h4>
+                2. Discuss the principles of effective staffing and scheduling
+                in a nursing unit.
+            </h4>
+
+            <div class="answer-box">
+                <strong>Answer:</strong>
+
+                <p>
+                    Effective staffing begins with assessment of patient needs.
+                    The nurse manager should consider the number of patients,
+                    their level of dependency, acuity and the amount of nursing
+                    care required.
+                </p>
+
+                <p>
+                    The manager should then determine the appropriate number and
+                    categories of nursing personnel required. Skill mix is
+                    important because different patients require different levels
+                    of professional knowledge and technical skills.
+                </p>
+
+                <p>
+                    Duty rosters should distribute shifts fairly and consider
+                    staff availability, leave, absenteeism and organizational
+                    requirements. Excessive consecutive shifts should be avoided
+                    where possible because fatigue can affect performance and
+                    patient safety.
+                </p>
+
+                <p>
+                    Effective scheduling should also support continuity of care.
+                    Managers should review the roster regularly and make changes
+                    when patient numbers or acuity change.
+                </p>
+
+                <p>
+                    Finally, staffing effectiveness should be evaluated using
+                    indicators such as workload, patient outcomes, staff
+                    satisfaction, overtime and incidents.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="question-card">
+            <h4>
+                3. Explain how a nurse manager can successfully implement change
+                in a healthcare organization.
+            </h4>
+
+            <div class="answer-box">
+                <strong>Answer:</strong>
+
+                <p>
+                    Successful change begins by identifying a clear need for
+                    change. The nurse manager should determine what problem is
+                    occurring and gather relevant information to demonstrate why
+                    the change is necessary.
+                </p>
+
+                <p>
+                    Staff should then be involved in planning. Involvement allows
+                    employees to express concerns, contribute ideas and develop
+                    ownership of the proposed change.
+                </p>
+
+                <p>
+                    Communication is essential throughout the process. The
+                    manager should clearly explain what will change, why it is
+                    necessary, how it will affect staff and what support will
+                    be provided.
+                </p>
+
+                <p>
+                    Appropriate training and resources should be provided before
+                    implementation. If possible, the change can be introduced
+                    gradually so that problems can be identified and corrected.
+                </p>
+
+                <p>
+                    After implementation, the nurse manager should evaluate
+                    outcomes. Feedback from staff and patients, quality indicators
+                    and safety data can be used to determine whether the change
+                    achieved its intended objectives.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="question-card">
+            <h4>
+                4. Discuss the role of the nurse leader in promoting patient
+                safety and risk management.
+            </h4>
+
+            <div class="answer-box">
+                <strong>Answer:</strong>
+
+                <p>
+                    The nurse leader promotes patient safety by creating an
+                    environment where risks are identified early and addressed
+                    systematically. This requires regular assessment of clinical
+                    processes and the environment.
+                </p>
+
+                <p>
+                    The leader should ensure that staff follow appropriate
+                    procedures for medication administration, infection
+                    prevention, patient identification, documentation and other
+                    safety-sensitive activities.
+                </p>
+
+                <p>
+                    Education and supervision are also important. Staff should
+                    receive appropriate training and should be supported when
+                    they require additional knowledge or skills.
+                </p>
+
+                <p>
+                    Incident and near-miss reporting should be encouraged.
+                    Information obtained from incidents can be used to identify
+                    system weaknesses and develop corrective measures.
+                </p>
+
+                <p>
+                    The nurse leader should also monitor patient safety indicators,
+                    implement quality improvement strategies and involve the
+                    multidisciplinary team in reducing preventable harm.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="question-card">
+            <h4>
+                5. Explain the importance of financial and material resource
+                management in nursing.
+            </h4>
+
+            <div class="answer-box">
+                <strong>Answer:</strong>
+
+                <p>
+                    Financial and material resource management ensures that
+                    healthcare organizations have the resources necessary to
+                    provide safe and effective patient care.
+                </p>
+
+                <p>
+                    Proper budgeting helps nurse managers identify priorities,
+                    plan expenditure and control unnecessary spending. It also
+                    promotes accountability because managers can compare planned
+                    expenditure with actual expenditure.
+                </p>
+
+                <p>
+                    Material management ensures that medicines, equipment and
+                    supplies are available when required. Proper stock control
+                    reduces shortages, wastage and expiry.
+                </p>
+
+                <p>
+                    Nurse managers also have a responsibility to ensure that
+                    equipment is used correctly, maintained appropriately and
+                    replaced when necessary.
+                </p>
+
+                <p>
+                    Effective resource management therefore supports both
+                    financial sustainability and quality patient care.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS TAB -->
+
+    <div id="progress" class="tab-content">
+
+        <div class="progress-box">
+
+            <h2>NURS 378 Study Progress</h2>
+
+            <p>
+                Tick each topic after you have completed its subtopics,
+                diagrams and revision questions.
+            </p>
+
+            <div id="progressItems">
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="1" onchange="updateProgress()">
+                    <label>1. Human Resource Management in Nursing</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="2" onchange="updateProgress()">
+                    <label>2. Staffing and Scheduling</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="3" onchange="updateProgress()">
+                    <label>3. Performance Appraisal and Staff Development</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="4" onchange="updateProgress()">
+                    <label>4. Supervision, Coaching and Mentorship</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="5" onchange="updateProgress()">
+                    <label>5. Financial and Budget Management</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="6" onchange="updateProgress()">
+                    <label>6. Resource and Material Management</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="7" onchange="updateProgress()">
+                    <label>7. Change Management in Nursing</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="8" onchange="updateProgress()">
+                    <label>8. Team Building and Interprofessional Collaboration</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="9" onchange="updateProgress()">
+                    <label>9. Risk Management and Patient Safety</label>
+                </div>
+
+                <div class="progress-item">
+                    <input type="checkbox" data-topic="10" onchange="updateProgress()">
+                    <label>10. Strategic Nursing Leadership and Professional Practice</label>
+                </div>
+
+            </div>
+
+            <div class="progress-track">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+
+            <p>
+                <strong id="progressText">0% completed</strong>
+            </p>
 
         </div>
 
-    </section>
+    </div>
 
 </div>
+
+<footer>
+    NURS 378 — Leadership & Management II Study Assistant
+</footer>
 
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+    function showTab(tabId, button) {
 
+        const contents = document.querySelectorAll(".tab-content");
 
-    /* ================= TABS ================= */
+        contents.forEach(function(content) {
+            content.classList.remove("active");
+        });
 
-    const tabButtons =
-        document.querySelectorAll(".tab-button");
+        const buttons = document.querySelectorAll(".tab-btn");
 
-    const tabs =
-        document.querySelectorAll(".tab");
+        buttons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
 
+        document.getElementById(tabId).classList.add("active");
 
-    tabButtons.forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            const target =
-                button.getAttribute("data-tab");
-
-
-            tabs.forEach(function (tab) {
-
-                tab.classList.remove("active");
-
-            });
-
-
-            tabButtons.forEach(function (btn) {
-
-                btn.classList.remove("active");
-
-            });
-
-
-            const selectedTab =
-                document.getElementById(target);
-
-
-            if (selectedTab) {
-
-                selectedTab.classList.add("active");
-
-            }
-
-
+        if (button) {
             button.classList.add("active");
-
-
-            if (target === "mcq") {
-
-                createQuiz();
-
-            }
-
-        });
-
-    });
-
-
-    /* ================= TOPICS ================= */
-
-    document.querySelectorAll(".topic-title")
-        .forEach(function (title) {
-
-            title.addEventListener("click", function () {
-
-                const content =
-                    title.nextElementSibling;
-
-                content.classList.toggle("show");
-
-            });
-
-        });
-
-
-    /* ================= NOTES ================= */
-
-    document.querySelectorAll(".note-title")
-        .forEach(function (title) {
-
-            title.addEventListener("click", function () {
-
-                const content =
-                    title.nextElementSibling;
-
-                content.classList.toggle("show");
-
-            });
-
-        });
-
-
-    /* ================= PROGRESS ================= */
-
-    const topicNames = [
-
-        "Strategic Management in Nursing",
-
-        "Vision, Mission and Organizational Goals",
-
-        "Organizational Structure",
-
-        "Change Management",
-
-        "Resistance to Change",
-
-        "Quality Improvement in Nursing",
-
-        "Patient Safety",
-
-        "Risk Management",
-
-        "Budgeting and Financial Management",
-
-        "Resource Management",
-
-        "Quality Assurance",
-
-        "Evidence-Based Nursing Management",
-
-        "Leadership Ethics and Professionalism",
-
-        "Team Building",
-
-        "Evaluation and Organizational Performance"
-
-    ];
-
-
-    const completedTopics =
-        new Set();
-
-
-    function renderProgress() {
-
-        const list =
-            document.getElementById("progressList");
-
-        list.innerHTML = "";
-
-
-        topicNames.forEach(function (topic, index) {
-
-            const row =
-                document.createElement("div");
-
-            row.className =
-                "progress-item";
-
-
-            if (completedTopics.has(index)) {
-
-                row.classList.add("completed");
-
-            }
-
-
-            const name =
-                document.createElement("span");
-
-            name.textContent =
-                (index + 1) + ". " + topic;
-
-
-            const button =
-                document.createElement("button");
-
-            button.className =
-                "button";
-
-
-            button.textContent =
-                completedTopics.has(index)
-                ? "Completed"
-                : "Mark Complete";
-
-
-            button.addEventListener("click", function () {
-
-                if (completedTopics.has(index)) {
-
-                    completedTopics.delete(index);
-
-                } else {
-
-                    completedTopics.add(index);
-
-                }
-
-                renderProgress();
-
-            });
-
-
-            row.appendChild(name);
-
-            row.appendChild(button);
-
-            list.appendChild(row);
-
-        });
-
+        }
     }
 
 
-    renderProgress();
+    function toggleTopic(header) {
 
+        const topic = header.parentElement;
 
-    /* ================= MCQ BANK ================= */
+        topic.classList.toggle("open");
+    }
 
-    const questions = [
 
-        {
-            question:
-                "What is strategic management?",
+    const progressKey = "nurs378_progress";
 
-            options: [
-                "The process of developing, implementing and evaluating strategies to achieve long-term goals",
-                "A process used only for staff recruitment",
-                "A process used only for budgeting",
-                "A process of writing patient notes"
-            ],
 
-            answer: 0
-        },
+    function updateProgress() {
 
+        const checkboxes = document.querySelectorAll(
+            '#progressItems input[type="checkbox"]'
+        );
 
-        {
-            question:
-                "A vision statement describes:",
+        let completed = 0;
 
-            options: [
-                "What an organization hopes to become in the future",
-                "The daily duty roster",
-                "The salary of employees",
-                "A patient's diagnosis"
-            ],
+        checkboxes.forEach(function(box) {
 
-            answer: 0
-        },
+            if (box.checked) {
+                completed++;
+            }
 
+        });
 
-        {
-            question:
-                "A mission statement primarily describes:",
+        const total = checkboxes.length;
 
-            options: [
-                "The fundamental purpose of an organization",
-                "The number of employees",
-                "The hospital building",
-                "The annual staff leave"
-            ],
+        const percentage = total === 0
+            ? 0
+            : Math.round((completed / total) * 100);
 
-            answer: 0
-        },
+        document.getElementById("progressFill").style.width =
+            percentage + "%";
 
+        document.getElementById("progressText").textContent =
+            percentage + "% completed (" +
+            completed +
+            " of " +
+            total +
+            " topics)";
 
-        {
-            question:
-                "Which is an element of strategic management?",
+        const saved = {};
 
-            options: [
-                "Strategy implementation",
-                "Random decision-making",
-                "Ignoring the environment",
-                "Avoiding evaluation"
-            ],
+        checkboxes.forEach(function(box) {
 
-            answer: 0
-        },
+            saved[box.dataset.topic] = box.checked;
 
+        });
 
-        {
-            question:
-                "Organizational structure describes:",
+        localStorage.setItem(
+            progressKey,
+            JSON.stringify(saved)
+        );
+    }
 
-            options: [
-                "How authority, responsibility and communication are arranged",
-                "Only the physical appearance of a hospital",
-                "The patient's treatment plan",
-                "The staff uniform"
-            ],
 
-            answer: 0
-        },
+    function loadProgress() {
 
+        const savedData = localStorage.getItem(progressKey);
 
-        {
-            question:
-                "Which organizational structure has formal lines of authority from top to bottom?",
-
-            options: [
-                "Line structure",
-                "Informal structure",
-                "Random structure",
-                "Social structure"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Lewin's first stage of change is:",
-
-            options: [
-                "Unfreezing",
-                "Refreezing",
-                "Evaluation",
-                "Termination"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "The changing stage involves:",
-
-            options: [
-                "Introducing new behaviors or practices",
-                "Returning to old practices",
-                "Ignoring the need for change",
-                "Ending communication"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Refreezing involves:",
-
-            options: [
-                "Stabilizing the new practice",
-                "Rejecting change",
-                "Identifying the original problem",
-                "Recruiting staff"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which can cause resistance to change?",
-
-            options: [
-                "Fear of the unknown",
-                "Clear communication",
-                "Adequate training",
-                "Staff participation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A good strategy for reducing resistance to change is:",
-
-            options: [
-                "Involving staff and communicating clearly",
-                "Hiding information",
-                "Ignoring concerns",
-                "Forcing change without explanation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Quality improvement is best described as:",
-
-            options: [
-                "A systematic process of improving healthcare processes and outcomes",
-                "A disciplinary procedure",
-                "A recruitment process",
-                "A budgeting technique only"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Patient safety focuses on:",
-
-            options: [
-                "Preventing avoidable harm during healthcare",
-                "Increasing paperwork",
-                "Reducing communication",
-                "Avoiding incident reporting"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is an example of a patient safety activity?",
-
-            options: [
-                "Correct patient identification",
-                "Ignoring allergies",
-                "Skipping handover",
-                "Avoiding documentation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Risk management involves:",
-
-            options: [
-                "Identifying, assessing and controlling risks",
-                "Ignoring hazards",
-                "Removing all documentation",
-                "Avoiding evaluation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "The first step in risk management is usually:",
-
-            options: [
-                "Identifying risks",
-                "Ignoring risks",
-                "Punishing staff",
-                "Buying equipment"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A budget is primarily used to:",
-
-            options: [
-                "Plan expected income and expenditure",
-                "Record patient diagnoses",
-                "Schedule patient meals",
-                "Replace clinical documentation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is a healthcare resource?",
-
-            options: [
-                "Human resources",
-                "Only buildings",
-                "Only money",
-                "Only medication"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Resource management aims to:",
-
-            options: [
-                "Use resources efficiently and appropriately",
-                "Increase wastage",
-                "Avoid planning",
-                "Use resources randomly"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Quality assurance involves:",
-
-            options: [
-                "Planned and systematic activities to ensure standards are met",
-                "Ignoring standards",
-                "Avoiding evaluation",
-                "Removing policies"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Evidence-based practice integrates:",
-
-            options: [
-                "Best available evidence, professional expertise and patient needs",
-                "Tradition only",
-                "Personal opinion only",
-                "Hospital rumors"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Ethical leadership requires:",
-
-            options: [
-                "Respect, fairness and accountability",
-                "Favoritism",
-                "Dishonesty",
-                "Discrimination"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Justice in healthcare refers to:",
-
-            options: [
-                "Fairness in treatment and distribution of resources",
-                "Giving everyone the same treatment regardless of need",
-                "Punishing patients",
-                "Ignoring vulnerable groups"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Beneficence means:",
-
-            options: [
-                "Promoting the welfare of others",
-                "Causing harm",
-                "Avoiding all treatment",
-                "Keeping information secret"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Non-maleficence means:",
-
-            options: [
-                "Avoiding or minimizing harm",
-                "Promoting punishment",
-                "Ignoring risk",
-                "Avoiding responsibility"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Team building promotes:",
-
-            options: [
-                "Cooperation, communication and trust",
-                "Competition only",
-                "Isolation",
-                "Poor communication"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "An effective team should have:",
-
-            options: [
-                "Clear goals and defined roles",
-                "No communication",
-                "Unclear responsibilities",
-                "No leadership"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Evaluation is used to determine:",
-
-            options: [
-                "Whether objectives have been achieved",
-                "Whether planning should always be avoided",
-                "Whether staff should never receive feedback",
-                "Whether standards should be removed"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is a possible indicator of healthcare performance?",
-
-            options: [
-                "Patient outcomes",
-                "Staff gossip",
-                "Building color",
-                "Personal preference"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Change is more likely to succeed when leaders:",
-
-            options: [
-                "Communicate clearly and involve staff",
-                "Hide information",
-                "Ignore staff concerns",
-                "Avoid training"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which factor can reduce resistance to change?",
-
-            options: [
-                "Staff education and participation",
-                "Poor communication",
-                "Fear",
-                "Uncertainty"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A nurse manager participating in the preparation of a department budget is performing:",
-
-            options: [
-                "Financial management",
-                "Patient diagnosis",
-                "Clinical examination",
-                "Medication administration"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is an example of material resources?",
-
-            options: [
-                "Medical equipment and supplies",
-                "Leadership skills",
-                "Staff motivation",
-                "Professional values"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is an example of human resources?",
-
-            options: [
-                "Nurses and other healthcare workers",
-                "Hospital beds",
-                "Medication",
-                "Electricity"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which action supports patient safety?",
-
-            options: [
-                "Reporting and learning from incidents",
-                "Hiding errors",
-                "Ignoring near misses",
-                "Avoiding documentation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A near miss is important because it:",
-
-            options: [
-                "Can provide information about potential safety hazards",
-                "Should always be ignored",
-                "Cannot improve safety",
-                "Has no learning value"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A risk assessment considers:",
-
-            options: [
-                "The likelihood and potential impact of harm",
-                "Only the cost of equipment",
-                "Only staff age",
-                "Only patient location"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Quality indicators are used to:",
-
-            options: [
-                "Measure aspects of healthcare performance",
-                "Replace clinical judgment completely",
-                "Avoid evaluation",
-                "Eliminate standards"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Continuous quality improvement means:",
-
-            options: [
-                "Ongoing efforts to improve processes and outcomes",
-                "Improving once and never evaluating again",
-                "Avoiding measurement",
-                "Changing everything randomly"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A nurse leader using research findings to improve a ward protocol is applying:",
-
-            options: [
-                "Evidence-based practice",
-                "Autocratic punishment",
-                "Financial auditing",
-                "Staff scheduling"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Confidentiality means:",
-
-            options: [
-                "Protecting private information from inappropriate disclosure",
-                "Sharing all patient information publicly",
-                "Avoiding documentation",
-                "Ignoring privacy"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Accountability means:",
-
-            options: [
-                "Being answerable for one's actions and responsibilities",
-                "Avoiding responsibility",
-                "Blaming others automatically",
-                "Ignoring outcomes"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which action promotes effective teamwork?",
-
-            options: [
-                "Open communication",
-                "Withholding information",
-                "Competition between every team member",
-                "Ignoring disagreements"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A team with clearly defined roles is more likely to:",
-
-            options: [
-                "Coordinate activities effectively",
-                "Experience confusion",
-                "Avoid communication",
-                "Duplicate every task"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Organizational goals should generally be:",
-
-            options: [
-                "Clear and aligned with the organization's purpose",
-                "Unknown to employees",
-                "Unrelated to the mission",
-                "Impossible to evaluate"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is a function of strategic evaluation?",
-
-            options: [
-                "Determining whether strategies achieved intended results",
-                "Avoiding performance measurement",
-                "Removing organizational goals",
-                "Ignoring outcomes"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A mission statement helps an organization understand:",
-
-            options: [
-                "Its fundamental purpose",
-                "Only employee salaries",
-                "Only the building design",
-                "Only the annual leave schedule"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which approach is useful when introducing a major organizational change?",
-
-            options: [
-                "Education, communication and staff participation",
-                "Silence",
-                "Ignoring concerns",
-                "Withholding information"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "One important responsibility of a nurse manager is to:",
-
-            options: [
-                "Coordinate resources to support safe patient care",
-                "Avoid delegation",
-                "Ignore staffing",
-                "Prevent teamwork"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which activity can help identify quality problems?",
-
-            options: [
-                "Monitoring quality indicators",
-                "Ignoring patient complaints",
-                "Avoiding audits",
-                "Stopping documentation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Patient satisfaction can be used as:",
-
-            options: [
-                "One indicator of healthcare performance",
-                "The only measure of clinical quality",
-                "A replacement for all clinical assessment",
-                "A financial statement"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which resource requires appropriate scheduling and allocation?",
-
-            options: [
-                "Nursing staff",
-                "Only buildings",
-                "Only furniture",
-                "Only uniforms"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A leader who encourages staff to participate in improvement projects is promoting:",
-
-            options: [
-                "Engagement",
-                "Isolation",
-                "Resistance",
-                "Poor communication"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "The main purpose of incident reporting is to:",
-
-            options: [
-                "Support learning and improvement of safety systems",
-                "Automatically punish every employee",
-                "Hide errors",
-                "Avoid documentation"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which is an important component of risk control?",
-
-            options: [
-                "Implementing measures to reduce identified risks",
-                "Ignoring identified hazards",
-                "Removing monitoring",
-                "Avoiding communication"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "A good quality improvement project should include:",
-
-            options: [
-                "Measurement of outcomes",
-                "No baseline information",
-                "No evaluation",
-                "No objectives"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Professionalism in nursing leadership includes:",
-
-            options: [
-                "Integrity, accountability and respect",
-                "Favoritism",
-                "Dishonesty",
-                "Neglect of responsibilities"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which principle requires treating people fairly?",
-
-            options: [
-                "Justice",
-                "Non-maleficence",
-                "Autonomy",
-                "Confidentiality"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which principle focuses on avoiding harm?",
-
-            options: [
-                "Non-maleficence",
-                "Justice",
-                "Beneficence",
-                "Fidelity"
-            ],
-
-            answer: 0
-        },
-
-
-        {
-            question:
-                "Which principle focuses on promoting good or welfare?",
-
-            options: [
-                "Beneficence",
-                "Justice",
-                "Confidentiality",
-                "Accountability"
-            ],
-
-            answer: 0
+        if (!savedData) {
+            updateProgress();
+            return;
         }
 
+        try {
 
-    ];
+            const saved = JSON.parse(savedData);
 
-
-    let currentQuestions = [];
-
-
-    function shuffle(array) {
-
-        const copied = [...array];
-
-        for (let i = copied.length - 1; i > 0; i--) {
-
-            const j =
-                Math.floor(Math.random() * (i + 1));
-
-            [copied[i], copied[j]] =
-                [copied[j], copied[i]];
-
-        }
-
-        return copied;
-
-    }
-
-
-    function createQuiz() {
-
-        currentQuestions =
-            shuffle(questions).slice(0, 10);
-
-
-        const quiz =
-            document.getElementById("quiz");
-
-
-        quiz.innerHTML = "";
-
-
-        document.getElementById("quizResult")
-            .innerHTML = "";
-
-
-        currentQuestions.forEach(function (q, index) {
-
-            const questionDiv =
-                document.createElement("div");
-
-            questionDiv.className =
-                "question";
-
-
-            const title =
-                document.createElement("h3");
-
-
-            title.textContent =
-                (index + 1) + ". " + q.question;
-
-
-            questionDiv.appendChild(title);
-
-
-            q.options.forEach(function (option, optionIndex) {
-
-                const label =
-                    document.createElement("label");
-
-
-                label.className =
-                    "option";
-
-
-                label.innerHTML =
-                    '<input type="radio" name="question' +
-                    index +
-                    '" value="' +
-                    optionIndex +
-                    '"> ' +
-                    option;
-
-
-                questionDiv.appendChild(label);
-
-            });
-
-
-            quiz.appendChild(questionDiv);
-
-        });
-
-    }
-
-
-    window.submitQuiz = function () {
-
-        let score = 0;
-
-
-        currentQuestions.forEach(function (q, index) {
-
-            const selected =
-                document.querySelector(
-                    'input[name="question' +
-                    index +
-                    '"]:checked'
-                );
-
-
-            if (
-                selected &&
-                Number(selected.value) === q.answer
-            ) {
-
-                score++;
-
-            }
-
-        });
-
-
-        const percentage =
-            Math.round(
-                (score / currentQuestions.length) * 100
+            const checkboxes = document.querySelectorAll(
+                '#progressItems input[type="checkbox"]'
             );
 
+            checkboxes.forEach(function(box) {
 
-        document.getElementById("quizResult")
-            .innerHTML =
+                box.checked = saved[box.dataset.topic] === true;
 
-            '<div class="result">' +
+            });
 
-            'You scored ' +
+        } catch (error) {
 
-            score +
-
-            ' / ' +
-
-            currentQuestions.length +
-
-            ' (' +
-
-            percentage +
-
-            '%).' +
-
-            '<br><br>' +
-
-            'Click "New Question Set" for another set.' +
-
-            '</div>';
-
-    };
-
-
-    window.newQuiz = function () {
-
-        createQuiz();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    };
-
-
-    /* ================= ANSWERS ================= */
-
-    window.toggleAnswer = function (id) {
-
-        const answer =
-            document.getElementById(id);
-
-
-        if (answer) {
-
-            answer.classList.toggle("show");
+            console.log("Unable to load saved progress.");
 
         }
 
-    };
-
-
-    /* ================= FLASHCARDS ================= */
-
-    const flashcards = [
-
-        {
-            question:
-                "What is strategic management?",
-
-            answer:
-                "The process of developing, implementing and evaluating strategies to achieve long-term organizational goals."
-        },
-
-        {
-            question:
-                "What is a vision statement?",
-
-            answer:
-                "A statement describing what an organization hopes to become or achieve in the future."
-        },
-
-        {
-            question:
-                "What is a mission statement?",
-
-            answer:
-                "A statement describing the fundamental purpose of an organization."
-        },
-
-        {
-            question:
-                "What are the three stages of Lewin's change model?",
-
-            answer:
-                "Unfreezing, changing and refreezing."
-        },
-
-        {
-            question:
-                "What is resistance to change?",
-
-            answer:
-                "Opposition or reluctance by individuals or groups to accept or implement a proposed change."
-        },
-
-        {
-            question:
-                "What is quality improvement?",
-
-            answer:
-                "A systematic and continuous process of improving healthcare processes and outcomes."
-        },
-
-        {
-            question:
-                "What is patient safety?",
-
-            answer:
-                "The prevention of avoidable harm associated with healthcare delivery."
-        },
-
-        {
-            question:
-                "What is risk management?",
-
-            answer:
-                "The process of identifying, assessing and controlling potential risks."
-        },
-
-        {
-            question:
-                "What is a budget?",
-
-            answer:
-                "A financial plan that estimates expected income and expenditure over a defined period."
-        },
-
-        {
-            question:
-                "What is evidence-based practice?",
-
-            answer:
-                "Integration of the best available evidence with professional expertise and patient needs and preferences."
-        },
-
-        {
-            question:
-                "What is team building?",
-
-            answer:
-                "The process of developing cooperation, trust, communication and shared responsibility within a team."
-        },
-
-        {
-            question:
-                "What is quality assurance?",
-
-            answer:
-                "Planned and systematic activities intended to ensure that established quality standards are met."
-        }
-
-    ];
-
-
-    let flashIndex = 0;
-
-
-    function displayFlashcard() {
-
-        document.getElementById("flashQuestion")
-            .textContent =
-            flashcards[flashIndex].question;
-
-
-        document.getElementById("flashAnswer")
-            .textContent =
-            flashcards[flashIndex].answer;
-
-
-        document.getElementById("flashAnswer")
-            .classList.remove("show");
-
+        updateProgress();
     }
 
 
-    window.showFlashAnswer = function () {
+    document.addEventListener("DOMContentLoaded", function() {
 
-        document.getElementById("flashAnswer")
-            .classList.add("show");
+        loadProgress();
 
-    };
-
-
-    window.nextFlashcard = function () {
-
-        flashIndex++;
-
-
-        if (flashIndex >= flashcards.length) {
-
-            flashIndex = 0;
-
-        }
-
-
-        displayFlashcard();
-
-    };
-
-
-    displayFlashcard();
-
-    createQuiz();
-
-});
+    });
 
 </script>
 

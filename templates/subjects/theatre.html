@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NURS 446 - Theatre Nursing</title>
+    <title>NURS 446 — Theatre Nursing</title>
 
     <style>
         * {
@@ -12,32 +12,78 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            color: #222;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
         header {
-            background: #7b1e1e;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
             color: white;
-            padding: 25px;
+            padding: 35px 20px;
             text-align: center;
         }
 
         header h1 {
             margin: 0 0 8px;
-            font-size: 30px;
+            font-size: 2.2rem;
         }
 
         header p {
             margin: 0;
-            font-size: 16px;
+            opacity: 0.95;
+            font-size: 1.05rem;
+        }
+
+        .top-buttons {
+            margin-top: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .dashboard-btn {
+            background: white;
+            color: #4f46e5;
+        }
+
+        .mcq-btn {
+            background: #facc15;
+            color: #422006;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.92;
         }
 
         .container {
-            max-width: 1100px;
-            margin: 25px auto;
-            padding: 0 15px;
+            width: min(1150px, 94%);
+            margin: 28px auto 50px;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 22px;
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            color: #4f46e5;
         }
 
         .tabs {
@@ -49,19 +95,17 @@
 
         .tab-button {
             border: none;
-            background: #ddd;
-            padding: 12px 18px;
-            border-radius: 8px;
+            background: white;
+            color: #374151;
+            padding: 12px 16px;
+            border-radius: 9px;
             cursor: pointer;
             font-weight: bold;
-        }
-
-        .tab-button:hover {
-            background: #ccc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
         .tab-button.active {
-            background: #7b1e1e;
+            background: #4f46e5;
             color: white;
         }
 
@@ -73,154 +117,225 @@
             display: block;
         }
 
-        .card {
+        .topic {
             background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 14px;
+            border-radius: 13px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
         }
 
-        .topic-title,
-        .note-title,
-        .question-title {
-            font-weight: bold;
-        }
-
-        .topic-header,
-        .note-header {
-            background: #f1e2e2;
-            padding: 15px;
-            border-radius: 8px;
+        .topic-header {
+            padding: 18px 20px;
+            background: #eef2ff;
             cursor: pointer;
-            font-weight: bold;
-        }
-
-        .topic-header:hover,
-        .note-header:hover {
-            background: #ead2d2;
-        }
-
-        .topic-content,
-        .note-content {
-            display: none;
-            padding: 15px;
-            border-left: 4px solid #7b1e1e;
-            background: #fafafa;
-        }
-
-        .topic-content.show,
-        .note-content.show {
-            display: block;
-        }
-
-        .topic-content h4,
-        .note-content h4 {
-            color: #7b1e1e;
-        }
-
-        ul {
-            line-height: 1.7;
-        }
-
-        .mcq {
-            background: white;
-            padding: 18px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 7px rgba(0,0,0,0.07);
-        }
-
-        .option {
-            display: block;
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .option:hover {
-            background: #f2f2f2;
-        }
-
-        button.action {
-            background: #7b1e1e;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 5px;
-        }
-
-        button.action:hover {
-            background: #5d1515;
-        }
-
-        .result {
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 8px;
-            background: #eee;
-            font-weight: bold;
-        }
-
-        .answer {
-            display: none;
-            margin-top: 10px;
-            padding: 15px;
-            background: #f4f4f4;
-            border-left: 4px solid #7b1e1e;
-            border-radius: 6px;
-        }
-
-        .answer.show {
-            display: block;
-        }
-
-        .flashcard {
-            max-width: 650px;
-            margin: 30px auto;
-            background: white;
-            padding: 35px;
-            text-align: center;
-            border-radius: 15px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-        }
-
-        .flashcard h2 {
-            color: #7b1e1e;
-        }
-
-        .progress-item {
-            background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 7px rgba(0,0,0,0.06);
+            font-weight: bold;
+            color: #3730a3;
         }
 
-        .complete-btn {
-            background: #333;
+        .topic-header span:last-child {
+            font-size: 1.2rem;
+        }
+
+        .topic-body {
+            display: none;
+            padding: 22px;
+        }
+
+        .topic.open .topic-body {
+            display: block;
+        }
+
+        .topic.open .topic-header span:last-child {
+            transform: rotate(180deg);
+        }
+
+        .subtopic {
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .subtopic:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .subtopic h4 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .subtopic ul {
+            padding-left: 22px;
+        }
+
+        .clinical-example {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 13px 16px;
+            margin-top: 12px;
+            border-radius: 7px;
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            padding: 13px 16px;
+            margin-top: 12px;
+            border-radius: 7px;
+        }
+
+        .diagram {
+            background: #f8fafc;
+            border: 1px solid #dbe3ef;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 18px 0;
+        }
+
+        .diagram-title {
+            text-align: center;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .flow-box {
+            background: #eef2ff;
+            border: 2px solid #818cf8;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 145px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #6366f1;
+            font-weight: bold;
+        }
+
+        .zones {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .zone {
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .zone.unrestricted {
+            background: #dcfce7;
+            border: 2px solid #22c55e;
+        }
+
+        .zone.semi {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+        }
+
+        .zone.restricted {
+            background: #fee2e2;
+            border: 2px solid #ef4444;
+        }
+
+        .sterile-field {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .sterile-item {
+            background: white;
+            border: 2px dashed #818cf8;
+            padding: 15px;
+            text-align: center;
+            border-radius: 9px;
+        }
+
+        .count-process {
+            counter-reset: step;
+            display: grid;
+            gap: 12px;
+        }
+
+        .count-step {
+            background: white;
+            border-left: 5px solid #6366f1;
+            padding: 13px 16px;
+            border-radius: 8px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 13px;
+            padding: 22px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .question-card h3 {
+            margin-top: 0;
+            color: #3730a3;
+        }
+
+        .answer-box {
+            margin-top: 12px;
+            background: #f5f3ff;
+            padding: 14px;
+            border-radius: 8px;
+            border-left: 4px solid #7c3aed;
+        }
+
+        .mcq-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 13px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .mcq-link {
+            display: inline-block;
+            background: #4f46e5;
             color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+            text-decoration: none;
+            padding: 13px 20px;
+            border-radius: 9px;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
-        .complete-btn.completed {
-            background: #2e7d32;
+        .progress-container {
+            background: white;
+            border-radius: 13px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
         }
 
         .progress-bar {
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
+            width: 100%;
+            height: 24px;
+            background: #e5e7eb;
+            border-radius: 20px;
             overflow: hidden;
             margin: 15px 0;
         }
@@ -228,32 +343,67 @@
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: #7b1e1e;
+            background: #4f46e5;
             transition: width 0.3s;
         }
 
-        .small-note {
-            color: #666;
-            font-size: 14px;
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
         }
 
-        @media (max-width: 700px) {
+        .stat {
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.6rem;
+            color: #4f46e5;
+        }
+
+        .complete-btn {
+            margin-top: 10px;
+            border: none;
+            background: #10b981;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .complete-btn.completed {
+            background: #6b7280;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 750px) {
             header h1 {
-                font-size: 24px;
+                font-size: 1.7rem;
             }
 
-            .tabs {
-                flex-direction: column;
+            .zones,
+            .sterile-field,
+            .progress-stats {
+                grid-template-columns: 1fr;
             }
 
-            .tab-button {
-                width: 100%;
+            .arrow {
+                transform: rotate(90deg);
             }
 
-            .progress-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
+            .topic-body {
+                padding: 17px;
             }
         }
     </style>
@@ -263,1841 +413,1310 @@
 
 <header>
     <h1>NURS 446 — Theatre Nursing</h1>
-    <p>Study Assistant • Revision • Practice • Progress</p>
+    <p>Perioperative Nursing, Surgical Safety, Anaesthesia and Operating Theatre Practice</p>
+
+    <div class="top-buttons">
+        <a href="{{ url_for('home') }}" class="btn dashboard-btn">← Dashboard</a>
+        <a href="{{ url_for('mcqs', subject='NURS 446') }}" class="btn mcq-btn">
+            Practice NURS 446 MCQs →
+        </a>
+    </div>
 </header>
 
 <div class="container">
 
+    <section class="intro">
+        <h2>Welcome to Theatre Nursing</h2>
+        <p>
+            Theatre nursing focuses on the care of patients before, during and immediately
+            after surgical procedures. A theatre nurse must understand surgical asepsis,
+            patient safety, surgical instruments, positioning, anaesthesia, surgical counts,
+            infection prevention and postoperative complications.
+        </p>
+
+        <p>
+            This study section is organized from <strong>topics → subtopics → clinical
+            applications</strong> so that you can study each area systematically.
+        </p>
+    </section>
+
     <div class="tabs">
-        <button class="tab-button active" data-tab="topics">📚 Topics</button>
-        <button class="tab-button" data-tab="notes">📝 Notes</button>
-        <button class="tab-button" data-tab="mcqs">🧠 MCQs</button>
-        <button class="tab-button" data-tab="short">✍️ Short Answers</button>
-        <button class="tab-button" data-tab="long">📖 Long Answers</button>
-        <button class="tab-button" data-tab="flashcards">🃏 Flashcards</button>
-        <button class="tab-button" data-tab="progress">📊 Progress</button>
+        <button class="tab-button active" onclick="showTab('topics', this)">
+            Topics & Subtopics
+        </button>
+
+        <button class="tab-button" onclick="showTab('mcqs', this)">
+            MCQs
+        </button>
+
+        <button class="tab-button" onclick="showTab('short', this)">
+            Short Answer
+        </button>
+
+        <button class="tab-button" onclick="showTab('long', this)">
+            Long Answer
+        </button>
+
+        <button class="tab-button" onclick="showTab('progress', this)">
+            Progress
+        </button>
     </div>
 
 
     <!-- TOPICS -->
+
     <section id="topics" class="tab-content active">
 
-        <div class="card">
-            <h2>📚 Theatre Nursing Topics</h2>
-            <p class="small-note">
-                Click a topic to expand it and revise the key points.
-            </p>
+        <!-- TOPIC 1 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>1. Introduction to Theatre and Perioperative Nursing</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Meaning of Theatre Nursing</h4>
+
+                    <p>
+                        Theatre nursing is the specialized nursing practice concerned with
+                        preparing and caring for patients undergoing surgical procedures.
+                        It includes preoperative, intraoperative and immediate postoperative
+                        care.
+                    </p>
+
+                    <p>
+                        The theatre nurse protects the patient from avoidable harm while
+                        supporting the surgical team and maintaining a safe, sterile
+                        environment.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Phases of Perioperative Care</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Perioperative Care Pathway
+                        </div>
+
+                        <div class="flow">
+                            <div class="flow-box">Preoperative<br>Assessment</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Intraoperative<br>Care</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Recovery / PACU</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Postoperative<br>Care</div>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li><strong>Preoperative phase:</strong> begins when surgery is planned and continues until transfer to the operating theatre.</li>
+                        <li><strong>Intraoperative phase:</strong> begins when the patient enters the operating theatre and ends when the patient is transferred to recovery.</li>
+                        <li><strong>Postoperative phase:</strong> begins in recovery and continues through the patient's recovery from surgery.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Roles of the Theatre Nurse</h4>
+
+                    <ul>
+                        <li>Prepare the patient physically and psychologically.</li>
+                        <li>Maintain surgical asepsis.</li>
+                        <li>Prepare instruments and equipment.</li>
+                        <li>Assist with patient positioning.</li>
+                        <li>Perform surgical counts.</li>
+                        <li>Monitor patient safety.</li>
+                        <li>Document theatre activities.</li>
+                        <li>Communicate effectively with the multidisciplinary team.</li>
+                    </ul>
+
+                    <div class="clinical-example">
+                        <strong>Clinical example:</strong>
+                        Before an abdominal operation, the theatre nurse confirms the patient's
+                        identity, procedure, consent, allergies, surgical site and required
+                        equipment before the operation begins.
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div id="topicsContainer"></div>
+
+        <!-- TOPIC 2 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>2. Operating Theatre Environment and Zones</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Theatre Environment</h4>
+
+                    <p>
+                        The operating theatre must be designed and managed to minimize
+                        contamination and support safe surgical procedures.
+                    </p>
+
+                    <ul>
+                        <li>Good ventilation and air control.</li>
+                        <li>Appropriate temperature and humidity.</li>
+                        <li>Adequate lighting.</li>
+                        <li>Easy-to-clean surfaces.</li>
+                        <li>Proper waste disposal.</li>
+                        <li>Controlled movement of personnel.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>The Three Theatre Zones</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Operating Theatre Zones
+                        </div>
+
+                        <div class="zones">
+                            <div class="zone unrestricted">
+                                <strong>Unrestricted Zone</strong>
+                                <br><br>
+                                Reception and general areas
+                            </div>
+
+                            <div class="zone semi">
+                                <strong>Semi-restricted Zone</strong>
+                                <br><br>
+                                Clean corridors and preparation areas
+                            </div>
+
+                            <div class="zone restricted">
+                                <strong>Restricted Zone</strong>
+                                <br><br>
+                                Operating rooms and sterile areas
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Movement should progress from less controlled areas toward more
+                        controlled areas. Appropriate theatre clothing is required according
+                        to the zone.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Theatre Traffic Control</h4>
+
+                    <p>
+                        Excessive movement increases the risk of contamination. Theatre staff
+                        should limit unnecessary entry and exit from operating rooms.
+                    </p>
+
+                    <div class="important">
+                        <strong>Important:</strong>
+                        Good theatre discipline means minimizing unnecessary movement,
+                        maintaining appropriate attire and keeping doors closed whenever
+                        possible during surgery.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 3 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>3. Preoperative Assessment and Preparation</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Preoperative Assessment</h4>
+
+                    <p>
+                        Preoperative assessment identifies conditions that may increase
+                        surgical or anaesthetic risk and provides baseline information for
+                        comparison after surgery.
+                    </p>
+
+                    <ul>
+                        <li>Patient identity and demographic information.</li>
+                        <li>Medical and surgical history.</li>
+                        <li>Current medications.</li>
+                        <li>Allergies.</li>
+                        <li>Vital signs.</li>
+                        <li>Airway assessment.</li>
+                        <li>Nutritional and hydration status.</li>
+                        <li>Laboratory and diagnostic results.</li>
+                        <li>Psychological state.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Physical Preparation</h4>
+
+                    <ul>
+                        <li>Ensure required investigations are completed.</li>
+                        <li>Follow prescribed fasting instructions.</li>
+                        <li>Prepare the surgical site according to protocol.</li>
+                        <li>Remove jewellery and other prohibited items.</li>
+                        <li>Ensure appropriate identification.</li>
+                        <li>Administer prescribed preoperative medications.</li>
+                        <li>Ensure documentation is complete.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Psychological Preparation</h4>
+
+                    <p>
+                        Surgery can produce fear and anxiety. The nurse should provide
+                        accurate information, encourage questions and use therapeutic
+                        communication.
+                    </p>
+
+                    <div class="clinical-example">
+                        <strong>Clinical example:</strong>
+                        A patient scheduled for surgery may be worried about anaesthesia.
+                        The nurse listens to the concern, provides appropriate information
+                        within the nursing role and refers questions requiring the surgeon
+                        or anaesthetist to the appropriate professional.
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Preoperative Safety Checklist</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Preoperative Safety Pathway
+                        </div>
+
+                        <div class="flow">
+                            <div class="flow-box">Correct Patient</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Correct Procedure</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Consent Confirmed</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Site Confirmed</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Ready for Theatre</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 4 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>4. Surgical Asepsis and Sterile Technique</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Medical and Surgical Asepsis</h4>
+
+                    <p>
+                        <strong>Medical asepsis</strong> reduces the number and spread of
+                        microorganisms, while <strong>surgical asepsis</strong> aims to
+                        maintain an environment free from microorganisms during invasive
+                        procedures.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Principles of Sterile Technique</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Sterile Field Principles
+                        </div>
+
+                        <div class="sterile-field">
+                            <div class="sterile-item">Sterile touches sterile</div>
+                            <div class="sterile-item">Keep sterile field visible</div>
+                            <div class="sterile-item">Avoid reaching over sterile field</div>
+                            <div class="sterile-item">Keep sterile objects above waist level</div>
+                            <div class="sterile-item">Do not turn away from sterile field</div>
+                            <div class="sterile-item">Replace contaminated items</div>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>Only sterile items should touch sterile items.</li>
+                        <li>Moisture can contaminate a sterile field through strike-through.</li>
+                        <li>The outer edge of a sterile package is considered contaminated.</li>
+                        <li>Sterile personnel must maintain appropriate sterile attire.</li>
+                        <li>Any doubt about sterility should be treated as contamination.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Surgical Scrub, Gowning and Gloving</h4>
+
+                    <p>
+                        Surgical hand preparation reduces microorganisms on the hands
+                        before participation in sterile procedures. Sterile gowns and gloves
+                        are then applied using techniques designed to prevent contamination.
+                    </p>
+
+                    <div class="clinical-example">
+                        <strong>Clinical example:</strong>
+                        If a sterile glove touches a non-sterile surface, it is considered
+                        contaminated and must be replaced according to theatre protocol.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 5 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>5. Surgical Instruments, Equipment and Supplies</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Common Categories of Surgical Instruments</h4>
+
+                    <ul>
+                        <li><strong>Cutting and dissecting:</strong> scalpels and scissors.</li>
+                        <li><strong>Grasping and holding:</strong> forceps and tissue-holding instruments.</li>
+                        <li><strong>Clamping:</strong> haemostatic clamps.</li>
+                        <li><strong>Retracting:</strong> retractors.</li>
+                        <li><strong>Suturing:</strong> needle holders and related instruments.</li>
+                        <li><strong>Suction:</strong> suction devices and tubing.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Preparation of Instruments</h4>
+
+                    <p>
+                        Instruments must be cleaned, inspected, packaged, sterilized or
+                        high-level disinfected as appropriate, stored correctly and checked
+                        before use.
+                    </p>
+
+                    <ul>
+                        <li>Check instrument integrity.</li>
+                        <li>Ensure instruments are clean.</li>
+                        <li>Check packaging and sterility indicators.</li>
+                        <li>Arrange instruments systematically.</li>
+                        <li>Ensure required equipment is functioning.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Instrument Handling</h4>
+
+                    <p>
+                        Safe instrument handling prevents injury, tissue trauma and
+                        contamination. Sharp instruments should be passed carefully and
+                        disposed of in appropriate sharps containers.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 6 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>6. Intraoperative Nursing Care</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Patient Identification and Safety</h4>
+
+                    <p>
+                        The nurse confirms the patient's identity and procedure and supports
+                        the use of standardized surgical safety checks before incision.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Patient Positioning</h4>
+
+                    <p>
+                        Positioning provides surgical access while protecting the patient
+                        from pressure injuries, nerve damage, respiratory compromise and
+                        musculoskeletal injury.
+                    </p>
+
+                    <ul>
+                        <li>Supine position.</li>
+                        <li>Prone position.</li>
+                        <li>Lateral position.</li>
+                        <li>Trendelenburg position.</li>
+                        <li>Lithotomy position.</li>
+                    </ul>
+
+                    <div class="important">
+                        <strong>Important:</strong>
+                        Padding should be used appropriately over pressure points, and the
+                        patient should be secured without compromising circulation or
+                        respiration.
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Intraoperative Monitoring</h4>
+
+                    <ul>
+                        <li>Vital signs.</li>
+                        <li>Oxygenation.</li>
+                        <li>Blood loss.</li>
+                        <li>Fluid balance.</li>
+                        <li>Temperature.</li>
+                        <li>Patient positioning and pressure areas.</li>
+                        <li>Response to anaesthesia.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Role of Scrub and Circulating Nurses</h4>
+
+                    <p>
+                        The <strong>scrub nurse</strong> works within the sterile field and
+                        handles instruments and sterile supplies.
+                    </p>
+
+                    <p>
+                        The <strong>circulating nurse</strong> works outside the sterile field,
+                        coordinates theatre activities, obtains additional supplies,
+                        documents events and supports patient safety.
+                    </p>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Theatre Nursing Roles
+                        </div>
+
+                        <div class="flow">
+                            <div class="flow-box">
+                                Scrub Nurse<br>
+                                Sterile Field
+                            </div>
+
+                            <div class="arrow">↔</div>
+
+                            <div class="flow-box">
+                                Surgical Team
+                            </div>
+
+                            <div class="arrow">↔</div>
+
+                            <div class="flow-box">
+                                Circulating Nurse<br>
+                                Non-sterile Area
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 7 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>7. Surgical Counts and Patient Safety</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Purpose of Surgical Counts</h4>
+
+                    <p>
+                        Surgical counts help prevent retained surgical items. Counts may
+                        include instruments, needles, sponges, swabs and other items according
+                        to institutional policy and the procedure being performed.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Surgical Count Process</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Surgical Count Process
+                        </div>
+
+                        <div class="count-process">
+                            <div class="count-step">
+                                <strong>1.</strong> Initial count before the procedure.
+                            </div>
+
+                            <div class="count-step">
+                                <strong>2.</strong> Count during the procedure as required.
+                            </div>
+
+                            <div class="count-step">
+                                <strong>3.</strong> Closing count before wound closure according to protocol.
+                            </div>
+
+                            <div class="count-step">
+                                <strong>4.</strong> Final count before the patient leaves theatre.
+                            </div>
+
+                            <div class="count-step">
+                                <strong>5.</strong> Document the count and communicate discrepancies immediately.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Management of an Incorrect Count</h4>
+
+                    <p>
+                        If a count does not reconcile, the team must immediately follow
+                        institutional policy. The search should include the sterile field,
+                        instruments, waste, floor and other appropriate locations. Imaging or
+                        other escalation may be required according to the clinical situation
+                        and local policy.
+                    </p>
+
+                    <div class="important">
+                        <strong>Never ignore a count discrepancy.</strong>
+                        It is a patient-safety issue and must be communicated and managed
+                        immediately.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 8 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>8. Anaesthesia and Immediate Recovery / PACU</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Types of Anaesthesia</h4>
+
+                    <ul>
+                        <li><strong>General anaesthesia:</strong> produces a controlled state of unconsciousness.</li>
+                        <li><strong>Regional anaesthesia:</strong> blocks sensation in a larger region of the body.</li>
+                        <li><strong>Local anaesthesia:</strong> produces loss of sensation in a limited area.</li>
+                        <li><strong>Sedation:</strong> produces varying levels of reduced anxiety and awareness.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Responsibilities of the Nurse During Anaesthesia</h4>
+
+                    <ul>
+                        <li>Assist with preparation and monitoring.</li>
+                        <li>Ensure appropriate equipment is available.</li>
+                        <li>Monitor patient observations.</li>
+                        <li>Maintain airway and safety according to role and competence.</li>
+                        <li>Observe for complications.</li>
+                        <li>Document relevant events.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Recovery Room / PACU</h4>
+
+                    <p>
+                        The post-anaesthesia care unit provides close monitoring while the
+                        patient recovers from anaesthesia and surgery.
+                    </p>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Recovery Assessment
+                        </div>
+
+                        <div class="flow">
+                            <div class="flow-box">Airway</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Breathing</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Circulation</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Consciousness</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Pain / Wound</div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Immediate recovery assessment prioritizes airway, breathing,
+                        circulation, neurological status, pain, temperature, surgical site
+                        and other relevant observations.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 9 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>9. Postoperative Care and Complications</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Immediate Postoperative Assessment</h4>
+
+                    <ul>
+                        <li>Airway and respiratory status.</li>
+                        <li>Circulation and vital signs.</li>
+                        <li>Level of consciousness.</li>
+                        <li>Pain.</li>
+                        <li>Wound and dressing.</li>
+                        <li>Drainage and drains.</li>
+                        <li>Urine output.</li>
+                        <li>Fluid balance.</li>
+                        <li>Temperature.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Common Postoperative Complications</h4>
+
+                    <ul>
+                        <li>Airway obstruction.</li>
+                        <li>Hypoxia.</li>
+                        <li>Haemorrhage.</li>
+                        <li>Shock.</li>
+                        <li>Infection.</li>
+                        <li>Deep vein thrombosis.</li>
+                        <li>Pulmonary embolism.</li>
+                        <li>Urinary retention.</li>
+                        <li>Postoperative nausea and vomiting.</li>
+                        <li>Wound dehiscence.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Recognition and Response</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Postoperative Complication Recognition
+                        </div>
+
+                        <div class="flow">
+                            <div class="flow-box">Assess Patient</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Identify Abnormal Finding</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Immediate Intervention</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Notify Appropriate Team</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Reassess & Document</div>
+                        </div>
+                    </div>
+
+                    <div class="clinical-example">
+                        <strong>Clinical example:</strong>
+                        A patient who becomes increasingly breathless after surgery requires
+                        immediate assessment of airway and breathing, vital signs and oxygen
+                        saturation, followed by appropriate escalation according to the
+                        patient's condition and facility protocol.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 10 -->
+
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>10. Infection Prevention, Documentation and Theatre Quality Improvement</span>
+                <span>▼</span>
+            </div>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <h4>Infection Prevention</h4>
+
+                    <ul>
+                        <li>Hand hygiene.</li>
+                        <li>Appropriate personal protective equipment.</li>
+                        <li>Sterile technique.</li>
+                        <li>Safe instrument processing.</li>
+                        <li>Environmental cleaning.</li>
+                        <li>Safe sharps disposal.</li>
+                        <li>Appropriate waste segregation.</li>
+                        <li>Antimicrobial stewardship according to policy.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Theatre Documentation</h4>
+
+                    <p>
+                        Accurate documentation supports continuity of care, patient safety,
+                        accountability and quality improvement.
+                    </p>
+
+                    <ul>
+                        <li>Patient identification.</li>
+                        <li>Procedure performed.</li>
+                        <li>Personnel involved.</li>
+                        <li>Patient positioning.</li>
+                        <li>Counts.</li>
+                        <li>Specimens.</li>
+                        <li>Medications and fluids as applicable.</li>
+                        <li>Patient condition and transfer.</li>
+                        <li>Unexpected events and interventions.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h4>Theatre Quality Improvement</h4>
+
+                    <div class="diagram">
+                        <div class="diagram-title">
+                            📊 Diagram: Theatre Quality Improvement Cycle
+                        </div>
+
+                        <div class="flow">
+                            <div class="flow-box">Identify Problem</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Plan Improvement</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Implement Change</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Measure Results</div>
+                            <div class="arrow">→</div>
+                            <div class="flow-box">Improve Again</div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Quality improvement may address surgical-site infections, cancelled
+                        operations, incorrect counts, delays, documentation problems,
+                        equipment failures or other patient-safety concerns.
+                    </p>
+                </div>
+
+            </div>
+        </div>
 
     </section>
 
 
-    <!-- NOTES -->
-    <section id="notes" class="tab-content">
+    <!-- MCQ -->
 
-        <div class="card">
-            <h2>📝 Revision Notes</h2>
-            <p class="small-note">
-                Click each heading to open the revision notes.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="note-header">
-                1. Surgical Asepsis
-            </div>
-
-            <div class="note-content">
-                <h4>Meaning</h4>
-                <p>
-                    Surgical asepsis refers to practices used to eliminate
-                    microorganisms and maintain a sterile field during procedures.
-                </p>
-
-                <h4>Important principles</h4>
-                <ul>
-                    <li>Sterile objects should only contact sterile objects.</li>
-                    <li>The sterile field should remain within view.</li>
-                    <li>Moisture can contaminate a sterile field.</li>
-                    <li>Sterile technique should be maintained throughout the procedure.</li>
-                    <li>Any item of uncertain sterility should be considered contaminated.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="note-header">
-                2. Preoperative Nursing Care
-            </div>
-
-            <div class="note-content">
-                <h4>Main goals</h4>
-
-                <ul>
-                    <li>Assess the patient's physical condition.</li>
-                    <li>Confirm patient identity and planned procedure.</li>
-                    <li>Review allergies and relevant history.</li>
-                    <li>Ensure required investigations are available.</li>
-                    <li>Provide psychological preparation.</li>
-                    <li>Confirm appropriate consent according to policy.</li>
-                    <li>Prepare the patient according to the surgical procedure and local protocol.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="note-header">
-                3. Surgical Counts
-            </div>
-
-            <div class="note-content">
-                <h4>What may be counted?</h4>
-
-                <ul>
-                    <li>Sponges</li>
-                    <li>Swabs</li>
-                    <li>Needles</li>
-                    <li>Instruments</li>
-                    <li>Other countable items according to theatre policy</li>
-                </ul>
-
-                <p>
-                    Counts help prevent retained surgical items and are performed
-                    according to institutional policy and the procedure being performed.
-                </p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="note-header">
-                4. Patient Positioning
-            </div>
-
-            <div class="note-content">
-                <p>
-                    Proper positioning provides surgical access while helping to
-                    protect the patient from pressure injuries, nerve injury,
-                    respiratory compromise and other complications.
-                </p>
-
-                <h4>Examples</h4>
-
-                <ul>
-                    <li>Supine position</li>
-                    <li>Prone position</li>
-                    <li>Lateral position</li>
-                    <li>Lithotomy position</li>
-                    <li>Trendelenburg position</li>
-                    <li>Reverse Trendelenburg position</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="note-header">
-                5. Postoperative Handover
-            </div>
-
-            <div class="note-content">
-                <p>
-                    The theatre nurse should provide a clear handover to the
-                    receiving team after surgery.
-                </p>
-
-                <ul>
-                    <li>Patient identity and procedure performed</li>
-                    <li>Relevant intraoperative events</li>
-                    <li>Estimated blood loss where applicable</li>
-                    <li>Specimens collected</li>
-                    <li>Drains and dressings</li>
-                    <li>Medications or treatments given</li>
-                    <li>Important postoperative concerns</li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- MCQs -->
     <section id="mcqs" class="tab-content">
 
-        <div class="card">
-            <h2>🧠 Theatre Nursing MCQs</h2>
+        <div class="mcq-panel">
+            <h2>NURS 446 Practice MCQs</h2>
+
             <p>
-                A random set of 10 questions will appear each time.
-                Submit your answers to see your score.
+                Test your knowledge of theatre nursing, perioperative care, sterile
+                technique, surgical safety, anaesthesia and postoperative care.
             </p>
 
-            <button class="action" onclick="createQuiz()">
-                🔄 New Question Set
-            </button>
+            <a class="mcq-link" href="{{ url_for('mcqs', subject='NURS 446') }}">
+                Start NURS 446 MCQs →
+            </a>
         </div>
-
-        <div id="quizContainer"></div>
-
-        <button class="action" onclick="submitQuiz()">
-            ✅ Submit Quiz
-        </button>
-
-        <div id="quizResult"></div>
 
     </section>
 
 
-    <!-- SHORT ANSWERS -->
+    <!-- SHORT ANSWER -->
+
     <section id="short" class="tab-content">
 
-        <div class="card">
-            <h2>✍️ Short-Answer Questions</h2>
-            <p>Click "Show Answer" after attempting each question.</p>
+        <div class="question-card">
+            <h3>1. Define theatre nursing.</h3>
+            <div class="answer-box">
+                Theatre nursing is specialized nursing care provided to patients before,
+                during and immediately after surgical procedures.
+            </div>
         </div>
 
-        <div id="shortContainer"></div>
+        <div class="question-card">
+            <h3>2. State the three phases of perioperative care.</h3>
+            <div class="answer-box">
+                Preoperative, intraoperative and postoperative phases.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>3. State five responsibilities of a theatre nurse.</h3>
+            <div class="answer-box">
+                Patient preparation, maintenance of asepsis, instrument preparation,
+                surgical counts, patient positioning, monitoring, documentation and
+                communication with the surgical team.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>4. What is surgical asepsis?</h3>
+            <div class="answer-box">
+                Surgical asepsis is a set of practices used to prevent contamination by
+                microorganisms during invasive procedures and maintain a sterile field.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>5. State the three zones of an operating theatre.</h3>
+            <div class="answer-box">
+                Unrestricted, semi-restricted and restricted zones.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>6. Why are surgical counts performed?</h3>
+            <div class="answer-box">
+                Surgical counts are performed to prevent retained surgical items and promote
+                patient safety.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>7. Differentiate between a scrub nurse and a circulating nurse.</h3>
+            <div class="answer-box">
+                The scrub nurse works within the sterile field and handles sterile
+                instruments and supplies. The circulating nurse works outside the sterile
+                field and coordinates activities, documentation, supplies and patient safety.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>8. State four common postoperative complications.</h3>
+            <div class="answer-box">
+                Haemorrhage, infection, respiratory complications and deep vein thrombosis.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>9. State four areas assessed immediately after anaesthesia.</h3>
+            <div class="answer-box">
+                Airway, breathing, circulation and level of consciousness. Pain, wound
+                condition and temperature are also assessed.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>10. State five principles of sterile technique.</h3>
+            <div class="answer-box">
+                Sterile touches sterile, maintain visibility of the sterile field, avoid
+                reaching over the field, keep sterile items appropriately positioned and
+                treat doubtful or contaminated items as contaminated.
+            </div>
+        </div>
 
     </section>
 
 
-    <!-- LONG ANSWERS -->
+    <!-- LONG ANSWER -->
+
     <section id="long" class="tab-content">
 
-        <div class="card">
-            <h2>📖 Long-Answer Questions</h2>
-            <p>
-                Try answering the question yourself before opening the model answer.
-            </p>
+        <div class="question-card">
+            <h3>1. Discuss the role of a theatre nurse in the perioperative care of a patient.</h3>
+
+            <div class="answer-box">
+                <strong>Introduction:</strong>
+                The theatre nurse plays an important role in ensuring safe, coordinated and
+                patient-centred surgical care.
+
+                <br><br>
+
+                <strong>Preoperative role:</strong>
+                The nurse confirms patient identity, reviews relevant information, checks
+                documentation and consent, assesses the patient's condition, prepares the
+                patient physically and psychologically, and ensures required equipment and
+                supplies are available.
+
+                <br><br>
+
+                <strong>Intraoperative role:</strong>
+                The nurse maintains surgical asepsis, assists with positioning, performs
+                surgical counts, handles instruments and supplies appropriately, monitors
+                patient safety and communicates with the surgical team.
+
+                <br><br>
+
+                <strong>Postoperative role:</strong>
+                The nurse supports safe transfer to recovery, communicates relevant patient
+                information, monitors the patient's immediate condition and documents care.
+
+                <br><br>
+
+                <strong>Conclusion:</strong>
+                Effective theatre nursing reduces preventable complications and promotes
+                safe surgical outcomes.
+            </div>
         </div>
 
-        <div id="longContainer"></div>
 
-    </section>
+        <div class="question-card">
+            <h3>2. Explain the principles of surgical asepsis and their importance in theatre nursing.</h3>
+
+            <div class="answer-box">
+                Surgical asepsis aims to prevent contamination during invasive procedures.
+                Important principles include appropriate hand preparation, sterile attire,
+                correct handling of sterile equipment, maintenance of the sterile field,
+                controlled movement and replacement of contaminated items.
+
+                <br><br>
+
+                These principles are important because contamination can introduce
+                microorganisms into surgical wounds and increase the risk of healthcare-
+                associated infections and poor surgical outcomes.
+
+                <br><br>
+
+                The theatre nurse therefore continuously observes the sterile field and
+                takes immediate corrective action when contamination occurs.
+            </div>
+        </div>
 
 
-    <!-- FLASHCARDS -->
-    <section id="flashcards" class="tab-content">
+        <div class="question-card">
+            <h3>3. Discuss the management of a patient during the intraoperative period.</h3>
 
-        <div class="flashcard">
-            <h2 id="flashQuestion">Loading...</h2>
+            <div class="answer-box">
+                Intraoperative management includes confirming patient identity and procedure,
+                ensuring appropriate positioning, maintaining asepsis, monitoring vital
+                signs and physiological status, preventing pressure and nerve injuries,
+                maintaining accurate surgical counts and supporting communication among the
+                surgical team.
 
-            <div id="flashAnswer" class="answer"></div>
+                <br><br>
 
-            <button class="action" onclick="showFlashAnswer()">
-                👁️ Show Answer
-            </button>
+                The nurse also ensures that instruments and equipment are available and
+                functioning, assists with specimen management and maintains accurate
+                documentation.
 
-            <button class="action" onclick="nextFlashcard()">
-                ➡️ Next Card
-            </button>
+                <br><br>
 
-            <p id="flashCounter"></p>
+                Patient safety remains the central priority throughout the operation.
+            </div>
+        </div>
+
+
+        <div class="question-card">
+            <h3>4. Explain the importance of surgical counts and describe the actions taken when a count is incorrect.</h3>
+
+            <div class="answer-box">
+                Surgical counts are a major patient-safety measure designed to prevent
+                retained instruments, needles, sponges or other surgical items.
+
+                <br><br>
+
+                Counts are performed at designated stages according to institutional policy.
+                If a discrepancy occurs, the team should be informed immediately. A systematic
+                search should be performed according to local policy, including the sterile
+                field and other relevant locations. The discrepancy and actions taken should
+                be documented and escalated appropriately.
+
+                <br><br>
+
+                The count must never simply be ignored because an unresolved discrepancy may
+                expose the patient to serious harm.
+            </div>
+        </div>
+
+
+        <div class="question-card">
+            <h3>5. Discuss postoperative complications and the role of the nurse in their prevention and early recognition.</h3>
+
+            <div class="answer-box">
+                Common postoperative complications include haemorrhage, respiratory
+                compromise, infection, shock, thromboembolic events, urinary retention,
+                nausea and vomiting, and wound complications.
+
+                <br><br>
+
+                The nurse prevents complications through appropriate monitoring, infection
+                prevention, pain management, safe positioning, early mobilization where
+                appropriate, fluid management and adherence to prescribed treatment.
+
+                <br><br>
+
+                Early recognition involves monitoring vital signs, respiratory status,
+                consciousness, wound condition, drainage, urine output, pain and other
+                relevant findings.
+
+                <br><br>
+
+                Any deterioration should be assessed promptly, appropriate interventions
+                initiated within the nurse's scope of practice, the responsible clinical
+                team notified and the patient's response documented.
+            </div>
         </div>
 
     </section>
 
 
     <!-- PROGRESS -->
+
     <section id="progress" class="tab-content">
 
-        <div class="card">
-            <h2>📊 Theatre Nursing Progress</h2>
+        <div class="progress-container">
 
-            <p id="progressText">
-                0 of 15 topics completed
+            <h2>My NURS 446 Progress</h2>
+
+            <p>
+                Mark each topic as completed after you have studied its subtopics.
             </p>
 
             <div class="progress-bar">
                 <div id="progressFill" class="progress-fill"></div>
             </div>
-        </div>
 
-        <div id="progressContainer"></div>
+            <p id="progressText">0% completed</p>
+
+            <div class="progress-stats">
+
+                <div class="stat">
+                    <strong id="completedCount">0</strong>
+                    Completed
+                </div>
+
+                <div class="stat">
+                    <strong id="totalCount">10</strong>
+                    Total Topics
+                </div>
+
+                <div class="stat">
+                    <strong id="remainingCount">10</strong>
+                    Remaining
+                </div>
+
+            </div>
+
+            <div id="topicProgressList" style="margin-top:25px;"></div>
+
+        </div>
 
     </section>
 
 </div>
 
 
+<footer>
+    NURS 446 — Theatre Nursing Study Assistant
+</footer>
+
+
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+    const STORAGE_KEY = "theatre_progress";
 
-    /* =========================
-       TOPICS
-    ========================= */
+    function showTab(tabId, button) {
 
-    const topics = [
-        {
-            title: "1. Introduction to Theatre Nursing",
-            content: `
-                <h4>Key areas</h4>
-                <ul>
-                    <li>Role of the perioperative nurse.</li>
-                    <li>Phases of surgical care.</li>
-                    <li>Patient safety in the operating theatre.</li>
-                    <li>Teamwork and communication.</li>
-                    <li>Infection prevention.</li>
-                </ul>
-            `
-        },
-        {
-            title: "2. Operating Theatre Environment and Zones",
-            content: `
-                <h4>Theatre zones</h4>
-                <ul>
-                    <li>Unrestricted areas.</li>
-                    <li>Semi-restricted areas.</li>
-                    <li>Restricted areas.</li>
-                </ul>
+        const contents = document.querySelectorAll(".tab-content");
 
-                <p>
-                    Movement and attire should follow the infection-prevention
-                    policies of the healthcare facility.
-                </p>
-            `
-        },
-        {
-            title: "3. Theatre Team and Roles",
-            content: `
-                <h4>Members may include</h4>
-                <ul>
-                    <li>Surgeon.</li>
-                    <li>Anesthesia provider.</li>
-                    <li>Scrub nurse or scrub practitioner.</li>
-                    <li>Circulating nurse.</li>
-                    <li>Surgical technologists and other support personnel.</li>
-                </ul>
-
-                <p>
-                    Effective communication and clearly defined responsibilities
-                    contribute to patient safety.
-                </p>
-            `
-        },
-        {
-            title: "4. Surgical Asepsis and Sterile Technique",
-            content: `
-                <h4>Important principles</h4>
-                <ul>
-                    <li>Maintain the sterile field.</li>
-                    <li>Recognize contamination immediately.</li>
-                    <li>Use appropriate sterile barriers.</li>
-                    <li>Prevent unnecessary movement around sterile areas.</li>
-                    <li>Follow facility infection-prevention procedures.</li>
-                </ul>
-            `
-        },
-        {
-            title: "5. Hand Scrubbing, Gowning and Gloving",
-            content: `
-                <h4>Purpose</h4>
-                <p>
-                    Surgical hand preparation reduces microorganisms on the hands
-                    and helps maintain asepsis during surgery.
-                </p>
-
-                <ul>
-                    <li>Follow the approved hand-preparation method.</li>
-                    <li>Use appropriate sterile gowning technique.</li>
-                    <li>Apply sterile gloves without contamination.</li>
-                    <li>Replace contaminated gloves according to policy.</li>
-                </ul>
-            `
-        },
-        {
-            title: "6. Preparation of Patient for Surgery",
-            content: `
-                <h4>Preparation includes</h4>
-                <ul>
-                    <li>Confirm identity.</li>
-                    <li>Confirm procedure and operative site.</li>
-                    <li>Review allergies.</li>
-                    <li>Review relevant investigations.</li>
-                    <li>Ensure appropriate consent requirements are met.</li>
-                    <li>Provide psychological support.</li>
-                    <li>Prepare the patient according to the procedure and policy.</li>
-                </ul>
-            `
-        },
-        {
-            title: "7. Preoperative Assessment and Checklist",
-            content: `
-                <h4>Assessment areas</h4>
-                <ul>
-                    <li>Medical and surgical history.</li>
-                    <li>Allergies.</li>
-                    <li>Medications.</li>
-                    <li>Vital signs and general condition.</li>
-                    <li>Relevant laboratory and diagnostic results.</li>
-                    <li>Airway and anesthesia considerations.</li>
-                </ul>
-
-                <p>
-                    Surgical safety checklists help teams verify critical
-                    information before, during and after procedures.
-                </p>
-            `
-        },
-        {
-            title: "8. Positioning of Surgical Patients",
-            content: `
-                <h4>Common positions</h4>
-                <ul>
-                    <li>Supine.</li>
-                    <li>Prone.</li>
-                    <li>Lateral.</li>
-                    <li>Lithotomy.</li>
-                    <li>Trendelenburg.</li>
-                    <li>Reverse Trendelenburg.</li>
-                </ul>
-
-                <p>
-                    Positioning should provide surgical access while protecting
-                    the patient's skin, nerves, circulation and respiratory function.
-                </p>
-            `
-        },
-        {
-            title: "9. Surgical Instruments and Equipment",
-            content: `
-                <h4>Examples</h4>
-                <ul>
-                    <li>Scalpels.</li>
-                    <li>Scissors.</li>
-                    <li>Forceps.</li>
-                    <li>Retractors.</li>
-                    <li>Needle holders.</li>
-                    <li>Suction equipment.</li>
-                    <li>Electrosurgical equipment.</li>
-                </ul>
-
-                <p>
-                    Nurses should know the purpose, safe handling and appropriate
-                    care of equipment used in their theatre.
-                </p>
-            `
-        },
-        {
-            title: "10. Instrument and Sponge Counts",
-            content: `
-                <h4>Purpose</h4>
-                <p>
-                    Surgical counts help prevent retained surgical items.
-                </p>
-
-                <ul>
-                    <li>Counts should follow institutional policy.</li>
-                    <li>Items are counted systematically.</li>
-                    <li>Discrepancies must be communicated immediately.</li>
-                    <li>Required actions should follow the facility's procedure.</li>
-                </ul>
-            `
-        },
-        {
-            title: "11. Anesthesia and Recovery Considerations",
-            content: `
-                <h4>Nursing considerations</h4>
-                <ul>
-                    <li>Understand the type of anesthesia being used.</li>
-                    <li>Monitor patient safety throughout the procedure.</li>
-                    <li>Communicate significant changes promptly.</li>
-                    <li>Prepare for transfer to the recovery area.</li>
-                    <li>Provide accurate postoperative handover.</li>
-                </ul>
-            `
-        },
-        {
-            title: "12. Intraoperative Nursing Care",
-            content: `
-                <h4>Major responsibilities</h4>
-                <ul>
-                    <li>Maintain aseptic technique.</li>
-                    <li>Assist with positioning.</li>
-                    <li>Maintain accurate counts.</li>
-                    <li>Anticipate the needs of the surgical team.</li>
-                    <li>Document relevant events.</li>
-                    <li>Promote patient safety.</li>
-                </ul>
-            `
-        },
-        {
-            title: "13. Specimen Handling and Documentation",
-            content: `
-                <h4>Important points</h4>
-                <ul>
-                    <li>Correctly identify the specimen.</li>
-                    <li>Use the appropriate container.</li>
-                    <li>Label according to policy.</li>
-                    <li>Ensure correct documentation.</li>
-                    <li>Send the specimen using the approved process.</li>
-                </ul>
-            `
-        },
-        {
-            title: "14. Postoperative Transfer and Handover",
-            content: `
-                <h4>Handover should include</h4>
-                <ul>
-                    <li>Patient identification.</li>
-                    <li>Procedure performed.</li>
-                    <li>Anesthesia information.</li>
-                    <li>Important intraoperative events.</li>
-                    <li>Blood loss where applicable.</li>
-                    <li>Specimens.</li>
-                    <li>Drains, dressings and other devices.</li>
-                    <li>Current patient concerns.</li>
-                </ul>
-            `
-        },
-        {
-            title: "15. Theatre Safety, Infection Prevention and Waste Management",
-            content: `
-                <h4>Safety areas</h4>
-                <ul>
-                    <li>Sharps safety.</li>
-                    <li>Fire prevention.</li>
-                    <li>Electrical equipment safety.</li>
-                    <li>Safe handling of specimens.</li>
-                    <li>Correct segregation of healthcare waste.</li>
-                    <li>Prevention of surgical site infection.</li>
-                    <li>Appropriate use of personal protective equipment.</li>
-                </ul>
-            `
-        }
-    ];
-
-
-    const topicsContainer = document.getElementById("topicsContainer");
-
-    topics.forEach((topic, index) => {
-
-        const card = document.createElement("div");
-        card.className = "card";
-
-        card.innerHTML = `
-            <div class="topic-header">
-                ${topic.title}
-            </div>
-
-            <div class="topic-content">
-                ${topic.content}
-            </div>
-        `;
-
-        topicsContainer.appendChild(card);
-    });
-
-
-    document.querySelectorAll(".topic-header").forEach(header => {
-
-        header.addEventListener("click", function () {
-
-            const content = this.nextElementSibling;
-
-            content.classList.toggle("show");
-
+        contents.forEach(function(content) {
+            content.classList.remove("active");
         });
 
-    });
+        const buttons = document.querySelectorAll(".tab-button");
 
-
-    /* =========================
-       NOTES
-    ========================= */
-
-    document.querySelectorAll(".note-header").forEach(header => {
-
-        header.addEventListener("click", function () {
-
-            const content = this.nextElementSibling;
-
-            content.classList.toggle("show");
-
+        buttons.forEach(function(btn) {
+            btn.classList.remove("active");
         });
 
-    });
+        document.getElementById(tabId).classList.add("active");
 
-
-    /* =========================
-       TABS
-    ========================= */
-
-    document.querySelectorAll(".tab-button").forEach(button => {
-
-        button.addEventListener("click", function () {
-
-            const tabName = this.dataset.tab;
-
-            document.querySelectorAll(".tab-button").forEach(btn => {
-                btn.classList.remove("active");
-            });
-
-            document.querySelectorAll(".tab-content").forEach(content => {
-                content.classList.remove("active");
-            });
-
-            this.classList.add("active");
-
-            document.getElementById(tabName).classList.add("active");
-
-        });
-
-    });
-
-
-    /* =========================
-       MCQ BANK
-    ========================= */
-
-    const questions = [
-
-        {
-            q: "What is the main purpose of surgical asepsis?",
-            options: [
-                "To prevent contamination by microorganisms",
-                "To increase blood pressure",
-                "To reduce patient anxiety only",
-                "To increase operating time"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which theatre team member primarily maintains the sterile field?",
-            options: [
-                "Scrub nurse",
-                "Receptionist",
-                "Ward clerk",
-                "Hospital accountant"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which nurse commonly coordinates activities outside the sterile field?",
-            options: [
-                "Circulating nurse",
-                "Patient attendant",
-                "Pharmacist",
-                "Dietitian"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which item is commonly included in surgical counts?",
-            options: [
-                "Sponges",
-                "Patient's shoes",
-                "Food trays",
-                "Bed sheets from the ward"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Why are surgical counts performed?",
-            options: [
-                "To help prevent retained surgical items",
-                "To measure patient height",
-                "To determine blood group",
-                "To calculate body mass index"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which of the following is a common surgical patient position?",
-            options: [
-                "Supine",
-                "Standing",
-                "Walking",
-                "Sitting on the floor"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is an important concern when positioning a surgical patient?",
-            options: [
-                "Preventing pressure and nerve injury",
-                "Increasing room temperature",
-                "Increasing surgical blood loss",
-                "Reducing documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which instrument is commonly used to cut tissue?",
-            options: [
-                "Scalpel",
-                "Retractor",
-                "Sponge",
-                "Kidney dish"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which instrument is commonly used to grasp tissue?",
-            options: [
-                "Forceps",
-                "Scalpel",
-                "Suction tubing",
-                "Retractor only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should happen if sterility of an item is uncertain?",
-            options: [
-                "It should be considered contaminated",
-                "It should automatically be considered sterile",
-                "It should be ignored",
-                "It should be hidden"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an important preoperative nursing responsibility?",
-            options: [
-                "Confirming patient identity",
-                "Changing the surgical diagnosis",
-                "Prescribing antibiotics independently",
-                "Performing surgery"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which information is important to check before surgery?",
-            options: [
-                "Allergies",
-                "Favorite television programme",
-                "Preferred music",
-                "Shoe brand"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is one purpose of a surgical safety checklist?",
-            options: [
-                "To verify critical patient and procedure information",
-                "To replace all nursing documentation",
-                "To determine staff salaries",
-                "To select hospital uniforms"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should be done with a specimen obtained during surgery?",
-            options: [
-                "Identify, label and handle it according to policy",
-                "Leave it on the theatre floor",
-                "Send it without identification",
-                "Discard it immediately"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is an important principle of specimen handling?",
-            options: [
-                "Correct identification",
-                "Delayed labeling",
-                "Unclear documentation",
-                "Mixing specimens"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action helps reduce surgical site infection?",
-            options: [
-                "Maintaining appropriate aseptic technique",
-                "Reusing contaminated equipment",
-                "Ignoring hand hygiene",
-                "Leaving sterile supplies open unnecessarily"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should a nurse do if a surgical count is incorrect?",
-            options: [
-                "Report the discrepancy immediately and follow theatre policy",
-                "Ignore it",
-                "Leave the theatre",
-                "Record a correct count without checking"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is a major purpose of postoperative handover?",
-            options: [
-                "To communicate important patient information to the receiving team",
-                "To end all documentation",
-                "To replace patient monitoring",
-                "To determine staff attendance"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which of the following is a member of the surgical team?",
-            options: [
-                "Anesthesia provider",
-                "Hospital accountant only",
-                "Kitchen supervisor",
-                "Security officer only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which practice supports sharps safety?",
-            options: [
-                "Following approved procedures for handling and disposal",
-                "Leaving needles on the operating table",
-                "Passing sharps carelessly",
-                "Recapping needles using unsafe techniques"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which position places the patient on the back?",
-            options: [
-                "Supine",
-                "Prone",
-                "Lateral",
-                "Lithotomy"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which position places the patient face down?",
-            options: [
-                "Prone",
-                "Supine",
-                "Sitting",
-                "Fowler's"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which position is commonly associated with procedures involving the perineal region?",
-            options: [
-                "Lithotomy",
-                "Prone",
-                "Supine only",
-                "Reverse Trendelenburg only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is one purpose of a sterile gown?",
-            options: [
-                "To provide a barrier that supports aseptic practice",
-                "To replace hand hygiene",
-                "To eliminate all documentation",
-                "To increase patient temperature"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is the role of the circulating nurse?",
-            options: [
-                "Coordinate activities and maintain patient safety outside the sterile field",
-                "Perform the surgery independently",
-                "Diagnose the patient",
-                "Administer all medications without authorization"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action demonstrates good theatre communication?",
-            options: [
-                "Clearly communicating important changes and concerns",
-                "Ignoring team members",
-                "Avoiding documentation",
-                "Withholding critical information"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Why is correct patient positioning important?",
-            options: [
-                "It provides surgical access while reducing preventable injury",
-                "It eliminates the need for monitoring",
-                "It replaces anesthesia",
-                "It eliminates infection risk"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which item can contribute to a sterile field being contaminated?",
-            options: [
-                "Contact with a non-sterile object",
-                "Correct sterile handling",
-                "Proper packaging",
-                "Appropriate hand preparation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should be done before using theatre equipment?",
-            options: [
-                "Ensure it is appropriate, functional and used according to policy",
-                "Use it without checking",
-                "Ignore defects",
-                "Remove safety features"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an example of intraoperative nursing care?",
-            options: [
-                "Maintaining asepsis and monitoring patient safety",
-                "Writing the patient's discharge summary only",
-                "Preparing hospital payroll",
-                "Managing hospital finances"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which of the following may be included in postoperative handover?",
-            options: [
-                "Procedure performed and important intraoperative events",
-                "Staff members' personal problems",
-                "Hospital cafeteria menu",
-                "Unrelated patient information"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is the purpose of surgical hand preparation?",
-            options: [
-                "To reduce microorganisms on the hands",
-                "To sterilize the operating room",
-                "To replace sterile gloves",
-                "To clean surgical instruments"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which factor can increase the risk of pressure injury during surgery?",
-            options: [
-                "Prolonged pressure on vulnerable areas",
-                "Correct positioning",
-                "Appropriate padding",
-                "Regular assessment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Why should the surgical team maintain accurate documentation?",
-            options: [
-                "For continuity of care, communication and patient safety",
-                "To make the operation longer",
-                "To replace communication",
-                "To avoid accountability"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which item should be appropriately disposed of after use?",
-            options: [
-                "Sharps according to the approved waste process",
-                "Needles on the floor",
-                "Used blades in an open tray",
-                "Contaminated waste in ordinary areas"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is an important principle of infection prevention in theatre?",
-            options: [
-                "Consistent adherence to infection-prevention practices",
-                "Ignoring contamination",
-                "Reusing single-use items improperly",
-                "Skipping hand hygiene"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should happen when contamination of a sterile item is identified?",
-            options: [
-                "It should be addressed immediately according to sterile technique",
-                "It should be ignored",
-                "It should be hidden",
-                "It should automatically be considered safe"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which of the following is an example of surgical equipment?",
-            options: [
-                "Suction equipment",
-                "School desk",
-                "Kitchen blender",
-                "Office printer"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is one purpose of patient identification before surgery?",
-            options: [
-                "To reduce wrong-patient errors",
-                "To determine staff salaries",
-                "To select theatre curtains",
-                "To replace consent"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which information is particularly important before anesthesia?",
-            options: [
-                "Relevant medical history and allergies",
-                "Favorite colour",
-                "Preferred television programme",
-                "Occupation of a neighbour"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is one role of the scrub nurse?",
-            options: [
-                "Maintain the sterile field and assist with sterile instruments",
-                "Manage hospital finances",
-                "Prepare patient meals",
-                "Perform all postoperative ward rounds"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action helps maintain a sterile field?",
-            options: [
-                "Avoiding unnecessary contamination",
-                "Touching sterile supplies with contaminated gloves",
-                "Allowing unnecessary movement",
-                "Using visibly contaminated equipment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Why is specimen labeling important?",
-            options: [
-                "To ensure the specimen is correctly identified and processed",
-                "To make the specimen heavier",
-                "To reduce documentation",
-                "To replace laboratory procedures"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should the theatre nurse do with important intraoperative changes?",
-            options: [
-                "Communicate them promptly to the appropriate team members",
-                "Ignore them",
-                "Record them months later",
-                "Hide them from the team"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an important component of theatre safety?",
-            options: [
-                "Fire prevention and safe equipment use",
-                "Ignoring electrical hazards",
-                "Leaving spills unattended",
-                "Unsafe handling of oxygen"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is the purpose of postoperative recovery monitoring?",
-            options: [
-                "To identify and manage problems during recovery",
-                "To eliminate all nursing observations",
-                "To avoid communication",
-                "To replace surgery"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action supports safe transfer of a surgical patient?",
-            options: [
-                "Giving an accurate handover to the receiving team",
-                "Transferring without identification",
-                "Ignoring drains and dressings",
-                "Withholding important information"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should a nurse do when an instrument becomes contaminated?",
-            options: [
-                "Address the contamination according to sterile technique and policy",
-                "Continue using it without concern",
-                "Hide it",
-                "Place it back with sterile instruments"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is a goal of perioperative nursing?",
-            options: [
-                "Promote patient safety throughout the surgical experience",
-                "Increase surgical complications",
-                "Avoid communication",
-                "Eliminate documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an example of a restricted theatre area?",
-            options: [
-                "An area requiring controlled access according to theatre policy",
-                "Public hospital entrance",
-                "Hospital cafeteria",
-                "General parking area"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Why is communication important in the operating theatre?",
-            options: [
-                "It supports teamwork and patient safety",
-                "It replaces asepsis",
-                "It eliminates the need for assessment",
-                "It makes documentation unnecessary"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which of the following can be a postoperative concern requiring communication?",
-            options: [
-                "Unexpected intraoperative events",
-                "The colour of theatre walls",
-                "Staff lunch choices",
-                "Hospital parking fees"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which principle applies to sterile objects?",
-            options: [
-                "They should only contact other sterile objects",
-                "They can contact any surface",
-                "They do not require monitoring",
-                "They remain sterile regardless of handling"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is one reason for using a surgical safety checklist?",
-            options: [
-                "To improve verification and communication among the team",
-                "To replace the surgical procedure",
-                "To eliminate the need for nurses",
-                "To determine staff salaries"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should happen to a surgical specimen after collection?",
-            options: [
-                "It should be handled and transported according to approved policy",
-                "It should be left unattended",
-                "It should be mixed with other specimens",
-                "It should be discarded automatically"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action helps prevent healthcare-associated infection?",
-            options: [
-                "Appropriate hand hygiene and aseptic technique",
-                "Skipping hand hygiene",
-                "Reusing contaminated gloves",
-                "Ignoring environmental cleaning"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should the nurse assess when positioning a patient?",
-            options: [
-                "Pressure areas and protection of vulnerable body structures",
-                "Only the patient's hair style",
-                "Only the patient's shoes",
-                "Only the operating room lights"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which item is commonly used to retract tissue?",
-            options: [
-                "Retractor",
-                "Scalpel",
-                "Sponge",
-                "Needle"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which item is commonly used to hold a suture needle?",
-            options: [
-                "Needle holder",
-                "Retractor",
-                "Suction catheter",
-                "Kidney dish"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is the main purpose of a circulating nurse's documentation?",
-            options: [
-                "To maintain an accurate record of relevant perioperative events",
-                "To replace all patient assessment",
-                "To record unrelated information",
-                "To avoid communication"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action demonstrates safe theatre practice?",
-            options: [
-                "Following established policies and procedures",
-                "Ignoring safety rules",
-                "Using damaged equipment",
-                "Leaving sharps exposed"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is a major responsibility of the perioperative nurse?",
-            options: [
-                "Advocating for patient safety",
-                "Ignoring patient concerns",
-                "Performing surgery independently",
-                "Making diagnoses without authorization"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which factor should be considered when preparing a patient for surgery?",
-            options: [
-                "Psychological readiness",
-                "Favourite football team",
-                "Neighbour's occupation",
-                "Preferred television channel"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What should happen after the operation before transferring the patient?",
-            options: [
-                "The patient's condition and required information should be communicated to the receiving team",
-                "All documentation should be destroyed",
-                "Important events should be omitted",
-                "The patient should be transferred without identification"
-            ],
-            answer: 0
+        if (button) {
+            button.classList.add("active");
         }
 
-    ];
-
-
-    let currentQuestions = [];
-
-
-    function shuffle(array) {
-
-        const arr = [...array];
-
-        for (let i = arr.length - 1; i > 0; i--) {
-
-            const j = Math.floor(Math.random() * (i + 1));
-
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-
+        if (tabId === "progress") {
+            updateProgress();
         }
-
-        return arr;
     }
 
 
-    window.createQuiz = function () {
+    function toggleTopic(header) {
 
-        currentQuestions = shuffle(questions).slice(0, 10);
+        const topic = header.parentElement;
 
-        const container = document.getElementById("quizContainer");
+        topic.classList.toggle("open");
 
-        container.innerHTML = "";
-
-        currentQuestions.forEach((question, index) => {
-
-            const div = document.createElement("div");
-
-            div.className = "mcq";
-
-            let optionsHTML = "";
-
-            question.options.forEach((option, optionIndex) => {
-
-                optionsHTML += `
-                    <label class="option">
-                        <input
-                            type="radio"
-                            name="question${index}"
-                            value="${optionIndex}"
-                        >
-                        ${option}
-                    </label>
-                `;
-
-            });
-
-            div.innerHTML = `
-                <p>
-                    <strong>${index + 1}. ${question.q}</strong>
-                </p>
-
-                ${optionsHTML}
-            `;
-
-            container.appendChild(div);
-
-        });
-
-        document.getElementById("quizResult").innerHTML = "";
-
-    };
+    }
 
 
-    window.submitQuiz = function () {
+    function getProgress() {
 
-        if (currentQuestions.length === 0) {
+        try {
 
-            createQuiz();
+            const saved = localStorage.getItem(STORAGE_KEY);
 
-            return;
-
-        }
-
-        let score = 0;
-
-        currentQuestions.forEach((question, index) => {
-
-            const selected = document.querySelector(
-                `input[name="question${index}"]:checked`
-            );
-
-            if (selected && Number(selected.value) === question.answer) {
-
-                score++;
-
+            if (!saved) {
+                return [];
             }
 
-        });
+            return JSON.parse(saved);
 
-        const percentage = Math.round(
-            (score / currentQuestions.length) * 100
-        );
+        } catch (error) {
 
-        document.getElementById("quizResult").innerHTML = `
-            <div class="result">
-                🎯 Score: ${score}/${currentQuestions.length}
-                <br>
-                📊 Percentage: ${percentage}%
-                <br><br>
-                Click "New Question Set" to try another random set.
-            </div>
-        `;
+            return [];
 
-    };
-
-
-    createQuiz();
-
-
-    /* =========================
-       SHORT ANSWERS
-    ========================= */
-
-    const shortQuestions = [
-
-        {
-            q: "1. Define theatre nursing.",
-            a: "Theatre nursing is the specialized nursing care provided to patients before, during and immediately after surgical procedures, with emphasis on safety, asepsis, teamwork and perioperative care."
-        },
-
-        {
-            q: "2. State four principles of surgical asepsis.",
-            a: "Examples include maintaining a sterile field, preventing contamination, considering uncertain sterility as contamination, and ensuring sterile items contact only sterile items."
-        },
-
-        {
-            q: "3. State four roles of the circulating nurse.",
-            a: "The circulating nurse helps coordinate theatre activities, supports patient safety, documents relevant events, assists with positioning and supplies, and communicates with team members outside the sterile field."
-        },
-
-        {
-            q: "4. Why are surgical counts important?",
-            a: "They help prevent retained surgical items such as sponges, needles and instruments."
-        },
-
-        {
-            q: "5. List five common surgical patient positions.",
-            a: "Supine, prone, lateral, lithotomy and Trendelenburg are common examples."
-        },
-
-        {
-            q: "6. State four things checked during preoperative preparation.",
-            a: "Patient identity, planned procedure, allergies, relevant investigations, consent requirements and medical history may be checked."
-        },
-
-        {
-            q: "7. What is the purpose of a surgical safety checklist?",
-            a: "It supports systematic verification of important patient, procedure and safety information and improves team communication."
-        },
-
-        {
-            q: "8. State four important points in specimen handling.",
-            a: "Correct identification, appropriate container, accurate labeling and proper documentation and transport."
-        },
-
-        {
-            q: "9. State four complications that may result from poor positioning.",
-            a: "Possible complications include pressure injury, nerve injury, impaired circulation, respiratory compromise and musculoskeletal injury."
-        },
-
-        {
-            q: "10. State five items that may be included in postoperative handover.",
-            a: "Patient identity, procedure performed, anesthesia information, important intraoperative events, blood loss where relevant, specimens, drains, dressings and current patient concerns."
         }
-
-    ];
-
-
-    const shortContainer = document.getElementById("shortContainer");
-
-    shortQuestions.forEach((item, index) => {
-
-        const card = document.createElement("div");
-
-        card.className = "card";
-
-        card.innerHTML = `
-            <p><strong>${item.q}</strong></p>
-
-            <button class="action"
-                onclick="toggleAnswer('short${index}')">
-                Show Answer
-            </button>
-
-            <div id="short${index}" class="answer">
-                ${item.a}
-            </div>
-        `;
-
-        shortContainer.appendChild(card);
-
-    });
-
-
-    window.toggleAnswer = function (id) {
-
-        document.getElementById(id).classList.toggle("show");
-
-    };
-
-
-    /* =========================
-       LONG ANSWERS
-    ========================= */
-
-    const longQuestions = [
-
-        {
-            q: "1. Discuss the role of the perioperative nurse in ensuring patient safety.",
-            a: `
-                <p>
-                    The perioperative nurse plays an important role in protecting
-                    the patient throughout the surgical experience.
-                </p>
-
-                <p>
-                    <strong>Preoperatively:</strong> the nurse helps assess the
-                    patient's condition, confirms identity and procedure,
-                    checks relevant information and provides psychological support.
-                </p>
-
-                <p>
-                    <strong>Intraoperatively:</strong> the nurse maintains
-                    appropriate aseptic practice, assists with positioning,
-                    performs or participates in surgical counts, handles equipment
-                    safely and communicates important changes.
-                </p>
-
-                <p>
-                    <strong>Postoperatively:</strong> the nurse assists with safe
-                    transfer and provides accurate handover to the receiving team.
-                </p>
-            `
-        },
-
-        {
-            q: "2. Discuss the principles of surgical asepsis in the operating theatre.",
-            a: `
-                <p>
-                    Surgical asepsis aims to prevent contamination of the
-                    operative field by microorganisms.
-                </p>
-
-                <p>
-                    Important principles include maintaining the sterile field,
-                    using appropriate sterile barriers, preventing contact between
-                    sterile and contaminated objects, recognizing contamination
-                    immediately and following established infection-prevention
-                    procedures.
-                </p>
-
-                <p>
-                    Team members should also maintain appropriate hand hygiene,
-                    attire and movement practices according to theatre policy.
-                </p>
-            `
-        },
-
-        {
-            q: "3. Discuss the preparation of a patient for surgery.",
-            a: `
-                <p>
-                    Patient preparation begins with assessment of the patient's
-                    physical and psychological condition.
-                </p>
-
-                <p>
-                    The nurse verifies patient identity, planned procedure and
-                    relevant clinical information. Allergies, medications,
-                    investigations and anesthesia-related concerns should be
-                    reviewed as appropriate.
-                </p>
-
-                <p>
-                    The nurse also provides information and reassurance, ensures
-                    required preparation has been completed and confirms that
-                    appropriate consent requirements have been met according to
-                    institutional policy.
-                </p>
-            `
-        },
-
-        {
-            q: "4. Explain the importance of surgical counts and describe the action to take when a count is incorrect.",
-            a: `
-                <p>
-                    Surgical counts are performed to reduce the risk of retained
-                    surgical items such as sponges, needles and instruments.
-                </p>
-
-                <p>
-                    Counts should be performed systematically by the designated
-                    members of the theatre team according to institutional policy.
-                </p>
-
-                <p>
-                    If a discrepancy occurs, it should be communicated immediately.
-                    The team should follow the facility's established procedure
-                    for investigating and resolving the discrepancy before the
-                    procedure is completed whenever clinically appropriate.
-                </p>
-            `
-        }
-
-    ];
-
-
-    const longContainer = document.getElementById("longContainer");
-
-    longQuestions.forEach((item, index) => {
-
-        const card = document.createElement("div");
-
-        card.className = "card";
-
-        card.innerHTML = `
-            <p><strong>${item.q}</strong></p>
-
-            <button class="action"
-                onclick="toggleAnswer('long${index}')">
-                Show Model Answer
-            </button>
-
-            <div id="long${index}" class="answer">
-                ${item.a}
-            </div>
-        `;
-
-        longContainer.appendChild(card);
-
-    });
-
-
-    /* =========================
-       FLASHCARDS
-    ========================= */
-
-    const flashcards = [
-
-        {
-            q: "What is surgical asepsis?",
-            a: "Practices used to prevent contamination by microorganisms and maintain a sterile field."
-        },
-
-        {
-            q: "What is the role of the scrub nurse?",
-            a: "The scrub nurse maintains the sterile field and assists with sterile instruments and supplies."
-        },
-
-        {
-            q: "What is the role of the circulating nurse?",
-            a: "The circulating nurse coordinates activities outside the sterile field and supports patient safety and documentation."
-        },
-
-        {
-            q: "Why are surgical counts performed?",
-            a: "To help prevent retained surgical items."
-        },
-
-        {
-            q: "What is the supine position?",
-            a: "A position in which the patient lies on the back."
-        },
-
-        {
-            q: "What is the prone position?",
-            a: "A position in which the patient lies face down."
-        },
-
-        {
-            q: "Why is correct patient positioning important?",
-            a: "It provides surgical access while helping prevent pressure, nerve, circulation and respiratory complications."
-        },
-
-        {
-            q: "What is a surgical safety checklist?",
-            a: "A structured tool used to verify important patient, procedure and safety information and improve team communication."
-        },
-
-        {
-            q: "What should be done with a surgical specimen?",
-            a: "It should be correctly identified, labeled, documented and transported according to policy."
-        },
-
-        {
-            q: "What is an important purpose of postoperative handover?",
-            a: "To communicate important information about the patient's procedure and current condition to the receiving team."
-        },
-
-        {
-            q: "What is perioperative nursing?",
-            a: "Nursing care provided before, during and immediately after surgery."
-        },
-
-        {
-            q: "What should happen when sterility is uncertain?",
-            a: "The item should be treated as contaminated and managed according to sterile technique and policy."
-        }
-
-    ];
-
-
-    let flashIndex = 0;
-
-
-    function displayFlashcard() {
-
-        document.getElementById("flashQuestion").textContent =
-            flashcards[flashIndex].q;
-
-        document.getElementById("flashAnswer").textContent =
-            flashcards[flashIndex].a;
-
-        document.getElementById("flashAnswer").classList.remove("show");
-
-        document.getElementById("flashCounter").textContent =
-            `Card ${flashIndex + 1} of ${flashcards.length}`;
 
     }
 
 
-    window.showFlashAnswer = function () {
+    function saveProgress(progress) {
 
-        document.getElementById("flashAnswer").classList.add("show");
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(progress)
+        );
 
-    };
+    }
 
 
-    window.nextFlashcard = function () {
+    function toggleCompleted(index) {
 
-        flashIndex++;
+        let progress = getProgress();
 
-        if (flashIndex >= flashcards.length) {
+        if (progress.includes(index)) {
 
-            flashIndex = 0;
+            progress = progress.filter(function(item) {
+                return item !== index;
+            });
+
+        } else {
+
+            progress.push(index);
 
         }
 
-        displayFlashcard();
+        saveProgress(progress);
 
-    };
-
-
-    displayFlashcard();
-
-
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    let completedTopics =
-        JSON.parse(localStorage.getItem("theatreProgress") || "[]");
-
-
-    function saveProgress() {
-
-        localStorage.setItem(
-            "theatreProgress",
-            JSON.stringify(completedTopics)
-        );
+        updateProgress();
 
     }
 
 
     function updateProgress() {
 
+        const topics = document.querySelectorAll(".topic");
+
         const total = topics.length;
 
-        const completed = completedTopics.length;
+        const progress = getProgress();
+
+        const completed = progress.length;
+
+        const remaining = total - completed;
 
         const percentage =
-            Math.round((completed / total) * 100);
-
-        document.getElementById("progressText").innerHTML =
-            `${completed} of ${total} topics completed — ${percentage}%`;
+            total === 0
+                ? 0
+                : Math.round((completed / total) * 100);
 
         document.getElementById("progressFill").style.width =
-            `${percentage}%`;
+            percentage + "%";
 
-        const container =
-            document.getElementById("progressContainer");
+        document.getElementById("progressText").textContent =
+            percentage + "% completed";
 
-        container.innerHTML = "";
+        document.getElementById("completedCount").textContent =
+            completed;
 
-        topics.forEach((topic, index) => {
+        document.getElementById("totalCount").textContent =
+            total;
 
-            const div = document.createElement("div");
+        document.getElementById("remainingCount").textContent =
+            remaining;
 
-            div.className = "progress-item";
+        const list =
+            document.getElementById("topicProgressList");
 
-            const isCompleted =
-                completedTopics.includes(index);
+        list.innerHTML = "";
 
-            div.innerHTML = `
-                <span>${topic.title}</span>
+        topics.forEach(function(topic, index) {
 
+            const title =
+                topic.querySelector(".topic-header span").textContent;
+
+            const completedAlready =
+                progress.includes(index);
+
+            const row = document.createElement("div");
+
+            row.style.marginBottom = "10px";
+            row.style.padding = "12px";
+            row.style.background = "#f8fafc";
+            row.style.borderRadius = "8px";
+
+            row.innerHTML = `
+                <strong>${title}</strong>
+                <br>
                 <button
-                    class="complete-btn ${isCompleted ? "completed" : ""}"
-                    onclick="toggleProgress(${index})">
-
-                    ${isCompleted ? "✓ Completed" : "Mark Complete"}
-
+                    class="complete-btn ${completedAlready ? "completed" : ""}"
+                    onclick="toggleCompleted(${index})"
+                >
+                    ${completedAlready ? "✓ Completed" : "Mark as completed"}
                 </button>
             `;
 
-            container.appendChild(div);
+            list.appendChild(row);
 
         });
 
     }
 
 
-    window.toggleProgress = function (index) {
-
-        if (completedTopics.includes(index)) {
-
-            completedTopics =
-                completedTopics.filter(item => item !== index);
-
-        } else {
-
-            completedTopics.push(index);
-
-        }
-
-        saveProgress();
+    document.addEventListener("DOMContentLoaded", function() {
 
         updateProgress();
 
-    };
-
-
-    updateProgress();
-
-});
+    });
 
 </script>
 

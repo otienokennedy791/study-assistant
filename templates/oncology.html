@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 444 - Oncology Nursing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 2.2rem;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 25px auto;
+            padding: 0 18px;
+        }
+
+        .top-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dashboard-btn {
+            background: #374151;
+            color: white;
+        }
+
+        .mcq-btn {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 11px 16px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .tab-btn.active {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .topic {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .topic-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            background: #fff7f7;
+            border-left: 5px solid #b91c1c;
+            font-weight: bold;
+            font-size: 1.08rem;
+        }
+
+        .topic-header:hover {
+            background: #fee2e2;
+        }
+
+        .topic-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .topic.open .topic-content {
+            display: block;
+        }
+
+        .subtopic {
+            margin: 18px 0;
+            padding: 16px;
+            border-left: 3px solid #dc2626;
+            background: #fafafa;
+            border-radius: 6px;
+        }
+
+        .subtopic h3 {
+            margin-top: 0;
+            color: #991b1b;
+        }
+
+        .subtopic h4 {
+            color: #7f1d1d;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .diagram {
+            margin: 20px 0;
+            padding: 18px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #7f1d1d;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-card h3 {
+            margin-top: 0;
+            color: #991b1b;
+        }
+
+        .answer-box {
+            background: #fef2f2;
+            padding: 15px;
+            border-left: 4px solid #b91c1c;
+            border-radius: 5px;
+            margin-top: 12px;
+        }
+
+        .progress-item {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 14px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #b91c1c;
+            transition: width 0.3s ease;
+        }
+
+        .mcq-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: #b91c1c;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .mcq-link:hover {
+            background: #991b1b;
+        }
+
+        .note {
+            background: #fff7ed;
+            border-left: 4px solid #ea580c;
+            padding: 14px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .key-point {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 14px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+
+            .topic-content {
+                padding: 15px;
+            }
+
+            .subtopic {
+                padding: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>NURS 444 — Oncology Nursing</h1>
+    <p>Comprehensive study guide: cancer concepts, treatment, nursing management and supportive care</p>
+</header>
+
+<div class="container">
+
+    <div class="top-actions">
+        <a href="{{ url_for('index') }}" class="btn dashboard-btn">← Dashboard</a>
+        <a href="{{ url_for('mcqs', subject='NURS 444') }}" class="btn mcq-btn">Practice NURS 444 MCQs →</a>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('topics', this)">Topics & Subtopics</button>
+        <button class="tab-btn" onclick="showTab('mcqs', this)">MCQs</button>
+        <button class="tab-btn" onclick="showTab('short', this)">Short Answer</button>
+        <button class="tab-btn" onclick="showTab('long', this)">Long Answer</button>
+        <button class="tab-btn" onclick="showTab('progress', this)">Progress</button>
+    </div>
+
+    <!-- TOPICS -->
+    <section id="topics" class="tab-content active">
+
+        <div class="intro">
+            <h2>Oncology Nursing Study Guide</h2>
+            <p>
+                Oncology nursing involves the prevention, early detection, diagnosis,
+                treatment and supportive care of patients with cancer. It requires
+                knowledge of cancer biology, treatment modalities, symptom management,
+                psychosocial care, palliative care and patient education.
+            </p>
+
+            <div class="key-point">
+                <strong>Study approach:</strong>
+                Open each topic and work through every subtopic. Mark completed
+                subtopics in the Progress section as you study.
+            </div>
+        </div>
+
+        <!-- TOPIC 1 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                1. Introduction to Oncology and Cancer
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>1.1 Meaning of Oncology</h3>
+                    <p>
+                        Oncology is the branch of medicine and nursing concerned with
+                        the study, diagnosis, treatment and care of people affected by cancer.
+                    </p>
+                    <p>
+                        An oncology nurse provides physical, psychological, social and
+                        educational support throughout the cancer care continuum.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>1.2 Definition of Cancer</h3>
+                    <p>
+                        Cancer is a group of diseases characterized by uncontrolled
+                        abnormal cell growth. Abnormal cells may invade surrounding tissues
+                        and can spread to distant organs through metastasis.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>1.3 Benign and Malignant Tumours</h3>
+
+                    <h4>Benign tumours</h4>
+                    <ul>
+                        <li>Usually grow slowly.</li>
+                        <li>Often remain localized.</li>
+                        <li>Usually have well-defined borders.</li>
+                        <li>Do not normally metastasize.</li>
+                    </ul>
+
+                    <h4>Malignant tumours</h4>
+                    <ul>
+                        <li>Can invade surrounding tissues.</li>
+                        <li>May grow rapidly.</li>
+                        <li>Can metastasize.</li>
+                        <li>May cause systemic effects.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>1.4 Cancer Terminology</h3>
+                    <ul>
+                        <li><strong>Neoplasm:</strong> abnormal new growth of tissue.</li>
+                        <li><strong>Tumour:</strong> abnormal mass resulting from excessive cell growth.</li>
+                        <li><strong>Metastasis:</strong> spread of malignant cells to distant sites.</li>
+                        <li><strong>Carcinoma:</strong> cancer arising from epithelial tissue.</li>
+                        <li><strong>Sarcoma:</strong> cancer arising from connective or supporting tissues.</li>
+                        <li><strong>Leukaemia:</strong> malignant disorder involving blood-forming tissues.</li>
+                        <li><strong>Lymphoma:</strong> malignancy involving lymphoid tissues.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Diagram: Cancer Development and Spread</div>
+
+                    <svg width="800" height="270" viewBox="0 0 800 270" role="img">
+                        <rect x="30" y="90" width="150" height="80" rx="12"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="105" y="125" text-anchor="middle" font-size="16">Normal</text>
+                        <text x="105" y="148" text-anchor="middle" font-size="16">Cell</text>
+
+                        <line x1="180" y1="130" x2="260" y2="130"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="260,130 245,122 245,138" fill="#991b1b"/>
+
+                        <rect x="270" y="90" width="150" height="80" rx="12"
+                              fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+                        <text x="345" y="125" text-anchor="middle" font-size="16">Abnormal</text>
+                        <text x="345" y="148" text-anchor="middle" font-size="16">Growth</text>
+
+                        <line x1="420" y1="130" x2="500" y2="130"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="500,130 485,122 485,138" fill="#991b1b"/>
+
+                        <rect x="510" y="90" width="120" height="80" rx="12"
+                              fill="#fecaca" stroke="#991b1b" stroke-width="2"/>
+                        <text x="570" y="125" text-anchor="middle" font-size="16">Tumour</text>
+                        <text x="570" y="148" text-anchor="middle" font-size="16">Growth</text>
+
+                        <line x1="630" y1="130" x2="720" y2="130"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="720,130 705,122 705,138" fill="#991b1b"/>
+
+                        <rect x="650" y="190" width="120" height="55" rx="10"
+                              fill="#dc2626"/>
+                        <text x="710" y="223" text-anchor="middle"
+                              font-size="15" fill="white">Metastasis</text>
+
+                        <line x1="690" y1="170" x2="710" y2="190"
+                              stroke="#991b1b" stroke-width="3"/>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 2 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                2. Cancer Risk Factors and Prevention
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>2.1 Modifiable Risk Factors</h3>
+                    <ul>
+                        <li>Tobacco use.</li>
+                        <li>Excessive alcohol consumption.</li>
+                        <li>Unhealthy diet.</li>
+                        <li>Physical inactivity.</li>
+                        <li>Obesity.</li>
+                        <li>Excessive exposure to ultraviolet radiation.</li>
+                        <li>Some occupational exposures.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>2.2 Non-Modifiable Risk Factors</h3>
+                    <ul>
+                        <li>Age.</li>
+                        <li>Genetic predisposition.</li>
+                        <li>Family history.</li>
+                        <li>Previous cancer history.</li>
+                        <li>Certain inherited genetic mutations.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>2.3 Infectious Causes</h3>
+                    <p>
+                        Some infections are associated with increased cancer risk.
+                        Examples include human papillomavirus, hepatitis B virus,
+                        hepatitis C virus, Epstein-Barr virus and certain
+                        <em>Helicobacter pylori</em> infections.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>2.4 Primary Prevention</h3>
+                    <ul>
+                        <li>Smoking cessation.</li>
+                        <li>Healthy nutrition.</li>
+                        <li>Regular physical activity.</li>
+                        <li>Maintaining a healthy body weight.</li>
+                        <li>Vaccination where appropriate.</li>
+                        <li>Reducing harmful occupational exposures.</li>
+                        <li>Sun protection.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>2.5 Secondary Prevention</h3>
+                    <p>
+                        Secondary prevention involves early detection through
+                        appropriate screening and prompt evaluation of suspicious findings.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 3 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                3. Cancer Biology and Pathophysiology
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>3.1 Normal Cell Growth</h3>
+                    <p>
+                        Normal cells grow, divide and die in a controlled manner.
+                        Cell growth is regulated by genetic and biochemical signals.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>3.2 Abnormal Cell Growth</h3>
+                    <p>
+                        Cancer develops when genetic changes interfere with normal
+                        mechanisms controlling cell growth, division and cell death.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>3.3 Hallmarks of Malignancy</h3>
+                    <ul>
+                        <li>Sustained proliferative signalling.</li>
+                        <li>Resistance to cell death.</li>
+                        <li>Ability to invade surrounding tissues.</li>
+                        <li>Ability to stimulate blood vessel formation.</li>
+                        <li>Ability to evade immune destruction.</li>
+                        <li>Ability to metastasize.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>3.4 Metastasis</h3>
+                    <p>
+                        Metastasis occurs when malignant cells leave the primary tumour,
+                        enter lymphatic or blood vessels, travel to another location,
+                        exit the circulation and establish a secondary tumour.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Diagram: Basic Metastatic Pathway</div>
+
+                    <svg width="800" height="300" viewBox="0 0 800 300">
+                        <rect x="40" y="105" width="145" height="75" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="112" y="137" text-anchor="middle" font-size="15">Primary</text>
+                        <text x="112" y="160" text-anchor="middle" font-size="15">Tumour</text>
+
+                        <line x1="185" y1="142" x2="275" y2="142"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="275,142 260,134 260,150" fill="#991b1b"/>
+
+                        <rect x="285" y="105" width="145" height="75" rx="10"
+                              fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+                        <text x="357" y="137" text-anchor="middle" font-size="15">Invasion</text>
+                        <text x="357" y="160" text-anchor="middle" font-size="15">of tissue</text>
+
+                        <line x1="430" y1="142" x2="520" y2="142"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="520,142 505,134 505,150" fill="#991b1b"/>
+
+                        <rect x="530" y="105" width="120" height="75" rx="10"
+                              fill="#fecaca" stroke="#991b1b" stroke-width="2"/>
+                        <text x="590" y="137" text-anchor="middle" font-size="15">Blood /</text>
+                        <text x="590" y="160" text-anchor="middle" font-size="15">lymphatics</text>
+
+                        <line x1="650" y1="142" x2="735" y2="142"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="735,142 720,134 720,150" fill="#991b1b"/>
+
+                        <rect x="610" y="210" width="145" height="65" rx="10"
+                              fill="#dc2626"/>
+                        <text x="682" y="237" text-anchor="middle"
+                              font-size="15" fill="white">Secondary</text>
+                        <text x="682" y="259" text-anchor="middle"
+                              font-size="15" fill="white">tumour</text>
+
+                        <line x1="735" y1="160" x2="700" y2="210"
+                              stroke="#991b1b" stroke-width="3"/>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 4 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                4. Assessment and Diagnosis of Cancer
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>4.1 Health History</h3>
+                    <p>
+                        The nurse assesses presenting symptoms, duration, severity,
+                        previous illnesses, family history, lifestyle factors,
+                        occupational exposures and previous cancer screening.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>4.2 Physical Examination</h3>
+                    <p>
+                        Physical assessment may include general appearance,
+                        nutritional status, lymph nodes, skin, respiratory system,
+                        abdomen, neurological status and examination of the affected organ.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>4.3 Diagnostic Investigations</h3>
+                    <ul>
+                        <li>Blood tests.</li>
+                        <li>Imaging studies.</li>
+                        <li>Endoscopy.</li>
+                        <li>Biopsy.</li>
+                        <li>Cytology.</li>
+                        <li>Molecular and genetic tests where indicated.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>4.4 Biopsy</h3>
+                    <p>
+                        A biopsy involves obtaining tissue or cells for pathological
+                        examination. Histological examination can help determine whether
+                        malignancy is present and identify tumour characteristics.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>4.5 Staging</h3>
+                    <p>
+                        Staging describes the extent of cancer in the body.
+                        The TNM system is commonly used for many solid tumours:
+                    </p>
+
+                    <ul>
+                        <li><strong>T:</strong> characteristics and extent of the primary tumour.</li>
+                        <li><strong>N:</strong> involvement of regional lymph nodes.</li>
+                        <li><strong>M:</strong> presence or absence of distant metastasis.</li>
+                    </ul>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Diagram: Cancer Diagnostic Pathway</div>
+
+                    <svg width="800" height="290" viewBox="0 0 800 290">
+                        <rect x="40" y="40" width="140" height="65" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="110" y="68" text-anchor="middle" font-size="15">Symptoms /</text>
+                        <text x="110" y="90" text-anchor="middle" font-size="15">Screening</text>
+
+                        <line x1="180" y1="72" x2="260" y2="72"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="260,72 245,64 245,80" fill="#991b1b"/>
+
+                        <rect x="270" y="40" width="140" height="65" rx="10"
+                              fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+                        <text x="340" y="68" text-anchor="middle" font-size="15">Clinical</text>
+                        <text x="340" y="90" text-anchor="middle" font-size="15">Assessment</text>
+
+                        <line x1="410" y1="72" x2="490" y2="72"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="490,72 475,64 475,80" fill="#991b1b"/>
+
+                        <rect x="500" y="40" width="140" height="65" rx="10"
+                              fill="#fecaca" stroke="#991b1b" stroke-width="2"/>
+                        <text x="570" y="68" text-anchor="middle" font-size="15">Investigations</text>
+                        <text x="570" y="90" text-anchor="middle" font-size="15">& Biopsy</text>
+
+                        <line x1="570" y1="105" x2="570" y2="165"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="570,165 562,150 578,150" fill="#991b1b"/>
+
+                        <rect x="470" y="175" width="200" height="65" rx="10"
+                              fill="#dc2626"/>
+                        <text x="570" y="202" text-anchor="middle"
+                              font-size="15" fill="white">Diagnosis &</text>
+                        <text x="570" y="224" text-anchor="middle"
+                              font-size="15" fill="white">Staging</text>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 5 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                5. Cancer Treatment Modalities
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>5.1 Surgery</h3>
+                    <p>
+                        Surgery may be used to diagnose, stage, remove or control
+                        a tumour. Nursing care includes preoperative preparation,
+                        postoperative monitoring, pain management and prevention of complications.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>5.2 Chemotherapy</h3>
+                    <p>
+                        Chemotherapy uses medicines that interfere with cancer cell
+                        growth and division. Some chemotherapy drugs also affect rapidly
+                        dividing normal cells, resulting in adverse effects.
+                    </p>
+
+                    <h4>Common adverse effects</h4>
+                    <ul>
+                        <li>Nausea and vomiting.</li>
+                        <li>Fatigue.</li>
+                        <li>Myelosuppression.</li>
+                        <li>Alopecia.</li>
+                        <li>Mucositis.</li>
+                        <li>Peripheral neuropathy with some agents.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>5.3 Radiation Therapy</h3>
+                    <p>
+                        Radiation therapy uses ionizing radiation to damage cancer
+                        cells. It may be delivered externally or internally depending
+                        on the treatment plan.
+                    </p>
+
+                    <h4>Possible effects</h4>
+                    <ul>
+                        <li>Skin reactions.</li>
+                        <li>Fatigue.</li>
+                        <li>Site-specific tissue effects.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>5.4 Immunotherapy</h3>
+                    <p>
+                        Immunotherapy helps the immune system recognize or attack
+                        cancer cells. Adverse effects vary according to the agent
+                        and may involve immune-mediated inflammation.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>5.5 Targeted Therapy</h3>
+                    <p>
+                        Targeted therapies act on specific molecular features
+                        involved in cancer growth and survival.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>5.6 Hormonal Therapy</h3>
+                    <p>
+                        Hormonal therapy may be used for cancers whose growth is
+                        influenced by hormones, such as some breast and prostate cancers.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Diagram: Major Cancer Treatment Modalities</div>
+
+                    <svg width="800" height="360" viewBox="0 0 800 360">
+                        <circle cx="400" cy="180" r="75"
+                                fill="#fecaca" stroke="#991b1b" stroke-width="3"/>
+                        <text x="400" y="175" text-anchor="middle"
+                              font-size="18">Cancer</text>
+                        <text x="400" y="198" text-anchor="middle"
+                              font-size="18">Treatment</text>
+
+                        <line x1="330" y1="135" x2="180" y2="70"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <line x1="470" y1="135" x2="620" y2="70"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <line x1="325" y1="180" x2="150" y2="180"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <line x1="475" y1="180" x2="650" y2="180"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <line x1="345" y1="235" x2="200" y2="300"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <line x1="455" y1="235" x2="600" y2="300"
+                              stroke="#991b1b" stroke-width="3"/>
+
+                        <text x="130" y="55" text-anchor="middle" font-size="15">Surgery</text>
+                        <text x="670" y="55" text-anchor="middle" font-size="15">Chemotherapy</text>
+                        <text x="105" y="185" text-anchor="middle" font-size="15">Radiation</text>
+                        <text x="695" y="185" text-anchor="middle" font-size="15">Immunotherapy</text>
+                        <text x="170" y="320" text-anchor="middle" font-size="15">Targeted therapy</text>
+                        <text x="635" y="320" text-anchor="middle" font-size="15">Hormonal therapy</text>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 6 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                6. Nursing Management of the Patient with Cancer
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>6.1 Nursing Assessment</h3>
+                    <ul>
+                        <li>Assess pain and other symptoms.</li>
+                        <li>Assess nutritional and hydration status.</li>
+                        <li>Monitor vital signs.</li>
+                        <li>Assess functional ability.</li>
+                        <li>Assess treatment-related adverse effects.</li>
+                        <li>Assess emotional and psychological needs.</li>
+                        <li>Assess family and social support.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>6.2 Pain Management</h3>
+                    <p>
+                        Cancer pain should be assessed systematically. Management
+                        may involve pharmacological and non-pharmacological interventions.
+                    </p>
+
+                    <ul>
+                        <li>Assess location, intensity, quality and timing of pain.</li>
+                        <li>Administer prescribed analgesics.</li>
+                        <li>Monitor response and adverse effects.</li>
+                        <li>Use relaxation and other supportive techniques.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>6.3 Nutritional Management</h3>
+                    <ul>
+                        <li>Monitor weight and nutritional intake.</li>
+                        <li>Provide small frequent meals where appropriate.</li>
+                        <li>Manage nausea and vomiting.</li>
+                        <li>Provide oral care for mucositis.</li>
+                        <li>Refer to a dietitian when appropriate.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>6.4 Infection Prevention</h3>
+                    <p>
+                        Patients receiving treatments that suppress bone marrow may
+                        have increased infection risk. Nurses should monitor for
+                        fever and other signs of infection and follow appropriate
+                        infection-prevention measures.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>6.5 Psychosocial Support</h3>
+                    <p>
+                        Cancer may cause fear, anxiety, depression, altered body image,
+                        financial stress and changes in family roles. Therapeutic
+                        communication and appropriate referral are important.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 7 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                7. Common Oncology Emergencies
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>7.1 Febrile Neutropenia</h3>
+                    <p>
+                        Febrile neutropenia is a potentially serious complication
+                        in patients receiving myelosuppressive cancer treatment.
+                        Fever in a patient with significant neutropenia requires
+                        urgent clinical assessment.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>7.2 Tumour Lysis Syndrome</h3>
+                    <p>
+                        Tumour lysis syndrome can occur when large numbers of tumour
+                        cells break down rapidly, releasing intracellular contents
+                        into the bloodstream.
+                    </p>
+
+                    <p>Possible abnormalities include:</p>
+                    <ul>
+                        <li>Hyperkalaemia.</li>
+                        <li>Hyperphosphataemia.</li>
+                        <li>Hypocalcaemia.</li>
+                        <li>Hyperuricaemia.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>7.3 Superior Vena Cava Syndrome</h3>
+                    <p>
+                        Compression or obstruction of the superior vena cava can
+                        impair venous drainage from the head, neck and upper limbs.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>7.4 Spinal Cord Compression</h3>
+                    <p>
+                        Malignant spinal cord compression may cause back pain,
+                        weakness, sensory changes and bladder or bowel dysfunction.
+                        It requires urgent assessment.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Diagram: Recognition of an Oncology Emergency</div>
+
+                    <svg width="800" height="300" viewBox="0 0 800 300">
+                        <rect x="45" y="95" width="150" height="75" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="120" y="125" text-anchor="middle" font-size="15">New / severe</text>
+                        <text x="120" y="148" text-anchor="middle" font-size="15">symptoms</text>
+
+                        <line x1="195" y1="132" x2="280" y2="132"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="280,132 265,124 265,140" fill="#991b1b"/>
+
+                        <rect x="290" y="95" width="170" height="75" rx="10"
+                              fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+                        <text x="375" y="125" text-anchor="middle" font-size="15">Rapid nursing</text>
+                        <text x="375" y="148" text-anchor="middle" font-size="15">assessment</text>
+
+                        <line x1="460" y1="132" x2="545" y2="132"
+                              stroke="#991b1b" stroke-width="3"/>
+                        <polygon points="545,132 530,124 530,140" fill="#991b1b"/>
+
+                        <rect x="555" y="95" width="195" height="75" rx="10"
+                              fill="#dc2626"/>
+                        <text x="652" y="125" text-anchor="middle"
+                              font-size="15" fill="white">Urgent medical</text>
+                        <text x="652" y="148" text-anchor="middle"
+                              font-size="15" fill="white">management</text>
+
+                        <text x="400" y="220" text-anchor="middle" font-size="15">
+                            Examples: fever + neutropenia, acute neurological changes,
+                        </text>
+                        <text x="400" y="245" text-anchor="middle" font-size="15">
+                            airway compromise, severe electrolyte abnormalities
+                        </text>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 8 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                8. Palliative Care and End-of-Life Nursing
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>8.1 Meaning of Palliative Care</h3>
+                    <p>
+                        Palliative care focuses on improving quality of life by
+                        preventing and relieving suffering and addressing physical,
+                        psychological, social and spiritual needs.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>8.2 Symptom Management</h3>
+                    <ul>
+                        <li>Pain.</li>
+                        <li>Breathlessness.</li>
+                        <li>Nausea and vomiting.</li>
+                        <li>Constipation.</li>
+                        <li>Fatigue.</li>
+                        <li>Anxiety and distress.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>8.3 Communication</h3>
+                    <p>
+                        Nurses should communicate honestly, compassionately and
+                        respectfully while considering the patient's preferences,
+                        understanding and cultural context.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>8.4 Family Support</h3>
+                    <p>
+                        Families may need education, emotional support and assistance
+                        with caregiving responsibilities. Bereavement support may also
+                        be necessary.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>8.5 End-of-Life Care</h3>
+                    <p>
+                        End-of-life nursing focuses on comfort, dignity, symptom control,
+                        respect for patient wishes and support for family members.
+                    </p>
+                </div>
+
+                <div class="diagram">
+                    <div class="diagram-title">Diagram: Holistic Palliative Care</div>
+
+                    <svg width="800" height="330" viewBox="0 0 800 330">
+                        <circle cx="400" cy="165" r="70"
+                                fill="#fecaca" stroke="#991b1b" stroke-width="3"/>
+                        <text x="400" y="158" text-anchor="middle"
+                              font-size="17">Patient</text>
+                        <text x="400" y="181" text-anchor="middle"
+                              font-size="17">and family</text>
+
+                        <rect x="65" y="45" width="150" height="55" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="140" y="78" text-anchor="middle" font-size="15">Physical</text>
+
+                        <rect x="585" y="45" width="150" height="55" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="660" y="78" text-anchor="middle" font-size="15">Psychological</text>
+
+                        <rect x="65" y="230" width="150" height="55" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="140" y="263" text-anchor="middle" font-size="15">Social</text>
+
+                        <rect x="585" y="230" width="150" height="55" rx="10"
+                              fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                        <text x="660" y="263" text-anchor="middle" font-size="15">Spiritual</text>
+
+                        <line x1="215" y1="90" x2="345" y2="135"
+                              stroke="#991b1b" stroke-width="2"/>
+                        <line x1="585" y1="90" x2="455" y2="135"
+                              stroke="#991b1b" stroke-width="2"/>
+                        <line x1="215" y1="255" x2="345" y2="195"
+                              stroke="#991b1b" stroke-width="2"/>
+                        <line x1="585" y1="255" x2="455" y2="195"
+                              stroke="#991b1b" stroke-width="2"/>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 9 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                9. Patient Education and Survivorship
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>9.1 Treatment Education</h3>
+                    <p>
+                        Patients should understand the purpose of treatment,
+                        expected effects, possible adverse effects and when to
+                        seek urgent medical attention.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>9.2 Medication Education</h3>
+                    <ul>
+                        <li>Explain medication purpose.</li>
+                        <li>Explain administration instructions.</li>
+                        <li>Explain common adverse effects.</li>
+                        <li>Explain danger signs requiring medical review.</li>
+                        <li>Encourage adherence to prescribed treatment.</li>
+                    </ul>
+                </div>
+
+                <div class="subtopic">
+                    <h3>9.3 Survivorship</h3>
+                    <p>
+                        Survivorship care may include monitoring for recurrence,
+                        managing long-term effects of treatment, rehabilitation,
+                        psychosocial support and health promotion.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>9.4 Lifestyle Support</h3>
+                    <ul>
+                        <li>Healthy nutrition.</li>
+                        <li>Appropriate physical activity.</li>
+                        <li>Avoidance of tobacco.</li>
+                        <li>Moderation or avoidance of alcohol according to clinical advice.</li>
+                        <li>Routine follow-up and screening.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 10 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                10. Oncology Nursing Ethics and Professional Practice
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <h3>10.1 Autonomy</h3>
+                    <p>
+                        Patients have the right to participate in decisions about
+                        their own care after receiving appropriate information.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>10.2 Informed Consent</h3>
+                    <p>
+                        Nurses support the informed-consent process by ensuring that
+                        patients receive appropriate information, understand what
+                        is being proposed and have opportunities to ask questions.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>10.3 Confidentiality</h3>
+                    <p>
+                        Patient information should be protected and disclosed only
+                        in accordance with professional, legal and institutional requirements.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>10.4 Ethical Decision-Making</h3>
+                    <p>
+                        Oncology nurses may encounter ethical issues involving
+                        treatment choices, disclosure of information, end-of-life
+                        decisions, resource allocation and research participation.
+                    </p>
+                </div>
+
+                <div class="subtopic">
+                    <h3>10.5 Professional Responsibilities</h3>
+                    <ul>
+                        <li>Advocate for patients.</li>
+                        <li>Maintain professional competence.</li>
+                        <li>Communicate effectively with the multidisciplinary team.</li>
+                        <li>Maintain accurate documentation.</li>
+                        <li>Respect patient dignity and rights.</li>
+                        <li>Provide evidence-informed care.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- MCQ TAB -->
+    <section id="mcqs" class="tab-content">
+
+        <div class="intro">
+            <h2>NURS 444 MCQs</h2>
+
+            <p>
+                Test your understanding of Oncology Nursing using the dedicated
+                NURS 444 question bank.
+            </p>
+
+            <a class="mcq-link" href="{{ url_for('mcqs', subject='NURS 444') }}">
+                Start NURS 444 MCQs →
+            </a>
+        </div>
+
+    </section>
+
+    <!-- SHORT ANSWER -->
+    <section id="short" class="tab-content">
+
+        <div class="intro">
+            <h2>Short-Answer Questions</h2>
+            <p>Use these questions to test recall and understanding.</p>
+        </div>
+
+        <div class="question-card">
+            <h3>1. Define cancer.</h3>
+            <div class="answer-box">
+                Cancer is a group of diseases characterized by uncontrolled abnormal
+                cell growth, with the potential to invade surrounding tissues and metastasize.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>2. State five risk factors for cancer.</h3>
+            <div class="answer-box">
+                Tobacco use, excessive alcohol consumption, obesity, physical inactivity
+                and certain infectious or occupational exposures.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>3. What is metastasis?</h3>
+            <div class="answer-box">
+                Metastasis is the spread of malignant cancer cells from a primary site
+                to distant organs or tissues.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>4. State four common adverse effects of chemotherapy.</h3>
+            <div class="answer-box">
+                Nausea and vomiting, myelosuppression, fatigue and alopecia.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>5. Mention four oncology emergencies.</h3>
+            <div class="answer-box">
+                Febrile neutropenia, tumour lysis syndrome, superior vena cava syndrome
+                and spinal cord compression.
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>6. State four components of holistic palliative care.</h3>
+            <div class="answer-box">
+                Physical, psychological, social and spiritual care.
+            </div>
+        </div>
+
+    </section>
+
+    <!-- LONG ANSWER -->
+    <section id="long" class="tab-content">
+
+        <div class="intro">
+            <h2>Long-Answer Questions</h2>
+            <p>
+                These questions are designed for examination-style discussion.
+                Give definitions, explanations, examples and nursing applications.
+            </p>
+        </div>
+
+        <div class="question-card">
+            <h3>1. Discuss the nursing management of a patient receiving chemotherapy.</h3>
+
+            <div class="answer-box">
+                <strong>Answer points:</strong>
+
+                <ol>
+                    <li>Assess the patient's baseline health status and treatment history.</li>
+                    <li>Monitor vital signs and general condition.</li>
+                    <li>Assess for nausea, vomiting, pain, fatigue and other adverse effects.</li>
+                    <li>Monitor for signs of myelosuppression and infection.</li>
+                    <li>Provide appropriate nutritional and hydration support.</li>
+                    <li>Provide oral care to reduce complications of mucositis.</li>
+                    <li>Administer prescribed supportive medications.</li>
+                    <li>Educate the patient about treatment and danger signs.</li>
+                    <li>Provide psychological support.</li>
+                    <li>Document treatment response and communicate significant findings.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>2. Discuss the role of the nurse in palliative care.</h3>
+
+            <div class="answer-box">
+                <strong>Answer points:</strong>
+
+                <ol>
+                    <li>Assess physical symptoms such as pain and breathlessness.</li>
+                    <li>Provide or coordinate symptom management.</li>
+                    <li>Provide psychological and emotional support.</li>
+                    <li>Support communication between patients, families and healthcare providers.</li>
+                    <li>Respect patient preferences and dignity.</li>
+                    <li>Support family caregivers.</li>
+                    <li>Provide health education.</li>
+                    <li>Coordinate multidisciplinary care.</li>
+                    <li>Support the patient and family during end-of-life care.</li>
+                    <li>Provide or facilitate bereavement support where appropriate.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <h3>3. Discuss the prevention and early detection of cancer.</h3>
+
+            <div class="answer-box">
+                <strong>Answer points:</strong>
+
+                <ol>
+                    <li>Promote avoidance of tobacco.</li>
+                    <li>Promote healthy nutrition and physical activity.</li>
+                    <li>Encourage maintenance of a healthy body weight.</li>
+                    <li>Promote appropriate vaccination.</li>
+                    <li>Reduce harmful occupational and environmental exposures.</li>
+                    <li>Promote appropriate cancer screening.</li>
+                    <li>Teach patients to report persistent or unusual symptoms.</li>
+                    <li>Encourage timely medical assessment of suspicious findings.</li>
+                    <li>Provide community health education.</li>
+                </ol>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- PROGRESS -->
+    <section id="progress" class="tab-content">
+
+        <div class="intro">
+            <h2>NURS 444 Study Progress</h2>
+            <p>
+                Mark each topic as completed as you work through the course.
+            </p>
+        </div>
+
+        <div id="progressList"></div>
+
+    </section>
+
+</div>
+
+<script>
+    const coursePrefix = "oncology_";
+
+    function showTab(tabId, button) {
+        document.querySelectorAll(".tab-content").forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+        document.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        document.getElementById(tabId).classList.add("active");
+
+        if (button) {
+            button.classList.add("active");
+        }
+
+        if (tabId === "progress") {
+            renderProgress();
+        }
+    }
+
+    function toggleTopic(header) {
+        const topic = header.parentElement;
+        topic.classList.toggle("open");
+    }
+
+    const topics = [
+        "Introduction to Oncology and Cancer",
+        "Cancer Risk Factors and Prevention",
+        "Cancer Biology and Pathophysiology",
+        "Assessment and Diagnosis of Cancer",
+        "Cancer Treatment Modalities",
+        "Nursing Management of the Patient with Cancer",
+        "Common Oncology Emergencies",
+        "Palliative Care and End-of-Life Nursing",
+        "Patient Education and Survivorship",
+        "Oncology Nursing Ethics and Professional Practice"
+    ];
+
+    function getProgress(index) {
+        return localStorage.getItem(coursePrefix + index) === "completed";
+    }
+
+    function setProgress(index, value) {
+        if (value) {
+            localStorage.setItem(coursePrefix + index, "completed");
+        } else {
+            localStorage.removeItem(coursePrefix + index);
+        }
+
+        renderProgress();
+    }
+
+    function renderProgress() {
+        const container = document.getElementById("progressList");
+
+        let completed = 0;
+
+        topics.forEach((topic, index) => {
+            if (getProgress(index)) {
+                completed++;
+            }
+        });
+
+        const percentage = Math.round((completed / topics.length) * 100);
+
+        let html = `
+            <div class="progress-item">
+                <strong>Overall progress: ${completed}/${topics.length} topics (${percentage}%)</strong>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:${percentage}%"></div>
+                </div>
+            </div>
+        `;
+
+        topics.forEach((topic, index) => {
+            const checked = getProgress(index);
+
+            html += `
+                <div class="progress-item">
+                    <label>
+                        <input
+                            type="checkbox"
+                            ${checked ? "checked" : ""}
+                            onchange="setProgress(${index}, this.checked)"
+                        >
+                        <strong>${topic}</strong>
+                    </label>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    renderProgress();
+</script>
+
+</body>
+</html>

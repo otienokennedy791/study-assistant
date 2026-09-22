@@ -1,186 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Study Assistant</title>
+    <title>Nursing Study Assistant</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background: #f4f6f8;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
         }
 
-        header {
-            background: #2563eb;
+        .topbar {
+            background: #17324d;
             color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-
-        .welcome {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-
-        .subjects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             gap: 20px;
         }
 
-        .subject {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            transition: 0.2s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .subject:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-        }
-
-        .subject h3 {
-            margin-top: 0;
-            color: #2563eb;
-        }
-
-        .code {
+        .brand {
+            font-size: 22px;
             font-weight: bold;
-            color: #555;
         }
 
-        .description {
-            color: #666;
+        .welcome {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .logout {
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: #b02a37;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 35px 20px 50px;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .hero h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+            color: #17324d;
+        }
+
+        .hero p {
+            margin: 0;
+            color: #667085;
+            line-height: 1.6;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .quiz-btn {
+            background: #17324d;
+            color: white;
+        }
+
+        .history-btn {
+            background: #e8eef5;
+            color: #17324d;
+        }
+
+        .section-title {
+            margin: 0 0 18px;
+            color: #17324d;
+            font-size: 23px;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            padding: 23px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5eaf0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+        }
+
+        .course-code {
+            display: inline-block;
+            background: #e8eef5;
+            color: #17324d;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 6px 9px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .course-card h3 {
+            margin: 0 0 10px;
+            font-size: 19px;
+            color: #17324d;
+        }
+
+        .course-card p {
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.55;
+            min-height: 65px;
+            margin-bottom: 18px;
+        }
+
+        .study-btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: #17324d;
+            color: white;
+            padding: 11px;
+            border-radius: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .study-btn:hover {
+            background: #244b70;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #8a94a6;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .courses {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .topbar {
+                padding: 15px;
+                flex-wrap: wrap;
+            }
+
+            .container {
+                padding: 25px 15px 40px;
+            }
+
+            .hero {
+                padding: 22px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .courses {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h1>📚 My Study Assistant</h1>
-    <p>Your personal nursing study companion</p>
-</header>
+    <header class="topbar">
+        <div class="brand">
+            🩺 Nursing Study Assistant
+        </div>
 
-<div class="container">
+        <div class="welcome">
+            Welcome, {{ current_user.name }}
+            &nbsp; | &nbsp;
+            <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </header>
 
-    <div class="welcome">
-        <h2>Welcome! 👋</h2>
-        <p>
-            Select a subject below to start studying.
-        </p>
-    </div>
+    <main class="container">
 
-    <h2>📖 My Subjects</h2>
+        <section class="hero">
+            <h1>Welcome back, {{ current_user.name }} 👋</h1>
 
-    <div class="subjects">
-
-        <!-- NURS 441 -->
-        <a href="/ophthalmic" class="subject">
-            <p class="code">NURS 441</p>
-            <h3>👁️ Ophthalmic Nursing</h3>
-            <p class="description">
-                Eye conditions, assessment, treatment and nursing care.
+            <p>
+                Your nursing study platform is ready. Choose a course below
+                to review your subject materials or test yourself with
+                practice questions.
             </p>
-        </a>
 
-        <!-- NURS 442 -->
-        <a href="/ent" class="subject">
-            <p class="code">NURS 442</p>
-            <h3>👂 ENT Nursing</h3>
-            <p class="description">
-                Ear, nose and throat conditions and nursing management.
-            </p>
-        </a>
+            <div class="quick-actions">
+                <a class="action-btn quiz-btn" href="{{ url_for('mcqs') }}">
+                    📝 Take MCQ Quiz
+                </a>
 
-        <!-- NURS 444 -->
-        <a href="/oncology" class="subject">
-            <p class="code">NURS 444</p>
-            <h3>🎗️ Oncology Nursing</h3>
-            <p class="description">
-                Cancer care, treatment and nursing management.
-            </p>
-        </a>
+                <a class="action-btn history-btn" href="{{ url_for('history') }}">
+                    📊 View Quiz History
+                </a>
+            </div>
+        </section>
 
-        <!-- NURS 443 -->
-        <a href="/emergency" class="subject">
-            <p class="code">NURS 443</p>
-            <h3>🚑 First Aid, Trauma & Emergency Nursing</h3>
-            <p class="description">
-                Emergency assessment, first aid, trauma and emergency nursing.
-            </p>
-        </a>
+        <h2 class="section-title">Your Nursing Courses</h2>
 
-        <!-- NURS 497 -->
-        <a href="/research" class="subject">
-            <p class="code">NURS 497</p>
-            <h3>📑 Research Proposal & Case Study Development</h3>
-            <p class="description">
-                Research methods, proposal development and case studies.
-            </p>
-        </a>
+        <section class="courses">
 
-        <!-- NURS 374 -->
-        <a href="/leadership1" class="subject">
-            <p class="code">NURS 374</p>
-            <h3>👥 Leadership & Management 1</h3>
-            <p class="description">
-                Principles of leadership and management in nursing.
-            </p>
-        </a>
+            <div class="course-card">
+                <span class="course-code">NURS 441</span>
+                <h3>Ophthalmic Nursing</h3>
+                <p>
+                    Study eye conditions, assessment, treatment,
+                    nursing care and ophthalmic procedures.
+                </p>
+                <a class="study-btn" href="{{ url_for('ophthalmic') }}">
+                    Study Course
+                </a>
+            </div>
 
-        <!-- NURS 378 -->
-        <a href="/leadership2" class="subject">
-            <p class="code">NURS 378</p>
-            <h3>👥 Leadership & Management 2</h3>
-            <p class="description">
-                Advanced leadership and management concepts.
-            </p>
-        </a>
+            <div class="course-card">
+                <span class="course-code">NURS 442</span>
+                <h3>ENT Nursing</h3>
+                <p>
+                    Review disorders and nursing management of the
+                    ear, nose and throat.
+                </p>
+                <a class="study-btn" href="{{ url_for('ent') }}">
+                    Study Course
+                </a>
+            </div>
 
-        <!-- NURS 437 -->
-        <a href="/curriculum" class="subject">
-            <p class="code">NURS 437</p>
-            <h3>📚 Curriculum Development</h3>
-            <p class="description">
-                Curriculum planning, development and evaluation.
-            </p>
-        </a>
+            <div class="course-card">
+                <span class="course-code">NURS 444</span>
+                <h3>Oncology Nursing</h3>
+                <p>
+                    Learn about cancer, treatment approaches,
+                    complications and nursing care.
+                </p>
+                <a class="study-btn" href="{{ url_for('oncology') }}">
+                    Study Course
+                </a>
+            </div>
 
-        <!-- NURS 446 -->
-        <a href="/theatre" class="subject">
-            <p class="code">NURS 446</p>
-            <h3>🏥 Theatre Nursing</h3>
-            <p class="description">
-                Perioperative nursing and surgical patient care.
-            </p>
-        </a>
+            <div class="course-card">
+                <span class="course-code">NURS 443</span>
+                <h3>First Aid, Trauma & Emergency Nursing</h3>
+                <p>
+                    Review emergency assessment, first aid,
+                    trauma management and emergency nursing care.
+                </p>
+                <a class="study-btn" href="{{ url_for('emergency') }}">
+                    Study Course
+                </a>
+            </div>
 
-    </div>
+            <div class="course-card">
+                <span class="course-code">NURS 497</span>
+                <h3>Research Proposal & Case Study Development</h3>
+                <p>
+                    Study research methods, proposal development,
+                    case studies and academic research principles.
+                </p>
+                <a class="study-btn" href="{{ url_for('research') }}">
+                    Study Course
+                </a>
+            </div>
 
-</div>
+            <div class="course-card">
+                <span class="course-code">NURS 374</span>
+                <h3>Leadership & Management 1</h3>
+                <p>
+                    Learn nursing leadership, management principles,
+                    delegation, supervision and decision-making.
+                </p>
+                <a class="study-btn" href="{{ url_for('leadership1') }}">
+                    Study Course
+                </a>
+            </div>
+
+            <div class="course-card">
+                <span class="course-code">NURS 378</span>
+                <h3>Leadership & Management 2</h3>
+                <p>
+                    Explore advanced leadership, strategic planning,
+                    quality improvement and change management.
+                </p>
+                <a class="study-btn" href="{{ url_for('leadership2') }}">
+                    Study Course
+                </a>
+            </div>
+
+            <div class="course-card">
+                <span class="course-code">NURS 437</span>
+                <h3>Curriculum Development</h3>
+                <p>
+                    Review curriculum planning, development,
+                    implementation, evaluation and revision.
+                </p>
+                <a class="study-btn" href="{{ url_for('curriculum') }}">
+                    Study Course
+                </a>
+            </div>
+
+            <div class="course-card">
+                <span class="course-code">NURS 446</span>
+                <h3>Theatre Nursing</h3>
+                <p>
+                    Study surgical nursing, theatre procedures,
+                    sterile technique and perioperative care.
+                </p>
+                <a class="study-btn" href="{{ url_for('theatre') }}">
+                    Study Course
+                </a>
+            </div>
+
+        </section>
+
+        <div class="footer">
+            Nursing Study Assistant • 500 practice questions across 9 courses
+        </div>
+
+    </main>
 
 </body>
-
 </html>

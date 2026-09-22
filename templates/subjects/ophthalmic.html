@@ -11,39 +11,79 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            color: #222;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
-        header {
-            background: #1769aa;
+        .header {
+            background: linear-gradient(135deg, #173b67, #2563a6);
             color: white;
-            padding: 25px;
+            padding: 30px 20px;
             text-align: center;
         }
 
-        header h1 {
+        .header h1 {
             margin: 0 0 8px;
+            font-size: 32px;
         }
 
-        header p {
+        .header p {
             margin: 0;
+            font-size: 17px;
+            opacity: 0.95;
         }
 
         .container {
-            width: 92%;
-            max-width: 1100px;
-            margin: 25px auto;
+            width: min(1150px, 94%);
+            margin: 25px auto 50px;
         }
 
-        .back {
-            display: inline-block;
+        .top-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 18px;
+            border-radius: 8px;
             text-decoration: none;
-            color: #1769aa;
             font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-dashboard {
+            background: #374151;
+            color: white;
+        }
+
+        .btn-mcq {
+            background: #0f766e;
+            color: white;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            margin-bottom: 22px;
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            color: #173b67;
         }
 
         .tabs {
@@ -55,200 +95,243 @@
 
         .tab-button {
             border: none;
-            background: #dbeafe;
-            color: #174a7c;
-            padding: 12px 16px;
+            background: #dbe5f1;
+            color: #173b67;
+            padding: 12px 17px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        .tab-button:hover {
-            background: #bfdbfe;
-        }
-
         .tab-button.active {
-            background: #1769aa;
+            background: #173b67;
             color: white;
         }
 
-        .tab {
+        .tab-content {
             display: none;
         }
 
-        .tab.active {
+        .tab-content.active {
             display: block;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 18px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .topic {
             background: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             overflow: hidden;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.08);
         }
 
-        .topic-title {
+        .topic-header {
             width: 100%;
             border: none;
-            background: #eaf3fb;
-            padding: 16px;
+            background: white;
+            padding: 18px 20px;
             text-align: left;
             cursor: pointer;
-            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
             font-weight: bold;
-            color: #174a7c;
+            color: #173b67;
         }
 
-        .topic-title:hover {
-            background: #dcecf9;
+        .topic-header:hover {
+            background: #f8fafc;
         }
 
-        .topic-content {
+        .arrow {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .topic.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        .topic-body {
             display: none;
-            padding: 18px;
-            line-height: 1.6;
+            padding: 0 20px 22px;
+            border-top: 1px solid #e5e7eb;
         }
 
-        .topic-content.show {
+        .topic.open .topic-body {
             display: block;
         }
 
-        .question {
+        .subtopic {
+            margin-top: 20px;
+            padding: 17px;
             background: #f8fafc;
-            border: 1px solid #d9e2ec;
-            padding: 18px;
-            margin-bottom: 18px;
-            border-radius: 10px;
+            border-left: 4px solid #2563a6;
+            border-radius: 8px;
         }
 
-        .question h3 {
+        .subtopic h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #173b67;
+            font-size: 17px;
+        }
+
+        .subtopic h5 {
+            margin-bottom: 6px;
+            color: #2563a6;
+        }
+
+        ul,
+        ol {
+            padding-left: 25px;
+        }
+
+        .diagram {
+            margin: 18px 0;
+            padding: 16px;
+            background: white;
+            border: 1px solid #d7dee8;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-weight: bold;
+            color: #173b67;
+            margin-bottom: 12px;
+        }
+
+        .diagram-note {
+            font-size: 14px;
+            color: #4b5563;
+            margin-top: 10px;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+
+        .question-card h3 {
+            color: #173b67;
             margin-top: 0;
         }
 
-        .option {
-            display: block;
-            padding: 8px;
-            margin: 5px 0;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        .option:hover {
-            background: #eaf3fb;
-        }
-
-        .btn {
-            border: none;
-            background: #1769aa;
-            color: white;
-            padding: 12px 18px;
+        .answer-box {
+            background: #eef6ff;
+            padding: 14px;
             border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-right: 8px;
-            margin-bottom: 8px;
+            margin-top: 12px;
         }
 
-        .btn:hover {
-            background: #0f4f82;
-        }
-
-        .result {
-            padding: 15px;
-            border-radius: 8px;
-            background: #e8f5e9;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .answer {
-            display: none;
-            background: #eef7ee;
-            border-left: 4px solid #2e7d32;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-
-        .answer.show {
-            display: block;
-        }
-
-        .flashcard {
-            background: #fff;
-            border: 2px solid #1769aa;
+        .long-answer {
+            background: white;
+            padding: 20px;
             border-radius: 12px;
-            padding: 35px 20px;
-            text-align: center;
-            min-height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
         }
 
-        .flash-question {
-            font-size: 22px;
-            font-weight: bold;
-            color: #174a7c;
+        .long-answer h3 {
+            color: #173b67;
+            margin-top: 0;
+        }
+
+        .progress-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
         }
 
         .progress-bar {
-            background: #ddd;
-            height: 24px;
+            width: 100%;
+            height: 22px;
+            background: #e5e7eb;
             border-radius: 20px;
             overflow: hidden;
             margin: 15px 0;
         }
 
         .progress-fill {
-            background: #1769aa;
             height: 100%;
             width: 0%;
-            transition: width 0.3s;
+            background: #2563a6;
+            transition: width 0.3s ease;
         }
 
-        textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 12px;
-            border: 1px solid #bbb;
-            border-radius: 8px;
-            font-family: Arial, sans-serif;
-            font-size: 15px;
-            margin-top: 10px;
-        }
-
-        .score {
-            font-size: 20px;
+        .complete-btn {
+            margin-top: 12px;
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
             font-weight: bold;
-            color: #1769aa;
         }
 
-        ul {
-            line-height: 1.7;
+        .complete-btn.completed {
+            background: #166534;
+        }
+
+        .resource-label {
+            display: inline-block;
+            background: #e0ecf9;
+            color: #173b67;
+            padding: 5px 9px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .note {
+            background: #fff8e6;
+            border-left: 4px solid #d97706;
+            padding: 14px;
+            border-radius: 7px;
+            margin: 15px 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: #6b7280;
+            margin-top: 35px;
+            font-size: 14px;
         }
 
         @media (max-width: 700px) {
-            .container {
-                width: 95%;
+            .header h1 {
+                font-size: 25px;
             }
 
+            .topic-header {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 96%;
+            }
+
+            .top-actions,
             .tabs {
                 flex-direction: column;
             }
 
+            .btn,
             .tab-button {
                 width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -256,510 +339,1498 @@
 
 <body>
 
-<header>
-    <h1>NURS 441 - Ophthalmic Nursing</h1>
-    <p>Study Assistant • Revision • Questions • Flashcards • Progress</p>
-</header>
+<div class="header">
+    <h1>NURS 441 – Ophthalmic Nursing</h1>
+    <p>Comprehensive study guide: topics, subtopics, diagrams, questions and progress tracking</p>
+</div>
 
 <div class="container">
 
-    <a href="/" class="back">← Back to Dashboard</a>
+    <div class="top-actions">
+        <a href="/" class="btn btn-dashboard">← Dashboard</a>
 
-    <div class="tabs">
-        <button type="button" class="tab-button active" onclick="openTab('topics', this)">Topics</button>
-        <button type="button" class="tab-button" onclick="openTab('notes', this)">Notes</button>
-        <button type="button" class="tab-button" onclick="openTab('mcq', this)">MCQs</button>
-        <button type="button" class="tab-button" onclick="openTab('short', this)">Short Answers</button>
-        <button type="button" class="tab-button" onclick="openTab('long', this)">Long Answers</button>
-        <button type="button" class="tab-button" onclick="openTab('flashcards', this)">Flashcards</button>
-        <button type="button" class="tab-button" onclick="openTab('progress', this)">Progress</button>
+        <!-- NURS 441-specific MCQs -->
+        <a href="/mcqs?subject=NURS%20441" class="btn btn-mcq">
+            Practice NURS 441 MCQs
+        </a>
     </div>
 
+    <div class="intro">
+        <h2>About Ophthalmic Nursing</h2>
+
+        <p>
+            Ophthalmic nursing focuses on the assessment, prevention, treatment and
+            nursing management of patients with disorders affecting the eye and vision.
+            The nurse requires knowledge of eye anatomy and physiology, assessment
+            techniques, common ophthalmic diseases, surgical care, medication
+            administration and patient education.
+        </p>
+
+        <div class="note">
+            <strong>Study tip:</strong>
+            Study each topic through its smaller subtopics. Pay particular attention
+            to anatomy diagrams, assessment procedures, manifestations, treatment,
+            nursing management and complications.
+        </div>
+    </div>
+
+    <div class="tabs">
+
+        <button class="tab-button active" onclick="showTab('topics', this)">
+            Topics & Subtopics
+        </button>
+
+        <button class="tab-button" onclick="showTab('mcqs', this)">
+            MCQs
+        </button>
+
+        <button class="tab-button" onclick="showTab('short', this)">
+            Short Answer
+        </button>
+
+        <button class="tab-button" onclick="showTab('long', this)">
+            Long Answer
+        </button>
+
+        <button class="tab-button" onclick="showTab('progress', this)">
+            Progress
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
     <!-- TOPICS -->
-    <section id="topics" class="tab active">
+    <!-- ========================= -->
 
-        <div class="card">
-            <h2>Ophthalmic Nursing Topics</h2>
-            <p>Click a topic to expand it.</p>
-        </div>
+    <div id="topics" class="tab-content active">
 
+
+        <!-- TOPIC 1 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t1')">
-                1. Anatomy and Physiology of the Eye
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>1. Anatomy and Physiology of the Eye</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t1" class="topic-content">
-                <p><strong>Key areas:</strong></p>
-                <ul>
-                    <li>Cornea</li>
-                    <li>Sclera</li>
-                    <li>Conjunctiva</li>
-                    <li>Iris</li>
-                    <li>Pupil</li>
-                    <li>Lens</li>
-                    <li>Retina</li>
-                    <li>Choroid</li>
-                    <li>Optic nerve</li>
-                    <li>Aqueous and vitreous humour</li>
-                </ul>
-                <p>The eye receives light, focuses it onto the retina and transmits visual information to the brain through the optic nerve.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>External Structures of the Eye</h4>
+
+                    <p>
+                        The external structures protect the eye and help maintain
+                        its normal function.
+                    </p>
+
+                    <ul>
+                        <li><strong>Eyelids:</strong> Protect the eye from injury and excessive light.</li>
+                        <li><strong>Eyelashes:</strong> Help prevent dust and foreign materials from entering the eye.</li>
+                        <li><strong>Conjunctiva:</strong> Thin mucous membrane covering the inner eyelids and anterior sclera.</li>
+                        <li><strong>Lacrimal apparatus:</strong> Produces, distributes and drains tears.</li>
+                        <li><strong>Extraocular muscles:</strong> Control movement of the eyeball.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Internal Structures</h4>
+
+                    <ul>
+                        <li><strong>Cornea:</strong> Transparent anterior structure that provides much of the eye's refractive power.</li>
+                        <li><strong>Sclera:</strong> Tough white outer layer providing protection and shape.</li>
+                        <li><strong>Iris:</strong> Colored part of the eye that regulates the amount of light entering.</li>
+                        <li><strong>Pupil:</strong> Opening through which light enters the eye.</li>
+                        <li><strong>Lens:</strong> Transparent structure that changes shape during accommodation.</li>
+                        <li><strong>Retina:</strong> Contains photoreceptors that convert light into neural signals.</li>
+                        <li><strong>Optic nerve:</strong> Carries visual information to the brain.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Functions of Major Structures</h4>
+
+                    <ul>
+                        <li>Cornea – refraction and protection.</li>
+                        <li>Iris – controls pupil size.</li>
+                        <li>Lens – fine focusing of light.</li>
+                        <li>Retina – receives light stimuli.</li>
+                        <li>Optic nerve – transmits visual impulses.</li>
+                        <li>Extraocular muscles – coordinate eye movement.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Visual Pathway</h4>
+
+                    <p>
+                        Light is focused onto the retina where photoreceptors convert
+                        the stimulus into electrical signals. These signals travel
+                        through the optic nerve, optic chiasm and optic tract before
+                        reaching visual areas of the brain.
+                    </p>
+
+                    <div class="diagram">
+
+                        <div class="diagram-title">
+                            📊 Diagram / Illustration – Basic Eye Anatomy
+                        </div>
+
+                        <svg viewBox="0 0 700 380" role="img"
+                             aria-label="Basic labelled diagram of the eye">
+
+                            <ellipse cx="330" cy="190"
+                                     rx="230" ry="145"
+                                     fill="#eef6ff"
+                                     stroke="#173b67"
+                                     stroke-width="5"/>
+
+                            <path d="M120 190
+                                     Q145 100 235 70
+                                     Q325 40 420 75
+                                     Q505 105 560 190
+                                     Q505 275 420 305
+                                     Q325 340 235 310
+                                     Q145 280 120 190Z"
+                                  fill="#f8fafc"
+                                  stroke="#2563a6"
+                                  stroke-width="3"/>
+
+                            <path d="M120 190
+                                     Q150 135 195 125
+                                     Q170 190 195 255
+                                     Q150 245 120 190Z"
+                                  fill="#dbeafe"
+                                  stroke="#173b67"
+                                  stroke-width="3"/>
+
+                            <circle cx="205" cy="190"
+                                    r="48"
+                                    fill="#bfdbfe"
+                                    stroke="#173b67"
+                                    stroke-width="4"/>
+
+                            <circle cx="205" cy="190"
+                                    r="18"
+                                    fill="#111827"/>
+
+                            <ellipse cx="320" cy="190"
+                                     rx="55" ry="82"
+                                     fill="#fef3c7"
+                                     stroke="#92400e"
+                                     stroke-width="4"/>
+
+                            <path d="M560 190 L650 190"
+                                  stroke="#173b67"
+                                  stroke-width="7"/>
+
+                            <line x1="205" y1="125"
+                                  x2="110" y2="65"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="20" y="58"
+                                  font-size="20"
+                                  fill="#111827">
+                                Cornea
+                            </text>
+
+                            <line x1="205" y1="190"
+                                  x2="95" y2="190"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="10" y="185"
+                                  font-size="20"
+                                  fill="#111827">
+                                Pupil
+                            </text>
+
+                            <line x1="320" y1="110"
+                                  x2="320" y2="45"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="285" y="35"
+                                  font-size="20"
+                                  fill="#111827">
+                                Lens
+                            </text>
+
+                            <line x1="430" y1="115"
+                                  x2="510" y2="50"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="505" y="45"
+                                  font-size="20"
+                                  fill="#111827">
+                                Retina
+                            </text>
+
+                            <text x="585" y="175"
+                                  font-size="20"
+                                  fill="#111827">
+                                Optic
+                            </text>
+
+                            <text x="585" y="200"
+                                  font-size="20"
+                                  fill="#111827">
+                                nerve
+                            </text>
+
+                        </svg>
+
+                        <div class="diagram-note">
+                            The major structures work together to focus light,
+                            detect visual stimuli and transmit information to the brain.
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 2 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t2')">
-                2. Eye Assessment
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>2. Ophthalmic Assessment</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t2" class="topic-content">
-                <ul>
-                    <li>Visual acuity assessment</li>
-                    <li>Pupil assessment</li>
-                    <li>External eye examination</li>
-                    <li>Visual fields</li>
-                    <li>Eye movements</li>
-                    <li>Intraocular pressure</li>
-                    <li>Fundoscopic examination</li>
-                </ul>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>History Taking</h4>
+
+                    <p>
+                        The nurse should obtain information about the patient's
+                        visual symptoms, onset, duration and factors that worsen
+                        or relieve them.
+                    </p>
+
+                    <ul>
+                        <li>Blurred vision</li>
+                        <li>Eye pain</li>
+                        <li>Redness</li>
+                        <li>Photophobia</li>
+                        <li>Eye discharge</li>
+                        <li>Loss of vision</li>
+                        <li>Trauma or foreign body exposure</li>
+                        <li>Previous eye surgery</li>
+                        <li>Use of spectacles or contact lenses</li>
+                        <li>History of diabetes or hypertension</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Visual Acuity</h4>
+
+                    <p>
+                        Visual acuity measures the ability to distinguish details
+                        at a specified distance. It is commonly assessed using
+                        a Snellen chart.
+                    </p>
+
+                    <p>
+                        The nurse should ensure the patient is positioned correctly,
+                        test one eye at a time and record the result accurately.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Pupillary Assessment</h4>
+
+                    <ul>
+                        <li>Assess pupil size.</li>
+                        <li>Assess pupil shape.</li>
+                        <li>Assess equality.</li>
+                        <li>Assess direct response to light.</li>
+                        <li>Assess consensual response.</li>
+                        <li>Assess accommodation where appropriate.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📊 Diagram / Illustration</span>
+
+                    <h4>Basic Eye Assessment Flow</h4>
+
+                    <div class="diagram">
+
+                        <svg viewBox="0 0 800 230">
+
+                            <rect x="30" y="70"
+                                  width="150" height="70"
+                                  rx="12"
+                                  fill="#eef6ff"
+                                  stroke="#173b67"
+                                  stroke-width="3"/>
+
+                            <text x="105" y="112"
+                                  text-anchor="middle"
+                                  font-size="18">
+                                History
+                            </text>
+
+                            <line x1="180" y1="105"
+                                  x2="260" y2="105"
+                                  stroke="#173b67"
+                                  stroke-width="4"/>
+
+                            <polygon points="260,105 245,96 245,114"
+                                     fill="#173b67"/>
+
+                            <rect x="260" y="70"
+                                  width="150" height="70"
+                                  rx="12"
+                                  fill="#eef6ff"
+                                  stroke="#173b67"
+                                  stroke-width="3"/>
+
+                            <text x="335" y="112"
+                                  text-anchor="middle"
+                                  font-size="18">
+                                Visual acuity
+                            </text>
+
+                            <line x1="410" y1="105"
+                                  x2="490" y2="105"
+                                  stroke="#173b67"
+                                  stroke-width="4"/>
+
+                            <polygon points="490,105 475,96 475,114"
+                                     fill="#173b67"/>
+
+                            <rect x="490" y="70"
+                                  width="130" height="70"
+                                  rx="12"
+                                  fill="#eef6ff"
+                                  stroke="#173b67"
+                                  stroke-width="3"/>
+
+                            <text x="555" y="112"
+                                  text-anchor="middle"
+                                  font-size="18">
+                                Pupils
+                            </text>
+
+                            <line x1="620" y1="105"
+                                  x2="700" y2="105"
+                                  stroke="#173b67"
+                                  stroke-width="4"/>
+
+                            <polygon points="700,105 685,96 685,114"
+                                     fill="#173b67"/>
+
+                            <rect x="700" y="70"
+                                  width="80" height="70"
+                                  rx="12"
+                                  fill="#eef6ff"
+                                  stroke="#173b67"
+                                  stroke-width="3"/>
+
+                            <text x="740" y="112"
+                                  text-anchor="middle"
+                                  font-size="16">
+                                Exam
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 3 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t3')">
-                3. Refractive Errors
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>3. Cataract</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t3" class="topic-content">
-                <ul>
-                    <li>Myopia</li>
-                    <li>Hypermetropia</li>
-                    <li>Astigmatism</li>
-                    <li>Presbyopia</li>
-                </ul>
-                <p>Refractive errors occur when light is not focused correctly on the retina.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Definition</h4>
+
+                    <p>
+                        A cataract is an opacity of the normally transparent lens
+                        of the eye that interferes with the passage of light and
+                        may result in progressive visual impairment.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Causes and Risk Factors</h4>
+
+                    <ul>
+                        <li>Increasing age</li>
+                        <li>Diabetes mellitus</li>
+                        <li>Eye trauma</li>
+                        <li>Prolonged corticosteroid exposure</li>
+                        <li>Smoking</li>
+                        <li>Previous eye surgery</li>
+                        <li>Congenital factors</li>
+                        <li>Excessive ultraviolet exposure</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Manifestations</h4>
+
+                    <ul>
+                        <li>Painless progressive loss of vision</li>
+                        <li>Blurred vision</li>
+                        <li>Glare, especially at night</li>
+                        <li>Difficulty reading</li>
+                        <li>Reduced color perception</li>
+                        <li>Frequent changes in spectacle prescription</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Diagnosis</h4>
+
+                    <p>
+                        Diagnosis is based on history and ophthalmic examination.
+                        Visual acuity testing and examination of the lens using
+                        appropriate equipment help determine the severity.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Treatment</h4>
+
+                    <p>
+                        Definitive treatment for a visually significant cataract
+                        is surgical removal of the cloudy lens followed, when
+                        appropriate, by implantation of an intraocular lens.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Nursing Management</h4>
+
+                    <ul>
+                        <li>Assess visual function and effect on daily activities.</li>
+                        <li>Provide a safe environment to reduce falls.</li>
+                        <li>Explain investigations and treatment.</li>
+                        <li>Administer prescribed eye medications correctly.</li>
+                        <li>Provide preoperative preparation.</li>
+                        <li>Monitor after surgery for complications.</li>
+                        <li>Teach correct postoperative eye care.</li>
+                        <li>Advise the patient to avoid activities restricted by the surgeon.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📊 Diagram / Illustration</span>
+
+                    <h4>Normal Lens vs Cataractous Lens</h4>
+
+                    <div class="diagram">
+
+                        <svg viewBox="0 0 700 300">
+
+                            <text x="175" y="35"
+                                  text-anchor="middle"
+                                  font-size="22"
+                                  font-weight="bold">
+                                Normal Lens
+                            </text>
+
+                            <circle cx="175" cy="155"
+                                    r="100"
+                                    fill="#eef6ff"
+                                    stroke="#173b67"
+                                    stroke-width="4"/>
+
+                            <ellipse cx="175" cy="155"
+                                     rx="48"
+                                     ry="75"
+                                     fill="#dff6ff"
+                                     stroke="#2563a6"
+                                     stroke-width="4"/>
+
+                            <text x="175" y="265"
+                                  text-anchor="middle"
+                                  font-size="17">
+                                Clear lens
+                            </text>
+
+
+                            <text x="525" y="35"
+                                  text-anchor="middle"
+                                  font-size="22"
+                                  font-weight="bold">
+                                Cataract
+                            </text>
+
+                            <circle cx="525" cy="155"
+                                    r="100"
+                                    fill="#eef6ff"
+                                    stroke="#173b67"
+                                    stroke-width="4"/>
+
+                            <ellipse cx="525" cy="155"
+                                     rx="48"
+                                     ry="75"
+                                     fill="#d1d5db"
+                                     stroke="#4b5563"
+                                     stroke-width="4"/>
+
+                            <circle cx="510" cy="130"
+                                    r="14"
+                                    fill="#9ca3af"/>
+
+                            <circle cx="540" cy="160"
+                                    r="18"
+                                    fill="#9ca3af"/>
+
+                            <circle cx="520" cy="185"
+                                    r="11"
+                                    fill="#9ca3af"/>
+
+                            <text x="525" y="265"
+                                  text-anchor="middle"
+                                  font-size="17">
+                                Cloudy / opaque lens
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 4 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t4')">
-                4. Cataract
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>4. Glaucoma</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t4" class="topic-content">
-                <p>A cataract is an opacity of the lens that interferes with vision.</p>
-                <p><strong>Common features:</strong> painless progressive visual impairment, blurred vision, glare and difficulty seeing at night.</p>
-                <p><strong>Management:</strong> corrective lenses may help early symptoms, while surgery is the definitive treatment when vision is significantly affected.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Definition</h4>
+
+                    <p>
+                        Glaucoma refers to a group of eye disorders characterized
+                        by progressive optic nerve damage, often associated with
+                        abnormal intraocular pressure.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Types</h4>
+
+                    <ul>
+                        <li>Open-angle glaucoma</li>
+                        <li>Angle-closure glaucoma</li>
+                        <li>Secondary glaucoma</li>
+                        <li>Congenital glaucoma</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Risk Factors</h4>
+
+                    <ul>
+                        <li>Increasing age</li>
+                        <li>Family history</li>
+                        <li>Diabetes</li>
+                        <li>Previous eye injury</li>
+                        <li>Certain medications</li>
+                        <li>Vascular and ocular risk factors</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Manifestations</h4>
+
+                    <p>
+                        Chronic open-angle glaucoma may progress with few symptoms
+                        initially. Peripheral visual field loss may develop gradually.
+                    </p>
+
+                    <p>
+                        Acute angle closure may present with severe eye pain,
+                        blurred vision, halos around lights, headache, nausea,
+                        vomiting and a red eye.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Nursing Management</h4>
+
+                    <ul>
+                        <li>Administer prescribed antiglaucoma medications.</li>
+                        <li>Monitor intraocular pressure as ordered.</li>
+                        <li>Teach the patient correct eye-drop administration.</li>
+                        <li>Stress adherence to treatment.</li>
+                        <li>Educate about follow-up examinations.</li>
+                        <li>Recognize acute angle closure as an ophthalmic emergency.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+
+                    <span class="resource-label">
+                        📊 Diagram / Illustration
+                    </span>
+
+                    <h4>Aqueous Humour Flow</h4>
+
+                    <div class="diagram">
+
+                        <svg viewBox="0 0 750 300">
+
+                            <circle cx="160" cy="150"
+                                    r="95"
+                                    fill="#eef6ff"
+                                    stroke="#173b67"
+                                    stroke-width="4"/>
+
+                            <circle cx="160" cy="150"
+                                    r="42"
+                                    fill="#fef3c7"
+                                    stroke="#92400e"
+                                    stroke-width="3"/>
+
+                            <text x="160" y="155"
+                                  text-anchor="middle"
+                                  font-size="17">
+                                Ciliary
+                            </text>
+
+                            <text x="160" y="177"
+                                  text-anchor="middle"
+                                  font-size="17">
+                                body
+                            </text>
+
+                            <line x1="250" y1="115"
+                                  x2="380" y2="80"
+                                  stroke="#2563a6"
+                                  stroke-width="5"/>
+
+                            <polygon points="380,80 360,72 365,92"
+                                     fill="#2563a6"/>
+
+                            <text x="300" y="65"
+                                  font-size="17">
+                                Aqueous humour
+                            </text>
+
+                            <circle cx="500" cy="80"
+                                    r="55"
+                                    fill="#eef6ff"
+                                    stroke="#173b67"
+                                    stroke-width="4"/>
+
+                            <text x="500" y="86"
+                                  text-anchor="middle"
+                                  font-size="17">
+                                Anterior
+                            </text>
+
+                            <text x="500" y="107"
+                                  text-anchor="middle"
+                                  font-size="17">
+                                chamber
+                            </text>
+
+                            <line x1="500" y1="140"
+                                  x2="500" y2="220"
+                                  stroke="#2563a6"
+                                  stroke-width="5"/>
+
+                            <polygon points="500,220 490,200 510,200"
+                                     fill="#2563a6"/>
+
+                            <text x="520" y="180"
+                                  font-size="17">
+                                Drainage
+                            </text>
+
+                            <text x="520" y="201"
+                                  font-size="17">
+                                pathway
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 5 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t5')">
-                5. Glaucoma
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>5. Conjunctivitis</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t5" class="topic-content">
-                <p>Glaucoma refers to a group of eye disorders involving characteristic optic nerve damage, often associated with raised intraocular pressure.</p>
-                <p><strong>Types:</strong> open-angle and angle-closure glaucoma.</p>
-                <p><strong>Nursing priorities:</strong> medication administration, monitoring vision and symptoms, adherence education and urgent referral when acute angle-closure symptoms occur.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Definition</h4>
+
+                    <p>
+                        Conjunctivitis is inflammation of the conjunctiva.
+                        It may result from infectious or non-infectious causes.
+                    </p>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Causes</h4>
+
+                    <ul>
+                        <li>Bacterial infection</li>
+                        <li>Viral infection</li>
+                        <li>Allergic reaction</li>
+                        <li>Chemical irritation</li>
+                        <li>Foreign-body irritation</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Signs and Symptoms</h4>
+
+                    <ul>
+                        <li>Red eye</li>
+                        <li>Eye discharge</li>
+                        <li>Itching</li>
+                        <li>Burning or irritation</li>
+                        <li>Excessive tearing</li>
+                        <li>Swollen eyelids</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Nursing Management</h4>
+
+                    <ul>
+                        <li>Maintain good hand hygiene.</li>
+                        <li>Avoid sharing towels and personal items.</li>
+                        <li>Administer prescribed medications.</li>
+                        <li>Clean discharge appropriately.</li>
+                        <li>Teach infection-control measures.</li>
+                        <li>Encourage follow-up when symptoms persist or worsen.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+
+                    <span class="resource-label">
+                        📊 Diagram / Illustration
+                    </span>
+
+                    <h4>Conjunctival Structures</h4>
+
+                    <div class="diagram">
+
+                        <svg viewBox="0 0 700 260">
+
+                            <ellipse cx="350" cy="130"
+                                     rx="220"
+                                     ry="100"
+                                     fill="#f8fafc"
+                                     stroke="#173b67"
+                                     stroke-width="5"/>
+
+                            <ellipse cx="350" cy="130"
+                                     rx="80"
+                                     ry="70"
+                                     fill="#eef6ff"
+                                     stroke="#2563a6"
+                                     stroke-width="4"/>
+
+                            <circle cx="350" cy="130"
+                                    r="28"
+                                    fill="#111827"/>
+
+                            <line x1="200" y1="75"
+                                  x2="90" y2="40"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="15" y="38"
+                                  font-size="18">
+                                Conjunctiva
+                            </text>
+
+                            <line x1="430" y1="130"
+                                  x2="590" y2="80"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="595" y="78"
+                                  font-size="18">
+                                Scleral
+                            </text>
+
+                            <text x="595" y="100"
+                                  font-size="18">
+                                surface
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 6 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t6')">
-                6. Conjunctivitis
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>6. Retinal Disorders</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t6" class="topic-content">
-                <p>Conjunctivitis is inflammation of the conjunctiva.</p>
-                <p>It may be infectious, allergic or associated with irritation.</p>
-                <p>Common findings include redness, discharge, irritation and watering.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Retinal Detachment</h4>
+
+                    <p>
+                        Retinal detachment occurs when the retina separates from
+                        the underlying tissues that support its normal function.
+                        It requires urgent ophthalmic assessment.
+                    </p>
+
+                    <h5>Possible manifestations</h5>
+
+                    <ul>
+                        <li>Flashes of light</li>
+                        <li>Floaters</li>
+                        <li>Shadow or curtain across vision</li>
+                        <li>Reduced vision</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Diabetic Retinopathy</h4>
+
+                    <p>
+                        Diabetic retinopathy results from diabetes-related damage
+                        to retinal blood vessels and may lead to visual impairment.
+                    </p>
+
+                    <h5>Nursing responsibilities</h5>
+
+                    <ul>
+                        <li>Promote glycemic control.</li>
+                        <li>Encourage regular eye examinations.</li>
+                        <li>Educate about warning symptoms.</li>
+                        <li>Reinforce adherence to treatment.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+
+                    <span class="resource-label">
+                        📊 Diagram / Illustration
+                    </span>
+
+                    <h4>Basic Retina Location</h4>
+
+                    <div class="diagram">
+
+                        <svg viewBox="0 0 700 300">
+
+                            <circle cx="300" cy="150"
+                                    r="110"
+                                    fill="#eef6ff"
+                                    stroke="#173b67"
+                                    stroke-width="5"/>
+
+                            <circle cx="300" cy="150"
+                                    r="88"
+                                    fill="#ffffff"
+                                    stroke="#2563a6"
+                                    stroke-width="4"/>
+
+                            <path d="M360 70
+                                     Q405 100 415 150
+                                     Q405 200 360 230"
+                                  fill="none"
+                                  stroke="#b91c1c"
+                                  stroke-width="10"/>
+
+                            <line x1="415" y1="150"
+                                  x2="560" y2="100"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="565" y="98"
+                                  font-size="18">
+                                Retina
+                            </text>
+
+                            <line x1="410" y1="180"
+                                  x2="560" y2="215"
+                                  stroke="#374151"
+                                  stroke-width="2"/>
+
+                            <text x="565" y="220"
+                                  font-size="18">
+                                Posterior
+                            </text>
+
+                            <text x="565" y="242"
+                                  font-size="18">
+                                structures
+                            </text>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 7 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t7')">
-                7. Keratitis and Corneal Ulcer
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>7. Ophthalmic Surgery and Postoperative Care</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t7" class="topic-content">
-                <p>Keratitis is inflammation of the cornea. A corneal ulcer is a defect involving loss of corneal epithelium with underlying inflammation or infection.</p>
-                <p>Symptoms may include pain, photophobia, redness, tearing and reduced vision.</p>
-                <p>These conditions require prompt ophthalmic assessment.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Preoperative Nursing Care</h4>
+
+                    <ul>
+                        <li>Confirm patient identity and procedure.</li>
+                        <li>Review informed consent according to facility policy.</li>
+                        <li>Assess baseline visual status.</li>
+                        <li>Administer prescribed preoperative medications.</li>
+                        <li>Explain postoperative expectations.</li>
+                        <li>Prepare the patient physically and psychologically.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Postoperative Care</h4>
+
+                    <ul>
+                        <li>Monitor pain and visual changes.</li>
+                        <li>Administer prescribed eye drops.</li>
+                        <li>Maintain eye protection as prescribed.</li>
+                        <li>Observe for redness, discharge or excessive pain.</li>
+                        <li>Teach the patient how to protect the eye.</li>
+                        <li>Reinforce follow-up appointments.</li>
+                    </ul>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Possible Complications</h4>
+
+                    <ul>
+                        <li>Infection</li>
+                        <li>Bleeding</li>
+                        <li>Raised intraocular pressure</li>
+                        <li>Wound problems</li>
+                        <li>Visual deterioration</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
+
+        <!-- TOPIC 8 -->
         <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t8')">
-                8. Uveitis
+
+            <button class="topic-header" onclick="toggleTopic(this)">
+                <span>8. Ophthalmic Medications and Patient Education</span>
+                <span class="arrow">▶</span>
             </button>
-            <div id="t8" class="topic-content">
-                <p>Uveitis is inflammation involving the uveal tract.</p>
-                <p>Possible features include eye pain, photophobia, redness and blurred vision.</p>
-                <p>Management depends on the underlying cause and may involve prescribed anti-inflammatory therapy.</p>
+
+            <div class="topic-body">
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Eye Drop Administration</h4>
+
+                    <ol>
+                        <li>Perform hand hygiene.</li>
+                        <li>Explain the procedure.</li>
+                        <li>Position the patient appropriately.</li>
+                        <li>Pull the lower eyelid down gently.</li>
+                        <li>Instill the prescribed number of drops.</li>
+                        <li>Avoid touching the dropper tip to the eye.</li>
+                        <li>Ask the patient to close the eye gently.</li>
+                        <li>Perform hand hygiene again when appropriate.</li>
+                    </ol>
+                </div>
+
+
+                <div class="subtopic">
+                    <span class="resource-label">📖 Study Notes</span>
+
+                    <h4>Patient Education</h4>
+
+                    <ul>
+                        <li>Use medications exactly as prescribed.</li>
+                        <li>Do not share eye medications.</li>
+                        <li>Attend scheduled follow-up appointments.</li>
+                        <li>Report sudden visual loss or severe eye pain promptly.</li>
+                        <li>Protect the eye from injury.</li>
+                        <li>Maintain appropriate control of chronic conditions.</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t9')">
-                9. Retinal Detachment
-            </button>
-            <div id="t9" class="topic-content">
-                <p>Retinal detachment occurs when the retina separates from its normal supporting tissues.</p>
-                <p><strong>Warning symptoms:</strong> flashes of light, new floaters and a curtain or shadow over the visual field.</p>
-                <p>This is an ophthalmic emergency requiring urgent assessment.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t10')">
-                10. Diabetic Retinopathy
-            </button>
-            <div id="t10" class="topic-content">
-                <p>Diabetic retinopathy is retinal vascular damage associated with diabetes mellitus.</p>
-                <p>Good glucose and blood pressure control and regular eye screening are important in reducing the risk of vision loss.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t11')">
-                11. Eye Trauma
-            </button>
-            <div id="t11" class="topic-content">
-                <p>Eye trauma may include blunt injury, penetrating injury, foreign bodies, chemical injuries and burns.</p>
-                <p>Assessment should determine the mechanism of injury, visual changes and associated injuries.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t12')">
-                12. Chemical Eye Injury
-            </button>
-            <div id="t12" class="topic-content">
-                <p>Chemical exposure to the eye requires immediate first aid.</p>
-                <p>The priority is prompt and prolonged irrigation according to the applicable emergency/ophthalmic protocol, followed by urgent professional assessment.</p>
-                <p>Do not delay irrigation while waiting for a detailed history.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t13')">
-                13. Ophthalmic Medications
-            </button>
-            <div id="t13" class="topic-content">
-                <ul>
-                    <li>Antibiotic eye preparations</li>
-                    <li>Lubricating preparations</li>
-                    <li>Anti-inflammatory medicines</li>
-                    <li>Antiglaucoma medicines</li>
-                    <li>Mydriatics and cycloplegics</li>
-                </ul>
-                <p>Nurses should check the prescription, patient, eye, medication, dose and administration technique.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t14')">
-                14. Preoperative and Postoperative Eye Care
-            </button>
-            <div id="t14" class="topic-content">
-                <p>Preoperative care includes assessment, patient education, consent verification and preparation according to the procedure.</p>
-                <p>Postoperative care includes monitoring pain, vision, wound condition, infection and adherence to prescribed treatment.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <button type="button" class="topic-title" onclick="toggleTopic('t15')">
-                15. Common Ophthalmic Procedures
-            </button>
-            <div id="t15" class="topic-content">
-                <ul>
-                    <li>Visual acuity testing</li>
-                    <li>Tonometry</li>
-                    <li>Ophthalmoscopy</li>
-                    <li>Slit-lamp examination</li>
-                    <li>Cataract surgery</li>
-                    <li>Laser procedures</li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
+    </div>
 
 
-    <!-- NOTES -->
-    <section id="notes" class="tab">
+    <!-- ========================= -->
+    <!-- MCQS -->
+    <!-- ========================= -->
 
-        <div class="card">
-            <h2>Quick Revision Notes</h2>
+    <div id="mcqs" class="tab-content">
 
-            <h3>Visual Acuity</h3>
-            <p>Visual acuity measures the ability of the eye to see and distinguish details at a specified distance.</p>
+        <div class="question-card">
 
-            <h3>Cataract</h3>
-            <p>Cataract is an opacity of the lens causing progressive visual impairment.</p>
+            <h3>Practice NURS 441 MCQs</h3>
 
-            <h3>Glaucoma</h3>
-            <p>Glaucoma involves characteristic optic nerve damage and visual field loss. Intraocular pressure may be elevated.</p>
-
-            <h3>Retinal Detachment</h3>
-            <p>Important warning symptoms include flashes, new floaters and a curtain-like shadow over the visual field.</p>
-
-            <h3>Diabetic Retinopathy</h3>
-            <p>Diabetic retinopathy is a microvascular complication of diabetes affecting the retina.</p>
-
-            <h3>Eye Trauma</h3>
-            <p>Eye injuries can be serious even when external damage appears small. Mechanism and visual symptoms are important.</p>
-
-            <h3>Chemical Injury</h3>
-            <p>Immediate irrigation is a key emergency measure following chemical exposure to the eye.</p>
-        </div>
-
-    </section>
-
-
-    <!-- MCQ -->
-    <section id="mcq" class="tab">
-
-        <div class="card">
-            <h2>NURS 441 MCQ Practice</h2>
             <p>
-                You will receive <strong>10 randomly selected questions</strong> from a large question bank.
-                Submit your answers to see your score, then click <strong>New Question Set</strong>.
+                The full NURS 441 question bank is available through the dedicated
+                MCQ system.
             </p>
 
-            <p class="score" id="quizNumber">Question Set 1</p>
+            <a href="/mcqs?subject=NURS%20441"
+               class="btn btn-mcq">
+                Start NURS 441 MCQ Practice →
+            </a>
 
-            <div id="quizContainer"></div>
-
-            <button type="button" class="btn" onclick="submitQuiz()">Submit Answers</button>
-            <button type="button" class="btn" onclick="newQuiz()">New Question Set</button>
-
-            <div id="quizResult"></div>
         </div>
 
-    </section>
+        <div class="question-card">
+
+            <h3>Study Reminder</h3>
+
+            <p>
+                Focus on anatomy and physiology, eye assessment, cataract,
+                glaucoma, conjunctivitis, retinal disorders, ophthalmic surgery
+                and medication administration.
+            </p>
+
+        </div>
+
+    </div>
 
 
+    <!-- ========================= -->
     <!-- SHORT ANSWERS -->
-    <section id="short" class="tab">
+    <!-- ========================= -->
 
-        <div class="card">
-            <h2>Short-Answer Questions</h2>
+    <div id="short" class="tab-content">
 
-            <div class="question">
-                <h3>1. Define cataract.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa1')">Show Model Answer</button>
-                <div id="sa1" class="answer">
-                    Cataract is an opacity of the eye's lens that interferes with the passage and focusing of light, causing visual impairment.
-                </div>
-            </div>
+        <div class="question-card">
 
-            <div class="question">
-                <h3>2. State four symptoms of retinal detachment.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa2')">Show Model Answer</button>
-                <div id="sa2" class="answer">
-                    Flashes of light, new floaters, blurred or reduced vision, and a curtain or shadow over part of the visual field.
-                </div>
-            </div>
+            <h3>1. Define cataract.</h3>
 
-            <div class="question">
-                <h3>3. State four causes or risk factors for cataract.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa3')">Show Model Answer</button>
-                <div id="sa3" class="answer">
-                    Increasing age, diabetes, trauma, prolonged corticosteroid exposure, smoking and excessive ultraviolet exposure are recognized risk factors.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>4. Differentiate myopia from hypermetropia.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa4')">Show Model Answer</button>
-                <div id="sa4" class="answer">
-                    Myopia causes distant objects to appear blurred because the image tends to focus in front of the retina. Hypermetropia causes difficulty with near vision because the image tends to focus behind the retina.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>5. State four signs of conjunctivitis.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa5')">Show Model Answer</button>
-                <div id="sa5" class="answer">
-                    Eye redness, discharge, watering, irritation and itching may occur depending on the cause.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>6. What is glaucoma?</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa6')">Show Model Answer</button>
-                <div id="sa6" class="answer">
-                    Glaucoma is a group of eye disorders characterized by progressive optic nerve damage and corresponding visual field loss, often associated with elevated intraocular pressure.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>7. State four eye assessment methods.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa7')">Show Model Answer</button>
-                <div id="sa7" class="answer">
-                    Visual acuity testing, pupil assessment, visual field assessment, eye movement assessment, tonometry and ophthalmoscopy.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>8. State four nursing responsibilities when administering eye drops.</h3>
-                <textarea placeholder="Type your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('sa8')">Show Model Answer</button>
-                <div id="sa8" class="answer">
-                    Verify the prescription and patient, perform hand hygiene, avoid contaminating the dropper tip, administer the correct number of drops and educate the patient as appropriate.
-                </div>
+            <div class="answer-box">
+                <strong>Answer:</strong>
+                Cataract is an opacity of the normally transparent lens of the eye
+                that interferes with the passage of light and can impair vision.
             </div>
 
         </div>
 
-    </section>
+
+        <div class="question-card">
+
+            <h3>2. State five manifestations of glaucoma.</h3>
+
+            <div class="answer-box">
+
+                <strong>Answer:</strong>
+
+                <ol>
+                    <li>Progressive visual field loss</li>
+                    <li>Eye pain in acute forms</li>
+                    <li>Blurred vision</li>
+                    <li>Halos around lights</li>
+                    <li>Red eye in acute angle closure</li>
+                </ol>
+
+            </div>
+
+        </div>
 
 
+        <div class="question-card">
+
+            <h3>3. State five nursing interventions for a patient with cataract.</h3>
+
+            <div class="answer-box">
+
+                <strong>Answer:</strong>
+
+                <ol>
+                    <li>Assess visual function.</li>
+                    <li>Provide a safe environment.</li>
+                    <li>Administer prescribed medications.</li>
+                    <li>Prepare the patient for surgery when indicated.</li>
+                    <li>Provide postoperative eye-care education.</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <h3>4. State five risk factors for cataract.</h3>
+
+            <div class="answer-box">
+
+                <strong>Answer:</strong>
+
+                <ol>
+                    <li>Increasing age</li>
+                    <li>Diabetes mellitus</li>
+                    <li>Smoking</li>
+                    <li>Eye trauma</li>
+                    <li>Prolonged corticosteroid exposure</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <h3>5. State five principles of eye-drop administration.</h3>
+
+            <div class="answer-box">
+
+                <strong>Answer:</strong>
+
+                <ol>
+                    <li>Perform hand hygiene.</li>
+                    <li>Do not touch the dropper tip to the eye.</li>
+                    <li>Instill only the prescribed amount.</li>
+                    <li>Position the patient correctly.</li>
+                    <li>Allow the patient to close the eye gently after administration.</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
     <!-- LONG ANSWERS -->
-    <section id="long" class="tab">
+    <!-- ========================= -->
 
-        <div class="card">
-            <h2>Long-Answer Questions</h2>
+    <div id="long" class="tab-content">
 
-            <div class="question">
-                <h3>1. Discuss the nursing management of a patient with cataract.</h3>
-                <textarea placeholder="Write your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('la1')">Show Model Answer</button>
+        <div class="long-answer">
 
-                <div id="la1" class="answer">
-                    <strong>Model answer:</strong>
-                    <ol>
-                        <li>Assess visual impairment and its effect on activities of daily living.</li>
-                        <li>Assess the patient's understanding and concerns about treatment.</li>
-                        <li>Provide safety measures to reduce the risk of falls and injury.</li>
-                        <li>Prepare the patient for the planned procedure when surgery is indicated.</li>
-                        <li>Administer prescribed medications correctly.</li>
-                        <li>Provide postoperative monitoring and education.</li>
-                        <li>Teach the patient to report worsening pain, reduced vision, marked redness or other concerning symptoms promptly.</li>
-                        <li>Encourage follow-up according to the ophthalmic team's plan.</li>
-                    </ol>
-                </div>
-            </div>
+            <h3>
+                1. Discuss the nursing management of a patient with cataract.
+            </h3>
 
-            <div class="question">
-                <h3>2. Discuss the nursing management of a patient with glaucoma.</h3>
-                <textarea placeholder="Write your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('la2')">Show Model Answer</button>
+            <p>
+                Cataract causes progressive clouding of the lens and can interfere
+                with a patient's ability to perform normal activities. Nursing care
+                therefore focuses on assessment, safety, preparation for treatment,
+                postoperative care and education.
+            </p>
 
-                <div id="la2" class="answer">
-                    <strong>Model answer:</strong>
-                    <ol>
-                        <li>Assess vision and symptoms.</li>
-                        <li>Monitor the patient according to the prescribed ophthalmic assessment plan.</li>
-                        <li>Administer prescribed antiglaucoma medications correctly.</li>
-                        <li>Teach the patient the importance of adherence to treatment.</li>
-                        <li>Teach correct eye-drop technique.</li>
-                        <li>Encourage regular ophthalmic follow-up.</li>
-                        <li>Identify symptoms suggestive of acute angle-closure glaucoma, such as severe eye pain, blurred vision, halos, headache, nausea or vomiting, and facilitate urgent care.</li>
-                    </ol>
-                </div>
-            </div>
+            <p>
+                <strong>Assessment:</strong>
+                The nurse assesses visual acuity, degree of visual impairment,
+                ability to perform activities of daily living, pain or discomfort,
+                medical history and the patient's understanding of the condition.
+            </p>
 
-            <div class="question">
-                <h3>3. Discuss the immediate nursing care of a patient with chemical eye injury.</h3>
-                <textarea placeholder="Write your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('la3')">Show Model Answer</button>
+            <p>
+                <strong>Safety:</strong>
+                Because reduced vision increases the risk of falls and injury,
+                the environment should be well organized, adequately illuminated
+                and free of unnecessary obstacles.
+            </p>
 
-                <div id="la3" class="answer">
-                    <strong>Model answer:</strong>
-                    <ol>
-                        <li>Recognize the injury as an emergency.</li>
-                        <li>Begin immediate irrigation according to the applicable emergency/ophthalmic protocol.</li>
-                        <li>Continue irrigation for the recommended duration while appropriate assessment and referral are arranged.</li>
-                        <li>Remove contact lenses if they can be removed safely during irrigation.</li>
-                        <li>Assess visual function when practical without delaying irrigation.</li>
-                        <li>Identify the chemical involved if possible, without delaying first aid.</li>
-                        <li>Arrange urgent ophthalmic assessment.</li>
-                        <li>Document the injury, first aid provided and the patient's response.</li>
-                    </ol>
-                </div>
-            </div>
+            <p>
+                <strong>Preoperative care:</strong>
+                The nurse prepares the patient for the planned procedure,
+                administers prescribed medications, verifies required preparation
+                and provides clear explanations.
+            </p>
 
-            <div class="question">
-                <h3>4. Discuss the nursing management of a patient with eye trauma.</h3>
-                <textarea placeholder="Write your answer here..."></textarea>
-                <button type="button" class="btn" onclick="toggleAnswer('la4')">Show Model Answer</button>
+            <p>
+                <strong>Postoperative care:</strong>
+                The nurse monitors visual changes, pain, redness, discharge and
+                other possible complications. Prescribed medications are
+                administered correctly.
+            </p>
 
-                <div id="la4" class="answer">
-                    <strong>Model answer:</strong>
-                    <ol>
-                        <li>Assess the mechanism and time of injury.</li>
-                        <li>Assess visual symptoms and associated injuries.</li>
-                        <li>Avoid unnecessary pressure on a potentially injured globe.</li>
-                        <li>Protect the eye according to the suspected injury and local protocol.</li>
-                        <li>Do not attempt to remove an embedded object.</li>
-                        <li>Administer prescribed treatment.</li>
-                        <li>Arrange urgent ophthalmic assessment for serious injuries.</li>
-                        <li>Provide reassurance and patient education.</li>
-                    </ol>
-                </div>
-            </div>
+            <p>
+                <strong>Health education:</strong>
+                The patient should understand medication use, eye protection,
+                activity restrictions and the importance of follow-up appointments.
+            </p>
 
         </div>
 
-    </section>
 
+        <div class="long-answer">
 
-    <!-- FLASHCARDS -->
-    <section id="flashcards" class="tab">
+            <h3>
+                2. Discuss glaucoma under definition, types, manifestations,
+                management and patient education.
+            </h3>
 
-        <div class="card">
-            <h2>Ophthalmic Nursing Flashcards</h2>
+            <p>
+                Glaucoma is a group of disorders involving progressive optic nerve
+                damage, often associated with abnormal intraocular pressure.
+            </p>
 
-            <div class="flashcard">
-                <div class="flash-question" id="flashQuestion">
-                    What is a cataract?
-                </div>
+            <p>
+                It includes open-angle and angle-closure forms as well as secondary
+                and congenital forms.
+            </p>
 
-                <div id="flashAnswer" class="answer">
-                    An opacity of the lens that interferes with vision.
-                </div>
-            </div>
+            <p>
+                Open-angle glaucoma may progress gradually and can initially produce
+                few noticeable symptoms. Angle-closure glaucoma can present acutely
+                with severe eye pain, blurred vision, halos, headache, nausea,
+                vomiting and a red eye.
+            </p>
 
-            <button type="button" class="btn" onclick="showFlashAnswer()">Show Answer</button>
-            <button type="button" class="btn" onclick="nextFlashcard()">Next Card</button>
+            <p>
+                Management may include prescribed medications, laser procedures
+                or surgery depending on the type and severity. Nursing care includes
+                medication administration, monitoring, patient education and
+                reinforcement of treatment adherence.
+            </p>
 
-            <p id="flashNumber">Card 1 of 12</p>
+            <p>
+                Patients should be taught to attend regular eye examinations,
+                use medication correctly and seek urgent care for sudden severe
+                eye pain or visual changes.
+            </p>
+
         </div>
 
-    </section>
+
+        <div class="long-answer">
+
+            <h3>
+                3. Discuss the nursing care of a patient undergoing ophthalmic surgery.
+            </h3>
+
+            <p>
+                Nursing care begins before surgery with assessment, preparation,
+                explanation of the procedure and administration of prescribed
+                medications.
+            </p>
+
+            <p>
+                During the perioperative period, the nurse contributes to patient
+                safety, infection prevention, correct positioning and adherence
+                to the surgical plan.
+            </p>
+
+            <p>
+                After surgery, the nurse monitors the patient for pain, bleeding,
+                infection, changes in vision and other complications. Prescribed
+                medications and protective measures are maintained.
+            </p>
+
+            <p>
+                Before discharge, the nurse provides education concerning eye
+                protection, medication administration, activity restrictions,
+                warning signs and follow-up care.
+            </p>
+
+        </div>
+
+    </div>
 
 
+    <!-- ========================= -->
     <!-- PROGRESS -->
-    <section id="progress" class="tab">
+    <!-- ========================= -->
 
-        <div class="card">
-            <h2>Your NURS 441 Progress</h2>
+    <div id="progress" class="tab-content">
 
-            <p>Mark topics as completed after studying them.</p>
+        <div class="progress-card">
 
-            <div id="progressTopics"></div>
+            <h2>NURS 441 Study Progress</h2>
+
+            <p>
+                Mark topics as completed after you have studied their
+                subtopics and reviewed the relevant diagrams.
+            </p>
 
             <div class="progress-bar">
                 <div id="progressFill" class="progress-fill"></div>
             </div>
 
-            <p id="progressText">0% completed</p>
+            <p>
+                <strong>
+                    <span id="progressText">0%</span>
+                </strong>
+                completed
+            </p>
+
+            <p id="completedCount">
+                0 of 8 topics completed
+            </p>
+
         </div>
 
-    </section>
+
+        <div class="question-card">
+
+            <h3>Topics checklist</h3>
+
+            <div id="topicChecklist"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        NURS 441 – Ophthalmic Nursing Study Assistant
+    </div>
 
 </div>
 
 
 <script>
 
-    /* ---------------- TABS ---------------- */
+    const courseKey = "nurs441_progress";
 
-    function openTab(tabId, button) {
+    function showTab(tabId, button) {
 
-        const tabs = document.querySelectorAll(".tab");
+        const tabs = document.querySelectorAll(".tab-content");
 
         tabs.forEach(function(tab) {
             tab.classList.remove("active");
@@ -777,1073 +1848,176 @@
             button.classList.add("active");
         }
 
-        if (tabId === "mcq") {
-            createQuiz();
-        }
-
         if (tabId === "progress") {
-            createProgress();
+            updateProgress();
         }
     }
 
 
-    /* ---------------- TOPICS ---------------- */
+    function toggleTopic(button) {
 
-    function toggleTopic(id) {
+        const topic = button.parentElement;
 
-        const element = document.getElementById(id);
+        topic.classList.toggle("open");
 
-        if (element.classList.contains("show")) {
-            element.classList.remove("show");
-        } else {
-            element.classList.add("show");
-        }
     }
 
 
-    /* ---------------- MCQ QUESTION BANK ---------------- */
+    function getTopics() {
 
-    const questions = [
-
-        {
-            q: "Which structure is responsible for most of the refraction of incoming light?",
-            options: ["Cornea", "Retina", "Optic nerve", "Iris"],
-            answer: 0
-        },
-
-        {
-            q: "Which structure controls the amount of light entering the eye?",
-            options: ["Lens", "Iris", "Retina", "Sclera"],
-            answer: 1
-        },
-
-        {
-            q: "The transparent structure that focuses light onto the retina is the:",
-            options: ["Lens", "Choroid", "Sclera", "Optic nerve"],
-            answer: 0
-        },
-
-        {
-            q: "The retina contains:",
-            options: ["Photoreceptors", "Only blood vessels", "Only muscles", "Bone"],
-            answer: 0
-        },
-
-        {
-            q: "The optic nerve carries visual information from the:",
-            options: ["Lens to iris", "Retina to brain", "Cornea to lens", "Iris to retina"],
-            answer: 1
-        },
-
-        {
-            q: "Which test is commonly used to measure visual acuity?",
-            options: ["Snellen chart", "ECG", "Peak flow meter", "Glucometer"],
-            answer: 0
-        },
-
-        {
-            q: "Tonometry is used to measure:",
-            options: ["Visual acuity", "Intraocular pressure", "Blood glucose", "Tear production only"],
-            answer: 1
-        },
-
-        {
-            q: "Which condition is characterized by opacity of the lens?",
-            options: ["Glaucoma", "Cataract", "Conjunctivitis", "Uveitis"],
-            answer: 1
-        },
-
-        {
-            q: "A common feature of cataract is:",
-            options: ["Progressive painless visual impairment", "Severe abdominal pain", "Hearing loss", "Nasal obstruction"],
-            answer: 0
-        },
-
-        {
-            q: "The definitive treatment for a visually significant cataract is usually:",
-            options: ["Cataract surgery", "Eye patching only", "Antibiotics for life", "Bed rest"],
-            answer: 0
-        },
-
-        {
-            q: "Glaucoma primarily involves damage to the:",
-            options: ["Optic nerve", "External ear", "Lens capsule only", "Eyelid"],
-            answer: 0
-        },
-
-        {
-            q: "Which is a type of glaucoma?",
-            options: ["Open-angle glaucoma", "Middle-ear glaucoma", "Retinal glaucoma", "Corneal glaucoma"],
-            answer: 0
-        },
-
-        {
-            q: "Acute angle-closure glaucoma may present with:",
-            options: ["Severe eye pain and blurred vision", "Painless hearing loss", "Toothache only", "Leg swelling"],
-            answer: 0
-        },
-
-        {
-            q: "Which symptom can occur in acute angle-closure glaucoma?",
-            options: ["Nausea and vomiting", "Hair loss", "Ear discharge", "Ankle fracture"],
-            answer: 0
-        },
-
-        {
-            q: "Conjunctivitis is inflammation of the:",
-            options: ["Conjunctiva", "Optic nerve", "Lens", "Retina"],
-            answer: 0
-        },
-
-        {
-            q: "A common sign of conjunctivitis is:",
-            options: ["Eye redness", "Loss of hearing", "Chest pain", "Jaundice"],
-            answer: 0
-        },
-
-        {
-            q: "Allergic conjunctivitis is commonly associated with:",
-            options: ["Itching", "Severe abdominal pain", "Hemiplegia", "Bone pain"],
-            answer: 0
-        },
-
-        {
-            q: "Keratitis refers to inflammation of the:",
-            options: ["Cornea", "Lens", "Retina", "Optic nerve"],
-            answer: 0
-        },
-
-        {
-            q: "A patient with keratitis may complain of:",
-            options: ["Photophobia", "Hearing loss", "Polyuria", "Constipation"],
-            answer: 0
-        },
-
-        {
-            q: "Uveitis involves inflammation of the:",
-            options: ["Uveal tract", "External ear", "Nasal cavity", "Eyelid only"],
-            answer: 0
-        },
-
-        {
-            q: "Which is a warning symptom of retinal detachment?",
-            options: ["Flashes of light", "Increased appetite", "Ear itching", "Tooth sensitivity"],
-            answer: 0
-        },
-
-        {
-            q: "Another warning symptom of retinal detachment is:",
-            options: ["New floaters", "Sneezing", "Sore throat", "Abdominal distension"],
-            answer: 0
-        },
-
-        {
-            q: "A curtain-like shadow over the visual field may suggest:",
-            options: ["Retinal detachment", "Conjunctivitis", "Cataract only", "Blepharitis"],
-            answer: 0
-        },
-
-        {
-            q: "Retinal detachment requires:",
-            options: ["Urgent ophthalmic assessment", "Routine review after one year", "No assessment", "Only oral fluids"],
-            answer: 0
-        },
-
-        {
-            q: "Diabetic retinopathy is associated with:",
-            options: ["Diabetes mellitus", "Asthma", "Otitis media", "Appendicitis"],
-            answer: 0
-        },
-
-        {
-            q: "An important measure for reducing diabetic retinopathy risk is:",
-            options: ["Good diabetes control and regular eye screening", "Avoiding all exercise", "Drinking less water", "Ignoring vision changes"],
-            answer: 0
-        },
-
-        {
-            q: "Myopia is commonly described as:",
-            options: ["Short-sightedness", "Long-sightedness", "Colour blindness", "Night blindness"],
-            answer: 0
-        },
-
-        {
-            q: "Hypermetropia is commonly described as:",
-            options: ["Long-sightedness", "Short-sightedness", "Complete blindness", "Colour blindness"],
-            answer: 0
-        },
-
-        {
-            q: "Presbyopia is mainly associated with:",
-            options: ["Age-related loss of accommodation", "Retinal detachment", "Eye trauma", "Conjunctival infection"],
-            answer: 0
-        },
-
-        {
-            q: "Astigmatism results from:",
-            options: ["Irregular curvature of the cornea or lens", "Retinal infection only", "Optic nerve paralysis", "Ear infection"],
-            answer: 0
-        },
-
-        {
-            q: "The white outer coat of the eye is the:",
-            options: ["Sclera", "Retina", "Iris", "Lens"],
-            answer: 0
-        },
-
-        {
-            q: "The vascular layer of the eye is the:",
-            options: ["Choroid", "Cornea", "Lens", "Sclera"],
-            answer: 0
-        },
-
-        {
-            q: "The pupil is an opening in the:",
-            options: ["Iris", "Retina", "Sclera", "Choroid"],
-            answer: 0
-        },
-
-        {
-            q: "Aqueous humour is found mainly in the:",
-            options: ["Anterior and posterior chambers of the eye", "Middle ear", "Nasal cavity", "Optic nerve"],
-            answer: 0
-        },
-
-        {
-            q: "Vitreous humour is found in the:",
-            options: ["Posterior segment of the eye", "External ear", "Anterior nasal cavity", "Eyelid"],
-            answer: 0
-        },
-
-        {
-            q: "The macula is important for:",
-            options: ["Central detailed vision", "Hearing", "Smell", "Balance"],
-            answer: 0
-        },
-
-        {
-            q: "The fovea is associated with:",
-            options: ["Sharp central vision", "Tear drainage", "Eye movement only", "Hearing"],
-            answer: 0
-        },
-
-        {
-            q: "Which cranial nerve carries visual information?",
-            options: ["Optic nerve (CN II)", "Facial nerve (CN VII)", "Vagus nerve (CN X)", "Trigeminal nerve (CN V)"],
-            answer: 0
-        },
-
-        {
-            q: "The facial nerve is involved in:",
-            options: ["Closing the eyelids", "Detecting light", "Producing aqueous humour", "Forming the lens"],
-            answer: 0
-        },
-
-        {
-            q: "The Snellen chart is commonly used to assess:",
-            options: ["Distance visual acuity", "Intraocular pressure", "Blood pressure", "Hearing"],
-            answer: 0
-        },
-
-        {
-            q: "A pinhole test can help determine whether reduced vision is related to:",
-            options: ["A refractive error", "Ear infection", "Blood loss", "Skin disease"],
-            answer: 0
-        },
-
-        {
-            q: "A visual field examination assesses:",
-            options: ["The area a person can see while looking straight ahead", "Blood pressure", "Hearing range", "Muscle strength only"],
-            answer: 0
-        },
-
-        {
-            q: "Ophthalmoscopy allows examination of the:",
-            options: ["Interior structures of the eye", "Middle ear", "Nasal septum", "Tongue"],
-            answer: 0
-        },
-
-        {
-            q: "A slit lamp provides:",
-            options: ["Magnified examination of eye structures", "Blood glucose measurement", "Hearing assessment", "Lung function"],
-            answer: 0
-        },
-
-        {
-            q: "Which medication group may be used in glaucoma?",
-            options: ["Antiglaucoma medications", "Antacids only", "Antimalarials only", "Laxatives only"],
-            answer: 0
-        },
-
-        {
-            q: "One important principle when administering eye drops is to:",
-            options: ["Avoid contaminating the dropper tip", "Touch the cornea with the tip", "Use the same bottle for every patient", "Ignore the prescription"],
-            answer: 0
-        },
-
-        {
-            q: "After instilling eye drops, the patient should generally be:",
-            options: ["Managed according to the prescribed medication and instructions", "Immediately sent home without instructions", "Asked to rub the eye vigorously", "Told to touch the bottle tip"],
-            answer: 0
-        },
-
-        {
-            q: "An eye dropper tip should not touch the eye because this can:",
-            options: ["Cause contamination or injury", "Improve sterility", "Increase visual acuity", "Treat glaucoma"],
-            answer: 0
-        },
-
-        {
-            q: "Chemical injury to the eye is:",
-            options: ["An emergency", "Always harmless", "Only cosmetic", "A condition that never requires referral"],
-            answer: 0
-        },
-
-        {
-            q: "The priority after chemical exposure to the eye is:",
-            options: ["Immediate irrigation", "Waiting several hours", "Covering the eye without irrigation", "Giving food"],
-            answer: 0
-        },
-
-        {
-            q: "During chemical eye irrigation, treatment should:",
-            options: ["Not be unnecessarily delayed", "Always wait for laboratory results", "Wait until the next day", "Only begin after pain stops"],
-            answer: 0
-        },
-
-        {
-            q: "A penetrating eye injury may require:",
-            options: ["Urgent specialist assessment", "Routine review after several months", "Eye rubbing", "Pressure massage"],
-            answer: 0
-        },
-
-        {
-            q: "When an object is embedded in the eye, the nurse should:",
-            options: ["Avoid attempting to remove it and seek urgent care", "Pull it out immediately", "Rub the eye", "Apply pressure directly on the object"],
-            answer: 0
-        },
-
-        {
-            q: "For suspected penetrating eye injury, unnecessary pressure on the eye should be:",
-            options: ["Avoided", "Increased", "Applied every five minutes", "Used to remove the object"],
-            answer: 0
-        },
-
-        {
-            q: "Blunt eye trauma can cause:",
-            options: ["Damage to internal eye structures", "Only skin disease", "Hearing improvement", "No possible complications"],
-            answer: 0
-        },
-
-        {
-            q: "Which patient requires urgent attention?",
-            options: ["Patient with sudden loss of vision", "Patient with stable old glasses", "Patient asking about sunglasses", "Patient with no symptoms"],
-            answer: 0
-        },
-
-        {
-            q: "Photophobia means:",
-            options: ["Abnormal sensitivity to light", "Loss of hearing", "Difficulty swallowing", "Double hearing"],
-            answer: 0
-        },
-
-        {
-            q: "Diplopia means:",
-            options: ["Double vision", "Night blindness", "Loss of smell", "Eye itching"],
-            answer: 0
-        },
-
-        {
-            q: "Scotoma refers to:",
-            options: ["An area of visual field loss", "Lens opacity", "Eye discharge", "Tear production"],
-            answer: 0
-        },
-
-        {
-            q: "Chemosis refers to:",
-            options: ["Swelling of the conjunctiva", "Retinal detachment", "Lens opacity", "Optic nerve damage"],
-            answer: 0
-        },
-
-        {
-            q: "Aqueous humour is produced mainly by the:",
-            options: ["Ciliary body", "Retina", "Sclera", "Optic nerve"],
-            answer: 0
-        },
-
-        {
-            q: "The ciliary muscle is involved in:",
-            options: ["Accommodation", "Hearing", "Smell", "Balance"],
-            answer: 0
-        },
-
-        {
-            q: "Accommodation allows the eye to:",
-            options: ["Adjust focus for different distances", "Produce tears only", "Hear sounds", "Detect smell"],
-            answer: 0
-        },
-
-        {
-            q: "Tears help to:",
-            options: ["Lubricate and protect the ocular surface", "Increase blood pressure", "Produce hearing", "Move the retina"],
-            answer: 0
-        },
-
-        {
-            q: "The lacrimal glands are involved in:",
-            options: ["Tear production", "Vision processing in the brain", "Hearing", "Lens formation"],
-            answer: 0
-        },
-
-        {
-            q: "The conjunctiva covers the:",
-            options: ["Anterior surface of the sclera and inner eyelids", "Entire retina", "Optic nerve", "Lens"],
-            answer: 0
-        },
-
-        {
-            q: "Blepharitis is inflammation of the:",
-            options: ["Eyelid margins", "Retina", "Optic nerve", "Lens"],
-            answer: 0
-        },
-
-        {
-            q: "A stye is commonly associated with infection or inflammation of:",
-            options: ["An eyelid gland", "The retina", "The optic nerve", "The lens"],
-            answer: 0
-        },
-
-        {
-            q: "Which condition commonly causes itchy eyes?",
-            options: ["Allergic conjunctivitis", "Retinal detachment", "Cataract", "Glaucoma"],
-            answer: 0
-        },
-
-        {
-            q: "A corneal ulcer may threaten:",
-            options: ["Vision", "Hearing", "Speech", "Smell"],
-            answer: 0
-        },
-
-        {
-            q: "A patient with a suspected corneal ulcer should:",
-            options: ["Receive prompt ophthalmic assessment", "Rub the eye", "Ignore symptoms", "Delay assessment for weeks"],
-            answer: 0
-        },
-
-        {
-            q: "Which symptom is especially concerning in an eye infection?",
-            options: ["Reduced vision", "Mild tiredness", "Hunger", "Thirst"],
-            answer: 0
-        },
-
-        {
-            q: "Endophthalmitis is a serious inflammation/infection involving:",
-            options: ["The interior of the eye", "The external ear", "The skin of the arm", "The nasal cavity"],
-            answer: 0
-        },
-
-        {
-            q: "Postoperative eye patients should be taught to report:",
-            options: ["Sudden reduction in vision or severe worsening symptoms", "Normal blinking", "Normal tearing only", "Normal sleep"],
-            answer: 0
-        },
-
-        {
-            q: "A protective eye shield may be used after some eye procedures to:",
-            options: ["Protect the eye from accidental rubbing or injury", "Increase blood pressure", "Improve hearing", "Replace medication"],
-            answer: 0
-        },
-
-        {
-            q: "Patient education after eye surgery should include:",
-            options: ["Medication and follow-up instructions", "Stopping all treatment immediately", "Rubbing the operated eye", "Ignoring warning signs"],
-            answer: 0
-        },
-
-        {
-            q: "Good hand hygiene before eye care helps prevent:",
-            options: ["Infection", "Myopia", "Presbyopia", "Cataract formation"],
-            answer: 0
-        },
-
-        {
-            q: "When giving medication to the eye, the nurse should verify:",
-            options: ["Correct patient, medication, eye, dose and route", "Only the patient's name", "Only the bottle colour", "Only the patient's age"],
-            answer: 0
-        },
-
-        {
-            q: "A common nursing concern for a visually impaired patient is:",
-            options: ["Risk of injury and falls", "Increased hearing", "Improved balance", "Increased appetite"],
-            answer: 0
-        },
-
-        {
-            q: "A patient with reduced vision may benefit from:",
-            options: ["Environmental safety measures", "Poor lighting", "Obstacles on the floor", "Unmarked steps"],
-            answer: 0
-        },
-
-        {
-            q: "When communicating with a visually impaired patient, the nurse should:",
-            options: ["Identify themselves and explain what is happening", "Remain silent", "Move the patient without explanation", "Ignore the patient"],
-            answer: 0
-        },
-
-        {
-            q: "A nurse should document:",
-            options: ["Relevant assessment findings and care provided", "Only the patient's name", "Nothing after treatment", "Only the medication colour"],
-            answer: 0
-        },
-
-        {
-            q: "The purpose of regular diabetic eye screening is to:",
-            options: ["Detect retinal changes early", "Increase blood glucose", "Cause cataracts", "Replace diabetes treatment"],
-            answer: 0
-        },
-
-        {
-            q: "Long-standing uncontrolled diabetes can increase the risk of:",
-            options: ["Diabetic retinopathy", "Improved vision", "Better accommodation", "Increased hearing"],
-            answer: 0
-        },
-
-        {
-            q: "Smoking is associated with increased risk of several eye disorders, including:",
-            options: ["Cataract", "Improved vision", "Better night vision", "Increased tear production"],
-            answer: 0
-        },
-
-        {
-            q: "Excessive ultraviolet exposure may contribute to:",
-            options: ["Some eye conditions including cataract", "Improved vision", "Hearing loss only", "Increased accommodation"],
-            answer: 0
-        },
-
-        {
-            q: "Protective eyewear is particularly important when:",
-            options: ["Working with chemicals or flying particles", "Sleeping", "Reading a book", "Drinking water"],
-            answer: 0
-        },
-
-        {
-            q: "Which is an important principle of health education for eye care?",
-            options: ["Encourage early assessment of vision changes", "Delay treatment for all symptoms", "Avoid follow-up", "Ignore trauma"],
-            answer: 0
-        },
-
-        {
-            q: "Which finding should be reported promptly after eye surgery?",
-            options: ["Sudden severe pain or reduced vision", "Normal blinking", "Mild sleepiness", "Normal appetite"],
-            answer: 0
-        },
-
-        {
-            q: "The main purpose of an eye examination is to:",
-            options: ["Assess visual function and identify abnormalities", "Assess kidney function", "Measure lung capacity", "Test hearing only"],
-            answer: 0
-        },
-
-        {
-            q: "The normal pupil response to light involves:",
-            options: ["Constriction of the pupil", "Permanent dilation", "No response", "Closure of the eyelids only"],
-            answer: 0
-        },
-
-        {
-            q: "A relative afferent pupillary defect may indicate:",
-            options: ["Optic nerve or severe retinal dysfunction", "Cataract only", "Conjunctivitis only", "Normal vision"],
-            answer: 0
-        },
-
-        {
-            q: "Which condition is often painless in its early stages?",
-            options: ["Chronic open-angle glaucoma", "Acute angle closure", "Severe corneal ulcer", "Severe eye trauma"],
-            answer: 0
-        },
-
-        {
-            q: "The major concern with untreated glaucoma is:",
-            options: ["Progressive visual field loss and optic nerve damage", "Improved vision", "Hearing loss", "Increased appetite"],
-            answer: 0
-        },
-
-        {
-            q: "A patient using long-term glaucoma medication should be taught to:",
-            options: ["Follow the prescribed regimen consistently", "Stop whenever vision improves", "Share medication", "Use another person's drops"],
-            answer: 0
-        },
-
-        {
-            q: "A common complication of untreated corneal infection is:",
-            options: ["Visual impairment or corneal damage", "Improved vision", "Better hearing", "Increased appetite"],
-            answer: 0
-        },
-
-        {
-            q: "Which symptom may accompany uveitis?",
-            options: ["Photophobia", "Hearing improvement", "Increased appetite", "Hair growth"],
-            answer: 0
-        },
-
-        {
-            q: "A patient with sudden flashes and floaters should be assessed for:",
-            options: ["Retinal tear or detachment", "Simple hunger", "Hearing loss", "Tooth decay"],
-            answer: 0
-        },
-
-        {
-            q: "Which is a common purpose of postoperative eye medication?",
-            options: ["Prevent or treat infection and control inflammation as prescribed", "Increase blood glucose", "Cause visual loss", "Replace follow-up"],
-            answer: 0
-        },
-
-        {
-            q: "Which approach helps reduce cross-infection during eye care?",
-            options: ["Hand hygiene and proper medication technique", "Sharing eye-drop bottles", "Touching dropper tips to the eye", "Skipping cleaning"],
-            answer: 0
-        },
-
-        {
-            q: "The nurse should explain procedures to the patient because this can:",
-            options: ["Reduce anxiety and promote cooperation", "Cause blindness", "Increase infection", "Replace treatment"],
-            answer: 0
-        },
-
-        {
-            q: "A major nursing goal for a patient with visual impairment is to:",
-            options: ["Promote safety and independence", "Increase dependence unnecessarily", "Prevent all activity", "Avoid patient education"],
-            answer: 0
-        },
-
-        {
-            q: "Which is an example of an environmental safety intervention?",
-            options: ["Keeping walkways clear", "Leaving objects on the floor", "Reducing lighting unnecessarily", "Moving furniture without informing the patient"],
-            answer: 0
-        },
-
-        {
-            q: "Which patient statement indicates appropriate understanding of eye-drop safety?",
-            options: ["I will avoid touching the dropper tip to my eye.", "I will share my drops with my family.", "I will touch the tip to my eyelid.", "I will use drops without checking the label."],
-            answer: 0
-        },
-
-        {
-            q: "A patient with eye pain and sudden vision loss should:",
-            options: ["Receive urgent assessment", "Wait several weeks", "Rub the eye", "Ignore the symptoms"],
-            answer: 0
-        },
-
-        {
-            q: "The most important immediate action after a chemical splash into the eye is:",
-            options: ["Start irrigation promptly", "Wait for a doctor before doing anything", "Cover the eye tightly without irrigation", "Ask the patient to sleep"],
-            answer: 0
-        },
-
-        {
-            q: "The main function of the retina is to:",
-            options: ["Detect light and convert it into neural signals", "Control blood pressure", "Produce tears", "Move the eyelid"],
-            answer: 0
-        },
-
-        {
-            q: "Which part of the eye is commonly referred to as the 'white of the eye'?",
-            options: ["Sclera", "Cornea", "Iris", "Retina"],
-            answer: 0
-        },
-
-        {
-            q: "Which structure gives the eye much of its transparent anterior surface?",
-            options: ["Cornea", "Choroid", "Retina", "Optic nerve"],
-            answer: 0
-        },
-
-        {
-            q: "The optic disc is the point where:",
-            options: ["The optic nerve exits the eye", "The lens is produced", "Tears are produced", "The iris attaches"],
-            answer: 0
-        },
-
-        {
-            q: "The blind spot corresponds to:",
-            options: ["The optic disc", "The fovea", "The lens", "The cornea"],
-            answer: 0
-        },
-
-        {
-            q: "Which cells are specialized for vision in dim light?",
-            options: ["Rods", "Cones", "Platelets", "Neutrophils"],
-            answer: 0
-        },
-
-        {
-            q: "Which cells are important for colour vision and high visual acuity?",
-            options: ["Cones", "Rods", "Platelets", "Erythrocytes"],
-            answer: 0
-        },
-
-        {
-            q: "Which structure separates the anterior and posterior chambers of the eye?",
-            options: ["Iris", "Retina", "Sclera", "Choroid"],
-            answer: 0
-        },
-
-        {
-            q: "The lens is suspended by:",
-            options: ["Zonular fibres", "Optic nerve fibres", "Retinal vessels", "Conjunctival tissue"],
-            answer: 0
-        },
-
-        {
-            q: "Which condition causes difficulty seeing distant objects clearly?",
-            options: ["Myopia", "Presbyopia", "Hypermetropia", "Cataract only"],
-            answer: 0
-        },
-
-        {
-            q: "Which condition commonly causes difficulty with near vision due to aging?",
-            options: ["Presbyopia", "Myopia", "Retinal detachment", "Conjunctivitis"],
-            answer: 0
-        },
-
-        {
-            q: "A patient with an eye foreign body should be assessed for:",
-            options: ["Location, mechanism, visual changes and possible corneal injury", "Only body temperature", "Only blood pressure", "Only appetite"],
-            answer: 0
-        },
-
-        {
-            q: "Which action is inappropriate for a suspected penetrating eye injury?",
-            options: ["Pressing directly on the injured eye", "Protecting the eye appropriately", "Seeking urgent assessment", "Avoiding unnecessary manipulation"],
-            answer: 0
-        },
-
-        {
-            q: "The purpose of patient teaching about medication adherence is to:",
-            options: ["Improve safe and effective treatment", "Replace clinical review", "Increase complications", "Encourage sharing medicines"],
-            answer: 0
-        },
-
-        {
-            q: "A patient with an eye condition should be advised to seek urgent help when there is:",
-            options: ["Sudden significant vision loss", "Normal blinking", "Mild hunger", "Normal sleep"],
-            answer: 0
-        }
-
-    ];
-
-
-    let currentQuestions = [];
-    let quizSetNumber = 0;
-
-
-    function shuffle(array) {
-
-        const copy = [...array];
-
-        for (let i = copy.length - 1; i > 0; i--) {
-
-            const j = Math.floor(Math.random() * (i + 1));
-
-            [copy[i], copy[j]] = [copy[j], copy[i]];
-        }
-
-        return copy;
-    }
-
-
-    function createQuiz() {
-
-        quizSetNumber++;
-
-        currentQuestions = shuffle(questions).slice(0, 10);
-
-        document.getElementById("quizNumber").textContent =
-            "Question Set " + quizSetNumber;
-
-        const container = document.getElementById("quizContainer");
-
-        container.innerHTML = "";
-
-        currentQuestions.forEach(function(item, index) {
-
-            const questionDiv = document.createElement("div");
-
-            questionDiv.className = "question";
-
-            let html = "<h3>" + (index + 1) + ". " + item.q + "</h3>";
-
-            item.options.forEach(function(option, optionIndex) {
-
-                html += `
-                    <label class="option">
-                        <input type="radio" name="q${index}" value="${optionIndex}">
-                        ${option}
-                    </label>
-                `;
-            });
-
-            questionDiv.innerHTML = html;
-
-            container.appendChild(questionDiv);
-        });
-
-        document.getElementById("quizResult").innerHTML = "";
-    }
-
-
-    function submitQuiz() {
-
-        let score = 0;
-
-        currentQuestions.forEach(function(item, index) {
-
-            const selected = document.querySelector(
-                'input[name="q' + index + '"]:checked'
-            );
-
-            if (selected && Number(selected.value) === item.answer) {
-                score++;
-            }
-        });
-
-        const percentage = Math.round(
-            (score / currentQuestions.length) * 100
+        return Array.from(
+            document.querySelectorAll(".topic")
         );
 
-        document.getElementById("quizResult").innerHTML =
-            "<div class='result'>" +
-            "You scored " + score + " / " + currentQuestions.length +
-            " (" + percentage + "%)." +
-            "<br><br>" +
-            "Click <strong>New Question Set</strong> to receive another set of questions." +
-            "</div>";
     }
 
 
-    function newQuiz() {
+    function getSavedProgress() {
 
-        createQuiz();
+        try {
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
+            return JSON.parse(
+                localStorage.getItem(courseKey)
+            ) || {};
 
+        } catch (error) {
 
-    /* ---------------- SHORT/LONG ANSWERS ---------------- */
+            return {};
 
-    function toggleAnswer(id) {
-
-        const answer = document.getElementById(id);
-
-        if (answer.classList.contains("show")) {
-            answer.classList.remove("show");
-        } else {
-            answer.classList.add("show");
-        }
-    }
-
-
-    /* ---------------- FLASHCARDS ---------------- */
-
-    const flashcards = [
-
-        {
-            q: "What is a cataract?",
-            a: "An opacity of the lens that causes visual impairment."
-        },
-
-        {
-            q: "What is glaucoma?",
-            a: "A group of disorders involving progressive optic nerve damage and visual field loss."
-        },
-
-        {
-            q: "What is myopia?",
-            a: "Short-sightedness; distant objects are seen less clearly."
-        },
-
-        {
-            q: "What is hypermetropia?",
-            a: "Long-sightedness; near objects may be more difficult to see clearly."
-        },
-
-        {
-            q: "What is presbyopia?",
-            a: "Age-related reduction in the ability of the eye to accommodate for near vision."
-        },
-
-        {
-            q: "What is conjunctivitis?",
-            a: "Inflammation of the conjunctiva."
-        },
-
-        {
-            q: "Name three warning symptoms of retinal detachment.",
-            a: "Flashes, new floaters and a curtain-like shadow over the visual field."
-        },
-
-        {
-            q: "What is tonometry?",
-            a: "A test used to measure intraocular pressure."
-        },
-
-        {
-            q: "What is photophobia?",
-            a: "Abnormal sensitivity or intolerance to light."
-        },
-
-        {
-            q: "What is diplopia?",
-            a: "Double vision."
-        },
-
-        {
-            q: "What is the first priority after a chemical splash into the eye?",
-            a: "Prompt irrigation according to the applicable emergency/ophthalmic protocol."
-        },
-
-        {
-            q: "What is the main function of the retina?",
-            a: "To detect light and convert it into neural signals for vision."
         }
 
-    ];
-
-
-    let flashIndex = 0;
-
-
-    function showFlashAnswer() {
-
-        document.getElementById("flashAnswer").textContent =
-            flashcards[flashIndex].a;
-
-        document.getElementById("flashAnswer").classList.add("show");
     }
 
 
-    function nextFlashcard() {
+    function saveProgress(progress) {
 
-        flashIndex++;
+        localStorage.setItem(
+            courseKey,
+            JSON.stringify(progress)
+        );
 
-        if (flashIndex >= flashcards.length) {
-            flashIndex = 0;
-        }
-
-        document.getElementById("flashQuestion").textContent =
-            flashcards[flashIndex].q;
-
-        document.getElementById("flashAnswer").textContent =
-            flashcards[flashIndex].a;
-
-        document.getElementById("flashAnswer").classList.remove("show");
-
-        document.getElementById("flashNumber").textContent =
-            "Card " + (flashIndex + 1) + " of " + flashcards.length;
     }
 
 
-    /* ---------------- PROGRESS ---------------- */
+    function updateProgress() {
 
-    const topicNames = [
-        "Anatomy and Physiology of the Eye",
-        "Eye Assessment",
-        "Refractive Errors",
-        "Cataract",
-        "Glaucoma",
-        "Conjunctivitis",
-        "Keratitis and Corneal Ulcer",
-        "Uveitis",
-        "Retinal Detachment",
-        "Diabetic Retinopathy",
-        "Eye Trauma",
-        "Chemical Eye Injury",
-        "Ophthalmic Medications",
-        "Preoperative and Postoperative Eye Care",
-        "Common Ophthalmic Procedures"
-    ];
+        const topics = getTopics();
 
+        const progress = getSavedProgress();
 
-    let completedTopics = [];
+        const total = topics.length;
 
+        let completed = 0;
 
-    function createProgress() {
+        topics.forEach(function(topic, index) {
 
-        const container = document.getElementById("progressTopics");
-
-        container.innerHTML = "";
-
-        topicNames.forEach(function(topic, index) {
-
-            const checked = completedTopics.includes(index)
-                ? "checked"
-                : "";
-
-            container.innerHTML += `
-                <label style="display:block; padding:8px;">
-                    <input
-                        type="checkbox"
-                        ${checked}
-                        onchange="updateProgress(${index}, this.checked)"
-                    >
-                    ${index + 1}. ${topic}
-                </label>
-            `;
-        });
-
-        updateProgressDisplay();
-    }
-
-
-    function updateProgress(index, checked) {
-
-        if (checked) {
-
-            if (!completedTopics.includes(index)) {
-                completedTopics.push(index);
+            if (progress[index]) {
+                completed++;
             }
 
-        } else {
+        });
 
-            completedTopics = completedTopics.filter(function(item) {
-                return item !== index;
-            });
-        }
-
-        updateProgressDisplay();
-    }
-
-
-    function updateProgressDisplay() {
-
-        const total = topicNames.length;
-
-        const completed = completedTopics.length;
-
-        const percentage = Math.round(
-            (completed / total) * 100
-        );
+        const percentage = total === 0
+            ? 0
+            : Math.round((completed / total) * 100);
 
         document.getElementById("progressFill").style.width =
             percentage + "%";
 
         document.getElementById("progressText").textContent =
-            percentage + "% completed (" +
-            completed +
-            " of " +
-            total +
-            " topics)";
+            percentage + "%";
+
+        document.getElementById("completedCount").textContent =
+            completed + " of " + total + " topics completed";
+
+        updateChecklist(progress);
+
     }
 
 
-    /* ---------------- STARTUP ---------------- */
+    function updateChecklist(progress) {
 
-    createQuiz();
-    createProgress();
+        const container =
+            document.getElementById("topicChecklist");
+
+        container.innerHTML = "";
+
+        const topics = getTopics();
+
+        topics.forEach(function(topic, index) {
+
+            const header =
+                topic.querySelector(".topic-header");
+
+            const title =
+                header.querySelector("span").textContent;
+
+            const button =
+                document.createElement("button");
+
+            button.className = "complete-btn";
+
+            if (progress[index]) {
+
+                button.classList.add("completed");
+
+                button.textContent =
+                    "✓ Completed";
+
+            } else {
+
+                button.textContent =
+                    "Mark as completed";
+
+            }
+
+            button.onclick = function() {
+
+                const current =
+                    getSavedProgress();
+
+                current[index] =
+                    !current[index];
+
+                saveProgress(current);
+
+                updateProgress();
+
+            };
+
+            const wrapper =
+                document.createElement("div");
+
+            wrapper.style.marginBottom = "12px";
+
+            const titleElement =
+                document.createElement("strong");
+
+            titleElement.textContent = title;
+
+            wrapper.appendChild(titleElement);
+
+            wrapper.appendChild(
+                document.createElement("br")
+            );
+
+            wrapper.appendChild(button);
+
+            container.appendChild(wrapper);
+
+        });
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            updateProgress();
+
+        }
+    );
 
 </script>
 

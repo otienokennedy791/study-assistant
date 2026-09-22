@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NURS 497 - Research Proposal and Case Study Development</title>
+    <title>NURS 497 - Research Proposal & Case Study Development</title>
 
     <style>
         * {
@@ -12,40 +12,50 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            color: #222;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
-        header {
-            background: #174a5c;
+        .topbar {
+            background: #12355b;
             color: white;
-            padding: 25px;
-            text-align: center;
+            padding: 22px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        header h1 {
-            margin: 0 0 8px;
-        }
-
-        header p {
+        .brand h1 {
             margin: 0;
+            font-size: 26px;
+        }
+
+        .brand p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+
+        .dashboard-btn {
+            text-decoration: none;
+            color: white;
+            background: #1f6f8b;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .dashboard-btn:hover {
+            background: #15566e;
         }
 
         .container {
-            width: 92%;
-            max-width: 1100px;
-            margin: 25px auto;
-        }
-
-        .back {
-            display: inline-block;
-            margin-bottom: 18px;
-            text-decoration: none;
-            background: #333;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
+            width: 94%;
+            max-width: 1200px;
+            margin: 25px auto 50px;
         }
 
         .tabs {
@@ -57,204 +67,267 @@
 
         .tab-button {
             border: none;
-            background: #ddd;
-            padding: 12px 18px;
+            background: white;
+            color: #12355b;
+            padding: 13px 18px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-        }
-
-        .tab-button:hover {
-            background: #ccc;
-        }
-
-        .tab-button.active {
-            background: #174a5c;
-            color: white;
-        }
-
-        .tab {
-            display: none;
-        }
-
-        .tab.active {
-            display: block;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .topic,
-        .note,
-        .question-box,
-        .flashcard {
-            background: white;
-            margin-bottom: 12px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+        .tab-button:hover,
+        .tab-button.active {
+            background: #12355b;
+            color: white;
         }
 
-        .topic-title,
-        .note-title {
-            padding: 16px;
-            background: #dcecf1;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .topic-content,
-        .note-content {
+        .tab-content {
             display: none;
-            padding: 18px;
-            line-height: 1.6;
         }
 
-        .topic-content.show,
-        .note-content.show {
+        .tab-content.active {
             display: block;
         }
 
-        .topic-content ul,
-        .note-content ul {
-            line-height: 1.7;
+        .intro-card,
+        .content-card,
+        .question-card,
+        .progress-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        .mcq {
-            padding: 20px;
-        }
-
-        .mcq h3 {
+        .intro-card h2,
+        .content-card h2,
+        .progress-card h2 {
+            color: #12355b;
             margin-top: 0;
         }
 
-        .option {
+        .topic {
+            margin-bottom: 14px;
+            border: 1px solid #dbe3ec;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .topic-header {
+            background: #eaf2f8;
+            padding: 17px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #12355b;
+        }
+
+        .topic-header:hover {
+            background: #dcecf7;
+        }
+
+        .topic-content {
+            display: none;
+            padding: 10px 18px 20px;
+        }
+
+        .topic-content.open {
             display: block;
-            margin: 10px 0;
-            padding: 10px;
-            background: #f7f7f7;
+        }
+
+        .subtopic {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .subtopic:last-child {
+            border-bottom: none;
+        }
+
+        .subtopic-header {
+            padding: 14px 8px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .subtopic-header:hover {
+            color: #12355b;
+        }
+
+        .subtopic-content {
+            display: none;
+            padding: 4px 10px 18px;
+        }
+
+        .subtopic-content.open {
+            display: block;
+        }
+
+        .subtopic-content h4 {
+            color: #12355b;
+            margin-bottom: 6px;
+        }
+
+        .subtopic-content ul {
+            padding-left: 22px;
+        }
+
+        .diagram {
+            margin: 18px 0;
+            padding: 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #f8fafc;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .diagram-title {
+            font-weight: bold;
+            color: #12355b;
+            margin-bottom: 12px;
+        }
+
+        .diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .note {
+            background: #eef6ff;
+            border-left: 5px solid #1f6f8b;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #ea580c;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .complete-btn {
+            border: none;
+            background: #198754;
+            color: white;
+            padding: 9px 14px;
             border-radius: 7px;
             cursor: pointer;
+            margin-top: 12px;
+            font-weight: bold;
         }
 
-        .option:hover {
-            background: #eeeeee;
+        .complete-btn:hover {
+            background: #146c43;
         }
 
-        .correct {
-            background: #d8f3dc !important;
+        .complete-btn.completed {
+            background: #64748b;
         }
 
-        .wrong {
-            background: #ffd6d6 !important;
-        }
-
-        button.action {
-            border: none;
-            background: #174a5c;
+        .mcq-link {
+            display: inline-block;
+            margin-top: 10px;
+            background: #12355b;
             color: white;
+            text-decoration: none;
             padding: 12px 18px;
             border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 8px 5px 8px 0;
-        }
-
-        button.action:hover {
-            opacity: 0.9;
-        }
-
-        .result {
-            margin-top: 15px;
-            padding: 15px;
-            background: #dcecf1;
-            border-radius: 8px;
             font-weight: bold;
         }
 
-        .answer {
-            display: none;
-            padding: 15px;
-            background: #f7f7f7;
-            line-height: 1.6;
+        .mcq-link:hover {
+            background: #0b2744;
         }
 
-        .answer.show {
-            display: block;
+        .question-card h3 {
+            color: #12355b;
+            margin-top: 0;
         }
 
-        .flashcard {
-            padding: 25px;
-            text-align: center;
-            min-height: 180px;
+        .question-card ol {
+            padding-left: 25px;
         }
 
-        .flash-question {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 25px;
+        .question-card li {
+            margin-bottom: 12px;
         }
 
-        .flash-answer {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #dcecf1;
-            border-radius: 8px;
-            line-height: 1.6;
-        }
-
-        .flash-answer.show {
-            display: block;
-        }
-
-        .progress-item {
-            margin-bottom: 15px;
+        .progress-bar-container {
+            background: #e5e7eb;
+            border-radius: 20px;
+            height: 24px;
+            overflow: hidden;
+            margin: 15px 0;
         }
 
         .progress-bar {
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
             height: 100%;
             width: 0%;
-            background: #174a5c;
-            transition: width 0.3s;
+            background: #198754;
+            transition: width 0.4s ease;
         }
 
-        .small {
-            color: #666;
+        .progress-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #12355b;
+        }
+
+        .small-text {
+            color: #6b7280;
             font-size: 14px;
         }
 
-        .formula {
-            background: #f0f5f7;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 10px 0;
-            font-weight: bold;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #eaf2f8;
+            color: #12355b;
         }
 
         @media (max-width: 700px) {
-            .tabs {
-                flex-direction: column;
+            .topbar {
+                padding: 18px;
+            }
+
+            .brand h1 {
+                font-size: 21px;
+            }
+
+            .container {
+                width: 96%;
+            }
+
+            .intro-card,
+            .content-card,
+            .question-card,
+            .progress-card {
+                padding: 17px;
             }
 
             .tab-button {
                 width: 100%;
-            }
-
-            .container {
-                width: 95%;
             }
         }
     </style>
@@ -262,892 +335,1836 @@
 
 <body>
 
-<header>
-    <h1>NURS 497 — Research Proposal & Case Study Development</h1>
-    <p>Research Methods • Proposal Writing • Case Study Development • Revision</p>
+<header class="topbar">
+    <div class="brand">
+        <h1>📚 NURS 497</h1>
+        <p>Research Proposal & Case Study Development</p>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="dashboard-btn">
+        🏠 Dashboard
+    </a>
 </header>
 
 <div class="container">
 
-    <a href="/" class="back">← Back to Dashboard</a>
-
     <div class="tabs">
-        <button class="tab-button active" data-tab="topics">Topics</button>
-        <button class="tab-button" data-tab="notes">Notes</button>
-        <button class="tab-button" data-tab="mcq">MCQs</button>
-        <button class="tab-button" data-tab="short">Short Answers</button>
-        <button class="tab-button" data-tab="long">Long Answers</button>
-        <button class="tab-button" data-tab="flashcards">Flashcards</button>
-        <button class="tab-button" data-tab="progress">Progress</button>
+        <button class="tab-button active" onclick="openTab('topics', this)">
+            📖 Topics & Subtopics
+        </button>
+
+        <button class="tab-button" onclick="openTab('mcqs', this)">
+            📝 MCQs
+        </button>
+
+        <button class="tab-button" onclick="openTab('short', this)">
+            ✍️ Short Answer
+        </button>
+
+        <button class="tab-button" onclick="openTab('long', this)">
+            📚 Long Answer
+        </button>
+
+        <button class="tab-button" onclick="openTab('progress', this)">
+            ✅ Progress
+        </button>
     </div>
 
-
-    <!-- =========================
-         TOPICS
-    ========================== -->
-
-    <section id="topics" class="tab active">
-
-        <div class="card">
-            <h2>Research Proposal & Case Study Topics</h2>
-            <p>Click any topic to expand the revision material.</p>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">1. Introduction to Nursing Research</div>
-            <div class="topic-content">
-                <p>
-                    Nursing research is the systematic investigation of questions relevant to nursing
-                    practice, education, administration and health outcomes.
-                </p>
-
-                <ul>
-                    <li>Improves evidence-based nursing practice.</li>
-                    <li>Identifies problems requiring investigation.</li>
-                    <li>Evaluates nursing interventions.</li>
-                    <li>Improves quality and safety of patient care.</li>
-                    <li>Contributes to development of nursing knowledge.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">2. Research Problem and Problem Statement</div>
-            <div class="topic-content">
-                <p>
-                    A research problem is an issue, gap or concern that requires systematic investigation.
-                </p>
-
-                <p>A good problem statement should:</p>
-
-                <ul>
-                    <li>Clearly identify the problem.</li>
-                    <li>Provide relevant context.</li>
-                    <li>Indicate the population or setting where appropriate.</li>
-                    <li>Explain why the problem is important.</li>
-                    <li>Be supported by available evidence.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">3. Research Objectives and Questions</div>
-            <div class="topic-content">
-                <p>
-                    Research objectives describe what the researcher intends to accomplish.
-                </p>
-
-                <p>Objectives should generally be:</p>
-
-                <ul>
-                    <li>Specific</li>
-                    <li>Measurable</li>
-                    <li>Achievable</li>
-                    <li>Relevant</li>
-                    <li>Time-bound where appropriate</li>
-                </ul>
-
-                <p>
-                    Research questions translate the research problem into questions that the study
-                    will investigate.
-                </p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">4. Literature Review</div>
-            <div class="topic-content">
-                <p>
-                    A literature review is a critical examination and synthesis of existing knowledge
-                    related to the research problem.
-                </p>
-
-                <ul>
-                    <li>Identifies what is already known.</li>
-                    <li>Identifies gaps in knowledge.</li>
-                    <li>Provides background for the study.</li>
-                    <li>Helps refine research questions.</li>
-                    <li>Supports selection of appropriate methodology.</li>
-                    <li>Helps avoid unnecessary duplication of research.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">5. Theoretical and Conceptual Frameworks</div>
-            <div class="topic-content">
-                <p>
-                    A theoretical framework uses an established theory to guide the study.
-                </p>
-
-                <p>
-                    A conceptual framework illustrates how important concepts or variables are
-                    expected to relate to one another within the study.
-                </p>
-
-                <ul>
-                    <li>Provides structure for the study.</li>
-                    <li>Guides variable selection.</li>
-                    <li>Helps explain relationships among concepts.</li>
-                    <li>Supports interpretation of findings.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">6. Research Designs</div>
-            <div class="topic-content">
-                <p>Common research designs include:</p>
-
-                <ul>
-                    <li>Descriptive designs</li>
-                    <li>Cross-sectional studies</li>
-                    <li>Correlational studies</li>
-                    <li>Experimental studies</li>
-                    <li>Quasi-experimental studies</li>
-                    <li>Case study designs</li>
-                    <li>Qualitative designs</li>
-                    <li>Mixed-methods designs</li>
-                </ul>
-
-                <p>
-                    The choice of design depends on the research question, objectives, available
-                    resources and ethical considerations.
-                </p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">7. Population, Sample and Sampling</div>
-            <div class="topic-content">
-                <p>
-                    The target population is the broader group to which the researcher intends the
-                    study to apply.
-                </p>
-
-                <p>
-                    A sample is a subset of the population selected for participation.
-                </p>
-
-                <h4>Sampling methods</h4>
-
-                <ul>
-                    <li>Simple random sampling</li>
-                    <li>Systematic sampling</li>
-                    <li>Stratified sampling</li>
-                    <li>Cluster sampling</li>
-                    <li>Convenience sampling</li>
-                    <li>Purposive sampling</li>
-                    <li>Snowball sampling</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">8. Variables and Operational Definitions</div>
-            <div class="topic-content">
-                <p>
-                    A variable is a characteristic or attribute that can take different values.
-                </p>
-
-                <ul>
-                    <li><strong>Independent variable:</strong> The variable considered as a potential cause or influence.</li>
-                    <li><strong>Dependent variable:</strong> The outcome being measured.</li>
-                    <li><strong>Confounding variable:</strong> A variable that may distort the relationship between variables.</li>
-                </ul>
-
-                <p>
-                    An operational definition explains exactly how a concept or variable will be
-                    measured in a particular study.
-                </p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">9. Data Collection Methods and Tools</div>
-            <div class="topic-content">
-                <p>Common methods include:</p>
-
-                <ul>
-                    <li>Questionnaires</li>
-                    <li>Interviews</li>
-                    <li>Observation</li>
-                    <li>Record review</li>
-                    <li>Focus group discussions</li>
-                    <li>Measurements and clinical assessments</li>
-                </ul>
-
-                <p>
-                    A data collection tool should be appropriate for the research objectives and
-                    population.
-                </p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">10. Validity and Reliability</div>
-            <div class="topic-content">
-                <p>
-                    <strong>Validity</strong> refers to how well a tool measures what it is intended
-                    to measure.
-                </p>
-
-                <p>
-                    <strong>Reliability</strong> refers to the consistency or stability of measurement.
-                </p>
-
-                <p>
-                    A tool may be reliable without being valid, so both concepts must be considered
-                    during research planning.
-                </p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">11. Research Ethics</div>
-            <div class="topic-content">
-                <p>Important ethical principles include:</p>
-
-                <ul>
-                    <li>Respect for persons</li>
-                    <li>Informed consent</li>
-                    <li>Confidentiality</li>
-                    <li>Privacy</li>
-                    <li>Beneficence</li>
-                    <li>Non-maleficence</li>
-                    <li>Justice</li>
-                    <li>Voluntary participation</li>
-                    <li>Right to withdraw</li>
-                </ul>
-
-                <p>
-                    Research involving human participants requires appropriate ethical review and
-                    approval according to applicable institutional and regulatory requirements.
-                </p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">12. Data Analysis</div>
-            <div class="topic-content">
-                <p>
-                    Data analysis involves organizing, examining and interpreting collected information.
-                </p>
-
-                <h4>Quantitative analysis may include:</h4>
-
-                <ul>
-                    <li>Frequencies</li>
-                    <li>Percentages</li>
-                    <li>Means</li>
-                    <li>Standard deviations</li>
-                    <li>Measures of association</li>
-                    <li>Appropriate statistical tests</li>
-                </ul>
-
-                <h4>Qualitative analysis may involve:</h4>
-
-                <ul>
-                    <li>Coding</li>
-                    <li>Categorization</li>
-                    <li>Theme development</li>
-                    <li>Interpretation</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">13. Research Proposal Structure</div>
-            <div class="topic-content">
-                <p>A research proposal commonly contains:</p>
-
-                <ul>
-                    <li>Title</li>
-                    <li>Introduction/background</li>
-                    <li>Problem statement</li>
-                    <li>Justification/significance</li>
-                    <li>Objectives</li>
-                    <li>Research questions or hypotheses where appropriate</li>
-                    <li>Literature review</li>
-                    <li>Theoretical/conceptual framework</li>
-                    <li>Methodology</li>
-                    <li>Ethical considerations</li>
-                    <li>Work plan</li>
-                    <li>Budget</li>
-                    <li>References</li>
-                    <li>Appendices</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">14. Case Study Development</div>
-            <div class="topic-content">
-                <p>
-                    A case study is an in-depth investigation of an individual, family, group,
-                    organization or situation within its real-life context.
-                </p>
-
-                <p>A nursing case study may include:</p>
-
-                <ul>
-                    <li>Patient identification information</li>
-                    <li>Presenting complaint</li>
-                    <li>History of present illness</li>
-                    <li>Past medical and surgical history</li>
-                    <li>Family and social history</li>
-                    <li>Physical assessment</li>
-                    <li>Investigations</li>
-                    <li>Medical diagnosis</li>
-                    <li>Nursing diagnoses</li>
-                    <li>Nursing interventions</li>
-                    <li>Evaluation</li>
-                    <li>Discharge and follow-up planning</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">15. Research Report Writing and Presentation</div>
-            <div class="topic-content">
-                <p>
-                    A research report communicates the research process, findings and interpretation
-                    in a structured manner.
-                </p>
-
-                <ul>
-                    <li>Present findings clearly.</li>
-                    <li>Use appropriate tables and figures where necessary.</li>
-                    <li>Interpret findings in relation to the research questions.</li>
-                    <li>Discuss limitations.</li>
-                    <li>Draw conclusions supported by the findings.</li>
-                    <li>Make recommendations based on the evidence.</li>
-                    <li>Use appropriate referencing.</li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         NOTES
-    ========================== -->
-
-    <section id="notes" class="tab">
-
-        <div class="card">
-            <h2>Research Revision Notes</h2>
-            <p>Click each section to open it.</p>
-        </div>
-
-        <div class="note">
-            <div class="note-title">Quantitative vs Qualitative Research</div>
-
-            <div class="note-content">
-
-                <p>
-                    <strong>Quantitative research</strong> generally focuses on numerical data,
-                    measurement and statistical analysis.
-                </p>
-
-                <p>
-                    <strong>Qualitative research</strong> generally explores meanings, experiences,
-                    perceptions and processes using non-numerical data.
-                </p>
-
-            </div>
-        </div>
-
-        <div class="note">
-            <div class="note-title">Validity vs Reliability</div>
-
-            <div class="note-content">
-
-                <p>
-                    <strong>Validity:</strong> Whether the research tool measures what it is intended
-                    to measure.
-                </p>
-
-                <p>
-                    <strong>Reliability:</strong> Whether the measurement is consistent or stable.
-                </p>
-
-            </div>
-        </div>
-
-        <div class="note">
-            <div class="note-title">Research Ethics Quick Review</div>
-
-            <div class="note-content">
-
-                <ul>
-                    <li>Obtain informed consent.</li>
-                    <li>Protect confidentiality.</li>
-                    <li>Respect privacy.</li>
-                    <li>Minimize harm.</li>
-                    <li>Promote potential benefits.</li>
-                    <li>Ensure fair participant selection.</li>
-                    <li>Respect the participant's right to withdraw.</li>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="note">
-            <div class="note-title">Basic Research Proposal Formula</div>
-
-            <div class="note-content">
-
-                <p class="formula">
-                    Problem → Objectives → Literature → Framework → Methodology → Ethics → Analysis → Reporting
-                </p>
-
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         MCQs
-    ========================== -->
-
-    <section id="mcq" class="tab">
-
-        <div class="card">
-            <h2>Research MCQs</h2>
+    <!-- TOPICS -->
+    <section id="topics" class="tab-content active">
+
+        <div class="intro-card">
+            <h2>NURS 497 Study Guide</h2>
 
             <p>
-                Ten questions are randomly selected from the question bank.
+                This section organizes Research Proposal and Case Study Development
+                into major topics and detailed subtopics. Click each topic to expand
+                it, then click each subtopic to study the material.
             </p>
 
-            <p class="small">
-                Submit your answers to see your score. Then click
-                <strong>New Question Set</strong> for another set.
-            </p>
+            <div class="note">
+                <strong>Study approach:</strong>
+                Understand the research problem first, then move through literature
+                review, objectives, design, sampling, data collection, analysis,
+                ethics and finally proposal or case study development.
+            </div>
+
+            <a href="{{ url_for('mcqs') }}" class="mcq-link">
+                📝 Practice NURS 497 MCQs
+            </a>
         </div>
 
-        <div id="quiz"></div>
 
-        <button class="action" id="submitQuiz">
-            Submit Quiz
-        </button>
+        <!-- TOPIC 1 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>1. Introduction to Nursing Research</span>
+                <span>＋</span>
+            </div>
 
-        <button class="action" id="newQuiz">
-            New Question Set
-        </button>
+            <div class="topic-content">
 
-        <div id="quizResult"></div>
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Meaning and Purpose of Research
+                    </div>
+
+                    <div class="subtopic-content">
+                        <h4>Meaning</h4>
+
+                        <p>
+                            Research is a systematic and organized process of collecting,
+                            analyzing and interpreting information in order to answer
+                            questions or solve problems.
+                        </p>
+
+                        <h4>Purpose of Nursing Research</h4>
+
+                        <ul>
+                            <li>Generate new knowledge.</li>
+                            <li>Improve patient care.</li>
+                            <li>Evaluate existing nursing interventions.</li>
+                            <li>Identify health problems.</li>
+                            <li>Improve healthcare policies and practices.</li>
+                            <li>Support evidence-based nursing practice.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_meaning')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Research Process
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            The research process consists of a series of connected
+                            steps used to answer a research question systematically.
+                        </p>
+
+                        <ol>
+                            <li>Identify the research problem.</li>
+                            <li>Review existing literature.</li>
+                            <li>Develop objectives and research questions.</li>
+                            <li>Select an appropriate research design.</li>
+                            <li>Identify the population and sample.</li>
+                            <li>Collect data.</li>
+                            <li>Analyze data.</li>
+                            <li>Interpret findings.</li>
+                            <li>Write and disseminate the research report.</li>
+                        </ol>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_process')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Types of Research
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li><strong>Quantitative research:</strong> Uses numerical data and statistical analysis.</li>
+                            <li><strong>Qualitative research:</strong> Explores experiences, perceptions and meanings.</li>
+                            <li><strong>Mixed-methods research:</strong> Combines quantitative and qualitative approaches.</li>
+                            <li><strong>Applied research:</strong> Addresses practical problems.</li>
+                            <li><strong>Basic research:</strong> Expands theoretical knowledge.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_types')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Evidence-Based Practice
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Evidence-based practice involves integrating the best available
+                            research evidence with clinical expertise and patient values
+                            and preferences when making healthcare decisions.
+                        </p>
+
+                        <div class="note">
+                            <strong>Example:</strong>
+                            A nurse may use current research evidence together with clinical
+                            experience and the patient's preferences when selecting an
+                            appropriate intervention.
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'evidence_practice')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 2 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>2. Research Problem and Background</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Identifying a Research Problem
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A research problem is an issue, gap in knowledge or situation
+                            that requires systematic investigation.
+                        </p>
+
+                        <h4>Sources of Research Problems</h4>
+
+                        <ul>
+                            <li>Clinical practice.</li>
+                            <li>Previous research.</li>
+                            <li>Community health problems.</li>
+                            <li>Healthcare policies.</li>
+                            <li>Professional observations.</li>
+                            <li>Theories and academic literature.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_problem')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Problem Statement
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A problem statement clearly describes the health or nursing
+                            issue being investigated, its importance and the gap that
+                            the research intends to address.
+                        </p>
+
+                        <h4>A good problem statement should:</h4>
+
+                        <ul>
+                            <li>Clearly identify the problem.</li>
+                            <li>Provide relevant background information.</li>
+                            <li>Show the magnitude or importance of the problem.</li>
+                            <li>Identify the knowledge or practice gap.</li>
+                            <li>Provide justification for conducting the study.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'problem_statement')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Background of the Study
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            The background provides contextual information about the
+                            research problem. It moves from the broad situation to the
+                            specific problem being investigated.
+                        </p>
+
+                        <p>
+                            A strong background may include relevant statistics,
+                            previous studies, current practice, geographical context
+                            and the specific gap that needs investigation.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'study_background')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Significance of the Study
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            The significance explains who may benefit from the research
+                            and how the findings could contribute to nursing practice,
+                            education, policy, administration or future research.
+                        </p>
+
+                        <ul>
+                            <li>Patients and communities.</li>
+                            <li>Nurses and other healthcare professionals.</li>
+                            <li>Healthcare institutions.</li>
+                            <li>Policy makers.</li>
+                            <li>Researchers and students.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'study_significance')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 3 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>3. Literature Review</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Purpose of Literature Review
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A literature review involves systematically examining
+                            published information related to the research topic.
+                        </p>
+
+                        <ul>
+                            <li>Provides background knowledge.</li>
+                            <li>Identifies gaps in knowledge.</li>
+                            <li>Prevents unnecessary duplication.</li>
+                            <li>Helps develop research questions.</li>
+                            <li>Guides selection of research methods.</li>
+                            <li>Provides a basis for interpreting findings.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'literature_purpose')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Search Strategy
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A search strategy is a planned approach for finding relevant
+                            literature.
+                        </p>
+
+                        <h4>Important components</h4>
+
+                        <ul>
+                            <li>Identify keywords.</li>
+                            <li>Use synonyms and related terms.</li>
+                            <li>Use appropriate databases.</li>
+                            <li>Apply inclusion and exclusion criteria.</li>
+                            <li>Record useful references.</li>
+                            <li>Assess the quality and relevance of sources.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'search_strategy')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Sources of Literature
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li>Peer-reviewed journal articles.</li>
+                            <li>Books and textbooks.</li>
+                            <li>Government publications.</li>
+                            <li>Professional guidelines.</li>
+                            <li>Research reports.</li>
+                            <li>Theses and dissertations.</li>
+                            <li>Reliable electronic databases.</li>
+                        </ul>
+
+                        <div class="important">
+                            Academic sources should be relevant, credible and as current
+                            as appropriate for the research question.
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'literature_sources')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Critical Appraisal and Synthesis
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Critical appraisal involves judging the quality, relevance
+                            and credibility of evidence.
+                        </p>
+
+                        <p>
+                            Synthesis involves bringing findings from different sources
+                            together to identify patterns, agreements, disagreements
+                            and gaps.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'literature_appraisal')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 4 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>4. Research Objectives, Questions and Hypotheses</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 General and Specific Objectives
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            The general objective states the overall purpose of the study.
+                            Specific objectives break that purpose into measurable components.
+                        </p>
+
+                        <div class="note">
+                            <strong>Example:</strong>
+                            General objective: To assess factors associated with medication
+                            adherence among patients with hypertension.
+                        </div>
+
+                        <p>
+                            Specific objectives should be clear, measurable, realistic
+                            and directly related to the research problem.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_objectives')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Research Questions
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Research questions are specific questions that the study
+                            intends to answer.
+                        </p>
+
+                        <p>
+                            They should be clear, focused, researchable and consistent
+                            with the objectives.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_questions')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Hypotheses
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A hypothesis is a testable statement predicting a relationship
+                            or difference between variables.
+                        </p>
+
+                        <ul>
+                            <li><strong>Null hypothesis:</strong> States that there is no significant relationship or difference.</li>
+                            <li><strong>Alternative hypothesis:</strong> States that a relationship or difference exists.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'hypotheses')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Variables
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A variable is a characteristic or factor that can take
+                            different values.
+                        </p>
+
+                        <ul>
+                            <li><strong>Independent variable:</strong> The factor considered to influence another variable.</li>
+                            <li><strong>Dependent variable:</strong> The outcome being measured.</li>
+                            <li><strong>Confounding variable:</strong> A factor that may distort the relationship between variables.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_variables')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Conceptual Framework
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A conceptual framework shows how important concepts or
+                            variables in a study are expected to relate to one another.
+                        </p>
+
+                        <div class="diagram">
+                            <div class="diagram-title">Conceptual Framework Example</div>
+
+                            <svg width="760" height="300" viewBox="0 0 760 300" role="img">
+                                <rect x="40" y="90" width="190" height="90" rx="12"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+                                <text x="135" y="125" text-anchor="middle"
+                                      font-size="18" font-weight="bold">Independent</text>
+                                <text x="135" y="152" text-anchor="middle"
+                                      font-size="18">Variable</text>
+
+                                <line x1="230" y1="135" x2="340" y2="135"
+                                      stroke="#12355b" stroke-width="4"/>
+                                <polygon points="340,135 325,126 325,144"
+                                         fill="#12355b"/>
+
+                                <rect x="340" y="90" width="190" height="90" rx="12"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="435" y="125" text-anchor="middle"
+                                      font-size="18" font-weight="bold">Dependent</text>
+                                <text x="435" y="152" text-anchor="middle"
+                                      font-size="18">Variable</text>
+
+                                <line x1="435" y1="180" x2="435" y2="235"
+                                      stroke="#1f6f8b" stroke-width="4"/>
+                                <polygon points="435,250 426,235 444,235"
+                                         fill="#1f6f8b"/>
+
+                                <rect x="330" y="250" width="210" height="35" rx="8"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+                                <text x="435" y="274" text-anchor="middle"
+                                      font-size="16">Measured Outcome</text>
+
+                                <text x="380" y="75" text-anchor="middle"
+                                      font-size="15">Expected relationship</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'conceptual_framework')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 5 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>5. Research Designs</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Quantitative Designs
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Quantitative designs are used when researchers collect
+                            numerical data and analyze it statistically.
+                        </p>
+
+                        <ul>
+                            <li>Descriptive studies.</li>
+                            <li>Correlational studies.</li>
+                            <li>Experimental studies.</li>
+                            <li>Quasi-experimental studies.</li>
+                            <li>Cross-sectional studies.</li>
+                            <li>Cohort studies.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'quantitative_designs')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Qualitative Designs
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Qualitative research explores human experiences, meanings,
+                            perceptions and social processes.
+                        </p>
+
+                        <ul>
+                            <li>Phenomenology.</li>
+                            <li>Grounded theory.</li>
+                            <li>Ethnography.</li>
+                            <li>Case study.</li>
+                            <li>Narrative research.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'qualitative_designs')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Mixed Methods
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Mixed-methods research combines quantitative and qualitative
+                            approaches within one study.
+                        </p>
+
+                        <p>
+                            It can provide both numerical measurements and detailed
+                            understanding of participants' experiences.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'mixed_methods')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Experimental vs Nonexperimental Research
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <table>
+                            <tr>
+                                <th>Experimental</th>
+                                <th>Nonexperimental</th>
+                            </tr>
+                            <tr>
+                                <td>Researcher actively introduces an intervention or manipulation.</td>
+                                <td>Researcher observes variables without manipulating them.</td>
+                            </tr>
+                            <tr>
+                                <td>May include a control group.</td>
+                                <td>May use descriptive or correlational approaches.</td>
+                            </tr>
+                            <tr>
+                                <td>Can be used to investigate cause-and-effect relationships.</td>
+                                <td>Usually describes or examines associations.</td>
+                            </tr>
+                        </table>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'experimental_nonexperimental')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Quantitative and Qualitative Comparison
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <div class="diagram">
+                            <div class="diagram-title">Research Design Comparison</div>
+
+                            <svg width="760" height="330" viewBox="0 0 760 330">
+                                <rect x="40" y="40" width="300" height="230" rx="15"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+
+                                <text x="190" y="75" text-anchor="middle"
+                                      font-size="22" font-weight="bold">Quantitative</text>
+
+                                <text x="65" y="115" font-size="17">• Numerical data</text>
+                                <text x="65" y="150" font-size="17">• Structured tools</text>
+                                <text x="65" y="185" font-size="17">• Statistical analysis</text>
+                                <text x="65" y="220" font-size="17">• Tests relationships</text>
+                                <text x="65" y="255" font-size="17">• Larger samples often used</text>
+
+                                <rect x="420" y="40" width="300" height="230" rx="15"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+
+                                <text x="570" y="75" text-anchor="middle"
+                                      font-size="22" font-weight="bold">Qualitative</text>
+
+                                <text x="445" y="115" font-size="17">• Textual data</text>
+                                <text x="445" y="150" font-size="17">• Interviews/observation</text>
+                                <text x="445" y="185" font-size="17">• Thematic analysis</text>
+                                <text x="445" y="220" font-size="17">• Explores experiences</text>
+                                <text x="445" y="255" font-size="17">• Smaller samples often used</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_design_comparison')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 6 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>6. Sampling and Participants</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Population and Sample
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            The <strong>population</strong> is the entire group of people
+                            or units that the researcher is interested in studying.
+                        </p>
+
+                        <p>
+                            A <strong>sample</strong> is a smaller group selected from
+                            the population to participate in the study.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'population_sample')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Probability Sampling
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            In probability sampling, members of the population have
+                            a known chance of being selected.
+                        </p>
+
+                        <ul>
+                            <li>Simple random sampling.</li>
+                            <li>Systematic sampling.</li>
+                            <li>Stratified sampling.</li>
+                            <li>Cluster sampling.</li>
+                            <li>Multistage sampling.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'probability_sampling')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Nonprobability Sampling
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li>Convenience sampling.</li>
+                            <li>Purposive sampling.</li>
+                            <li>Quota sampling.</li>
+                            <li>Snowball sampling.</li>
+                            <li>Consecutive sampling.</li>
+                        </ul>
+
+                        <p>
+                            Nonprobability sampling does not give every population
+                            member a known probability of selection.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'nonprobability_sampling')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Sample Size
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Sample size refers to the number of participants or units
+                            included in a study.
+                        </p>
+
+                        <p>
+                            Factors affecting sample size include study design,
+                            research objectives, expected variability, desired
+                            precision, available resources and statistical requirements.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'sample_size')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Inclusion and Exclusion Criteria
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            <strong>Inclusion criteria</strong> describe characteristics
+                            participants must have to take part in the study.
+                        </p>
+
+                        <p>
+                            <strong>Exclusion criteria</strong> describe characteristics
+                            that prevent otherwise eligible individuals from participating.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'inclusion_exclusion')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Sampling Tree
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <div class="diagram">
+                            <div class="diagram-title">Sampling Methods</div>
+
+                            <svg width="760" height="390" viewBox="0 0 760 390">
+
+                                <rect x="280" y="20" width="200" height="55" rx="10"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+                                <text x="380" y="55" text-anchor="middle"
+                                      font-size="20" font-weight="bold">Sampling</text>
+
+                                <line x1="380" y1="75" x2="200" y2="125"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <line x1="380" y1="75" x2="560" y2="125"
+                                      stroke="#12355b" stroke-width="3"/>
+
+                                <rect x="80" y="125" width="240" height="55" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="200" y="160" text-anchor="middle"
+                                      font-size="19" font-weight="bold">Probability</text>
+
+                                <rect x="440" y="125" width="240" height="55" rx="10"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+                                <text x="560" y="160" text-anchor="middle"
+                                      font-size="19" font-weight="bold">Nonprobability</text>
+
+                                <line x1="200" y1="180" x2="100" y2="235"
+                                      stroke="#1f6f8b" stroke-width="2"/>
+                                <line x1="200" y1="180" x2="200" y2="235"
+                                      stroke="#1f6f8b" stroke-width="2"/>
+                                <line x1="200" y1="180" x2="300" y2="235"
+                                      stroke="#1f6f8b" stroke-width="2"/>
+
+                                <line x1="560" y1="180" x2="460" y2="235"
+                                      stroke="#ea580c" stroke-width="2"/>
+                                <line x1="560" y1="180" x2="560" y2="235"
+                                      stroke="#ea580c" stroke-width="2"/>
+                                <line x1="560" y1="180" x2="660" y2="235"
+                                      stroke="#ea580c" stroke-width="2"/>
+
+                                <text x="100" y="265" text-anchor="middle" font-size="15">Random</text>
+                                <text x="200" y="265" text-anchor="middle" font-size="15">Systematic</text>
+                                <text x="300" y="265" text-anchor="middle" font-size="15">Stratified</text>
+
+                                <text x="460" y="265" text-anchor="middle" font-size="15">Convenience</text>
+                                <text x="560" y="265" text-anchor="middle" font-size="15">Purposive</text>
+                                <text x="660" y="265" text-anchor="middle" font-size="15">Snowball</text>
+
+                                <text x="380" y="335" text-anchor="middle"
+                                      font-size="16">Selection method determines how participants enter the sample</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'sampling_tree')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 7 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>7. Data Collection Methods</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Questionnaires
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A questionnaire is a structured tool containing questions
+                            used to collect information from participants.
+                        </p>
+
+                        <p>
+                            Questions may be open-ended, closed-ended or use rating
+                            scales such as Likert-type responses.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'questionnaires')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Interviews
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Interviews involve obtaining information directly from
+                            participants through verbal communication.
+                        </p>
+
+                        <ul>
+                            <li>Structured interviews.</li>
+                            <li>Semi-structured interviews.</li>
+                            <li>Unstructured interviews.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'interviews')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Observation
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Observation involves systematically watching and recording
+                            behaviors, events or characteristics relevant to the study.
+                        </p>
+
+                        <p>
+                            Observation can be structured or unstructured and may involve
+                            participant or nonparticipant observation.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'observation')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Records and Document Review
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Researchers may collect information from existing documents
+                            such as patient records, registers, reports, policies and
+                            administrative databases.
+                        </p>
+
+                        <div class="important">
+                            Confidentiality and appropriate authorization must be
+                            considered when accessing health records.
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'records_review')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Validity and Reliability
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            <strong>Validity</strong> refers to whether a tool measures
+                            what it is intended to measure.
+                        </p>
+
+                        <p>
+                            <strong>Reliability</strong> refers to the consistency of
+                            measurements obtained using a research instrument.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'validity_reliability')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Data Collection Flow
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <div class="diagram">
+                            <div class="diagram-title">Data Collection Process</div>
+
+                            <svg width="760" height="240" viewBox="0 0 760 240">
+
+                                <rect x="25" y="75" width="125" height="65" rx="10"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+                                <text x="87" y="102" text-anchor="middle" font-size="15">Select</text>
+                                <text x="87" y="124" text-anchor="middle" font-size="15">Participants</text>
+
+                                <line x1="150" y1="108" x2="205" y2="108"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="205,108 192,100 192,116"
+                                         fill="#12355b"/>
+
+                                <rect x="205" y="75" width="125" height="65" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="267" y="102" text-anchor="middle" font-size="15">Prepare</text>
+                                <text x="267" y="124" text-anchor="middle" font-size="15">Tool</text>
+
+                                <line x1="330" y1="108" x2="385" y2="108"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="385,108 372,100 372,116"
+                                         fill="#12355b"/>
+
+                                <rect x="385" y="75" width="125" height="65" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="447" y="102" text-anchor="middle" font-size="15">Collect</text>
+                                <text x="447" y="124" text-anchor="middle" font-size="15">Data</text>
+
+                                <line x1="510" y1="108" x2="565" y2="108"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="565,108 552,100 552,116"
+                                         fill="#12355b"/>
+
+                                <rect x="565" y="75" width="165" height="65" rx="10"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+                                <text x="647" y="102" text-anchor="middle" font-size="15">Check and</text>
+                                <text x="647" y="124" text-anchor="middle" font-size="15">Store Data</text>
+
+                                <text x="380" y="190" text-anchor="middle"
+                                      font-size="16">Standardization and quality control should occur throughout the process.</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'data_collection_flow')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 8 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>8. Data Analysis and Presentation</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Quantitative Analysis
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Quantitative data analysis involves organizing and analyzing
+                            numerical information using statistical methods.
+                        </p>
+
+                        <ul>
+                            <li>Frequencies and percentages.</li>
+                            <li>Measures of central tendency.</li>
+                            <li>Measures of dispersion.</li>
+                            <li>Tests of association.</li>
+                            <li>Tests of differences.</li>
+                            <li>Regression analysis where appropriate.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'quantitative_analysis')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Qualitative Analysis
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Qualitative analysis involves identifying meaningful
+                            patterns, categories and themes in non-numerical data.
+                        </p>
+
+                        <ol>
+                            <li>Become familiar with the data.</li>
+                            <li>Code relevant information.</li>
+                            <li>Group related codes.</li>
+                            <li>Develop categories or themes.</li>
+                            <li>Review and interpret themes.</li>
+                            <li>Present findings using appropriate evidence.</li>
+                        </ol>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'qualitative_analysis')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Tables and Charts
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Tables and charts help researchers present findings clearly
+                            and make patterns easier to understand.
+                        </p>
+
+                        <ul>
+                            <li>Frequency tables.</li>
+                            <li>Bar charts.</li>
+                            <li>Pie charts.</li>
+                            <li>Histograms.</li>
+                            <li>Line graphs.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'tables_charts')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Interpretation of Findings
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Interpretation involves explaining what the results mean
+                            in relation to the research questions, objectives,
+                            literature and theoretical framework.
+                        </p>
+
+                        <div class="note">
+                            Results should be interpreted objectively. Researchers
+                            should distinguish between what the data demonstrate and
+                            possible explanations or implications.
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'interpretation_findings')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Data Analysis Flow
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <div class="diagram">
+                            <div class="diagram-title">Data Analysis Process</div>
+
+                            <svg width="760" height="300" viewBox="0 0 760 300">
+
+                                <rect x="40" y="100" width="125" height="65" rx="10"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+                                <text x="102" y="128" text-anchor="middle" font-size="15">Collected</text>
+                                <text x="102" y="150" text-anchor="middle" font-size="15">Data</text>
+
+                                <line x1="165" y1="132" x2="220" y2="132"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="220,132 207,124 207,140"
+                                         fill="#12355b"/>
+
+                                <rect x="220" y="100" width="125" height="65" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="282" y="128" text-anchor="middle" font-size="15">Clean &</text>
+                                <text x="282" y="150" text-anchor="middle" font-size="15">Organize</text>
+
+                                <line x1="345" y1="132" x2="400" y2="132"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="400,132 387,124 387,140"
+                                         fill="#12355b"/>
+
+                                <rect x="400" y="100" width="125" height="65" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="462" y="128" text-anchor="middle" font-size="15">Analyze</text>
+                                <text x="462" y="150" text-anchor="middle" font-size="15">Data</text>
+
+                                <line x1="525" y1="132" x2="580" y2="132"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="580,132 567,124 567,140"
+                                         fill="#12355b"/>
+
+                                <rect x="580" y="100" width="140" height="65" rx="10"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+                                <text x="650" y="128" text-anchor="middle" font-size="15">Interpret &</text>
+                                <text x="650" y="150" text-anchor="middle" font-size="15">Present</text>
+
+                                <text x="380" y="215" text-anchor="middle"
+                                      font-size="16">Findings → Conclusions → Recommendations</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'data_analysis_flow')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 9 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>9. Research Ethics</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Informed Consent
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Informed consent is the process through which participants
+                            receive adequate information about a study and voluntarily
+                            agree to participate.
+                        </p>
+
+                        <p>
+                            Information should generally include the purpose of the
+                            study, procedures, potential risks and benefits,
+                            confidentiality, voluntary participation and the right
+                            to withdraw according to applicable requirements.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'informed_consent')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Confidentiality and Anonymity
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            <strong>Confidentiality</strong> means protecting information
+                            provided by participants and limiting access to authorized
+                            persons.
+                        </p>
+
+                        <p>
+                            <strong>Anonymity</strong> means that participant identity
+                            is not linked to the information collected, where the study
+                            design allows this.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'confidentiality')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Beneficence and Nonmaleficence
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            <strong>Beneficence</strong> refers to promoting participant
+                            welfare and maximizing potential benefits.
+                        </p>
+
+                        <p>
+                            <strong>Nonmaleficence</strong> means avoiding or minimizing
+                            unnecessary harm.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'beneficence_nonmaleficence')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Justice
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Justice requires fair treatment and fair distribution of
+                            the burdens and potential benefits of research.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'research_justice')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Ethical Review
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Research involving human participants generally requires
+                            appropriate ethical review before data collection begins,
+                            according to applicable institutional and regulatory
+                            requirements.
+                        </p>
+
+                        <p>
+                            Ethical review considers issues such as risks, benefits,
+                            consent, privacy, confidentiality, participant selection
+                            and protection of vulnerable participants.
+                        </p>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'ethical_review')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Principles of Research Ethics
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <div class="diagram">
+                            <div class="diagram-title">Research Ethics Framework</div>
+
+                            <svg width="760" height="380" viewBox="0 0 760 380">
+
+                                <circle cx="380" cy="190" r="65"
+                                        fill="#eaf2f8" stroke="#12355b" stroke-width="4"/>
+                                <text x="380" y="184" text-anchor="middle"
+                                      font-size="18" font-weight="bold">Ethical</text>
+                                <text x="380" y="207" text-anchor="middle"
+                                      font-size="18" font-weight="bold">Research</text>
+
+                                <line x1="315" y1="175" x2="170" y2="95"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <line x1="315" y1="205" x2="170" y2="285"
+                                      stroke="#12355b" stroke-width="3"/>
+
+                                <line x1="445" y1="175" x2="590" y2="95"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <line x1="445" y1="205" x2="590" y2="285"
+                                      stroke="#12355b" stroke-width="3"/>
+
+                                <rect x="55" y="55" width="170" height="65" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="140" y="94" text-anchor="middle"
+                                      font-size="17" font-weight="bold">Respect</text>
+
+                                <rect x="55" y="255" width="170" height="65" rx="10"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+                                <text x="140" y="294" text-anchor="middle"
+                                      font-size="17" font-weight="bold">Justice</text>
+
+                                <rect x="535" y="55" width="170" height="65" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="620" y="94" text-anchor="middle"
+                                      font-size="17" font-weight="bold">Beneficence</text>
+
+                                <rect x="535" y="255" width="170" height="65" rx="10"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+                                <text x="620" y="294" text-anchor="middle"
+                                      font-size="17" font-weight="bold">Confidentiality</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'ethics_framework')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TOPIC 10 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>10. Research Proposal and Case Study Development</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Research Proposal Structure
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A research proposal is a formal document describing what
+                            the researcher intends to investigate and how the study
+                            will be conducted.
+                        </p>
+
+                        <h4>Common components</h4>
+
+                        <ol>
+                            <li>Title.</li>
+                            <li>Introduction and background.</li>
+                            <li>Problem statement.</li>
+                            <li>Justification/significance.</li>
+                            <li>Objectives.</li>
+                            <li>Research questions or hypotheses.</li>
+                            <li>Literature review.</li>
+                            <li>Conceptual or theoretical framework.</li>
+                            <li>Research methodology.</li>
+                            <li>Ethical considerations.</li>
+                            <li>Work plan and budget where required.</li>
+                            <li>References.</li>
+                            <li>Appendices.</li>
+                        </ol>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'proposal_structure')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Case Study Structure
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A case study provides a detailed examination of an individual,
+                            family, group, organization, community or situation.
+                        </p>
+
+                        <h4>Common components</h4>
+
+                        <ul>
+                            <li>Introduction and case identification.</li>
+                            <li>Relevant history and background.</li>
+                            <li>Assessment or data collection.</li>
+                            <li>Analysis of the case.</li>
+                            <li>Problems or diagnoses identified.</li>
+                            <li>Interventions or management.</li>
+                            <li>Outcomes.</li>
+                            <li>Discussion and lessons learned.</li>
+                            <li>Conclusion and recommendations.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'case_study_structure')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Referencing and Academic Writing
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Academic writing should be clear, organized, evidence-based
+                            and appropriately referenced.
+                        </p>
+
+                        <ul>
+                            <li>Use credible academic sources.</li>
+                            <li>Reference information appropriately.</li>
+                            <li>Avoid plagiarism.</li>
+                            <li>Use clear academic language.</li>
+                            <li>Maintain logical flow between sections.</li>
+                            <li>Follow the required referencing style consistently.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'academic_writing')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📌 Presentation and Defense
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A proposal or case study presentation should communicate
+                            the important components of the work clearly and confidently.
+                        </p>
+
+                        <h4>Preparation should include:</h4>
+
+                        <ul>
+                            <li>Understanding the research problem.</li>
+                            <li>Knowing the objectives and methodology.</li>
+                            <li>Understanding the supporting literature.</li>
+                            <li>Preparing clear presentation slides.</li>
+                            <li>Practicing responses to possible questions.</li>
+                            <li>Explaining methodological choices logically.</li>
+                        </ul>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'presentation_defense')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        📊 Research Proposal Structure Diagram
+                    </div>
+
+                    <div class="subtopic-content">
+
+                        <div class="diagram">
+                            <div class="diagram-title">Research Proposal Flow</div>
+
+                            <svg width="760" height="430" viewBox="0 0 760 430">
+
+                                <rect x="275" y="15" width="210" height="50" rx="10"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+                                <text x="380" y="47" text-anchor="middle"
+                                      font-size="18" font-weight="bold">Research Topic</text>
+
+                                <line x1="380" y1="65" x2="380" y2="90"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="380,105 371,90 389,90"
+                                         fill="#12355b"/>
+
+                                <rect x="255" y="105" width="250" height="50" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="380" y="137" text-anchor="middle"
+                                      font-size="18">Problem & Background</text>
+
+                                <line x1="380" y1="155" x2="380" y2="180"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="380,195 371,180 389,180"
+                                         fill="#12355b"/>
+
+                                <rect x="255" y="195" width="250" height="50" rx="10"
+                                      fill="#eef6ff" stroke="#1f6f8b" stroke-width="3"/>
+                                <text x="380" y="227" text-anchor="middle"
+                                      font-size="18">Objectives & Questions</text>
+
+                                <line x1="380" y1="245" x2="380" y2="270"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="380,285 371,270 389,270"
+                                         fill="#12355b"/>
+
+                                <rect x="255" y="285" width="250" height="50" rx="10"
+                                      fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+                                <text x="380" y="317" text-anchor="middle"
+                                      font-size="18">Methodology & Ethics</text>
+
+                                <line x1="380" y1="335" x2="380" y2="360"
+                                      stroke="#12355b" stroke-width="3"/>
+                                <polygon points="380,375 371,360 389,360"
+                                         fill="#12355b"/>
+
+                                <rect x="255" y="375" width="250" height="45" rx="10"
+                                      fill="#eaf2f8" stroke="#12355b" stroke-width="3"/>
+                                <text x="380" y="404" text-anchor="middle"
+                                      font-size="18" font-weight="bold">Proposal</text>
+                            </svg>
+                        </div>
+
+                        <button class="complete-btn" onclick="markCompleted(this, 'proposal_diagram')">
+                            Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </section>
 
 
-    <!-- =========================
-         SHORT ANSWERS
-    ========================== -->
-
-    <section id="short" class="tab">
-
-        <div class="card">
-            <h2>Short-Answer Questions</h2>
-            <p>Practice answering before revealing the model answer.</p>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>1. Define nursing research.</strong>
-                <button class="action answer-button" data-answer="short1">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short1">
-                Nursing research is the systematic investigation of questions and problems relevant
-                to nursing practice, education, administration and patient outcomes.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>2. Define a research problem.</strong>
-                <button class="action answer-button" data-answer="short2">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short2">
-                A research problem is an issue, gap or concern that requires systematic investigation.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>3. State four characteristics of good research objectives.</strong>
-                <button class="action answer-button" data-answer="short3">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short3">
-                Objectives should be specific, measurable, achievable, relevant and appropriately
-                time-bound.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>4. Differentiate between a population and a sample.</strong>
-                <button class="action answer-button" data-answer="short4">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short4">
-                A population is the broader group of people or units relevant to the research,
-                while a sample is a subset selected from that population to participate in the study.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>5. Define validity.</strong>
-                <button class="action answer-button" data-answer="short5">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short5">
-                Validity refers to the extent to which a research instrument measures what it is
-                intended to measure.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>6. Define reliability.</strong>
-                <button class="action answer-button" data-answer="short6">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short6">
-                Reliability refers to the consistency or stability of measurements obtained using
-                a research instrument.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>7. State five ethical principles in research.</strong>
-                <button class="action answer-button" data-answer="short7">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short7">
-                Examples include respect for persons, informed consent, confidentiality,
-                beneficence, non-maleficence and justice.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>8. State four methods of data collection.</strong>
-                <button class="action answer-button" data-answer="short8">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short8">
-                Questionnaires, interviews, observation and record review are examples of
-                data collection methods.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>9. Differentiate between an independent and dependent variable.</strong>
-                <button class="action answer-button" data-answer="short9">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short9">
-                The independent variable is considered a potential influencing or explanatory
-                variable, while the dependent variable is the outcome being measured.
-            </div>
-        </div>
-
-
-        <div class="question-box">
-            <div class="mcq">
-                <strong>10. What is a literature review?</strong>
-                <button class="action answer-button" data-answer="short10">
-                    Show Answer
-                </button>
-            </div>
-
-            <div class="answer" id="short10">
-                A literature review is a critical examination and synthesis of existing literature
-                relevant to a research problem.
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         LONG ANSWERS
-    ========================== -->
-
-    <section id="long" class="tab">
-
-        <div class="card">
-            <h2>Long-Answer Questions</h2>
-            <p>Use these questions for examination practice.</p>
-        </div>
-
-
-        <div class="question-box">
-
-            <div class="mcq">
-
-                <strong>
-                    1. Discuss the steps involved in developing a research proposal.
-                </strong>
-
-                <button class="action answer-button" data-answer="long1">
-                    Show Model Answer
-                </button>
-
-            </div>
-
-            <div class="answer" id="long1">
-
-                <p>
-                    Development of a research proposal begins with identification of a research
-                    problem. The researcher investigates the problem and determines why it requires
-                    study.
-                </p>
-
-                <p>
-                    The researcher then develops objectives and research questions or hypotheses
-                    where appropriate.
-                </p>
-
-                <p>
-                    A literature review is conducted to identify existing knowledge, gaps and
-                    relevant theoretical or conceptual perspectives.
-                </p>
-
-                <p>
-                    The methodology is then developed. It includes the research design, study
-                    population, sample, sampling procedure, data collection methods, instruments
-                    and data analysis plan.
-                </p>
-
-                <p>
-                    Ethical considerations, work plans, budgets, references and appendices are
-                    also incorporated according to institutional requirements.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="question-box">
-
-            <div class="mcq">
-
-                <strong>
-                    2. Discuss the importance of research ethics in nursing research.
-                </strong>
-
-                <button class="action answer-button" data-answer="long2">
-                    Show Model Answer
-                </button>
-
-            </div>
-
-            <div class="answer" id="long2">
-
-                <p>
-                    Research ethics protect the rights, dignity, safety and welfare of research
-                    participants.
-                </p>
-
-                <p>
-                    Participants should receive adequate information and provide voluntary
-                    informed consent before participating.
-                </p>
-
-                <p>
-                    Researchers should protect privacy and confidentiality and minimize potential
-                    harm.
-                </p>
-
-                <p>
-                    Ethical principles such as beneficence, non-maleficence, justice and respect
-                    for persons guide responsible research.
-                </p>
-
-                <p>
-                    Appropriate ethical review and approval are required according to relevant
-                    institutional and regulatory requirements.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="question-box">
-
-            <div class="mcq">
-
-                <strong>
-                    3. Discuss the importance of literature review in research.
-                </strong>
-
-                <button class="action answer-button" data-answer="long3">
-                    Show Model Answer
-                </button>
-
-            </div>
-
-            <div class="answer" id="long3">
-
-                <p>
-                    Literature review helps the researcher understand existing knowledge about
-                    the research problem.
-                </p>
-
-                <p>
-                    It identifies knowledge gaps, provides background information and helps
-                    establish the significance of the proposed study.
-                </p>
-
-                <p>
-                    It can also assist in refining research questions, selecting an appropriate
-                    methodology and identifying relevant theories or concepts.
-                </p>
-
-                <p>
-                    A good literature review critically compares and synthesizes relevant sources
-                    rather than simply listing them.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="question-box">
-
-            <div class="mcq">
-
-                <strong>
-                    4. Discuss the components of a nursing case study.
-                </strong>
-
-                <button class="action answer-button" data-answer="long4">
-                    Show Model Answer
-                </button>
-
-            </div>
-
-            <div class="answer" id="long4">
-
-                <p>
-                    A nursing case study generally begins with relevant patient identification
-                    information while maintaining confidentiality.
-                </p>
-
-                <p>
-                    It includes the presenting complaint, history of the present illness, past
-                    medical and surgical history, family history and relevant social history.
-                </p>
-
-                <p>
-                    A comprehensive physical assessment and relevant investigations are documented.
-                </p>
-
-                <p>
-                    The case study then discusses the medical diagnosis and nursing diagnoses,
-                    followed by nursing interventions and evaluation.
-                </p>
-
-                <p>
-                    Patient education, discharge planning and follow-up may also be included.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FLASHCARDS
-    ========================== -->
-
-    <section id="flashcards" class="tab">
-
-        <div class="card">
-            <h2>Research Flashcards</h2>
-            <p>Try answering before revealing the answer.</p>
-        </div>
-
-        <div class="flashcard">
-
-            <div class="flash-question" id="flashQuestion">
-                What is research?
-            </div>
-
-            <button class="action" id="showFlashAnswer">
-                Show Answer
-            </button>
-
-            <button class="action" id="nextFlashcard">
-                Next Card
-            </button>
-
-            <div class="flash-answer" id="flashAnswer"></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PROGRESS
-    ========================== -->
-
-    <section id="progress" class="tab">
-
-        <div class="card">
-
-            <h2>Research Topic Progress</h2>
+    <!-- MCQS -->
+    <section id="mcqs" class="tab-content">
+
+        <div class="content-card">
+            <h2>📝 NURS 497 MCQ Practice</h2>
 
             <p>
-                Click "Mark Complete" after revising each topic.
+                Practice questions from the complete question bank using the main
+                quiz system.
             </p>
 
+            <a href="{{ url_for('mcqs') }}" class="mcq-link">
+                Open MCQ Practice
+            </a>
         </div>
 
-        <div id="progressList"></div>
+    </section>
+
+
+    <!-- SHORT ANSWER -->
+    <section id="short" class="tab-content">
+
+        <div class="question-card">
+            <h2>✍️ Short Answer Questions</h2>
+
+            <ol>
+                <li>Define nursing research.</li>
+
+                <li>State five purposes of nursing research.</li>
+
+                <li>Describe the major steps in the research process.</li>
+
+                <li>Differentiate between quantitative and qualitative research.</li>
+
+                <li>What is a research problem?</li>
+
+                <li>State the characteristics of a good problem statement.</li>
+
+                <li>Explain the purpose of a literature review.</li>
+
+                <li>Differentiate between probability and nonprobability sampling.</li>
+
+                <li>Define validity and reliability of a research instrument.</li>
+
+                <li>State five ethical principles that should guide research involving human participants.</li>
+            </ol>
+        </div>
+
+    </section>
+
+
+    <!-- LONG ANSWER -->
+    <section id="long" class="tab-content">
+
+        <div class="question-card">
+            <h2>📚 Long Answer Questions</h2>
+
+            <ol>
+                <li>
+                    Describe the research process in detail, beginning with identification
+                    of the research problem and ending with dissemination of findings.
+                </li>
+
+                <li>
+                    Discuss the importance of literature review in nursing research.
+                    Include the sources of literature and the process of critical appraisal.
+                </li>
+
+                <li>
+                    Compare quantitative, qualitative and mixed-methods research designs,
+                    giving suitable nursing examples.
+                </li>
+
+                <li>
+                    Discuss probability and nonprobability sampling methods used in
+                    nursing research, including their advantages and limitations.
+                </li>
+
+                <li>
+                    Explain the major ethical principles that should be considered when
+                    conducting research involving human participants.
+                </li>
+
+                <li>
+                    Describe the structure of a research proposal and explain the
+                    importance of each major section.
+                </li>
+            </ol>
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+    <section id="progress" class="tab-content">
+
+        <div class="progress-card">
+            <h2>✅ NURS 497 Study Progress</h2>
+
+            <div class="progress-number" id="progressNumber">
+                0%
+            </div>
+
+            <p>
+                Completed subtopics:
+                <strong id="completedCount">0</strong>
+                /
+                <strong id="totalCount">0</strong>
+            </p>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <p class="small-text">
+                Your progress is saved in this browser using local storage.
+            </p>
+        </div>
 
     </section>
 
@@ -1156,1216 +2173,149 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+    function openTab(tabId, button) {
 
+        const contents = document.querySelectorAll(".tab-content");
 
-    /* =========================
-       TABS
-    ========================== */
+        contents.forEach(function(content) {
+            content.classList.remove("active");
+        });
 
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabs = document.querySelectorAll(".tab");
+        const buttons = document.querySelectorAll(".tab-button");
 
-    tabButtons.forEach(function (button) {
+        buttons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
 
-        button.addEventListener("click", function () {
+        document.getElementById(tabId).classList.add("active");
 
-            const target = button.getAttribute("data-tab");
-
-            tabs.forEach(function (tab) {
-                tab.classList.remove("active");
-            });
-
-            tabButtons.forEach(function (btn) {
-                btn.classList.remove("active");
-            });
-
-            const selectedTab = document.getElementById(target);
-
-            if (selectedTab) {
-                selectedTab.classList.add("active");
-            }
-
+        if (button) {
             button.classList.add("active");
-
-            if (target === "mcq") {
-                createQuiz();
-            }
-
-        });
-
-    });
-
-
-    /* =========================
-       TOPICS
-    ========================== */
-
-    document.querySelectorAll(".topic-title").forEach(function (title) {
-
-        title.addEventListener("click", function () {
-
-            const content = title.nextElementSibling;
-
-            if (content) {
-                content.classList.toggle("show");
-            }
-
-        });
-
-    });
-
-
-    /* =========================
-       NOTES
-    ========================== */
-
-    document.querySelectorAll(".note-title").forEach(function (title) {
-
-        title.addEventListener("click", function () {
-
-            const content = title.nextElementSibling;
-
-            if (content) {
-                content.classList.toggle("show");
-            }
-
-        });
-
-    });
-
-
-    /* =========================
-       MCQ QUESTION BANK
-    ========================== */
-
-    const questions = [
-
-        {
-            q: "What is the main purpose of nursing research?",
-            options: [
-                "To generate evidence that can improve nursing knowledge and practice",
-                "To replace all clinical experience",
-                "To eliminate patient assessment",
-                "To avoid documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A research problem is best described as:",
-            options: [
-                "An issue or gap requiring systematic investigation",
-                "A list of references",
-                "A research budget",
-                "A completed result"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A good research objective should be:",
-            options: [
-                "Specific and measurable",
-                "Unclear",
-                "Impossible to measure",
-                "Unrelated to the problem"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A literature review primarily helps the researcher to:",
-            options: [
-                "Understand existing knowledge and identify gaps",
-                "Avoid reading previous studies",
-                "Replace data collection",
-                "Guarantee the study results"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A theoretical framework is primarily used to:",
-            options: [
-                "Guide the study using an established theory",
-                "Calculate the research budget",
-                "Replace ethical approval",
-                "Recruit participants automatically"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A conceptual framework illustrates:",
-            options: [
-                "Relationships among important concepts or variables",
-                "Only the research budget",
-                "Only the references",
-                "The researcher's timetable only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The target population refers to:",
-            options: [
-                "The broader group relevant to the research",
-                "Only the researcher",
-                "The research instrument",
-                "The final report"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A sample is:",
-            options: [
-                "A subset of the population selected for the study",
-                "The entire universe",
-                "The research budget",
-                "The literature review"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is a probability sampling method?",
-            options: [
-                "Simple random sampling",
-                "Convenience sampling",
-                "Purposive sampling",
-                "Snowball sampling"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is a non-probability sampling method?",
-            options: [
-                "Convenience sampling",
-                "Simple random sampling",
-                "Systematic random sampling",
-                "Stratified random sampling"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The independent variable is generally:",
-            options: [
-                "A variable considered as a potential influence or cause",
-                "Always the final outcome",
-                "The reference list",
-                "The sample size"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The dependent variable is:",
-            options: [
-                "The outcome being measured",
-                "Always the researcher",
-                "The literature review",
-                "The research budget"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "An operational definition explains:",
-            options: [
-                "How a variable or concept will be measured",
-                "How to write a reference list only",
-                "How to recruit researchers",
-                "How to calculate salaries"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is a common quantitative data collection method?",
-            options: [
-                "Structured questionnaire",
-                "Poetry",
-                "Informal conversation without a study plan",
-                "Personal diary only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which method can be used for qualitative research?",
-            options: [
-                "In-depth interview",
-                "Only laboratory testing",
-                "Only blood pressure measurement",
-                "Only numerical scoring"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Validity refers to:",
-            options: [
-                "Whether a tool measures what it is intended to measure",
-                "Whether a researcher arrives early",
-                "The number of participants only",
-                "The cost of the study"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Reliability refers to:",
-            options: [
-                "Consistency or stability of measurement",
-                "The researcher's opinion",
-                "The number of pages in a proposal",
-                "The study budget"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A research instrument can be reliable but:",
-            options: [
-                "Not necessarily valid",
-                "Always valid",
-                "Never useful",
-                "Always unethical"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Informed consent means that participants:",
-            options: [
-                "Receive relevant information and voluntarily agree to participate",
-                "Must participate",
-                "Cannot withdraw",
-                "Are not told about the study"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Confidentiality in research means:",
-            options: [
-                "Protecting participants' private information",
-                "Publishing all personal identifiers",
-                "Sharing records publicly",
-                "Ignoring participant privacy"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The principle of justice in research relates to:",
-            options: [
-                "Fairness in the treatment and selection of participants",
-                "Avoiding all research",
-                "Increasing study costs",
-                "Removing consent"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Beneficence means:",
-            options: [
-                "Promoting potential benefits",
-                "Increasing harm",
-                "Ignoring risks",
-                "Removing participant rights"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Non-maleficence means:",
-            options: [
-                "Avoiding or minimizing harm",
-                "Maximizing risk",
-                "Ignoring safety",
-                "Forcing participation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Participants generally have the right to:",
-            options: [
-                "Withdraw from a study according to the consent arrangements",
-                "Be forced to continue",
-                "Have their identity publicly disclosed",
-                "Avoid all information about the study"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A descriptive study primarily aims to:",
-            options: [
-                "Describe characteristics or patterns",
-                "Always establish causation",
-                "Replace ethical approval",
-                "Guarantee an intervention effect"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A cross-sectional study generally collects information:",
-            options: [
-                "At a particular point or period in time",
-                "Only after ten years",
-                "Only from researchers",
-                "Without defining a population"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A correlational study examines:",
-            options: [
-                "Relationships between variables",
-                "Only patient names",
-                "Only research budgets",
-                "Only literature references"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "An experimental study commonly involves:",
-            options: [
-                "An intervention or manipulation and comparison",
-                "No variables",
-                "No research question",
-                "No participants"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A case study involves:",
-            options: [
-                "In-depth investigation of a case in its context",
-                "Only statistical calculations",
-                "Only laboratory experiments",
-                "Only a literature review"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Qualitative research commonly explores:",
-            options: [
-                "Experiences, meanings and perceptions",
-                "Only percentages",
-                "Only blood pressure",
-                "Only sample size"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Quantitative research commonly uses:",
-            options: [
-                "Numerical data and statistical analysis",
-                "Only stories",
-                "Only interviews",
-                "No measurement"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A research hypothesis is:",
-            options: [
-                "A testable statement about an expected relationship or difference",
-                "A reference list",
-                "A budget",
-                "A patient history"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which section explains why the research should be conducted?",
-            options: [
-                "Justification or significance",
-                "References only",
-                "Appendices only",
-                "Title page only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The methodology section explains:",
-            options: [
-                "How the study will be conducted",
-                "Only why the topic is interesting",
-                "Only the author's biography",
-                "Only the reference list"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A work plan shows:",
-            options: [
-                "Activities and their expected timing",
-                "Only participant names",
-                "Only study findings",
-                "Only references"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A research budget describes:",
-            options: [
-                "Expected costs and financial requirements",
-                "Only research questions",
-                "Only the literature",
-                "Only participant characteristics"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Data analysis involves:",
-            options: [
-                "Organizing, examining and interpreting collected information",
-                "Only recruiting participants",
-                "Only writing the title",
-                "Only obtaining consent"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A frequency describes:",
-            options: [
-                "How often a particular value or category occurs",
-                "A theoretical framework",
-                "A sampling method",
-                "An ethical principle"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A percentage expresses:",
-            options: [
-                "A proportion out of one hundred",
-                "A research theory",
-                "A sampling frame",
-                "A literature gap"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Qualitative data analysis may involve:",
-            options: [
-                "Coding and theme development",
-                "Only calculating a mean",
-                "Only calculating blood pressure",
-                "Only counting participants"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A research report should:",
-            options: [
-                "Present and interpret findings clearly",
-                "Hide all limitations",
-                "Invent findings",
-                "Ignore the research questions"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Research limitations refer to:",
-            options: [
-                "Factors that may restrict or affect the study",
-                "Only the research objectives",
-                "Only the title",
-                "Only the references"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A conclusion should be:",
-            options: [
-                "Supported by the study findings",
-                "Based on invented data",
-                "Unrelated to the objectives",
-                "Written before data collection"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Recommendations should generally be based on:",
-            options: [
-                "Study findings and relevant evidence",
-                "Personal guesses only",
-                "Unrelated information",
-                "The title alone"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A reference list contains:",
-            options: [
-                "Sources cited in the research work",
-                "Only participant names",
-                "Only study expenses",
-                "Only research questions"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Appendices may contain:",
-            options: [
-                "Supporting materials such as questionnaires or consent forms",
-                "Only conclusions",
-                "Only research objectives",
-                "Only the title"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Pilot testing can help a researcher:",
-            options: [
-                "Identify problems with a research instrument or procedure",
-                "Guarantee the final findings",
-                "Eliminate the need for ethics",
-                "Replace the main study"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A sampling frame is:",
-            options: [
-                "A list or source from which a sample may be selected",
-                "A research theory",
-                "A data analysis test",
-                "A consent form"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Purposive sampling involves:",
-            options: [
-                "Selecting participants based on relevant characteristics or criteria",
-                "Selecting names entirely by chance",
-                "Selecting every person automatically",
-                "Selecting only researchers"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A research question should be:",
-            options: [
-                "Clear and answerable through the proposed study",
-                "Unrelated to the problem",
-                "Impossible to investigate",
-                "Always extremely broad"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The significance of a study explains:",
-            options: [
-                "Why the research may be important or useful",
-                "Only the researcher's name",
-                "Only the budget",
-                "Only the references"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A case study should protect:",
-            options: [
-                "Patient privacy and confidentiality",
-                "Only the researcher's privacy",
-                "Only the hospital budget",
-                "No information"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A nursing case study may include:",
-            options: [
-                "Assessment, diagnosis, interventions and evaluation",
-                "Only the patient's name",
-                "Only laboratory results",
-                "Only medication names"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The main purpose of a conceptual framework is to:",
-            options: [
-                "Show how key concepts or variables may relate",
-                "Replace data collection",
-                "Calculate the budget",
-                "Provide patient treatment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an example of secondary data?",
-            options: [
-                "Information obtained from existing records or previously collected sources",
-                "A newly conducted interview",
-                "A newly administered questionnaire",
-                "A newly performed observation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Primary data are:",
-            options: [
-                "Data collected directly for the study",
-                "Always obtained from textbooks",
-                "Always obtained from old reports",
-                "Never collected by researchers"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Plagiarism involves:",
-            options: [
-                "Presenting another person's work or ideas without appropriate acknowledgment",
-                "Correct referencing",
-                "Obtaining informed consent",
-                "Analyzing data"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Proper referencing helps:",
-            options: [
-                "Acknowledge sources and support academic integrity",
-                "Hide sources",
-                "Remove the need for evidence",
-                "Guarantee research findings"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A good research title should be:",
-            options: [
-                "Clear, concise and reflective of the study",
-                "Extremely vague",
-                "Unrelated to the study",
-                "Impossible to understand"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Ethical approval is intended to:",
-            options: [
-                "Protect research participants and ensure ethical conduct",
-                "Guarantee positive results",
-                "Increase sample size",
-                "Replace informed consent"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A confounding variable may:",
-            options: [
-                "Distort the apparent relationship between variables",
-                "Always improve validity",
-                "Replace the dependent variable",
-                "Eliminate bias automatically"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Research bias refers to:",
-            options: [
-                "Systematic influence that can affect the accuracy of study findings",
-                "Perfect objectivity",
-                "A research budget",
-                "A type of reference"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A systematic approach to research means:",
-            options: [
-                "Following an organized and planned process",
-                "Changing methods randomly",
-                "Ignoring the research question",
-                "Avoiding documentation"
-            ],
-            answer: 0
         }
 
-    ];
-
-
-    let currentQuestions = [];
-
-
-    function shuffle(array) {
-
-        const copy = [...array];
-
-        for (let i = copy.length - 1; i > 0; i--) {
-
-            const j = Math.floor(Math.random() * (i + 1));
-
-            [copy[i], copy[j]] = [copy[j], copy[i]];
-
-        }
-
-        return copy;
-
+        updateProgress();
     }
 
 
-    function createQuiz() {
+    function toggleTopic(header) {
 
-        currentQuestions = shuffle(questions).slice(0, 10);
+        const content = header.nextElementSibling;
 
-        const quiz = document.getElementById("quiz");
+        content.classList.toggle("open");
 
-        quiz.innerHTML = "";
+        const symbol = header.querySelector("span:last-child");
 
-        currentQuestions.forEach(function (item, index) {
-
-            const box = document.createElement("div");
-
-            box.className = "question-box";
-
-            let html = `
-                <div class="mcq">
-                    <h3>${index + 1}. ${item.q}</h3>
-            `;
-
-            item.options.forEach(function (option, optionIndex) {
-
-                html += `
-                    <label class="option" id="q${index}o${optionIndex}">
-                        <input
-                            type="radio"
-                            name="question${index}"
-                            value="${optionIndex}"
-                        >
-                        ${option}
-                    </label>
-                `;
-
-            });
-
-            html += `
-                </div>
-            `;
-
-            box.innerHTML = html;
-
-            quiz.appendChild(box);
-
-        });
-
-        document.getElementById("quizResult").innerHTML = "";
-
+        if (content.classList.contains("open")) {
+            symbol.textContent = "−";
+        } else {
+            symbol.textContent = "＋";
+        }
     }
 
 
-    document.getElementById("submitQuiz").addEventListener("click", function () {
+    function toggleSubtopic(header) {
 
-        if (currentQuestions.length === 0) {
-            createQuiz();
-            return;
-        }
+        const content = header.nextElementSibling;
 
-        let score = 0;
-
-        currentQuestions.forEach(function (item, index) {
-
-            const selected = document.querySelector(
-                `input[name="question${index}"]:checked`
-            );
-
-            item.options.forEach(function (_, optionIndex) {
-
-                const label = document.getElementById(
-                    `q${index}o${optionIndex}`
-                );
-
-                if (label) {
-                    label.classList.remove("correct");
-                    label.classList.remove("wrong");
-                }
-
-            });
-
-            const correctLabel = document.getElementById(
-                `q${index}o${item.answer}`
-            );
-
-            if (selected) {
-
-                const selectedValue = Number(selected.value);
-
-                const selectedLabel = document.getElementById(
-                    `q${index}o${selectedValue}`
-                );
-
-                if (selectedValue === item.answer) {
-
-                    score++;
-
-                    if (selectedLabel) {
-                        selectedLabel.classList.add("correct");
-                    }
-
-                } else {
-
-                    if (selectedLabel) {
-                        selectedLabel.classList.add("wrong");
-                    }
-
-                    if (correctLabel) {
-                        correctLabel.classList.add("correct");
-                    }
-
-                }
-
-            } else {
-
-                if (correctLabel) {
-                    correctLabel.classList.add("correct");
-                }
-
-            }
-
-        });
+        content.classList.toggle("open");
+    }
 
 
-        const percentage = Math.round(
-            (score / currentQuestions.length) * 100
-        );
+    function markCompleted(button, key) {
+
+        localStorage.setItem("research_" + key, "completed");
+
+        button.textContent = "✓ Completed";
+        button.classList.add("completed");
+
+        updateProgress();
+    }
 
 
-        document.getElementById("quizResult").innerHTML = `
-            <div class="result">
-                Score: ${score}/${currentQuestions.length}
-                (${percentage}%)
-            </div>
-        `;
+    function updateCompletedButtons() {
 
-    });
+        const buttons = document.querySelectorAll(".complete-btn");
 
+        buttons.forEach(function(button) {
 
-    document.getElementById("newQuiz").addEventListener("click", function () {
+            const onclickText = button.getAttribute("onclick");
 
-        createQuiz();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    });
-
-
-    /* =========================
-       SHORT + LONG ANSWERS
-    ========================== */
-
-    document.querySelectorAll(".answer-button").forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            const answerId = button.getAttribute("data-answer");
-
-            const answer = document.getElementById(answerId);
-
-            if (!answer) {
+            if (!onclickText) {
                 return;
             }
 
-            answer.classList.toggle("show");
+            const match = onclickText.match(/'([^']+)'/);
 
-            if (answer.classList.contains("show")) {
-
-                if (button.textContent.includes("Model")) {
-                    button.textContent = "Hide Model Answer";
-                } else {
-                    button.textContent = "Hide Answer";
-                }
-
-            } else {
-
-                if (button.textContent.includes("Model")) {
-                    button.textContent = "Show Model Answer";
-                } else {
-                    button.textContent = "Show Answer";
-                }
-
+            if (!match) {
+                return;
             }
 
+            const key = match[1];
+
+            if (localStorage.getItem("research_" + key) === "completed") {
+                button.textContent = "✓ Completed";
+                button.classList.add("completed");
+            }
         });
-
-    });
-
-
-    /* =========================
-       FLASHCARDS
-    ========================== */
-
-    const flashcards = [
-
-        {
-            q: "What is nursing research?",
-            a: "Systematic investigation of questions relevant to nursing practice, education, administration and outcomes."
-        },
-
-        {
-            q: "What is a research problem?",
-            a: "An issue, gap or concern that requires systematic investigation."
-        },
-
-        {
-            q: "What is a sample?",
-            a: "A subset of the population selected to participate in a study."
-        },
-
-        {
-            q: "What is validity?",
-            a: "The extent to which a tool measures what it is intended to measure."
-        },
-
-        {
-            q: "What is reliability?",
-            a: "The consistency or stability of measurement."
-        },
-
-        {
-            q: "What is informed consent?",
-            a: "Voluntary agreement to participate after receiving relevant information about the study."
-        },
-
-        {
-            q: "What is an independent variable?",
-            a: "A variable considered as a potential influence or explanatory factor."
-        },
-
-        {
-            q: "What is a dependent variable?",
-            a: "The outcome variable being measured."
-        },
-
-        {
-            q: "What is qualitative research?",
-            a: "Research that commonly explores experiences, meanings, perceptions and processes."
-        },
-
-        {
-            q: "What is quantitative research?",
-            a: "Research that commonly uses numerical data, measurement and statistical analysis."
-        },
-
-        {
-            q: "What is a literature review?",
-            a: "A critical examination and synthesis of existing knowledge relevant to a research problem."
-        },
-
-        {
-            q: "What is a conceptual framework?",
-            a: "A framework showing important concepts or variables and their expected relationships."
-        }
-
-    ];
-
-
-    let flashIndex = 0;
-
-
-    function showFlashcard() {
-
-        const card = flashcards[flashIndex];
-
-        document.getElementById("flashQuestion").textContent = card.q;
-
-        document.getElementById("flashAnswer").textContent = card.a;
-
-        document.getElementById("flashAnswer").classList.remove("show");
-
     }
 
 
-    document.getElementById("showFlashAnswer").addEventListener("click", function () {
+    function updateProgress() {
 
-        document.getElementById("flashAnswer").classList.toggle("show");
+        const buttons = document.querySelectorAll(".complete-btn");
 
-    });
+        let completed = 0;
 
+        buttons.forEach(function(button) {
 
-    document.getElementById("nextFlashcard").addEventListener("click", function () {
+            const onclickText = button.getAttribute("onclick");
 
-        flashIndex++;
+            if (!onclickText) {
+                return;
+            }
 
-        if (flashIndex >= flashcards.length) {
-            flashIndex = 0;
+            const match = onclickText.match(/'([^']+)'/);
+
+            if (!match) {
+                return;
+            }
+
+            const key = match[1];
+
+            if (localStorage.getItem("research_" + key) === "completed") {
+                completed++;
+            }
+        });
+
+        const total = buttons.length;
+
+        let percentage = 0;
+
+        if (total > 0) {
+            percentage = Math.round((completed / total) * 100);
         }
 
-        showFlashcard();
+        document.getElementById("progressNumber").textContent =
+            percentage + "%";
 
-    });
+        document.getElementById("completedCount").textContent =
+            completed;
 
+        document.getElementById("totalCount").textContent =
+            total;
 
-    /* =========================
-       PROGRESS
-    ========================== */
-
-    const topicNames = [
-
-        "Introduction to Nursing Research",
-        "Research Problem and Problem Statement",
-        "Research Objectives and Questions",
-        "Literature Review",
-        "Theoretical and Conceptual Frameworks",
-        "Research Designs",
-        "Population, Sample and Sampling",
-        "Variables and Operational Definitions",
-        "Data Collection Methods and Tools",
-        "Validity and Reliability",
-        "Research Ethics",
-        "Data Analysis",
-        "Research Proposal Structure",
-        "Case Study Development",
-        "Research Report Writing and Presentation"
-
-    ];
-
-
-    let completedTopics = [];
-
-
-    function renderProgress() {
-
-        const list = document.getElementById("progressList");
-
-        list.innerHTML = "";
-
-
-        topicNames.forEach(function (topic, index) {
-
-            const completed = completedTopics.includes(index);
-
-            const item = document.createElement("div");
-
-            item.className = "progress-item";
-
-
-            item.innerHTML = `
-
-                <strong>
-                    ${index + 1}. ${topic}
-                </strong>
-
-                <div class="progress-bar">
-
-                    <div
-                        class="progress-fill"
-                        style="width:${completed ? 100 : 0}%"
-                    ></div>
-
-                </div>
-
-                <button
-                    class="action"
-                    data-progress="${index}"
-                >
-                    ${completed ? "Completed ✓" : "Mark Complete"}
-                </button>
-
-            `;
-
-
-            list.appendChild(item);
-
-        });
-
-
-        document.querySelectorAll("[data-progress]").forEach(function (button) {
-
-            button.addEventListener("click", function () {
-
-                const index = Number(
-                    button.getAttribute("data-progress")
-                );
-
-
-                if (completedTopics.includes(index)) {
-
-                    completedTopics = completedTopics.filter(function (item) {
-                        return item !== index;
-                    });
-
-                } else {
-
-                    completedTopics.push(index);
-
-                }
-
-
-                renderProgress();
-
-            });
-
-        });
-
+        document.getElementById("progressBar").style.width =
+            percentage + "%";
     }
 
 
-    /* =========================
-       START
-    ========================== */
+    document.addEventListener("DOMContentLoaded", function() {
 
-    createQuiz();
+        updateCompletedButtons();
 
-    showFlashcard();
+        updateProgress();
 
-    renderProgress();
-
-});
+    });
 
 </script>
 

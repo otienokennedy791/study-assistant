@@ -12,40 +12,58 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            color: #222;
+            color: #1f2937;
+            line-height: 1.65;
         }
 
-        header {
-            background: #8b0000;
+        .header {
+            background: linear-gradient(135deg, #991b1b, #dc2626);
             color: white;
-            padding: 25px;
+            padding: 28px 20px;
             text-align: center;
         }
 
-        header h1 {
+        .header h1 {
             margin: 0 0 8px;
+            font-size: 30px;
         }
 
-        header p {
+        .header p {
             margin: 0;
+            font-size: 16px;
+        }
+
+        .topbar {
+            background: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .brand {
+            font-weight: bold;
+            color: #991b1b;
+        }
+
+        .home-btn {
+            text-decoration: none;
+            background: #991b1b;
+            color: white;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-weight: bold;
         }
 
         .container {
-            width: 92%;
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 25px auto;
-        }
-
-        .back {
-            display: inline-block;
-            margin-bottom: 18px;
-            text-decoration: none;
-            background: #333;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
+            padding: 0 16px;
         }
 
         .tabs {
@@ -57,196 +75,269 @@
 
         .tab-button {
             border: none;
-            background: #ddd;
+            background: #e5e7eb;
+            color: #374151;
             padding: 12px 18px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 14px;
         }
 
         .tab-button:hover {
-            background: #ccc;
+            background: #d1d5db;
         }
 
         .tab-button.active {
-            background: #8b0000;
+            background: #991b1b;
             color: white;
         }
 
-        .tab {
+        .tab-content {
             display: none;
         }
 
-        .tab.active {
+        .tab-content.active {
             display: block;
         }
 
-        .card {
+        .intro-card,
+        .content-card,
+        .question-card,
+        .progress-card {
             background: white;
-            padding: 20px;
-            margin-bottom: 15px;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
         }
 
-        .topic,
-        .note,
-        .question-box,
-        .flashcard {
-            background: white;
-            margin-bottom: 12px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
-        }
-
-        .topic-title,
-        .note-title {
-            padding: 16px;
-            background: #f3dddd;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .topic-content,
-        .note-content {
-            display: none;
-            padding: 18px;
-            line-height: 1.6;
-        }
-
-        .topic-content.show,
-        .note-content.show {
-            display: block;
-        }
-
-        .topic-content ul,
-        .note-content ul {
-            line-height: 1.7;
-        }
-
-        .mcq {
-            padding: 20px;
-        }
-
-        .mcq h3 {
+        h2 {
+            color: #991b1b;
             margin-top: 0;
         }
 
-        .option {
+        h3 {
+            color: #7f1d1d;
+        }
+
+        h4 {
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .topic {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .topic-header {
+            background: #fff1f2;
+            padding: 16px 18px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #7f1d1d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-header:hover {
+            background: #ffe4e6;
+        }
+
+        .topic-content {
+            display: none;
+            padding: 15px;
+        }
+
+        .topic-content.open {
             display: block;
-            margin: 10px 0;
-            padding: 10px;
-            background: #f7f7f7;
+        }
+
+        .subtopic {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .subtopic-header {
+            padding: 13px 15px;
+            cursor: pointer;
+            background: #f9fafb;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subtopic-header:hover {
+            background: #f3f4f6;
+        }
+
+        .subtopic-content {
+            display: none;
+            padding: 18px;
+            background: white;
+        }
+
+        .subtopic-content.open {
+            display: block;
+        }
+
+        .diagram {
+            border: 2px dashed #f87171;
+            background: #fff7ed;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 18px 0;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-weight: bold;
+            color: #9a3412;
+            margin-bottom: 12px;
+        }
+
+        .diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning {
+            background: #fef2f2;
+            border-left: 5px solid #dc2626;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .mcq-link {
+            display: inline-block;
+            background: #991b1b;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .question-card {
+            border-left: 5px solid #991b1b;
+        }
+
+        .question-card h3 {
+            margin-top: 0;
+        }
+
+        .mark-btn {
+            border: none;
+            background: #16a34a;
+            color: white;
+            padding: 8px 12px;
             border-radius: 7px;
             cursor: pointer;
-        }
-
-        .option:hover {
-            background: #eeeeee;
-        }
-
-        .correct {
-            background: #d8f3dc !important;
-        }
-
-        .wrong {
-            background: #ffd6d6 !important;
-        }
-
-        button.action {
-            border: none;
-            background: #8b0000;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 8px;
-            cursor: pointer;
+            font-size: 13px;
             font-weight: bold;
-            margin: 8px 5px 8px 0;
+            margin-top: 12px;
         }
 
-        button.action:hover {
-            opacity: 0.9;
+        .mark-btn.completed {
+            background: #6b7280;
         }
 
-        .result {
-            margin-top: 15px;
-            padding: 15px;
-            background: #f3dddd;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        .answer {
-            display: none;
-            padding: 15px;
-            background: #f7f7f7;
-            line-height: 1.6;
-        }
-
-        .answer.show {
-            display: block;
-        }
-
-        .flashcard {
-            padding: 25px;
-            text-align: center;
-            min-height: 180px;
-        }
-
-        .flash-question {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .flash-answer {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #f3dddd;
-            border-radius: 8px;
-            line-height: 1.6;
-        }
-
-        .flash-answer.show {
-            display: block;
-        }
-
-        .progress-item {
-            margin-bottom: 15px;
+        .progress-wrapper {
+            background: #e5e7eb;
+            border-radius: 20px;
+            height: 25px;
+            overflow: hidden;
+            margin: 15px 0;
         }
 
         .progress-bar {
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
             height: 100%;
             width: 0%;
-            background: #8b0000;
-            transition: width 0.3s;
+            background: #dc2626;
+            transition: width 0.3s ease;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            line-height: 25px;
         }
 
-        .small {
-            color: #666;
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 24px;
+            color: #991b1b;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
             font-size: 14px;
         }
 
         @media (max-width: 700px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
             .tabs {
-                flex-direction: column;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
 
             .tab-button {
                 width: 100%;
             }
 
-            .container {
-                width: 95%;
+            .stat-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -254,1697 +345,1528 @@
 
 <body>
 
-<header>
-    <h1>NURS 443 — First Aid, Trauma & Emergency Nursing</h1>
-    <p>Study Assistant • Emergency Revision • Practice • Self-Assessment</p>
-</header>
+<div class="header">
+    <h1>🚑 NURS 443 — First Aid, Trauma & Emergency Nursing</h1>
+    <p>Study topics, subtopics, emergency principles, diagrams and examination preparation</p>
+</div>
+
+<div class="topbar">
+    <div class="brand">🚑 Nursing Study Assistant</div>
+    <a class="home-btn" href="{{ url_for('index') }}">🏠 Dashboard</a>
+</div>
 
 <div class="container">
 
-    <a href="/" class="back">← Back to Dashboard</a>
-
     <div class="tabs">
-        <button class="tab-button active" data-tab="topics">Topics</button>
-        <button class="tab-button" data-tab="notes">Notes</button>
-        <button class="tab-button" data-tab="mcq">MCQs</button>
-        <button class="tab-button" data-tab="short">Short Answers</button>
-        <button class="tab-button" data-tab="long">Long Answers</button>
-        <button class="tab-button" data-tab="flashcards">Flashcards</button>
-        <button class="tab-button" data-tab="progress">Progress</button>
+        <button class="tab-button active" onclick="openTab('topics', this)">📚 Topics & Subtopics</button>
+        <button class="tab-button" onclick="openTab('mcqs', this)">📝 MCQs</button>
+        <button class="tab-button" onclick="openTab('short', this)">✏️ Short Answer</button>
+        <button class="tab-button" onclick="openTab('long', this)">📖 Long Answer</button>
+        <button class="tab-button" onclick="openTab('progress', this)">📊 Progress</button>
     </div>
 
-
     <!-- TOPICS -->
-    <section id="topics" class="tab active">
+    <section id="topics" class="tab-content active">
 
-        <div class="card">
-            <h2>First Aid, Trauma & Emergency Nursing Topics</h2>
-            <p>Click any topic to expand the revision material.</p>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">1. Principles of First Aid and Emergency Nursing</div>
-            <div class="topic-content">
-                <p>First aid is the immediate care provided to an injured or suddenly ill person before definitive medical treatment is available.</p>
-                <ul>
-                    <li>Ensure scene safety before approaching the patient.</li>
-                    <li>Assess the patient systematically.</li>
-                    <li>Call for appropriate emergency assistance.</li>
-                    <li>Prioritize life-threatening problems.</li>
-                    <li>Prevent further injury.</li>
-                    <li>Provide reassurance and appropriate psychological support.</li>
-                    <li>Document and communicate important findings.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">2. Triage and Emergency Assessment</div>
-            <div class="topic-content">
-                <p>Triage is the process of rapidly assessing patients and prioritizing care according to urgency.</p>
-                <ul>
-                    <li>Airway and breathing problems receive immediate attention.</li>
-                    <li>Severe circulation problems and major bleeding are priorities.</li>
-                    <li>Level of consciousness is assessed.</li>
-                    <li>Vital signs and relevant history are obtained.</li>
-                    <li>Patients are reassessed because their condition can change.</li>
-                </ul>
-                <p>A systematic primary survey commonly follows <strong>ABCDE</strong>: Airway, Breathing, Circulation, Disability and Exposure.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">3. Basic Life Support and CPR</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Recognize cardiac arrest and activate the emergency response system.</li>
-                    <li>Begin high-quality CPR according to current guidelines.</li>
-                    <li>Provide chest compressions with appropriate rate and depth according to current resuscitation guidance.</li>
-                    <li>Use an automated external defibrillator (AED) as soon as available when indicated.</li>
-                    <li>Minimize unnecessary interruptions in chest compressions.</li>
-                    <li>Continue reassessment and follow current resuscitation protocols.</li>
-                </ul>
-                <p><strong>Note:</strong> In actual emergencies, follow current local CPR and resuscitation guidelines and trained responder protocols.</p>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">4. Shock</div>
-            <div class="topic-content">
-                <p>Shock is a state of inadequate tissue perfusion resulting in insufficient oxygen delivery to tissues.</p>
-
-                <h4>Major types</h4>
-                <ul>
-                    <li>Hypovolemic shock</li>
-                    <li>Cardiogenic shock</li>
-                    <li>Distributive shock</li>
-                    <li>Obstructive shock</li>
-                </ul>
-
-                <h4>Possible signs</h4>
-                <ul>
-                    <li>Hypotension</li>
-                    <li>Tachycardia</li>
-                    <li>Altered mental status</li>
-                    <li>Cool or clammy skin in many forms of shock</li>
-                    <li>Reduced urine output</li>
-                    <li>Weak peripheral pulses</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">5. Hemorrhage and Bleeding Control</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Major external bleeding is a life-threatening emergency.</li>
-                    <li>Apply appropriate direct pressure to external bleeding when possible.</li>
-                    <li>Use appropriate wound dressings and bleeding-control measures.</li>
-                    <li>Monitor for signs of shock.</li>
-                    <li>Internal bleeding may present with pallor, weakness, abdominal or chest symptoms, altered consciousness or shock.</li>
-                    <li>Rapid transport and definitive medical management may be required.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">6. Wounds and Soft Tissue Injuries</div>
-            <div class="topic-content">
-                <p>Common wounds include abrasions, lacerations, punctures and avulsions.</p>
-                <ul>
-                    <li>Assess the wound and mechanism of injury.</li>
-                    <li>Control bleeding.</li>
-                    <li>Protect the wound from contamination.</li>
-                    <li>Assess for foreign bodies and deeper injury.</li>
-                    <li>Consider tetanus prevention according to clinical assessment and guidelines.</li>
-                    <li>Monitor for infection.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">7. Burns</div>
-            <div class="topic-content">
-                <p>Burns may be caused by thermal, chemical, electrical or other mechanisms.</p>
-                <ul>
-                    <li>Ensure the source of injury is made safe.</li>
-                    <li>Assess airway and breathing in significant burns.</li>
-                    <li>Assess burn depth and extent.</li>
-                    <li>Consider the location of the burn, especially face, hands, feet, genitalia and major joints.</li>
-                    <li>Prevent hypothermia.</li>
-                    <li>Provide appropriate pain management.</li>
-                    <li>Patients with significant burns may require specialized burn-center care.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">8. Fractures, Dislocations and Splinting</div>
-            <div class="topic-content">
-                <ul>
-                    <li>A fracture is a break in the continuity of a bone.</li>
-                    <li>A dislocation occurs when a joint surface is displaced from its normal position.</li>
-                    <li>Assess circulation, sensation and movement distal to an injury.</li>
-                    <li>Immobilize suspected fractures appropriately.</li>
-                    <li>Avoid unnecessary movement.</li>
-                    <li>Monitor for neurovascular compromise.</li>
-                    <li>Provide pain management according to the treatment plan.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">9. Head Injury and Traumatic Brain Injury</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Head injuries may range from mild concussion to severe traumatic brain injury.</li>
-                    <li>Assess level of consciousness and neurological status.</li>
-                    <li>Monitor pupils and neurological changes.</li>
-                    <li>Repeated vomiting, worsening headache, seizures or deteriorating consciousness are concerning findings.</li>
-                    <li>Protect the cervical spine when significant trauma is suspected according to current trauma protocols.</li>
-                    <li>Rapid medical assessment is required for significant head injury.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">10. Spinal and Spinal Cord Injuries</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Spinal injury may result in neurological impairment.</li>
-                    <li>Suspect spinal injury based on mechanism and clinical findings.</li>
-                    <li>Maintain appropriate spinal precautions according to current trauma protocols.</li>
-                    <li>Assess motor and sensory function.</li>
-                    <li>Monitor respiratory function in high spinal injuries.</li>
-                    <li>Prevent secondary injury during movement and transfer.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">11. Chest and Abdominal Trauma</div>
-            <div class="topic-content">
-                <h4>Chest trauma</h4>
-                <ul>
-                    <li>Assess airway and breathing immediately.</li>
-                    <li>Monitor respiratory rate, oxygenation and chest movement.</li>
-                    <li>Serious injuries may include pneumothorax, hemothorax and cardiac injury.</li>
-                </ul>
-
-                <h4>Abdominal trauma</h4>
-                <ul>
-                    <li>Internal bleeding may occur without obvious external bleeding.</li>
-                    <li>Assess pain, abdominal findings and signs of shock.</li>
-                    <li>Urgent medical evaluation may be required.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">12. Poisoning and Overdose</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Identify the substance when possible without delaying emergency care.</li>
-                    <li>Assess airway, breathing, circulation and level of consciousness.</li>
-                    <li>Do not induce vomiting unless specifically directed by an appropriate poison-control or medical professional.</li>
-                    <li>Bring the container or relevant information when safe and available.</li>
-                    <li>Monitor vital signs and neurological status.</li>
-                    <li>Follow local poison-control and emergency protocols.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">13. Environmental and Temperature Emergencies</div>
-            <div class="topic-content">
-                <h4>Heat-related illness</h4>
-                <ul>
-                    <li>May include heat exhaustion and heat stroke.</li>
-                    <li>Heat stroke is a medical emergency.</li>
-                    <li>Rapid cooling and emergency medical care are required.</li>
-                </ul>
-
-                <h4>Hypothermia</h4>
-                <ul>
-                    <li>Occurs when body temperature falls abnormally low.</li>
-                    <li>Remove the patient from the cold environment.</li>
-                    <li>Handle severely hypothermic patients carefully.</li>
-                    <li>Provide appropriate rewarming and medical care.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">14. Disaster and Mass Casualty Management</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Disaster nursing requires organization and rapid prioritization.</li>
-                    <li>Scene safety is essential.</li>
-                    <li>Triage helps allocate limited resources.</li>
-                    <li>Communication and coordination are important.</li>
-                    <li>Documentation supports continuity of care.</li>
-                    <li>Healthcare workers should work within established disaster plans.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="topic">
-            <div class="topic-title">15. Emergency Nursing and Patient Stabilization</div>
-            <div class="topic-content">
-                <ul>
-                    <li>Rapid assessment and reassessment are essential.</li>
-                    <li>Identify and treat immediate life threats.</li>
-                    <li>Monitor vital signs and response to interventions.</li>
-                    <li>Provide appropriate oxygen therapy when indicated.</li>
-                    <li>Establish access and prepare prescribed emergency medications and fluids.</li>
-                    <li>Maintain accurate documentation.</li>
-                    <li>Communicate changes promptly to the emergency team.</li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- NOTES -->
-    <section id="notes" class="tab">
-
-        <div class="card">
-            <h2>Emergency Nursing Revision Notes</h2>
-            <p>Click a section to open the notes.</p>
-        </div>
-
-        <div class="note">
-            <div class="note-title">ABCDE Primary Survey</div>
-            <div class="note-content">
-                <ul>
-                    <li><strong>A — Airway:</strong> Check whether the airway is open and protected.</li>
-                    <li><strong>B — Breathing:</strong> Assess breathing, respiratory effort and oxygenation.</li>
-                    <li><strong>C — Circulation:</strong> Assess circulation and control life-threatening bleeding.</li>
-                    <li><strong>D — Disability:</strong> Assess neurological status and level of consciousness.</li>
-                    <li><strong>E — Exposure:</strong> Examine appropriately while preventing unnecessary heat loss.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="note">
-            <div class="note-title">Signs of Shock</div>
-            <div class="note-content">
-                <ul>
-                    <li>Rapid pulse</li>
-                    <li>Low blood pressure in many cases</li>
-                    <li>Altered mental status</li>
-                    <li>Reduced urine output</li>
-                    <li>Weak peripheral pulses</li>
-                    <li>Cool or clammy skin in many forms</li>
-                    <li>Rapid breathing</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="note">
-            <div class="note-title">Emergency Nurse Responsibilities</div>
-            <div class="note-content">
-                <ul>
-                    <li>Rapid assessment</li>
-                    <li>Triage</li>
-                    <li>Monitoring</li>
-                    <li>First aid and emergency interventions within scope</li>
-                    <li>Medication administration as prescribed</li>
-                    <li>Patient and family communication</li>
-                    <li>Documentation</li>
-                    <li>Reassessment and escalation of deterioration</li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- MCQ -->
-    <section id="mcq" class="tab">
-
-        <div class="card">
-            <h2>First Aid, Trauma & Emergency MCQs</h2>
+        <div class="intro-card">
+            <h2>First Aid, Trauma & Emergency Nursing</h2>
             <p>
-                Ten questions are randomly selected from the question bank.
+                This section introduces the principles and nursing management of patients
+                experiencing acute illness, injury and life-threatening emergencies.
             </p>
-            <p class="small">
-                Submit your answers to see your score, then generate another set.
-            </p>
+
+            <div class="note">
+                <strong>Study approach:</strong>
+                Open each topic, then click individual subtopics to study them.
+                Relevant diagrams are included where they help explain a concept.
+            </div>
         </div>
 
-        <div id="quiz"></div>
+        <!-- TOPIC 1 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>1. Principles of First Aid and Emergency Care</span>
+                <span>＋</span>
+            </div>
 
-        <button class="action" id="submitQuiz">Submit Quiz</button>
-        <button class="action" id="newQuiz">New Question Set</button>
+            <div class="topic-content">
 
-        <div id="quizResult"></div>
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Definition and Objectives of First Aid</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <h3>Definition</h3>
+                        <p>
+                            First aid is the immediate and temporary care given to a person
+                            who has been injured or suddenly becomes ill before definitive
+                            medical treatment is available.
+                        </p>
+
+                        <h3>Objectives</h3>
+                        <ul>
+                            <li>Preserve life.</li>
+                            <li>Prevent the condition from becoming worse.</li>
+                            <li>Promote recovery.</li>
+                            <li>Relieve pain and anxiety.</li>
+                            <li>Arrange appropriate further medical care.</li>
+                        </ul>
+
+                        <div class="warning">
+                            <strong>Important:</strong>
+                            First aid does not replace definitive medical treatment.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Principles of Emergency Care</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Ensure the scene is safe.</li>
+                            <li>Use appropriate personal protective equipment.</li>
+                            <li>Assess the patient's responsiveness.</li>
+                            <li>Assess airway, breathing and circulation.</li>
+                            <li>Identify life-threatening problems first.</li>
+                            <li>Call for appropriate assistance.</li>
+                            <li>Provide immediate interventions.</li>
+                            <li>Continuously reassess the patient.</li>
+                        </ol>
+
+                        <div class="note">
+                            Emergency nursing prioritizes conditions that threaten life,
+                            particularly problems involving airway, breathing and circulation.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Primary and Secondary Survey</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <h3>Primary Survey</h3>
+                        <p>
+                            The primary survey rapidly identifies and treats immediate
+                            threats to life.
+                        </p>
+
+                        <ul>
+                            <li><strong>A — Airway:</strong> Check and maintain airway.</li>
+                            <li><strong>B — Breathing:</strong> Assess breathing and oxygenation.</li>
+                            <li><strong>C — Circulation:</strong> Assess pulse and control major bleeding.</li>
+                            <li><strong>D — Disability:</strong> Assess neurological status.</li>
+                            <li><strong>E — Exposure:</strong> Expose the patient as necessary while preventing heat loss.</li>
+                        </ul>
+
+                        <h3>Secondary Survey</h3>
+                        <p>
+                            A systematic head-to-toe assessment performed after immediate
+                            life-threatening problems have been addressed.
+                        </p>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 2 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>2. Cardiopulmonary Resuscitation and Basic Life Support</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Recognition of Cardiac Arrest</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Cardiac arrest occurs when the heart suddenly stops producing
+                            effective circulation.
+                        </p>
+
+                        <h3>Common findings</h3>
+                        <ul>
+                            <li>Unresponsiveness.</li>
+                            <li>Absent or abnormal breathing.</li>
+                            <li>No signs of normal circulation.</li>
+                        </ul>
+
+                        <div class="warning">
+                            Activate the emergency response system and begin appropriate
+                            resuscitation without unnecessary delay.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Adult Basic Life Support Sequence</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Ensure scene safety.</li>
+                            <li>Check responsiveness.</li>
+                            <li>Call for help and activate emergency response.</li>
+                            <li>Assess breathing and circulation according to the applicable protocol.</li>
+                            <li>Begin chest compressions when indicated.</li>
+                            <li>Provide rescue breaths when trained and appropriate.</li>
+                            <li>Use an automated external defibrillator when available and indicated.</li>
+                            <li>Continue until the patient shows signs of recovery or advanced help takes over.</li>
+                        </ol>
+
+                        <div class="diagram">
+                            <div class="diagram-title">📊 Diagram: Basic Life Support Flow</div>
+
+                            <svg width="700" height="230" viewBox="0 0 700 230">
+                                <rect x="30" y="80" width="120" height="55" rx="10"
+                                      fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="90" y="103" text-anchor="middle"
+                                      font-size="15">Unresponsive?</text>
+                                <text x="90" y="123" text-anchor="middle"
+                                      font-size="13">Check patient</text>
+
+                                <line x1="150" y1="108" x2="210" y2="108"
+                                      stroke="#333" stroke-width="2"/>
+                                <polygon points="210,108 200,102 200,114" fill="#333"/>
+
+                                <rect x="210" y="80" width="120" height="55" rx="10"
+                                      fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="270" y="103" text-anchor="middle"
+                                      font-size="15">Call for help</text>
+                                <text x="270" y="123" text-anchor="middle"
+                                      font-size="13">Activate response</text>
+
+                                <line x1="330" y1="108" x2="390" y2="108"
+                                      stroke="#333" stroke-width="2"/>
+                                <polygon points="390,108 380,102 380,114" fill="#333"/>
+
+                                <rect x="390" y="80" width="120" height="55" rx="10"
+                                      fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="450" y="103" text-anchor="middle"
+                                      font-size="15">Assess</text>
+                                <text x="450" y="123" text-anchor="middle"
+                                      font-size="13">Breathing/circulation</text>
+
+                                <line x1="510" y1="108" x2="570" y2="108"
+                                      stroke="#333" stroke-width="2"/>
+                                <polygon points="570,108 560,102 560,114" fill="#333"/>
+
+                                <rect x="570" y="80" width="100" height="55" rx="10"
+                                      fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+                                <text x="620" y="103" text-anchor="middle"
+                                      font-size="15">CPR</text>
+                                <text x="620" y="123" text-anchor="middle"
+                                      font-size="13">+ AED</text>
+                            </svg>
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Automated External Defibrillator</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            An automated external defibrillator (AED) is a device that
+                            analyzes the cardiac rhythm and, when appropriate, delivers
+                            an electrical shock.
+                        </p>
+
+                        <ul>
+                            <li>Turn on the AED.</li>
+                            <li>Attach the pads correctly.</li>
+                            <li>Allow the device to analyze the rhythm.</li>
+                            <li>Ensure nobody is touching the patient during analysis/shock.</li>
+                            <li>Follow the device prompts.</li>
+                            <li>Resume CPR when instructed.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 3 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>3. Shock and Circulatory Emergencies</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Definition and Types of Shock</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Shock is a state of inadequate tissue perfusion in which
+                            oxygen and nutrients delivered to tissues are insufficient
+                            for cellular needs.
+                        </p>
+
+                        <h3>Major types</h3>
+                        <ul>
+                            <li>Hypovolemic shock.</li>
+                            <li>Cardiogenic shock.</li>
+                            <li>Distributive shock.</li>
+                            <li>Obstructive shock.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Hypovolemic Shock</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Hypovolemic shock occurs when there is significant loss of
+                            circulating blood or body fluid.
+                        </p>
+
+                        <h3>Causes</h3>
+                        <ul>
+                            <li>Severe external or internal bleeding.</li>
+                            <li>Severe burns.</li>
+                            <li>Profuse vomiting or diarrhea.</li>
+                            <li>Major fluid losses.</li>
+                        </ul>
+
+                        <h3>Possible manifestations</h3>
+                        <ul>
+                            <li>Rapid pulse.</li>
+                            <li>Low blood pressure, especially as shock progresses.</li>
+                            <li>Cool or clammy skin.</li>
+                            <li>Reduced urine output.</li>
+                            <li>Anxiety, confusion or reduced consciousness.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Nursing Management of Shock</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Rapidly assess ABCs.</li>
+                            <li>Call for emergency assistance.</li>
+                            <li>Control obvious external bleeding.</li>
+                            <li>Maintain airway and support breathing.</li>
+                            <li>Administer oxygen when clinically indicated.</li>
+                            <li>Monitor vital signs frequently.</li>
+                            <li>Establish and maintain appropriate IV access.</li>
+                            <li>Administer prescribed fluids, blood products or medications.</li>
+                            <li>Monitor urine output.</li>
+                            <li>Keep the patient warm while avoiding overheating.</li>
+                            <li>Continuously reassess response to treatment.</li>
+                        </ol>
+
+                        <div class="diagram">
+                            <div class="diagram-title">📊 Diagram: Shock Progression</div>
+
+                            <svg width="700" height="230" viewBox="0 0 700 230">
+                                <rect x="25" y="85" width="125" height="60" rx="10"
+                                      fill="#fef2f2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="87" y="110" text-anchor="middle" font-size="14">
+                                    Reduced
+                                </text>
+                                <text x="87" y="130" text-anchor="middle" font-size="14">
+                                    Circulating Volume
+                                </text>
+
+                                <line x1="150" y1="115" x2="205" y2="115"
+                                      stroke="#333" stroke-width="2"/>
+                                <polygon points="205,115 195,109 195,121" fill="#333"/>
+
+                                <rect x="205" y="85" width="125" height="60" rx="10"
+                                      fill="#fef2f2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="267" y="110" text-anchor="middle" font-size="14">
+                                    Reduced
+                                </text>
+                                <text x="267" y="130" text-anchor="middle" font-size="14">
+                                    Tissue Perfusion
+                                </text>
+
+                                <line x1="330" y1="115" x2="385" y2="115"
+                                      stroke="#333" stroke-width="2"/>
+                                <polygon points="385,115 375,109 375,121" fill="#333"/>
+
+                                <rect x="385" y="85" width="125" height="60" rx="10"
+                                      fill="#fff7ed" stroke="#9a3412" stroke-width="2"/>
+                                <text x="447" y="110" text-anchor="middle" font-size="14">
+                                    Cellular
+                                </text>
+                                <text x="447" y="130" text-anchor="middle" font-size="14">
+                                    Hypoxia
+                                </text>
+
+                                <line x1="510" y1="115" x2="565" y2="115"
+                                      stroke="#333" stroke-width="2"/>
+                                <polygon points="565,115 555,109 555,121" fill="#333"/>
+
+                                <rect x="565" y="85" width="110" height="60" rx="10"
+                                      fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="620" y="110" text-anchor="middle" font-size="14">
+                                    Organ
+                                </text>
+                                <text x="620" y="130" text-anchor="middle" font-size="14">
+                                    Dysfunction
+                                </text>
+                            </svg>
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 4 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>4. Bleeding, Wounds and Hemorrhage</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Types of Bleeding</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <h3>Arterial bleeding</h3>
+                        <p>
+                            Blood from an artery is generally bright red and may be
+                            expelled forcefully or in spurts.
+                        </p>
+
+                        <h3>Venous bleeding</h3>
+                        <p>
+                            Venous bleeding is generally darker and may flow steadily.
+                        </p>
+
+                        <h3>Capillary bleeding</h3>
+                        <p>
+                            Capillary bleeding usually involves slow oozing from small vessels.
+                        </p>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Control of External Hemorrhage</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Ensure personal and scene safety.</li>
+                            <li>Use gloves and appropriate protective equipment.</li>
+                            <li>Apply direct pressure where appropriate.</li>
+                            <li>Use appropriate dressings or haemostatic measures according to protocol.</li>
+                            <li>Consider a tourniquet for life-threatening limb bleeding when indicated and trained to use one.</li>
+                            <li>Monitor the patient for signs of shock.</li>
+                            <li>Arrange urgent definitive care.</li>
+                        </ol>
+
+                        <div class="warning">
+                            Major hemorrhage can become life-threatening rapidly.
+                            Immediate control of bleeding is a priority.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Wound Assessment and Care</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <h3>Assess for:</h3>
+                        <ul>
+                            <li>Location and size.</li>
+                            <li>Depth.</li>
+                            <li>Bleeding.</li>
+                            <li>Contamination.</li>
+                            <li>Foreign bodies.</li>
+                            <li>Damage to nerves, vessels, tendons or bones.</li>
+                            <li>Signs of infection.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 5 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>5. Fractures, Dislocations and Musculoskeletal Trauma</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Types of Fractures</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li>Closed fracture.</li>
+                            <li>Open fracture.</li>
+                            <li>Complete fracture.</li>
+                            <li>Incomplete fracture.</li>
+                            <li>Transverse fracture.</li>
+                            <li>Oblique fracture.</li>
+                            <li>Spiral fracture.</li>
+                            <li>Comminuted fracture.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Signs and Symptoms of Fractures</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li>Pain and tenderness.</li>
+                            <li>Swelling.</li>
+                            <li>Deformity.</li>
+                            <li>Reduced movement.</li>
+                            <li>Abnormal mobility.</li>
+                            <li>Bruising.</li>
+                            <li>Crepitus may occur.</li>
+                        </ul>
+
+                        <p>
+                            Neurovascular status distal to the injury should also be assessed.
+                        </p>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>First Aid and Nursing Care of Fractures</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Assess ABCs first.</li>
+                            <li>Control life-threatening bleeding.</li>
+                            <li>Immobilize the injured area.</li>
+                            <li>Assess distal circulation, sensation and movement.</li>
+                            <li>Provide pain management as prescribed.</li>
+                            <li>Monitor for complications.</li>
+                            <li>Arrange imaging and definitive treatment.</li>
+                        </ol>
+
+                        <div class="diagram">
+                            <div class="diagram-title">📊 Diagram: Neurovascular Assessment</div>
+
+                            <svg width="600" height="210" viewBox="0 0 600 210">
+                                <circle cx="100" cy="105" r="55"
+                                        fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="100" y="100" text-anchor="middle"
+                                      font-size="16">C</text>
+                                <text x="100" y="122" text-anchor="middle"
+                                      font-size="13">Circulation</text>
+
+                                <circle cx="300" cy="105" r="55"
+                                        fill="#fff7ed" stroke="#9a3412" stroke-width="2"/>
+                                <text x="300" y="100" text-anchor="middle"
+                                      font-size="16">S</text>
+                                <text x="300" y="122" text-anchor="middle"
+                                      font-size="13">Sensation</text>
+
+                                <circle cx="500" cy="105" r="55"
+                                        fill="#f0fdf4" stroke="#166534" stroke-width="2"/>
+                                <text x="500" y="100" text-anchor="middle"
+                                      font-size="16">M</text>
+                                <text x="500" y="122" text-anchor="middle"
+                                      font-size="13">Movement</text>
+                            </svg>
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 6 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>6. Head Injury and Spinal Trauma</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Assessment of Head Injury</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <h3>Assess:</h3>
+                        <ul>
+                            <li>Level of consciousness.</li>
+                            <li>Pupil size and reaction.</li>
+                            <li>Motor function.</li>
+                            <li>Speech and orientation.</li>
+                            <li>Headache and vomiting.</li>
+                            <li>Seizures.</li>
+                            <li>Evidence of skull or facial injury.</li>
+                        </ul>
+
+                        <div class="warning">
+                            A deterioration in neurological status is an emergency and
+                            requires immediate reassessment and escalation.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Spinal Cord Injury</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Spinal trauma can damage the spinal cord and may result in
+                            temporary or permanent neurological impairment.
+                        </p>
+
+                        <h3>Possible manifestations</h3>
+                        <ul>
+                            <li>Neck or back pain.</li>
+                            <li>Weakness or paralysis.</li>
+                            <li>Loss or alteration of sensation.</li>
+                            <li>Loss of bowel or bladder control.</li>
+                            <li>Respiratory impairment in high spinal injuries.</li>
+                        </ul>
+
+                        <p>
+                            Patients with suspected spinal injury should be handled using
+                            appropriate spinal precautions according to current emergency protocols.
+                        </p>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Glasgow Coma Scale</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            The Glasgow Coma Scale is used to describe a patient's level
+                            of consciousness using three components.
+                        </p>
+
+                        <ul>
+                            <li><strong>Eye opening.</strong></li>
+                            <li><strong>Verbal response.</strong></li>
+                            <li><strong>Motor response.</strong></li>
+                        </ul>
+
+                        <div class="note">
+                            Record the individual component scores as well as the total
+                            score to communicate neurological changes accurately.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 7 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>7. Burns and Thermal Injuries</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Types and Causes of Burns</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li>Thermal burns.</li>
+                            <li>Chemical burns.</li>
+                            <li>Electrical burns.</li>
+                            <li>Radiation burns.</li>
+                            <li>Inhalation injury associated with fire or smoke exposure.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Assessment of Burn Severity</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Burn assessment considers depth, extent, location, mechanism
+                            and associated injuries.
+                        </p>
+
+                        <h3>Important considerations</h3>
+                        <ul>
+                            <li>Percentage of total body surface area involved.</li>
+                            <li>Depth of burn.</li>
+                            <li>Face, airway, hands, feet, genitalia and major joint involvement.</li>
+                            <li>Electrical or chemical mechanism.</li>
+                            <li>Evidence of inhalation injury.</li>
+                            <li>Age and general health of the patient.</li>
+                        </ul>
+
+                        <div class="diagram">
+                            <div class="diagram-title">📊 Diagram: Burn Assessment Concept</div>
+
+                            <svg width="650" height="260" viewBox="0 0 650 260">
+                                <rect x="235" y="20" width="180" height="45" rx="10"
+                                      fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="325" y="48" text-anchor="middle"
+                                      font-size="15">Burn Assessment</text>
+
+                                <line x1="325" y1="65" x2="325" y2="95"
+                                      stroke="#333" stroke-width="2"/>
+
+                                <line x1="325" y1="95" x2="125" y2="145"
+                                      stroke="#333" stroke-width="2"/>
+                                <line x1="325" y1="95" x2="325" y2="145"
+                                      stroke="#333" stroke-width="2"/>
+                                <line x1="325" y1="95" x2="525" y2="145"
+                                      stroke="#333" stroke-width="2"/>
+
+                                <rect x="45" y="145" width="160" height="50" rx="8"
+                                      fill="#fff7ed" stroke="#9a3412"/>
+                                <text x="125" y="175" text-anchor="middle"
+                                      font-size="14">Depth</text>
+
+                                <rect x="245" y="145" width="160" height="50" rx="8"
+                                      fill="#fff7ed" stroke="#9a3412"/>
+                                <text x="325" y="175" text-anchor="middle"
+                                      font-size="14">Extent / TBSA</text>
+
+                                <rect x="445" y="145" width="160" height="50" rx="8"
+                                      fill="#fff7ed" stroke="#9a3412"/>
+                                <text x="525" y="175" text-anchor="middle"
+                                      font-size="14">Location &amp; Mechanism</text>
+                            </svg>
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Emergency Nursing Care of Burns</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Ensure scene safety.</li>
+                            <li>Stop the burning process when safe to do so.</li>
+                            <li>Assess airway and breathing.</li>
+                            <li>Remove constricting items early when appropriate.</li>
+                            <li>Cover burns appropriately.</li>
+                            <li>Prevent hypothermia.</li>
+                            <li>Assess circulation and fluid losses.</li>
+                            <li>Administer prescribed analgesia and fluids.</li>
+                            <li>Monitor urine output and vital signs.</li>
+                            <li>Arrange referral for appropriate burn care.</li>
+                        </ol>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 8 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>8. Poisoning and Chemical Emergencies</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Routes of Poison Exposure</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ul>
+                            <li>Ingestion.</li>
+                            <li>Inhalation.</li>
+                            <li>Skin exposure.</li>
+                            <li>Eye exposure.</li>
+                            <li>Injection or bites/stings.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Initial Management of Poisoning</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <ol>
+                            <li>Ensure scene safety.</li>
+                            <li>Protect healthcare workers from exposure.</li>
+                            <li>Assess ABCs.</li>
+                            <li>Remove the patient from ongoing exposure when safe.</li>
+                            <li>Identify the substance if possible.</li>
+                            <li>Do not induce vomiting unless specifically directed by an appropriate poison-management protocol.</li>
+                            <li>Provide supportive treatment.</li>
+                            <li>Use specific antidotes when indicated and prescribed.</li>
+                            <li>Monitor for deterioration.</li>
+                        </ol>
+
+                        <div class="warning">
+                            Management depends on the substance, dose, route and time of exposure.
+                            Always follow the appropriate poison-control or emergency protocol.
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Chemical Eye and Skin Exposure</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Chemical exposure to the eyes or skin can cause serious tissue
+                            injury. Immediate decontamination is often critical.
+                        </p>
+
+                        <ul>
+                            <li>Protect yourself from the chemical.</li>
+                            <li>Remove contaminated clothing when appropriate.</li>
+                            <li>Irrigate exposed areas according to the relevant protocol.</li>
+                            <li>Continue assessment and arrange urgent medical evaluation.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 9 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>9. Respiratory Emergencies</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Airway Obstruction</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Airway obstruction prevents adequate movement of air into
+                            and out of the lungs and can rapidly become fatal.
+                        </p>
+
+                        <h3>Possible signs</h3>
+                        <ul>
+                            <li>Difficulty breathing.</li>
+                            <li>Inability to speak normally.</li>
+                            <li>Weak or absent cough.</li>
+                            <li>Noisy breathing.</li>
+                            <li>Cyanosis in severe obstruction.</li>
+                            <li>Loss of consciousness.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Asthma Emergency</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            A severe asthma attack may produce marked respiratory distress
+                            and requires urgent assessment and treatment.
+                        </p>
+
+                        <h3>Nursing priorities</h3>
+                        <ul>
+                            <li>Assess airway and breathing.</li>
+                            <li>Monitor respiratory rate and oxygen saturation.</li>
+                            <li>Position the patient to optimize breathing.</li>
+                            <li>Administer prescribed bronchodilator therapy.</li>
+                            <li>Administer oxygen when indicated.</li>
+                            <li>Monitor response to treatment.</li>
+                            <li>Escalate care if the patient deteriorates.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Drowning and Near-Drowning</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Drowning is a respiratory impairment resulting from submersion
+                            or immersion in liquid.
+                        </p>
+
+                        <ul>
+                            <li>Ensure rescuer safety.</li>
+                            <li>Remove the person from the water safely.</li>
+                            <li>Assess responsiveness and breathing.</li>
+                            <li>Start resuscitation when indicated.</li>
+                            <li>Provide oxygen and supportive care when appropriate.</li>
+                            <li>Monitor for respiratory complications.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 10 -->
+        <div class="topic">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <span>10. Emergency Triage and Disaster Nursing</span>
+                <span>＋</span>
+            </div>
+
+            <div class="topic-content">
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Definition and Purpose of Triage</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Triage is the process of rapidly assessing patients and
+                            prioritizing them according to urgency and available resources.
+                        </p>
+
+                        <h3>Objectives</h3>
+                        <ul>
+                            <li>Identify patients requiring immediate intervention.</li>
+                            <li>Use available resources efficiently.</li>
+                            <li>Reduce preventable deaths and complications.</li>
+                            <li>Direct patients to appropriate levels of care.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Triage Categories</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Specific triage categories and colors vary by system and
+                            institution, but commonly represent different levels of urgency.
+                        </p>
+
+                        <ul>
+                            <li><strong>Immediate:</strong> Requires urgent life-saving intervention.</li>
+                            <li><strong>Urgent:</strong> Serious condition requiring prompt treatment.</li>
+                            <li><strong>Delayed:</strong> Can safely wait for treatment.</li>
+                            <li><strong>Minimal:</strong> Minor injuries or conditions.</li>
+                        </ul>
+
+                        <div class="diagram">
+                            <div class="diagram-title">📊 Diagram: Triage Concept</div>
+
+                            <svg width="650" height="260" viewBox="0 0 650 260">
+                                <rect x="230" y="15" width="190" height="45" rx="10"
+                                      fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+                                <text x="325" y="44" text-anchor="middle"
+                                      font-size="15">Rapid Patient Assessment</text>
+
+                                <line x1="325" y1="60" x2="325" y2="90"
+                                      stroke="#333" stroke-width="2"/>
+
+                                <rect x="30" y="105" width="130" height="55" rx="8"
+                                      fill="#fee2e2" stroke="#991b1b"/>
+                                <text x="95" y="128" text-anchor="middle"
+                                      font-size="13">Immediate</text>
+                                <text x="95" y="147" text-anchor="middle"
+                                      font-size="12">Life-threatening</text>
+
+                                <rect x="185" y="105" width="130" height="55" rx="8"
+                                      fill="#fff7ed" stroke="#9a3412"/>
+                                <text x="250" y="128" text-anchor="middle"
+                                      font-size="13">Urgent</text>
+                                <text x="250" y="147" text-anchor="middle"
+                                      font-size="12">Prompt care</text>
+
+                                <rect x="340" y="105" width="130" height="55" rx="8"
+                                      fill="#fefce8" stroke="#854d0e"/>
+                                <text x="405" y="128" text-anchor="middle"
+                                      font-size="13">Delayed</text>
+                                <text x="405" y="147" text-anchor="middle"
+                                      font-size="12">Can wait</text>
+
+                                <rect x="495" y="105" width="125" height="55" rx="8"
+                                      fill="#f0fdf4" stroke="#166534"/>
+                                <text x="557" y="128" text-anchor="middle"
+                                      font-size="13">Minimal</text>
+                                <text x="557" y="147" text-anchor="middle"
+                                      font-size="12">Minor injury</text>
+                            </svg>
+                        </div>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <div class="subtopic-header" onclick="toggleSubtopic(this)">
+                        <span>Disaster Nursing</span>
+                        <span>＋</span>
+                    </div>
+
+                    <div class="subtopic-content">
+                        <p>
+                            Disaster nursing involves providing nursing care during events
+                            that overwhelm or threaten to overwhelm available resources.
+                        </p>
+
+                        <h3>Nurse responsibilities</h3>
+                        <ul>
+                            <li>Participate in disaster preparedness.</li>
+                            <li>Perform triage.</li>
+                            <li>Provide emergency care.</li>
+                            <li>Coordinate with the multidisciplinary team.</li>
+                            <li>Maintain accurate documentation.</li>
+                            <li>Support infection prevention and control.</li>
+                            <li>Provide psychological support.</li>
+                            <li>Participate in recovery and rehabilitation.</li>
+                        </ul>
+
+                        <button class="mark-btn" onclick="markCompleted(this)">
+                            ✓ Mark as completed
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </section>
 
+    <!-- MCQS -->
+    <section id="mcqs" class="tab-content">
+        <div class="content-card">
+            <h2>📝 NURS 443 MCQ Practice</h2>
+
+            <p>
+                Test your knowledge using the main question bank. Questions are randomized
+                and your results can be recorded in your study history.
+            </p>
+
+            <a class="mcq-link" href="{{ url_for('mcqs', subject='NURS 443') }}">
+                Start NURS 443 MCQs →
+            </a>
+        </div>
+    </section>
 
     <!-- SHORT ANSWERS -->
-    <section id="short" class="tab">
+    <section id="short" class="tab-content">
 
-        <div class="card">
-            <h2>Short-Answer Questions</h2>
-            <p>Click "Show Answer" to reveal a model answer.</p>
+        <div class="question-card">
+            <h3>1. Define first aid.</h3>
+            <p>
+                First aid is the immediate and temporary care given to an injured or
+                suddenly ill person before definitive medical treatment is available.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>1. Define first aid.</strong>
-                <button class="action answer-button" data-answer="short1">Show Answer</button>
-            </div>
-            <div class="answer" id="short1">
-                First aid is the immediate care given to an injured or suddenly ill person before definitive medical treatment is available.
-            </div>
+        <div class="question-card">
+            <h3>2. State five objectives of first aid.</h3>
+            <p>
+                Preservation of life, prevention of further deterioration, promotion of
+                recovery, relief of pain and anxiety, and arrangement of appropriate
+                further medical care.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>2. What is triage?</strong>
-                <button class="action answer-button" data-answer="short2">Show Answer</button>
-            </div>
-            <div class="answer" id="short2">
-                Triage is the rapid assessment and prioritization of patients according to the urgency and severity of their condition.
-            </div>
+        <div class="question-card">
+            <h3>3. State the components of the primary survey.</h3>
+            <p>
+                Airway, breathing, circulation, disability and exposure.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>3. State the five components of the ABCDE primary survey.</strong>
-                <button class="action answer-button" data-answer="short3">Show Answer</button>
-            </div>
-            <div class="answer" id="short3">
-                Airway, Breathing, Circulation, Disability and Exposure.
-            </div>
+        <div class="question-card">
+            <h3>4. State four types of shock.</h3>
+            <p>
+                Hypovolemic, cardiogenic, distributive and obstructive shock.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>4. State four signs of shock.</strong>
-                <button class="action answer-button" data-answer="short4">Show Answer</button>
-            </div>
-            <div class="answer" id="short4">
-                Possible signs include tachycardia, hypotension, altered mental status, rapid breathing, weak pulses, reduced urine output and cool or clammy skin.
-            </div>
+        <div class="question-card">
+            <h3>5. State five signs of shock.</h3>
+            <p>
+                Tachycardia, cool or clammy skin, altered mental status, reduced urine
+                output and hypotension, particularly as shock progresses.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>5. State four causes of burns.</strong>
-                <button class="action answer-button" data-answer="short5">Show Answer</button>
-            </div>
-            <div class="answer" id="short5">
-                Burns may result from thermal heat, chemicals, electricity, radiation or other sources of tissue injury.
-            </div>
+        <div class="question-card">
+            <h3>6. State five complications of severe burns.</h3>
+            <p>
+                Airway injury, respiratory compromise, fluid loss, shock, infection,
+                hypothermia and functional impairment may occur depending on severity.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>6. State four principles of fracture management.</strong>
-                <button class="action answer-button" data-answer="short6">Show Answer</button>
-            </div>
-            <div class="answer" id="short6">
-                Principles include immobilization, assessment of circulation and sensation, pain management, prevention of further injury and appropriate medical evaluation.
-            </div>
+        <div class="question-card">
+            <h3>7. What is triage?</h3>
+            <p>
+                Triage is the rapid assessment and prioritization of patients according
+                to urgency and available resources.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>7. State four roles of an emergency nurse.</strong>
-                <button class="action answer-button" data-answer="short7">Show Answer</button>
-            </div>
-            <div class="answer" id="short7">
-                Roles include rapid assessment, triage, monitoring, emergency interventions, medication administration as prescribed, patient education, communication and documentation.
-            </div>
+        <div class="question-card">
+            <h3>8. State five nursing responsibilities during a disaster.</h3>
+            <p>
+                Triage, emergency treatment, coordination, documentation, infection
+                prevention, psychological support and participation in preparedness
+                and recovery activities.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>8. State four possible signs of head injury requiring urgent assessment.</strong>
-                <button class="action answer-button" data-answer="short8">Show Answer</button>
-            </div>
-            <div class="answer" id="short8">
-                Examples include deteriorating consciousness, repeated vomiting, seizures, worsening headache, neurological deficits and abnormal pupil findings.
-            </div>
+        <div class="question-card">
+            <h3>9. State three findings that may indicate a fracture.</h3>
+            <p>
+                Pain, swelling, deformity, reduced movement and abnormal mobility are
+                common findings.
+            </p>
+        </div>
+
+        <div class="question-card">
+            <h3>10. What does GCS assess?</h3>
+            <p>
+                The Glasgow Coma Scale assesses level of consciousness through eye
+                opening, verbal response and motor response.
+            </p>
         </div>
 
     </section>
-
 
     <!-- LONG ANSWERS -->
-    <section id="long" class="tab">
+    <section id="long" class="tab-content">
 
-        <div class="card">
-            <h2>Long-Answer Questions</h2>
-            <p>Use these for examination practice.</p>
+        <div class="question-card">
+            <h3>1. Discuss the principles of emergency nursing care.</h3>
+            <p>
+                Begin with scene safety and appropriate personal protection. Rapidly
+                assess the patient's airway, breathing and circulation and immediately
+                address life-threatening problems. Assess neurological status, expose
+                the patient when necessary while preventing hypothermia, obtain a focused
+                history, monitor vital signs and initiate appropriate interventions.
+                The patient should be continuously reassessed because their condition
+                can change rapidly.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>1. Discuss the ABCDE approach to emergency assessment.</strong>
-                <button class="action answer-button" data-answer="long1">Show Model Answer</button>
-            </div>
-
-            <div class="answer" id="long1">
-                <p>
-                    The ABCDE approach provides a systematic method of identifying and managing
-                    life-threatening problems.
-                </p>
-
-                <p>
-                    <strong>Airway:</strong> The nurse assesses whether the airway is open and protected
-                    and identifies obstruction or other threats.
-                </p>
-
-                <p>
-                    <strong>Breathing:</strong> Assess respiratory rate, effort, chest movement and
-                    oxygenation. Immediate treatment is provided for life-threatening breathing problems.
-                </p>
-
-                <p>
-                    <strong>Circulation:</strong> Assess pulse and perfusion and identify and control
-                    major bleeding. Circulatory support is provided according to the patient's condition.
-                </p>
-
-                <p>
-                    <strong>Disability:</strong> Assess level of consciousness and neurological status,
-                    including pupils and blood glucose when appropriate.
-                </p>
-
-                <p>
-                    <strong>Exposure:</strong> Examine the patient sufficiently to identify injuries while
-                    maintaining privacy and preventing hypothermia.
-                </p>
-
-                <p>
-                    The patient should be reassessed repeatedly because the clinical condition can change.
-                </p>
-            </div>
+        <div class="question-card">
+            <h3>2. Discuss the nursing management of a patient in hypovolemic shock.</h3>
+            <p>
+                Nursing management begins with rapid assessment of airway, breathing and
+                circulation. The nurse should identify and control external bleeding,
+                provide oxygen when indicated, establish appropriate IV access, monitor
+                vital signs and administer prescribed fluids or blood products. Urine
+                output should be monitored as an indicator of perfusion. The nurse should
+                maintain body temperature, monitor mental status, provide prescribed
+                analgesia where appropriate, document interventions and continuously
+                reassess the response to treatment.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>2. Discuss the nursing management of a patient in shock.</strong>
-                <button class="action answer-button" data-answer="long2">Show Model Answer</button>
-            </div>
-
-            <div class="answer" id="long2">
-                <p>
-                    Nursing management begins with rapid assessment of airway, breathing and circulation.
-                    The nurse identifies the likely cause of shock and looks for life-threatening bleeding.
-                </p>
-
-                <p>
-                    Vital signs, level of consciousness, peripheral perfusion and urine output are
-                    monitored closely.
-                </p>
-
-                <p>
-                    The nurse provides oxygen when indicated, establishes or assists with appropriate
-                    vascular access, administers prescribed fluids and medications, and prepares for
-                    further emergency treatment.
-                </p>
-
-                <p>
-                    The underlying cause must be addressed. The patient is continuously reassessed and
-                    deterioration is reported immediately.
-                </p>
-            </div>
+        <div class="question-card">
+            <h3>3. Discuss the emergency management of a patient with major trauma.</h3>
+            <p>
+                Management begins with scene safety and a rapid primary survey. Airway
+                patency, breathing and circulation are assessed and treated immediately.
+                Major hemorrhage is controlled, neurological status is assessed and
+                appropriate spinal precautions are maintained when indicated. A secondary
+                survey follows stabilization and includes a systematic head-to-toe
+                examination, history, vital signs and appropriate investigations.
+                Continuous monitoring and early referral or escalation are essential.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>3. Discuss the first aid and nursing management of a patient with a burn.</strong>
-                <button class="action answer-button" data-answer="long3">Show Model Answer</button>
-            </div>
-
-            <div class="answer" id="long3">
-                <p>
-                    First ensure that the source of the burn is no longer causing injury and that the
-                    environment is safe.
-                </p>
-
-                <p>
-                    Assess airway and breathing, particularly in patients with facial burns, inhalation
-                    concerns or extensive burns.
-                </p>
-
-                <p>
-                    Assess the extent and depth of the burn and identify the mechanism. Significant burns
-                    require appropriate emergency assessment and may require referral to a specialized
-                    burn service.
-                </p>
-
-                <p>
-                    Nursing care includes pain management, appropriate wound care, fluid management when
-                    indicated, infection prevention, nutritional support and psychological care.
-                </p>
-            </div>
+        <div class="question-card">
+            <h3>4. Discuss the nursing management of a patient with severe burns.</h3>
+            <p>
+                Nursing care includes ensuring safety, stopping the burning process,
+                assessing the airway and breathing, identifying possible inhalation injury,
+                covering burns appropriately, preventing hypothermia, monitoring
+                circulation and fluid balance, administering prescribed fluids and
+                analgesics, monitoring urine output and preventing infection. The nurse
+                also provides psychological support and prepares the patient for
+                definitive burn management.
+            </p>
         </div>
 
-        <div class="question-box">
-            <div class="mcq">
-                <strong>4. Discuss the principles of disaster and mass-casualty nursing.</strong>
-                <button class="action answer-button" data-answer="long4">Show Model Answer</button>
-            </div>
+        <div class="question-card">
+            <h3>5. Explain the role of a nurse in disaster management.</h3>
+            <p>
+                The nurse participates in disaster preparedness, emergency response,
+                triage, treatment and rehabilitation. During a disaster, the nurse may
+                identify patients according to urgency, provide life-saving interventions,
+                coordinate with other professionals, maintain documentation, support
+                infection prevention and provide psychological support. After the event,
+                nurses may participate in recovery, rehabilitation, evaluation and
+                improvement of future disaster plans.
+            </p>
+        </div>
 
-            <div class="answer" id="long4">
-                <p>
-                    Disaster nursing begins with scene safety and activation of the appropriate emergency
-                    response system.
-                </p>
-
-                <p>
-                    Triage is used to prioritize patients according to urgency while considering available
-                    resources.
-                </p>
-
-                <p>
-                    Nurses work within established disaster plans, maintain communication with the
-                    multidisciplinary team and provide care within their scope of practice.
-                </p>
-
-                <p>
-                    Accurate documentation, infection prevention, patient identification, psychological
-                    support and appropriate transfer are important components of disaster management.
-                </p>
-            </div>
+        <div class="question-card">
+            <h3>6. Discuss the assessment and management of a patient with a head injury.</h3>
+            <p>
+                Assessment includes airway and breathing, circulation, level of
+                consciousness, pupils, motor function, speech, orientation and signs of
+                skull or neurological injury. The Glasgow Coma Scale can be used to
+                document neurological status. The patient should be monitored for
+                deterioration, vomiting, seizures and changes in consciousness. Appropriate
+                airway support, oxygen when indicated, spinal precautions when necessary,
+                monitoring and urgent medical evaluation are essential.
+            </p>
         </div>
 
     </section>
-
-
-    <!-- FLASHCARDS -->
-    <section id="flashcards" class="tab">
-
-        <div class="card">
-            <h2>Emergency Nursing Flashcards</h2>
-            <p>Try to answer before revealing the answer.</p>
-        </div>
-
-        <div class="flashcard">
-
-            <div class="flash-question" id="flashQuestion">
-                What does ABCDE stand for?
-            </div>
-
-            <button class="action" id="showFlashAnswer">Show Answer</button>
-            <button class="action" id="nextFlashcard">Next Card</button>
-
-            <div class="flash-answer" id="flashAnswer"></div>
-
-        </div>
-
-    </section>
-
 
     <!-- PROGRESS -->
-    <section id="progress" class="tab">
+    <section id="progress" class="tab-content">
 
-        <div class="card">
-            <h2>Topic Progress</h2>
-            <p>Click "Mark Complete" after revising a topic.</p>
+        <div class="progress-card">
+            <h2>📊 NURS 443 Study Progress</h2>
+
+            <p>
+                Mark subtopics as completed while studying. Your progress is stored
+                locally in your browser.
+            </p>
+
+            <div class="progress-wrapper">
+                <div id="progressBar" class="progress-bar">0%</div>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat">
+                    <strong id="completedCount">0</strong>
+                    Completed
+                </div>
+
+                <div class="stat">
+                    <strong id="totalCount">0</strong>
+                    Total Subtopics
+                </div>
+
+                <div class="stat">
+                    <strong id="remainingCount">0</strong>
+                    Remaining
+                </div>
+            </div>
         </div>
-
-        <div id="progressList"></div>
 
     </section>
 
 </div>
 
+<div class="footer">
+    NURS 443 — First Aid, Trauma & Emergency Nursing | Nursing Study Assistant
+</div>
 
 <script>
+    function openTab(tabId, button) {
+        const contents = document.querySelectorAll(".tab-content");
+        const buttons = document.querySelectorAll(".tab-button");
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    /* =========================
-       TABS
-    ========================= */
-
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabs = document.querySelectorAll(".tab");
-
-    tabButtons.forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            const target = button.getAttribute("data-tab");
-
-            tabs.forEach(function (tab) {
-                tab.classList.remove("active");
-            });
-
-            tabButtons.forEach(function (btn) {
-                btn.classList.remove("active");
-            });
-
-            const selectedTab = document.getElementById(target);
-
-            if (selectedTab) {
-                selectedTab.classList.add("active");
-            }
-
-            button.classList.add("active");
-
-            if (target === "mcq") {
-                createQuiz();
-            }
-
+        contents.forEach(content => {
+            content.classList.remove("active");
         });
 
-    });
-
-
-    /* =========================
-       TOPICS
-    ========================= */
-
-    document.querySelectorAll(".topic-title").forEach(function (title) {
-
-        title.addEventListener("click", function () {
-
-            const content = title.nextElementSibling;
-
-            if (content) {
-                content.classList.toggle("show");
-            }
-
+        buttons.forEach(btn => {
+            btn.classList.remove("active");
         });
 
-    });
+        document.getElementById(tabId).classList.add("active");
+        button.classList.add("active");
 
-
-    /* =========================
-       NOTES
-    ========================= */
-
-    document.querySelectorAll(".note-title").forEach(function (title) {
-
-        title.addEventListener("click", function () {
-
-            const content = title.nextElementSibling;
-
-            if (content) {
-                content.classList.toggle("show");
-            }
-
-        });
-
-    });
-
-
-    /* =========================
-       MCQ QUESTION BANK
-    ========================= */
-
-    const questions = [
-
-        {
-            q: "What is the first priority when arriving at an emergency scene?",
-            options: [
-                "Ensure scene safety",
-                "Give medication",
-                "Take a full medical history",
-                "Start documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What does the A in ABCDE represent?",
-            options: [
-                "Airway",
-                "Assessment",
-                "Alertness",
-                "Analgesia"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What does the B in ABCDE represent?",
-            options: [
-                "Blood pressure",
-                "Breathing",
-                "Brain",
-                "Bleeding"
-            ],
-            answer: 1
-        },
-
-        {
-            q: "What does the C in ABCDE represent?",
-            options: [
-                "Consciousness",
-                "Circulation",
-                "Cognition",
-                "Cervical spine"
-            ],
-            answer: 1
-        },
-
-        {
-            q: "What does the D in ABCDE represent?",
-            options: [
-                "Disability",
-                "Drugs",
-                "Diagnosis",
-                "Drainage"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What does the E in ABCDE represent?",
-            options: [
-                "Exposure",
-                "Emergency",
-                "Evaluation",
-                "Elimination"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Triage is primarily used to:",
-            options: [
-                "Prioritize patients according to urgency",
-                "Provide discharge instructions",
-                "Replace medical assessment",
-                "Prevent documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which problem is an immediate priority during emergency assessment?",
-            options: [
-                "Airway obstruction",
-                "Mild headache",
-                "Old scar",
-                "Chronic mild back pain"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "CPR is performed when a patient is:",
-            options: [
-                "In cardiac arrest",
-                "Hungry",
-                "Sleeping normally",
-                "Walking normally"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "An AED is used primarily to:",
-            options: [
-                "Analyze and treat certain shockable cardiac rhythms",
-                "Measure temperature",
-                "Treat fractures",
-                "Measure blood glucose"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Shock is best described as:",
-            options: [
-                "Inadequate tissue perfusion",
-                "High body temperature only",
-                "A skin infection",
-                "Normal circulation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is a possible sign of shock?",
-            options: [
-                "Tachycardia",
-                "Improved urine output",
-                "Normal mental status in all cases",
-                "Increased peripheral perfusion"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Hypovolemic shock may result from:",
-            options: [
-                "Significant blood or fluid loss",
-                "Only hypertension",
-                "Normal hydration",
-                "Improved cardiac output"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A major priority in external hemorrhage is:",
-            options: [
-                "Control of bleeding",
-                "Giving food",
-                "Allowing the wound to remain exposed",
-                "Delaying assessment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A laceration is:",
-            options: [
-                "A cut or tear in tissue",
-                "A bone tumor",
-                "A joint infection",
-                "A type of fever"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A fracture is:",
-            options: [
-                "A break in the continuity of a bone",
-                "A skin infection",
-                "A blood disorder",
-                "A muscle spasm"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A dislocation occurs when:",
-            options: [
-                "A joint surface is displaced from its normal position",
-                "A bone becomes longer",
-                "A muscle grows",
-                "Skin becomes dry"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "In a limb injury, distal circulation should be assessed because of the risk of:",
-            options: [
-                "Neurovascular compromise",
-                "Improved circulation",
-                "Better mobility",
-                "Increased appetite"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A burn may be caused by:",
-            options: [
-                "Heat, chemicals or electricity",
-                "Only cold water",
-                "Only exercise",
-                "Only infection"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A significant facial burn raises concern about:",
-            options: [
-                "Airway injury",
-                "Improved breathing",
-                "Hearing improvement",
-                "Increased appetite"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A patient with a significant burn is at risk of:",
-            options: [
-                "Fluid loss and hypothermia",
-                "Improved hydration",
-                "Increased body temperature in every case",
-                "No complications"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is concerning after a head injury?",
-            options: [
-                "Deteriorating consciousness",
-                "Normal orientation",
-                "Normal behavior",
-                "No symptoms"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Repeated vomiting after head injury may indicate:",
-            options: [
-                "A need for urgent reassessment",
-                "Normal recovery in every patient",
-                "Improved neurological function",
-                "No need for monitoring"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A seizure following significant head trauma requires:",
-            options: [
-                "Urgent medical assessment",
-                "No observation",
-                "Immediate discharge",
-                "Routine exercise"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Spinal injury may cause:",
-            options: [
-                "Motor and sensory impairment",
-                "Improved sensation",
-                "Increased muscle strength",
-                "Better balance"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "In suspected spinal injury, an important principle is:",
-            options: [
-                "Prevent unnecessary movement",
-                "Move the patient repeatedly",
-                "Ask the patient to run",
-                "Ignore neurological findings"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Chest trauma may cause:",
-            options: [
-                "Pneumothorax",
-                "Improved oxygenation",
-                "Better lung expansion",
-                "Improved circulation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Abdominal trauma can cause:",
-            options: [
-                "Internal bleeding",
-                "Improved blood volume",
-                "Improved digestion",
-                "Increased bone growth"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "When poisoning is suspected, the nurse should first:",
-            options: [
-                "Assess airway, breathing and circulation",
-                "Induce vomiting routinely",
-                "Give food immediately",
-                "Ignore the substance involved"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "In suspected poisoning, inducing vomiting should:",
-            options: [
-                "Not be done routinely unless specifically directed",
-                "Always be done",
-                "Be done after every ingestion",
-                "Replace medical assessment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Heat stroke is:",
-            options: [
-                "A medical emergency",
-                "A normal response to exercise",
-                "Always mild",
-                "Never dangerous"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A patient with hypothermia should:",
-            options: [
-                "Be removed from the cold environment and appropriately rewarmed",
-                "Be placed in more cold",
-                "Be left wet",
-                "Be forced to exercise"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Disaster triage helps:",
-            options: [
-                "Prioritize patients when resources are limited",
-                "Eliminate the need for assessment",
-                "Delay all treatment",
-                "Treat every patient identically regardless of urgency"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A mass-casualty incident requires:",
-            options: [
-                "Coordination and structured triage",
-                "Unplanned individual care only",
-                "No communication",
-                "No documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A key responsibility of an emergency nurse is:",
-            options: [
-                "Rapid assessment and reassessment",
-                "Ignoring changes",
-                "Avoiding communication",
-                "Delaying life-saving care"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Why is reassessment important in emergency care?",
-            options: [
-                "The patient's condition may change rapidly",
-                "Patients never change",
-                "It replaces treatment",
-                "It is only for documentation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which finding may indicate poor tissue perfusion?",
-            options: [
-                "Reduced urine output",
-                "Improved urine output",
-                "Warm normal extremities in every case",
-                "Normal mental status in all patients"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an appropriate goal of first aid?",
-            options: [
-                "Prevent further injury",
-                "Delay emergency care",
-                "Cause additional injury",
-                "Replace definitive treatment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The emergency nurse should document:",
-            options: [
-                "Assessment findings and care provided",
-                "Nothing until discharge",
-                "Only the patient's name",
-                "Only medication names"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The primary survey is designed to identify:",
-            options: [
-                "Immediate life-threatening problems",
-                "Long-term dietary preferences",
-                "Family history only",
-                "Social activities only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which patient should receive urgent attention?",
-            options: [
-                "A patient with severe airway compromise",
-                "A patient with a minor old scar",
-                "A patient requesting water with no emergency symptoms",
-                "A stable patient awaiting routine review"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A patient with severe external bleeding may develop:",
-            options: [
-                "Hypovolemic shock",
-                "Improved circulation",
-                "Increased blood volume",
-                "Improved consciousness"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an important neurovascular assessment after a limb injury?",
-            options: [
-                "Circulation, sensation and movement",
-                "Hair length",
-                "Appetite",
-                "Hearing only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A suspected spinal cord injury requires assessment of:",
-            options: [
-                "Motor and sensory function",
-                "Only appetite",
-                "Only skin color",
-                "Only temperature"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "The purpose of splinting a suspected fracture is to:",
-            options: [
-                "Limit movement and reduce further injury",
-                "Increase movement",
-                "Straighten every fracture forcefully",
-                "Replace definitive treatment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is a possible symptom of internal bleeding?",
-            options: [
-                "Weakness and signs of shock",
-                "Improved energy",
-                "Increased blood pressure in every case",
-                "Improved circulation"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A major goal of emergency nursing is to:",
-            options: [
-                "Stabilize the patient and prevent deterioration",
-                "Delay treatment",
-                "Avoid monitoring",
-                "Replace all specialist care"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "What is the purpose of triage?",
-            options: [
-                "To determine treatment priority",
-                "To determine a patient's income",
-                "To provide discharge medication only",
-                "To replace clinical assessment"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which is an important component of disaster preparedness?",
-            options: [
-                "Emergency plans and communication systems",
-                "Avoiding drills",
-                "Ignoring resource limitations",
-                "Avoiding teamwork"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A patient with altered consciousness should have priority assessment of:",
-            options: [
-                "Airway and breathing",
-                "Diet preference",
-                "Employment",
-                "Family history only"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "Which action is appropriate for an emergency nurse?",
-            options: [
-                "Escalate deterioration promptly",
-                "Ignore abnormal observations",
-                "Wait until the next shift",
-                "Avoid documenting changes"
-            ],
-            answer: 0
-        },
-
-        {
-            q: "A patient with severe trauma should be:",
-            options: [
-                "Repeatedly reassessed",
-                "Assessed only once",
-                "Left unmonitored",
-                "Discharged immediately"
-            ],
-            answer: 0
+        if (tabId === "progress") {
+            updateProgress();
         }
-
-    ];
-
-
-    let currentQuestions = [];
-
-
-    function shuffle(array) {
-
-        const copy = [...array];
-
-        for (let i = copy.length - 1; i > 0; i--) {
-
-            const j = Math.floor(Math.random() * (i + 1));
-
-            [copy[i], copy[j]] = [copy[j], copy[i]];
-
-        }
-
-        return copy;
     }
 
+    function toggleTopic(header) {
+        const content = header.nextElementSibling;
+        const symbol = header.querySelector("span:last-child");
 
-    function createQuiz() {
+        content.classList.toggle("open");
 
-        currentQuestions = shuffle(questions).slice(0, 10);
-
-        const quiz = document.getElementById("quiz");
-
-        quiz.innerHTML = "";
-
-        currentQuestions.forEach(function (item, index) {
-
-            const box = document.createElement("div");
-
-            box.className = "question-box";
-
-            let html = `
-                <div class="mcq">
-                    <h3>${index + 1}. ${item.q}</h3>
-            `;
-
-            item.options.forEach(function (option, optionIndex) {
-
-                html += `
-                    <label class="option" id="q${index}o${optionIndex}">
-                        <input
-                            type="radio"
-                            name="question${index}"
-                            value="${optionIndex}"
-                        >
-                        ${option}
-                    </label>
-                `;
-
-            });
-
-            html += `</div>`;
-
-            box.innerHTML = html;
-
-            quiz.appendChild(box);
-
-        });
-
-        document.getElementById("quizResult").innerHTML = "";
-
+        if (content.classList.contains("open")) {
+            symbol.textContent = "−";
+        } else {
+            symbol.textContent = "＋";
+        }
     }
 
+    function toggleSubtopic(header) {
+        const content = header.nextElementSibling;
+        const symbol = header.querySelector("span:last-child");
 
-    document.getElementById("submitQuiz").addEventListener("click", function () {
+        content.classList.toggle("open");
 
-        if (currentQuestions.length === 0) {
-            createQuiz();
-            return;
+        if (content.classList.contains("open")) {
+            symbol.textContent = "−";
+        } else {
+            symbol.textContent = "＋";
+        }
+    }
+
+    function getProgressKey(button) {
+        const subtopic = button.closest(".subtopic");
+        const title = subtopic.querySelector(".subtopic-header span:first-child").textContent.trim();
+
+        return "nurs443_" + title;
+    }
+
+    function markCompleted(button) {
+        const key = getProgressKey(button);
+
+        if (localStorage.getItem(key) === "completed") {
+            localStorage.removeItem(key);
+            button.textContent = "✓ Mark as completed";
+            button.classList.remove("completed");
+        } else {
+            localStorage.setItem(key, "completed");
+            button.textContent = "✓ Completed";
+            button.classList.add("completed");
         }
 
-        let score = 0;
+        updateProgress();
+    }
 
-        currentQuestions.forEach(function (item, index) {
+    function updateProgress() {
+        const buttons = document.querySelectorAll(".mark-btn");
 
-            const selected = document.querySelector(
-                `input[name="question${index}"]:checked`
-            );
+        let completed = 0;
 
-            item.options.forEach(function (_, optionIndex) {
+        buttons.forEach(button => {
+            const key = getProgressKey(button);
 
-                const label = document.getElementById(
-                    `q${index}o${optionIndex}`
-                );
-
-                if (label) {
-                    label.classList.remove("correct");
-                    label.classList.remove("wrong");
-                }
-
-            });
-
-            if (selected) {
-
-                const selectedValue = Number(selected.value);
-
-                const selectedLabel = document.getElementById(
-                    `q${index}o${selectedValue}`
-                );
-
-                const correctLabel = document.getElementById(
-                    `q${index}o${item.answer}`
-                );
-
-                if (selectedValue === item.answer) {
-
-                    score++;
-
-                    if (selectedLabel) {
-                        selectedLabel.classList.add("correct");
-                    }
-
-                } else {
-
-                    if (selectedLabel) {
-                        selectedLabel.classList.add("wrong");
-                    }
-
-                    if (correctLabel) {
-                        correctLabel.classList.add("correct");
-                    }
-
-                }
-
+            if (localStorage.getItem(key) === "completed") {
+                completed++;
+                button.textContent = "✓ Completed";
+                button.classList.add("completed");
             } else {
-
-                const correctLabel = document.getElementById(
-                    `q${index}o${item.answer}`
-                );
-
-                if (correctLabel) {
-                    correctLabel.classList.add("correct");
-                }
-
+                button.textContent = "✓ Mark as completed";
+                button.classList.remove("completed");
             }
-
         });
 
+        const total = buttons.length;
+        const remaining = total - completed;
+        const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
 
-        const percentage = Math.round(
-            (score / currentQuestions.length) * 100
-        );
+        document.getElementById("completedCount").textContent = completed;
+        document.getElementById("totalCount").textContent = total;
+        document.getElementById("remainingCount").textContent = remaining;
 
-        document.getElementById("quizResult").innerHTML = `
-            <div class="result">
-                Score: ${score}/${currentQuestions.length}
-                (${percentage}%)
-            </div>
-        `;
-
-    });
-
-
-    document.getElementById("newQuiz").addEventListener("click", function () {
-
-        createQuiz();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    });
-
-
-    /* =========================
-       SHORT + LONG ANSWERS
-    ========================= */
-
-    document.querySelectorAll(".answer-button").forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            const answerId = button.getAttribute("data-answer");
-
-            const answer = document.getElementById(answerId);
-
-            if (!answer) {
-                return;
-            }
-
-            answer.classList.toggle("show");
-
-            if (answer.classList.contains("show")) {
-
-                if (button.textContent.includes("Model")) {
-                    button.textContent = "Hide Model Answer";
-                } else {
-                    button.textContent = "Hide Answer";
-                }
-
-            } else {
-
-                if (button.textContent.includes("Model")) {
-                    button.textContent = "Show Model Answer";
-                } else {
-                    button.textContent = "Show Answer";
-                }
-
-            }
-
-        });
-
-    });
-
-
-    /* =========================
-       FLASHCARDS
-    ========================= */
-
-    const flashcards = [
-
-        {
-            q: "What does ABCDE stand for?",
-            a: "Airway, Breathing, Circulation, Disability and Exposure."
-        },
-
-        {
-            q: "What is triage?",
-            a: "Triage is the rapid assessment and prioritization of patients according to urgency."
-        },
-
-        {
-            q: "What is shock?",
-            a: "Shock is a state of inadequate tissue perfusion resulting in insufficient oxygen delivery to tissues."
-        },
-
-        {
-            q: "What is a fracture?",
-            a: "A fracture is a break in the continuity of a bone."
-        },
-
-        {
-            q: "What is a dislocation?",
-            a: "A dislocation occurs when a joint surface is displaced from its normal position."
-        },
-
-        {
-            q: "Name four signs of shock.",
-            a: "Possible signs include tachycardia, hypotension, altered mental status, rapid breathing and reduced urine output."
-        },
-
-        {
-            q: "What is the purpose of an AED?",
-            a: "An AED analyzes cardiac rhythm and delivers a shock when indicated for certain shockable rhythms."
-        },
-
-        {
-            q: "What is first aid?",
-            a: "First aid is immediate care provided before definitive medical treatment is available."
-        },
-
-        {
-            q: "What is a mass-casualty incident?",
-            a: "It is an event in which the number or needs of patients overwhelm or significantly challenge available resources."
-        },
-
-        {
-            q: "Why is reassessment important?",
-            a: "Emergency patients can deteriorate or improve rapidly, so repeated assessment helps identify changes early."
-        }
-
-    ];
-
-
-    let flashIndex = 0;
-
-
-    function showFlashcard() {
-
-        const card = flashcards[flashIndex];
-
-        document.getElementById("flashQuestion").textContent = card.q;
-
-        document.getElementById("flashAnswer").textContent = card.a;
-
-        document.getElementById("flashAnswer").classList.remove("show");
-
+        const progressBar = document.getElementById("progressBar");
+        progressBar.style.width = percentage + "%";
+        progressBar.textContent = percentage + "%";
     }
 
-
-    document.getElementById("showFlashAnswer").addEventListener("click", function () {
-
-        document.getElementById("flashAnswer").classList.toggle("show");
-
+    document.addEventListener("DOMContentLoaded", function() {
+        updateProgress();
     });
-
-
-    document.getElementById("nextFlashcard").addEventListener("click", function () {
-
-        flashIndex++;
-
-        if (flashIndex >= flashcards.length) {
-            flashIndex = 0;
-        }
-
-        showFlashcard();
-
-    });
-
-
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    const topicNames = [
-        "Principles of First Aid and Emergency Nursing",
-        "Triage and Emergency Assessment",
-        "Basic Life Support and CPR",
-        "Shock",
-        "Hemorrhage and Bleeding Control",
-        "Wounds and Soft Tissue Injuries",
-        "Burns",
-        "Fractures, Dislocations and Splinting",
-        "Head Injury and Traumatic Brain Injury",
-        "Spinal and Spinal Cord Injuries",
-        "Chest and Abdominal Trauma",
-        "Poisoning and Overdose",
-        "Environmental and Temperature Emergencies",
-        "Disaster and Mass Casualty Management",
-        "Emergency Nursing and Patient Stabilization"
-    ];
-
-
-    let completedTopics = [];
-
-
-    function renderProgress() {
-
-        const list = document.getElementById("progressList");
-
-        list.innerHTML = "";
-
-        topicNames.forEach(function (topic, index) {
-
-            const completed = completedTopics.includes(index);
-
-            const item = document.createElement("div");
-
-            item.className = "progress-item";
-
-            item.innerHTML = `
-                <strong>${index + 1}. ${topic}</strong>
-
-                <div class="progress-bar">
-                    <div
-                        class="progress-fill"
-                        style="width:${completed ? 100 : 0}%"
-                    ></div>
-                </div>
-
-                <button
-                    class="action"
-                    data-progress="${index}"
-                >
-                    ${completed ? "Completed ✓" : "Mark Complete"}
-                </button>
-            `;
-
-            list.appendChild(item);
-
-        });
-
-
-        document.querySelectorAll("[data-progress]").forEach(function (button) {
-
-            button.addEventListener("click", function () {
-
-                const index = Number(
-                    button.getAttribute("data-progress")
-                );
-
-                if (completedTopics.includes(index)) {
-
-                    completedTopics = completedTopics.filter(function (item) {
-                        return item !== index;
-                    });
-
-                } else {
-
-                    completedTopics.push(index);
-
-                }
-
-                renderProgress();
-
-            });
-
-        });
-
-    }
-
-
-    /* =========================
-       START
-    ========================= */
-
-    createQuiz();
-
-    showFlashcard();
-
-    renderProgress();
-
-});
-
 </script>
 
 </body>
