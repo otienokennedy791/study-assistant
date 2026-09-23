@@ -461,10 +461,11 @@ def forgot_password():
                     "success"
                 )
 
-            except Exception:
+            except Exception as e:
 
                 app.logger.exception(
-                    "Password reset email could not be sent."
+                    "PASSWORD RESET EMAIL ERROR: %s",
+                    str(e)
                 )
 
                 flash(
