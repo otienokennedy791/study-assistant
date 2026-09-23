@@ -11,6 +11,8 @@ from flask_login import (
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from datetime import datetime
+from email.message import EmailMessage
+import smtplib
 import os
 
 from questions import QUESTIONS
@@ -43,6 +45,36 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///study_assistant.db"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+
+# ============================================================
+# EMAIL CONFIGURATION
+# ============================================================
+
+app.config["MAIL_SERVER"] = os.environ.get(
+    "MAIL_SERVER",
+    "smtp.gmail.com"
+)
+
+app.config["MAIL_PORT"] = int(
+    os.environ.get(
+        "MAIL_PORT",
+        "587"
+    )
+)
+
+app.config["MAIL_USERNAME"] = os.environ.get(
+    "MAIL_USERNAME"
+)
+
+app.config["MAIL_PASSWORD"] = os.environ.get(
+    "MAIL_PASSWORD"
+)
+
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get(
+    "MAIL_DEFAULT_SENDER",
+    app.config["MAIL_USERNAME"]
+)
 
 
 # ============================================================
@@ -158,6 +190,53 @@ class QuizHistory(db.Model):
 serializer = URLSafeTimedSerializer(
     app.config["SECRET_KEY"]
 )
+
+
+# ============================================================
+# SEND PASSWORD RESET EMAIL
+# ============================================================
+
+def send_reset_email(recipient, reset_link):
+
+    message = EmailMessage()
+
+    message["Subject"] = "Study Assistant - Password Reset"
+
+    message["From"] = app.config["MAIL_DEFAULT_SENDER"]
+
+    message["To"] = recipient
+
+    message.set_content(
+        f"""
+Hello,
+
+You requested a password reset for your Study Assistant account.
+
+Click the link below to create a new password:
+
+{reset_link}
+
+This password reset link will expire after 1 hour.
+
+If you did not request a password reset, you can safely ignore this email.
+
+Study Assistant
+"""
+    )
+
+    with smtplib.SMTP(
+        app.config["MAIL_SERVER"],
+        app.config["MAIL_PORT"]
+    ) as server:
+
+        server.starttls()
+
+        server.login(
+            app.config["MAIL_USERNAME"],
+            app.config["MAIL_PASSWORD"]
+        )
+
+        server.send_message(message)
 
 
 # ============================================================
@@ -370,20 +449,35 @@ def forgot_password():
                 _external=True
             )
 
+            try:
+
+                send_reset_email(
+                    user.email,
+                    reset_link
+                )
+
+                flash(
+                    "If that email exists, a password reset link has been sent to your email.",
+                    "success"
+                )
+
+            except Exception:
+
+                app.logger.exception(
+                    "Password reset email could not be sent."
+                )
+
+                flash(
+                    "We could not send the password reset email right now. Please try again later.",
+                    "error"
+                )
+
+        else:
+
             flash(
-                "Password reset link generated below.",
+                "If that email exists, a password reset link has been sent to your email.",
                 "success"
             )
-
-            return render_template(
-                "forgot_password.html",
-                reset_link=reset_link
-            )
-
-        flash(
-            "If that email exists, a reset link has been generated.",
-            "success"
-        )
 
     return render_template(
         "forgot_password.html"
