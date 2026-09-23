@@ -432,9 +432,18 @@ def forgot_password():
             ""
         ).strip().lower()
 
+        app.logger.warning(
+            "PASSWORD RESET REQUEST RECEIVED"
+        )
+
         user = User.query.filter_by(
             email=email
         ).first()
+
+        app.logger.warning(
+            "PASSWORD RESET USER FOUND: %s",
+            bool(user)
+        )
 
         if user:
 
@@ -451,9 +460,17 @@ def forgot_password():
 
             try:
 
+                app.logger.warning(
+                    "ATTEMPTING TO SEND PASSWORD RESET EMAIL"
+                )
+
                 send_reset_email(
                     user.email,
                     reset_link
+                )
+
+                app.logger.warning(
+                    "PASSWORD RESET EMAIL SENT SUCCESSFULLY"
                 )
 
                 flash(
