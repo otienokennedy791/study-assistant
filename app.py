@@ -1,4 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    flash,
+    send_file
+)
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (
     LoginManager,
@@ -9,9 +17,11 @@ from flask_login import (
     current_user
 )
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from datetime import datetime
 from email.message import EmailMessage
+import io
 import smtplib
 import os
 
@@ -28,6 +38,9 @@ app.config["SECRET_KEY"] = os.environ.get(
     "SECRET_KEY",
     "study-assistant-development-secret-key"
 )
+
+# Maximum uploaded PDF size: 20 MB
+app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024
 
 database_url = os.environ.get("DATABASE_URL")
 
@@ -78,6 +91,65 @@ app.config["MAIL_DEFAULT_SENDER"] = os.environ.get(
 
 
 # ============================================================
+# ADMIN CONFIGURATION
+# ============================================================
+
+ADMIN_EMAIL = "otienokennedy791@gmail.com"
+
+
+# ============================================================
+# SUBJECT CONFIGURATION
+# ============================================================
+
+SUBJECTS = {
+    "ophthalmic": {
+        "code": "NURS 441",
+        "name": "Ophthalmic Nursing"
+    },
+
+    "ent": {
+        "code": "NURS 442",
+        "name": "ENT Nursing"
+    },
+
+    "oncology": {
+        "code": "NURS 444",
+        "name": "Oncology Nursing"
+    },
+
+    "emergency": {
+        "code": "NURS 443",
+        "name": "First Aid, Trauma & Emergency Nursing"
+    },
+
+    "research": {
+        "code": "NURS 497",
+        "name": "Research Proposal & Case Study Development"
+    },
+
+    "leadership1": {
+        "code": "NURS 374",
+        "name": "Leadership & Management 1"
+    },
+
+    "leadership2": {
+        "code": "NURS 378",
+        "name": "Leadership & Management 2"
+    },
+
+    "curriculum": {
+        "code": "NURS 437",
+        "name": "Curriculum Development"
+    },
+
+    "theatre": {
+        "code": "NURS 446",
+        "name": "Theatre Nursing"
+    }
+}
+
+
+# ============================================================
 # DATABASE
 # ============================================================
 
@@ -99,7 +171,11 @@ login_manager.login_message = "Please log in to access this page."
 
 @login_manager.user_loader
 def load_user(user_id):
-    return db.session.get(User, int(user_id))
+
+    return db.session.get(
+        User,
+        int(user_id)
+    )
 
 
 # ============================================================
@@ -184,6 +260,118 @@ class QuizHistory(db.Model):
 
 
 # ============================================================
+# LECTURER NOTES MODEL
+# ============================================================
+
+class LecturerNote(db.Model):
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    title = db.Column(
+        db.String(200),
+        nullable=False
+    )
+
+    subject_key = db.Column(
+        db.String(50),
+        nullable=False,
+        index=True
+    )
+
+    filename = db.Column(
+        db.String(255),
+        nullable=False
+    )
+
+    uploaded_by = db.Column(
+        db.String(150),
+        nullable=False
+    )
+
+    uploaded_at = db.Column(
+        db.DateTime,
+        default=datetime.utcnow,
+        nullable=False
+    )
+
+    file_data = db.Column(
+        db.LargeBinary,
+        nullable=False
+    )
+
+
+# ============================================================
+# ADMIN HELPER
+# ============================================================
+
+def is_admin():
+
+    if not current_user.is_authenticated:
+        return False
+
+    return (
+        current_user.email.strip().lower()
+        == ADMIN_EMAIL.lower()
+    )
+
+
+def admin_required():
+
+    if not current_user.is_authenticated:
+
+        return redirect(
+            url_for("login")
+        )
+
+    if not is_admin():
+
+        flash(
+            "Administrator access is required for this page.",
+            "error"
+        )
+
+        return redirect(
+            url_for("index")
+        )
+
+    return None
+
+
+# ============================================================
+# SUBJECT NOTES CONTEXT
+# ============================================================
+
+@app.context_processor
+def inject_lecturer_notes():
+
+    lecturer_notes = []
+
+    current_subject_key = None
+
+    endpoint = request.endpoint
+
+    if endpoint in SUBJECTS:
+
+        current_subject_key = endpoint
+
+        lecturer_notes = LecturerNote.query.filter_by(
+            subject_key=current_subject_key
+        ).order_by(
+            LecturerNote.uploaded_at.desc()
+        ).all()
+
+    return {
+        "lecturer_notes": lecturer_notes,
+        "current_subject_key": current_subject_key,
+        "subjects": SUBJECTS,
+        "is_admin": is_admin()
+    }
+
+
+# ============================================================
 # PASSWORD RESET SERIALIZER
 # ============================================================
 
@@ -264,6 +452,7 @@ def index():
 def register():
 
     if current_user.is_authenticated:
+
         return redirect(
             url_for("index")
         )
@@ -699,6 +888,291 @@ def theatre():
 
     return render_template(
         "subjects/theatre.html"
+    )
+
+
+# ============================================================
+# LECTURER NOTES - ADMIN PAGE
+# ============================================================
+
+@app.route(
+    "/admin/lecturer-notes",
+    methods=["GET", "POST"]
+)
+@login_required
+def admin_lecturer_notes():
+
+    access_check = admin_required()
+
+    if access_check:
+        return access_check
+
+    if request.method == "POST":
+
+        title = request.form.get(
+            "title",
+            ""
+        ).strip()
+
+        subject_key = request.form.get(
+            "subject_key",
+            ""
+        ).strip()
+
+        pdf_file = request.files.get(
+            "pdf_file"
+        )
+
+        # ----------------------------------------------------
+        # Validate title
+        # ----------------------------------------------------
+
+        if not title:
+
+            flash(
+                "Please enter a title for the lecturer notes.",
+                "error"
+            )
+
+            return redirect(
+                url_for("admin_lecturer_notes")
+            )
+
+        # ----------------------------------------------------
+        # Validate subject
+        # ----------------------------------------------------
+
+        if subject_key not in SUBJECTS:
+
+            flash(
+                "Please select a valid subject.",
+                "error"
+            )
+
+            return redirect(
+                url_for("admin_lecturer_notes")
+            )
+
+        # ----------------------------------------------------
+        # Validate uploaded file
+        # ----------------------------------------------------
+
+        if not pdf_file or not pdf_file.filename:
+
+            flash(
+                "Please select a PDF file.",
+                "error"
+            )
+
+            return redirect(
+                url_for("admin_lecturer_notes")
+            )
+
+        original_filename = secure_filename(
+            pdf_file.filename
+        )
+
+        if not original_filename.lower().endswith(".pdf"):
+
+            flash(
+                "Only PDF files are allowed.",
+                "error"
+            )
+
+            return redirect(
+                url_for("admin_lecturer_notes")
+            )
+
+        # ----------------------------------------------------
+        # Read PDF into memory/database
+        # ----------------------------------------------------
+
+        file_data = pdf_file.read()
+
+        if not file_data:
+
+            flash(
+                "The uploaded PDF is empty.",
+                "error"
+            )
+
+            return redirect(
+                url_for("admin_lecturer_notes")
+            )
+
+        # ----------------------------------------------------
+        # Basic PDF signature check
+        # ----------------------------------------------------
+
+        if not file_data.startswith(b"%PDF"):
+
+            flash(
+                "The selected file does not appear to be a valid PDF.",
+                "error"
+            )
+
+            return redirect(
+                url_for("admin_lecturer_notes")
+            )
+
+        # ----------------------------------------------------
+        # Create lecturer note
+        # ----------------------------------------------------
+
+        note = LecturerNote(
+
+            title=title,
+
+            subject_key=subject_key,
+
+            filename=original_filename,
+
+            uploaded_by=current_user.email,
+
+            uploaded_at=datetime.utcnow(),
+
+            file_data=file_data
+        )
+
+        db.session.add(note)
+
+        db.session.commit()
+
+        flash(
+            "Lecturer notes uploaded successfully.",
+            "success"
+        )
+
+        return redirect(
+            url_for("admin_lecturer_notes")
+        )
+
+    # --------------------------------------------------------
+    # Show all uploaded notes
+    # --------------------------------------------------------
+
+    notes = LecturerNote.query.order_by(
+        LecturerNote.uploaded_at.desc()
+    ).all()
+
+    return render_template(
+        "admin_lecturer_notes.html",
+        notes=notes,
+        subjects=SUBJECTS
+    )
+
+
+# ============================================================
+# LECTURER NOTES - VIEW PDF
+# ============================================================
+
+@app.route(
+    "/lecturer-notes/view/<int:note_id>"
+)
+@login_required
+def view_lecturer_note(note_id):
+
+    note = db.session.get(
+        LecturerNote,
+        note_id
+    )
+
+    if not note:
+
+        flash(
+            "Lecturer notes not found.",
+            "error"
+        )
+
+        return redirect(
+            url_for("index")
+        )
+
+    return send_file(
+        io.BytesIO(note.file_data),
+        mimetype="application/pdf",
+        download_name=note.filename,
+        as_attachment=False
+    )
+
+
+# ============================================================
+# LECTURER NOTES - DOWNLOAD PDF
+# ============================================================
+
+@app.route(
+    "/lecturer-notes/download/<int:note_id>"
+)
+@login_required
+def download_lecturer_note(note_id):
+
+    note = db.session.get(
+        LecturerNote,
+        note_id
+    )
+
+    if not note:
+
+        flash(
+            "Lecturer notes not found.",
+            "error"
+        )
+
+        return redirect(
+            url_for("index")
+        )
+
+    return send_file(
+        io.BytesIO(note.file_data),
+        mimetype="application/pdf",
+        download_name=note.filename,
+        as_attachment=True
+    )
+
+
+# ============================================================
+# LECTURER NOTES - DELETE PDF
+# ============================================================
+
+@app.route(
+    "/admin/lecturer-notes/delete/<int:note_id>",
+    methods=["POST"]
+)
+@login_required
+def delete_lecturer_note(note_id):
+
+    access_check = admin_required()
+
+    if access_check:
+        return access_check
+
+    note = db.session.get(
+        LecturerNote,
+        note_id
+    )
+
+    if not note:
+
+        flash(
+            "Lecturer notes not found.",
+            "error"
+        )
+
+        return redirect(
+            url_for("admin_lecturer_notes")
+        )
+
+    db.session.delete(note)
+
+    db.session.commit()
+
+    flash(
+        "Lecturer notes deleted successfully.",
+        "success"
+    )
+
+    return redirect(
+        url_for("admin_lecturer_notes")
     )
 
 

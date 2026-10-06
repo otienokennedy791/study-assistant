@@ -440,6 +440,7 @@
         <button class="tab-button" onclick="showTab('progress', this)">
             Progress
         </button>
+  <button class="tab-button" onclick="showTab('lecturer-notes', this)">📚 Lecturer Notes</button>
 
     </div>
 
@@ -1848,6 +1849,169 @@
         </div>
 
     </section>
+
+
+<!-- ============================================================
+     LECTURER NOTES
+     ============================================================ -->
+
+<section id="lecturer-notes" class="tab-content">
+
+    <div class="progress-card">
+
+        <h2>📚 Lecturer Notes</h2>
+
+        <p>
+            Access the lecturer-provided notes for this subject.
+            You can view the PDF online or download it for offline study.
+        </p>
+
+        {% if lecturer_notes %}
+
+            {% for note in lecturer_notes %}
+
+                <div style="
+                    background: white;
+                    border: 1px solid #dfe5ec;
+                    border-radius: 12px;
+                    padding: 18px;
+                    margin: 15px 0;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+                ">
+
+                    <h3 style="
+                        margin-top: 0;
+                        color: #17365d;
+                    ">
+                        📄 {{ note.title }}
+                    </h3>
+
+                    <p style="
+                        color: #666;
+                        font-size: 14px;
+                        line-height: 1.6;
+                    ">
+
+                        <strong>File:</strong>
+                        {{ note.filename }}
+
+                        <br>
+
+                        <strong>Uploaded:</strong>
+                        {{ note.uploaded_at.strftime("%d %B %Y") }}
+
+                    </p>
+
+                    <div style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin-top: 15px;
+                    ">
+
+                        <a
+                            href="{{ url_for('view_lecturer_note', note_id=note.id) }}"
+                            target="_blank"
+                            style="
+                                display: inline-block;
+                                background: #e7f0ff;
+                                color: #174a8b;
+                                padding: 10px 16px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                font-weight: bold;
+                            "
+                        >
+                            👁️ View PDF
+                        </a>
+
+                        <a
+                            href="{{ url_for('download_lecturer_note', note_id=note.id) }}"
+                            style="
+                                display: inline-block;
+                                background: #e5f7eb;
+                                color: #176b35;
+                                padding: 10px 16px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                font-weight: bold;
+                            "
+                        >
+                            ⬇️ Download PDF
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div style="
+                text-align: center;
+                padding: 35px 20px;
+                background: white;
+                border-radius: 12px;
+                border: 1px dashed #ccd5df;
+                margin-top: 20px;
+            ">
+
+                <div style="font-size: 42px;">
+                    📚
+                </div>
+
+                <h3>
+                    No Lecturer Notes Yet
+                </h3>
+
+                <p style="color: #777;">
+                    Lecturer notes for this subject have not been uploaded yet.
+                    Please check again later.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+        {% if is_admin %}
+
+            <div style="
+                margin-top: 25px;
+                padding: 15px;
+                background: #f4f7fb;
+                border-radius: 10px;
+                text-align: center;
+            ">
+
+                <p style="margin-top: 0;">
+                    Administrator access detected.
+                </p>
+
+                <a
+                    href="{{ url_for('admin_lecturer_notes') }}"
+                    style="
+                        display: inline-block;
+                        background: #17365d;
+                        color: white;
+                        padding: 10px 18px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        font-weight: bold;
+                    "
+                >
+                    ⚙️ Manage Lecturer Notes
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
 
 </main>
 

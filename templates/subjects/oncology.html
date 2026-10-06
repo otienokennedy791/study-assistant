@@ -414,6 +414,7 @@
                 onclick="showTab('progress', this)">
             Progress
         </button>
+  <button class="tab-button" onclick="showTab('lecturer-notes', this)">📚 Lecturer Notes</button>
 
     </div>
 
@@ -2207,6 +2208,69 @@
 
 </div>
 
+<!-- ========================= -->
+    <!-- LECTURER NOTES TAB -->
+    <!-- ========================= -->
+
+    <div id="lecturer-notes" class="tab-content">
+        <div class="progress-card">
+            <h2>📚 Lecturer Notes</h2>
+
+            <p>
+                Access the official lecturer notes for NURS 444 Oncology Nursing.
+                Notes uploaded by the administrator are available below.
+            </p>
+
+            {% if lecturer_notes %}
+                <div class="lecturer-notes-list">
+
+                    {% for note in lecturer_notes %}
+                        <div class="lecturer-note-card">
+
+                            <h3>📄 {{ note.title }}</h3>
+
+                            <p>
+                                Uploaded:
+                                {{ note.uploaded_at.strftime('%d %B %Y, %H:%M') }}
+                            </p>
+
+                            <div class="note-actions">
+
+                                <a href="{{ url_for('view_lecturer_note', note_id=note.id) }}"
+                                   target="_blank"
+                                   class="btn">
+                                    👁️ View PDF
+                                </a>
+
+                                <a href="{{ url_for('download_lecturer_note', note_id=note.id) }}"
+                                   class="btn">
+                                    ⬇️ Download
+                                </a>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-notes">
+                    <p>📭 No lecturer notes have been uploaded for this subject yet.</p>
+                </div>
+
+            {% endif %}
+
+            {% if is_admin %}
+                <div style="margin-top: 20px;">
+                    <a href="{{ url_for('admin_lecturer_notes') }}" class="btn">
+                        ⚙️ Manage Lecturer Notes
+                    </a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
 
 <script>
 

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lecturer Notes - Admin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .header {
+            background: #17365d;
+            color: white;
+            padding: 22px;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .header p {
+            margin: 6px 0 0;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            background: white;
+            color: #17365d;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #17365d;
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd3dd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .upload-btn {
+            margin-top: 20px;
+            border: none;
+            background: #17365d;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .upload-btn:hover {
+            opacity: 0.9;
+        }
+
+        .flash {
+            padding: 13px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .flash.success {
+            background: #dff5e5;
+            color: #176b35;
+        }
+
+        .flash.error {
+            background: #fde1e1;
+            color: #9b2020;
+        }
+
+        .note {
+            border: 1px solid #dde3eb;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 14px;
+            background: #fafcff;
+        }
+
+        .note h3 {
+            margin: 0 0 8px;
+            color: #17365d;
+        }
+
+        .note-info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .view-btn {
+            background: #e7f0ff;
+            color: #174a8b;
+        }
+
+        .download-btn {
+            background: #e5f7eb;
+            color: #176b35;
+        }
+
+        .delete-btn {
+            background: #fde5e5;
+            color: #a32020;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 650px) {
+
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <div class="header-inner">
+
+        <div>
+            <h1>📚 Lecturer Notes Manager</h1>
+            <p>Administrator: {{ current_user.email }}</p>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ================================================== -->
+    <!-- UPLOAD -->
+    <!-- ================================================== -->
+
+    <div class="card">
+
+        <h2>Upload Lecturer Notes</h2>
+
+        <p>
+            Upload a PDF and assign it to the appropriate nursing subject.
+            Students enrolled on the study assistant will be able to view
+            and download the notes from that subject's
+            <strong>📚 Lecturer Notes</strong> tab.
+        </p>
+
+        <form
+            method="POST"
+            action="{{ url_for('admin_lecturer_notes') }}"
+            enctype="multipart/form-data"
+        >
+
+            <label for="title">
+                Notes Title
+            </label>
+
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="e.g. Complete Ophthalmic Nursing Lecture Notes"
+                required
+            >
+
+
+            <label for="subject_key">
+                Subject
+            </label>
+
+            <select
+                id="subject_key"
+                name="subject_key"
+                required
+            >
+
+                <option value="">
+                    -- Select Subject --
+                </option>
+
+                {% for key, subject in subjects.items() %}
+
+                    <option value="{{ key }}">
+                        {{ subject.code }} - {{ subject.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label for="pdf_file">
+                PDF File
+            </label>
+
+            <input
+                type="file"
+                id="pdf_file"
+                name="pdf_file"
+                accept=".pdf,application/pdf"
+                required
+            >
+
+            <p style="font-size: 13px; color: #777;">
+                Maximum file size: 20 MB. PDF files only.
+            </p>
+
+
+            <button
+                type="submit"
+                class="upload-btn"
+            >
+                📤 Upload Lecturer Notes
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- EXISTING NOTES -->
+    <!-- ================================================== -->
+
+    <div class="card">
+
+        <h2>Uploaded Lecturer Notes</h2>
+
+        {% if notes %}
+
+            {% for note in notes %}
+
+                <div class="note">
+
+                    <h3>
+                        📄 {{ note.title }}
+                    </h3>
+
+                    <div class="note-info">
+
+                        <strong>Subject:</strong>
+
+                        {% if note.subject_key in subjects %}
+
+                            {{ subjects[note.subject_key].code }}
+                            -
+                            {{ subjects[note.subject_key].name }}
+
+                        {% else %}
+
+                            {{ note.subject_key }}
+
+                        {% endif %}
+
+                        <br>
+
+                        <strong>File:</strong>
+                        {{ note.filename }}
+
+                        <br>
+
+                        <strong>Uploaded:</strong>
+                        {{ note.uploaded_at.strftime("%d %B %Y, %H:%M") }}
+
+                        <br>
+
+                        <strong>Uploaded by:</strong>
+                        {{ note.uploaded_by }}
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <a
+                            href="{{ url_for('view_lecturer_note', note_id=note.id) }}"
+                            target="_blank"
+                            class="action-btn view-btn"
+                        >
+                            👁️ View
+                        </a>
+
+
+                        <a
+                            href="{{ url_for('download_lecturer_note', note_id=note.id) }}"
+                            class="action-btn download-btn"
+                        >
+                            ⬇️ Download
+                        </a>
+
+
+                        <form
+                            method="POST"
+                            action="{{ url_for('delete_lecturer_note', note_id=note.id) }}"
+                            onsubmit="return confirm('Are you sure you want to delete these lecturer notes?');"
+                            style="display:inline;"
+                        >
+
+                            <button
+                                type="submit"
+                                class="action-btn delete-btn"
+                            >
+                                🗑️ Delete
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+
+                <h3>📚 No Lecturer Notes Yet</h3>
+
+                <p>
+                    Upload the first set of lecturer notes using the form above.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
